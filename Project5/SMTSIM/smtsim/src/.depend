@@ -1,0 +1,241 @@
+fp-ctl.o: ./fp-ctl.c ./fp-ctl.h
+sim-assert.o: ./sim-assert.c ./sys-types.h ./long-addr.h ./sim-assert.h \
+  ./stack-trace.h
+stack-trace.o: ./stack-trace.c ./stack-trace.h
+long-addr-c.o: ./long-addr-c.c ./sys-types.h ./long-addr.h
+utils.o: ./utils.c ./sys-types.h ./long-addr.h ./sim-assert.h ./utils.h
+jtimer.o: ./jtimer.c ./sys-types.h ./long-addr.h ./jtimer.h ./utils.h
+prng.o: ./prng.c ./prng.h
+simple-pre.o: ./simple-pre.c ./simple-pre.h
+btb-array.o: ./btb-array.c ./sim-assert.h ./sys-types.h ./long-addr.h \
+  ./btb-array.h ./assoc-array.h ./utils.h
+cache.o: ./cache.c ./sim-assert.h ./sys-types.h ./long-addr.h ./main.h \
+  ./utils.h ./cache.h ./cache-array.h ./cache-params.h ./tlb-array.h \
+  ./cache-queue.h ./cache-req.h ./core-resources.h ./stage-queue.h \
+  ./trace-cache.h ./trace-fill-unit.h ./multi-bpredict.h ./stash.h \
+  ./coherence-mgr.h ./context.h ./reg-defs.h ./emulate.h ./dyn-inst.h \
+  ./sim-params.h ./prog-mem.h ./app-state.h ./app-mgr.h ./sim-cfg.h \
+  ./assoc-array.h ./app-stats-log.h ./mem-unit.h ./prefetch-streambuf.h \
+  ./deadblock-pred.h ./mshr.h
+commit.o: ./commit.c ./sim-assert.h ./sys-types.h ./long-addr.h ./main.h \
+  ./utils.h ./inst.h ./smt.h ./core-resources.h ./stage-queue.h \
+  ./cache-params.h ./trace-cache.h ./trace-fill-unit.h ./multi-bpredict.h \
+  ./stash.h ./branch-bias-table.h ./context.h ./reg-defs.h ./emulate.h \
+  ./callback-queue.h ./dyn-inst.h ./app-state.h ./app-mgr.h ./sim-cfg.h \
+  ./sim-params.h ./app-stats-log.h ./work-queue.h ./sign-extend.h \
+  ./cache.h ./cache-req.h ./prefetch-streambuf.h ./deadblock-pred.h \
+  ./adapt-mgr.h
+core-resources.o: ./core-resources.c ./sim-assert.h ./sys-types.h \
+  ./long-addr.h ./core-resources.h ./stage-queue.h ./cache-params.h \
+  ./trace-cache.h ./trace-fill-unit.h ./multi-bpredict.h ./stash.h \
+  ./utils.h ./cache-array.h ./tlb-array.h ./btb-array.h ./pht-predict.h \
+  ./branch-bias-table.h ./main.h ./context.h ./reg-defs.h ./emulate.h \
+  ./dyn-inst.h ./sim-params.h ./sim-cfg.h ./prefetch-streambuf.h \
+  ./deadblock-pred.h ./mshr.h
+decode.o: ./decode.c ./sim-assert.h ./sys-types.h ./long-addr.h ./main.h \
+  ./utils.h ./core-resources.h ./stage-queue.h ./cache-params.h \
+  ./trace-cache.h ./trace-fill-unit.h ./multi-bpredict.h ./stash.h \
+  ./dyn-inst.h ./context.h ./reg-defs.h ./emulate.h ./inject-inst.h
+emulate.o: ./emulate.c ./sim-assert.h ./sys-types.h ./long-addr.h \
+  ./emulate.h ./utils.h ./stash.h ./inst.h ./smt.h ./fp-ctl.h \
+  ./sign-extend.h ./quirks.h ./prog-mem.h ./syscalls.h ./app-state.h \
+  ./reg-defs.h ./work-queue.h ./main.h ./debug-coverage.h ./bbtracker.h
+execute.o: ./execute.c ./sim-assert.h ./sys-types.h ./long-addr.h \
+  ./main.h ./utils.h ./mem.h ./prog-mem.h ./cache.h ./smt.h ./inst.h \
+  ./core-resources.h ./stage-queue.h ./cache-params.h ./trace-cache.h \
+  ./trace-fill-unit.h ./multi-bpredict.h ./stash.h ./dyn-inst.h \
+  ./context.h ./reg-defs.h ./emulate.h ./callback-queue.h ./app-state.h \
+  ./sim-params.h ./app-mgr.h ./sim-cfg.h ./app-stats-log.h ./adapt-mgr.h
+fetch.o: ./fetch.c ./sim-assert.h ./sys-types.h ./long-addr.h ./main.h \
+  ./utils.h ./stash.h ./cache.h ./cache-array.h ./cache-params.h ./smt.h \
+  ./inst.h ./core-resources.h ./stage-queue.h ./trace-cache.h \
+  ./trace-fill-unit.h ./multi-bpredict.h ./mem.h ./prog-mem.h \
+  ./sign-extend.h ./quirks.h ./jtimer.h ./app-state.h ./reg-defs.h \
+  ./context.h ./emulate.h ./dyn-inst.h ./sim-cfg.h ./sim-params.h \
+  ./mshr.h
+main.o: ./main.c ./sim-assert.h ./sys-types.h ./long-addr.h ./main.h \
+  ./utils.h ./mem.h ./prog-mem.h ./smt.h ./cache.h ./cache-params.h \
+  ./core-resources.h ./stage-queue.h ./trace-cache.h ./trace-fill-unit.h \
+  ./multi-bpredict.h ./stash.h ./sim-cfg.h ./jtimer.h ./region-alloc.h \
+  ./syscalls.h ./sim-params.h ./context.h ./reg-defs.h ./emulate.h \
+  ./app-mgr.h ./callback-queue.h ./work-queue.h ./bbtracker.h \
+  ./adapt-mgr.h
+pht-predict.o: ./pht-predict.c ./sim-assert.h ./sys-types.h ./long-addr.h \
+  ./pht-predict.h ./utils.h
+predict.o: ./predict.c ./sim-assert.h ./sys-types.h ./long-addr.h \
+  ./main.h ./utils.h ./context.h ./reg-defs.h ./emulate.h ./btb-array.h \
+  ./pht-predict.h ./core-resources.h ./stage-queue.h ./cache-params.h \
+  ./trace-cache.h ./trace-fill-unit.h ./multi-bpredict.h ./stash.h \
+  ./branch-bias-table.h ./app-state.h
+print.o: ./print.c ./main.h ./sys-types.h ./long-addr.h ./utils.h ./mem.h \
+  ./prog-mem.h ./inst.h ./smt.h ./sign-extend.h ./context.h ./reg-defs.h \
+  ./emulate.h ./app-state.h
+queue.o: ./queue.c ./sim-assert.h ./sys-types.h ./long-addr.h ./main.h \
+  ./utils.h ./stash.h ./core-resources.h ./stage-queue.h ./cache-params.h \
+  ./trace-cache.h ./trace-fill-unit.h ./multi-bpredict.h ./context.h \
+  ./reg-defs.h ./emulate.h ./dyn-inst.h ./cache.h ./inst.h ./smt.h \
+  ./sim-params.h ./callback-queue.h ./app-state.h ./mshr.h ./adapt-mgr.h \
+  ./sim-cfg.h
+regread.o: ./regread.c ./sim-assert.h ./sys-types.h ./long-addr.h \
+  ./main.h ./utils.h ./core-resources.h ./stage-queue.h ./cache-params.h \
+  ./trace-cache.h ./trace-fill-unit.h ./multi-bpredict.h ./stash.h \
+  ./dyn-inst.h
+regrename.o: ./regrename.c ./sim-assert.h ./sys-types.h ./long-addr.h \
+  ./main.h ./utils.h ./core-resources.h ./stage-queue.h ./cache-params.h \
+  ./trace-cache.h ./trace-fill-unit.h ./multi-bpredict.h ./stash.h \
+  ./dyn-inst.h ./context.h ./reg-defs.h ./emulate.h ./app-state.h \
+  ./adapt-mgr.h ./sim-cfg.h
+regwrite.o: ./regwrite.c ./sim-assert.h ./sys-types.h ./long-addr.h \
+  ./main.h ./utils.h ./core-resources.h ./stage-queue.h ./cache-params.h \
+  ./trace-cache.h ./trace-fill-unit.h ./multi-bpredict.h ./stash.h \
+  ./dyn-inst.h ./app-state.h ./reg-defs.h ./context.h ./emulate.h
+run.o: ./run.c ./sim-assert.h ./sys-types.h ./long-addr.h ./main.h \
+  ./utils.h ./sim-params.h ./cache-params.h ./cache.h ./jtimer.h \
+  ./sim-cfg.h ./core-resources.h ./stage-queue.h ./trace-cache.h \
+  ./trace-fill-unit.h ./multi-bpredict.h ./stash.h ./context.h \
+  ./reg-defs.h ./emulate.h ./app-state.h ./callback-queue.h ./app-mgr.h \
+  ./dyn-inst.h ./app-stats-log.h ./work-queue.h ./debug-coverage.h \
+  ./adapt-mgr.h
+sim-params.o: ./sim-params.c ./sim-assert.h ./sys-types.h ./long-addr.h \
+  ./sim-params.h ./cache-params.h ./main.h ./utils.h ./cache.h \
+  ./cache-req.h ./prog-mem.h
+tlb-array.o: ./tlb-array.c ./sim-assert.h ./sys-types.h ./long-addr.h \
+  ./tlb-array.h ./assoc-array.h ./utils.h ./cache-params.h
+sys-types.o: ./sys-types.cc ./sim-assert.h ./sys-types.h ./long-addr.h \
+  ./sign-extend.h ./fp-ctl.h
+linktest-typesys.o: ./linktest-typesys.cc ./sys-types.h ./long-addr.h \
+  ./sim-assert.h ./hash-map.h
+utils-cc.o: ./utils-cc.cc ./sys-types.h ./long-addr.h ./sim-assert.h \
+  ./utils-cc.h ./scoped-ptr.h ./gzstream.h
+gzstream.o: ./gzstream.cc ./gzstream.h
+online-stats.o: ./online-stats.cc ./sim-assert.h ./sys-types.h \
+  ./long-addr.h ./online-stats.h ./hash-map.h ./utils.h
+region-alloc.o: ./region-alloc.cc ./region-alloc.h ./sys-types.h \
+  ./long-addr.h ./utils.h ./sim-assert.h
+callback-queue.o: ./callback-queue.cc ./sim-assert.h ./sys-types.h \
+  ./long-addr.h ./callback-queue.h ./hash-map.h ./utils.h ./utils-cc.h \
+  ./scoped-ptr.h
+linktest-utils.o: ./linktest-utils.cc ./sys-types.h ./long-addr.h \
+  ./sim-assert.h ./utils.h ./utils-cc.h ./scoped-ptr.h ./online-stats.h \
+  ./hash-map.h
+app-mgr.o: ./app-mgr.cc ./sim-assert.h ./sys-types.h ./long-addr.h \
+  ./app-mgr.h ./utils.h ./utils-cc.h ./scoped-ptr.h ./app-state.h \
+  ./reg-defs.h ./context.h ./emulate.h ./callback-queue.h ./dyn-inst.h \
+  ./core-resources.h ./stage-queue.h ./cache-params.h ./trace-cache.h \
+  ./trace-fill-unit.h ./multi-bpredict.h ./stash.h ./sim-cfg.h ./main.h \
+  ./cache.h ./online-stats.h ./hash-map.h ./inject-inst.h ./sim-params.h \
+  ./prng.h ./tlb-array.h ./cache-array.h ./simple-pre.h
+app-state.o: ./app-state.cc ./sim-assert.h ./sys-types.h ./long-addr.h \
+  ./app-state.h ./reg-defs.h ./utils.h ./loader.h ./prog-mem.h \
+  ./syscalls.h ./stash.h
+app-stats-log.o: ./app-stats-log.cc ./sim-assert.h ./sys-types.h \
+  ./long-addr.h ./app-stats-log.h ./app-state.h ./reg-defs.h ./context.h \
+  ./emulate.h ./callback-queue.h ./dyn-inst.h ./utils.h ./sim-cfg.h \
+  ./cache-array.h ./cache-params.h ./cache.h ./main.h ./core-resources.h \
+  ./stage-queue.h ./trace-cache.h ./trace-fill-unit.h ./multi-bpredict.h \
+  ./stash.h
+arg-file.o: ./arg-file.cc ./sim-assert.h ./sys-types.h ./long-addr.h \
+  ./arg-file.h ./utils.h ./simple-pre.h
+assoc-array.o: ./assoc-array.cc ./sim-assert.h ./sys-types.h \
+  ./long-addr.h ./hash-map.h ./assoc-array.h ./utils.h ./utils-cc.h \
+  ./scoped-ptr.h ./sim-cfg.h ./prng.h
+branch-bias-table.o: ./branch-bias-table.cc ./sim-assert.h ./sys-types.h \
+  ./long-addr.h ./branch-bias-table.h ./assoc-array.h ./utils.h
+cache-array.o: ./cache-array.cc ./sim-assert.h ./sys-types.h \
+  ./long-addr.h ./cache-array.h ./cache-params.h ./assoc-array.h \
+  ./coherence-mgr.h ./sim-cfg.h ./utils.h ./sim-params.h
+cache-queue.o: ./cache-queue.cc ./sim-assert.h ./sys-types.h \
+  ./long-addr.h ./hash-map.h ./cache-queue.h ./sim-params.h \
+  ./cache-params.h ./cache.h ./cache-req.h ./core-resources.h \
+  ./stage-queue.h ./trace-cache.h ./trace-fill-unit.h ./multi-bpredict.h \
+  ./stash.h ./utils.h ./utils-cc.h ./scoped-ptr.h
+coherence-mgr.o: ./coherence-mgr.cc ./sim-assert.h ./sys-types.h \
+  ./long-addr.h ./hash-map.h ./coherence-mgr.h ./core-resources.h \
+  ./stage-queue.h ./cache-params.h ./trace-cache.h ./trace-fill-unit.h \
+  ./multi-bpredict.h ./stash.h ./utils.h ./utils-cc.h ./scoped-ptr.h \
+  ./sim-cfg.h ./prng.h
+context.o: ./context.cc ./sim-assert.h ./sys-types.h ./long-addr.h \
+  ./context.h ./reg-defs.h ./emulate.h ./callback-queue.h ./app-state.h \
+  ./dyn-inst.h ./utils.h ./main.h ./core-resources.h ./stage-queue.h \
+  ./cache-params.h ./trace-cache.h ./trace-fill-unit.h ./multi-bpredict.h \
+  ./stash.h ./sim-cfg.h ./app-stats-log.h ./app-mgr.h
+deadblock-pred.o: ./deadblock-pred.cc ./sim-assert.h ./sys-types.h \
+  ./long-addr.h ./hash-map.h ./deadblock-pred.h ./utils.h ./utils-cc.h \
+  ./scoped-ptr.h ./sim-cfg.h ./assoc-array.h ./online-stats.h ./main.h
+debug-coverage.o: ./debug-coverage.cc ./sys-types.h ./long-addr.h \
+  ./debug-coverage.h ./utils-cc.h ./scoped-ptr.h ./sim-assert.h ./utils.h
+inject-inst.o: ./inject-inst.cc ./sim-assert.h ./sys-types.h \
+  ./long-addr.h ./inject-inst.h ./core-resources.h ./stage-queue.h \
+  ./cache-params.h ./trace-cache.h ./trace-fill-unit.h ./multi-bpredict.h \
+  ./stash.h ./app-state.h ./reg-defs.h ./dyn-inst.h ./context.h \
+  ./emulate.h ./callback-queue.h ./utils.h ./main.h ./app-mgr.h
+loader-aout.o: ./loader-aout.cc ./sim-assert.h ./sys-types.h \
+  ./long-addr.h ./loader.h ./loader-private.h ./app-state.h ./reg-defs.h \
+  ./utils.h ./mem.h ./prog-mem.h ./sim-params.h ./cache-params.h \
+  ./loader-alphafilehdr.h
+loader-elf.o: ./loader-elf.cc ./sim-assert.h ./sys-types.h ./long-addr.h \
+  ./loader.h ./loader-private.h ./app-state.h ./reg-defs.h ./utils.h \
+  ./mem.h ./prog-mem.h ./sim-params.h ./cache-params.h
+loader.o: ./loader.cc ./sim-assert.h ./sys-types.h ./long-addr.h \
+  ./loader.h ./app-state.h ./reg-defs.h ./utils.h ./mem.h ./prog-mem.h \
+  ./sim-params.h ./cache-params.h ./loader-private.h
+mem-unit.o: ./mem-unit.cc ./sim-assert.h ./sys-types.h ./long-addr.h \
+  ./cache-params.h ./mem-unit.h ./utils.h
+mshr.o: ./mshr.cc ./sim-assert.h ./sys-types.h ./long-addr.h ./hash-map.h \
+  ./mshr.h ./utils.h ./utils-cc.h ./scoped-ptr.h ./sim-cfg.h ./main.h
+multi-bpredict.o: ./multi-bpredict.cc ./sim-assert.h ./sys-types.h \
+  ./long-addr.h ./multi-bpredict.h ./utils.h
+prefetch-streambuf.o: ./prefetch-streambuf.cc ./sim-assert.h \
+  ./sys-types.h ./long-addr.h ./hash-map.h ./prefetch-streambuf.h \
+  ./utils.h ./utils-cc.h ./scoped-ptr.h ./sim-cfg.h ./callback-queue.h \
+  ./assoc-array.h ./cache-array.h ./cache-params.h ./cache.h \
+  ./online-stats.h ./core-resources.h ./stage-queue.h ./trace-cache.h \
+  ./trace-fill-unit.h ./multi-bpredict.h ./stash.h ./main.h
+prog-mem.o: ./prog-mem.cc ./sys-types.h ./long-addr.h ./prog-mem.h \
+  ./sim-assert.h ./region-alloc.h ./utils.h ./utils-cc.h ./scoped-ptr.h
+sim-cfg.o: ./sim-cfg.cc ./kv-tree-basic.h ./kv-tree-val.h \
+  ./kv-tree-path.h ./kv-tree.h ./sim-assert.h ./sys-types.h ./long-addr.h \
+  ./sim-cfg.h ./core-resources.h ./stage-queue.h ./cache-params.h \
+  ./trace-cache.h ./trace-fill-unit.h ./multi-bpredict.h ./stash.h \
+  ./sim-params.h ./context.h ./reg-defs.h ./emulate.h ./callback-queue.h \
+  ./utils.h ./assoc-array.h ./arg-file.h ./work-queue.h ./bbtracker.h
+stash.o: ./stash.cc ./sim-assert.h ./sys-types.h ./long-addr.h \
+  ./hash-map.h ./stash.h ./utils.h ./utils-cc.h ./scoped-ptr.h \
+  ./emulate.h
+syscalls.o: ./syscalls.cc ./syscalls-includes.h ./sys-types.h \
+  ./long-addr.h ./sim-assert.h ./syscalls.h ./app-state.h ./reg-defs.h \
+  ./prog-mem.h ./sim-cfg.h ./sim-params.h ./cache-params.h ./utils.h \
+  ./utils-cc.h ./scoped-ptr.h ./callback-queue.h ./syscalls-sim-fd.h \
+  ./debug-coverage.h ./syscalls-private.h ./syscalls-private-nums.h \
+  ./syscalls-private-errno.h ./syscalls-private-table.h
+syscalls-sim-fd.o: ./syscalls-sim-fd.cc ./syscalls-includes.h \
+  ./sys-types.h ./long-addr.h ./syscalls-sim-fd.h ./utils-cc.h \
+  ./scoped-ptr.h ./callback-queue.h ./sim-assert.h ./app-state.h \
+  ./reg-defs.h ./prog-mem.h ./utils.h ./hash-map.h ./debug-coverage.h \
+  ./syscalls-private.h
+trace-cache.o: ./trace-cache.cc ./sim-assert.h ./sys-types.h \
+  ./long-addr.h ./assoc-array.h ./trace-cache.h ./utils.h
+trace-fill-unit.o: ./trace-fill-unit.cc ./sim-assert.h ./sys-types.h \
+  ./long-addr.h ./trace-fill-unit.h ./trace-cache.h ./main.h ./utils.h \
+  ./core-resources.h ./stage-queue.h ./cache-params.h ./multi-bpredict.h \
+  ./stash.h ./branch-bias-table.h ./dyn-inst.h ./context.h ./reg-defs.h \
+  ./emulate.h ./callback-queue.h ./app-state.h
+work-queue.o: ./work-queue.cc ./sim-assert.h ./sys-types.h ./long-addr.h \
+  ./hash-map.h ./work-queue.h ./utils.h ./utils-cc.h ./scoped-ptr.h \
+  ./sim-cfg.h ./callback-queue.h ./app-mgr.h ./app-state.h ./reg-defs.h \
+  ./main.h ./context.h ./emulate.h ./jtimer.h ./app-stats-log.h \
+  ./bbtracker.h
+bbtracker.o: ./bbtracker.cc ./gzstream.h ./bbtracker.h
+adapt-mgr.o: ./adapt-mgr.cc ./adapt-mgr.h ./sys-types.h ./long-addr.h \
+  ./utils.h ./core-resources.h ./stage-queue.h ./cache-params.h \
+  ./trace-cache.h ./trace-fill-unit.h ./multi-bpredict.h ./stash.h \
+  ./sim-cfg.h ./context.h ./reg-defs.h ./emulate.h ./callback-queue.h \
+  ./sim-assert.h
+kv-tree.o: ./kv-tree.cc ./kv-tree.h ./kv-tree-val.h
+kv-tree-basic.o: ./kv-tree-basic.cc ./kv-tree-basic.h ./kv-tree-val.h \
+  ./kv-tree-path.h ./kv-tree-pparse.h ./kv-tree.h
+kv-tree-path.o: ./kv-tree-path.cc ./kv-tree-pparse.h ./kv-tree.h \
+  ./kv-tree-val.h ./kv-tree-path.h
+kv-tree-pparse.o: ./kv-tree-pparse.cc ./kv-tree-pparse.h ./kv-tree.h \
+  ./kv-tree-val.h
+kv-tree-val.o: ./kv-tree-val.cc ./kv-tree-val.h

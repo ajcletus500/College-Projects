@@ -1,0 +1,318 @@
+fp-ctl.o: ../src/fp-ctl.c ../src/fp-ctl.h
+sim-assert.o: ../src/sim-assert.c ../src/sys-types.h ../src/long-addr.h \
+ ../src/sim-assert.h ../src/stack-trace.h
+stack-trace.o: ../src/stack-trace.c ../src/stack-trace.h
+long-addr-c.o: ../src/long-addr-c.c ../src/sys-types.h ../src/long-addr.h
+utils.o: ../src/utils.c ../src/sys-types.h ../src/long-addr.h \
+ ../src/sim-assert.h ../src/utils.h
+jtimer.o: ../src/jtimer.c ../src/sys-types.h ../src/long-addr.h \
+ ../src/jtimer.h ../src/utils.h
+prng.o: ../src/prng.c ../src/prng.h
+simple-pre.o: ../src/simple-pre.c ../src/simple-pre.h
+btb-array.o: ../src/btb-array.c ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/btb-array.h ../src/assoc-array.h \
+ ../src/utils.h
+cache.o: ../src/cache.c ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/main.h ../src/utils.h ../src/cache.h \
+ ../src/cache-array.h ../src/cache-params.h ../src/tlb-array.h \
+ ../src/cache-queue.h ../src/cache-req.h ../src/core-resources.h \
+ ../src/stage-queue.h ../src/trace-cache.h ../src/trace-fill-unit.h \
+ ../src/multi-bpredict.h ../src/stash.h ../src/coherence-mgr.h \
+ ../src/context.h ../src/reg-defs.h ../src/emulate.h ../src/dyn-inst.h \
+ ../src/sim-params.h ../src/prog-mem.h ../src/app-state.h \
+ ../src/app-mgr.h ../src/sim-cfg.h ../src/assoc-array.h \
+ ../src/app-stats-log.h ../src/mem-unit.h ../src/prefetch-streambuf.h \
+ ../src/deadblock-pred.h ../src/mshr.h
+commit.o: ../src/commit.c ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/main.h ../src/utils.h ../src/inst.h \
+ ../src/smt.h ../src/core-resources.h ../src/stage-queue.h \
+ ../src/cache-params.h ../src/trace-cache.h ../src/trace-fill-unit.h \
+ ../src/multi-bpredict.h ../src/stash.h ../src/branch-bias-table.h \
+ ../src/context.h ../src/reg-defs.h ../src/emulate.h \
+ ../src/callback-queue.h ../src/dyn-inst.h ../src/app-state.h \
+ ../src/app-mgr.h ../src/sim-cfg.h ../src/sim-params.h \
+ ../src/app-stats-log.h ../src/work-queue.h ../src/sign-extend.h \
+ ../src/cache.h ../src/cache-req.h ../src/prefetch-streambuf.h \
+ ../src/deadblock-pred.h ../src/adapt-mgr.h
+core-resources.o: ../src/core-resources.c ../src/sim-assert.h \
+ ../src/sys-types.h ../src/long-addr.h ../src/core-resources.h \
+ ../src/stage-queue.h ../src/cache-params.h ../src/trace-cache.h \
+ ../src/trace-fill-unit.h ../src/multi-bpredict.h ../src/stash.h \
+ ../src/utils.h ../src/cache-array.h ../src/tlb-array.h \
+ ../src/btb-array.h ../src/pht-predict.h ../src/branch-bias-table.h \
+ ../src/main.h ../src/context.h ../src/reg-defs.h ../src/emulate.h \
+ ../src/dyn-inst.h ../src/sim-params.h ../src/sim-cfg.h \
+ ../src/prefetch-streambuf.h ../src/deadblock-pred.h ../src/mshr.h
+decode.o: ../src/decode.c ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/main.h ../src/utils.h ../src/core-resources.h \
+ ../src/stage-queue.h ../src/cache-params.h ../src/trace-cache.h \
+ ../src/trace-fill-unit.h ../src/multi-bpredict.h ../src/stash.h \
+ ../src/dyn-inst.h ../src/context.h ../src/reg-defs.h ../src/emulate.h \
+ ../src/inject-inst.h
+emulate.o: ../src/emulate.c ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/emulate.h ../src/utils.h ../src/stash.h \
+ ../src/inst.h ../src/smt.h ../src/fp-ctl.h ../src/sign-extend.h \
+ ../src/quirks.h ../src/prog-mem.h ../src/syscalls.h ../src/app-state.h \
+ ../src/reg-defs.h ../src/work-queue.h ../src/main.h \
+ ../src/debug-coverage.h ../src/bbtracker.h
+execute.o: ../src/execute.c ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/main.h ../src/utils.h ../src/mem.h \
+ ../src/prog-mem.h ../src/cache.h ../src/smt.h ../src/inst.h \
+ ../src/core-resources.h ../src/stage-queue.h ../src/cache-params.h \
+ ../src/trace-cache.h ../src/trace-fill-unit.h ../src/multi-bpredict.h \
+ ../src/stash.h ../src/dyn-inst.h ../src/context.h ../src/reg-defs.h \
+ ../src/emulate.h ../src/callback-queue.h ../src/app-state.h \
+ ../src/sim-params.h ../src/app-mgr.h ../src/sim-cfg.h \
+ ../src/app-stats-log.h ../src/adapt-mgr.h
+fetch.o: ../src/fetch.c ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/main.h ../src/utils.h ../src/stash.h \
+ ../src/cache.h ../src/cache-array.h ../src/cache-params.h ../src/smt.h \
+ ../src/inst.h ../src/core-resources.h ../src/stage-queue.h \
+ ../src/trace-cache.h ../src/trace-fill-unit.h ../src/multi-bpredict.h \
+ ../src/mem.h ../src/prog-mem.h ../src/sign-extend.h ../src/quirks.h \
+ ../src/jtimer.h ../src/app-state.h ../src/reg-defs.h ../src/context.h \
+ ../src/emulate.h ../src/dyn-inst.h ../src/sim-cfg.h ../src/sim-params.h \
+ ../src/mshr.h
+main.o: ../src/main.c ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/main.h ../src/utils.h ../src/mem.h \
+ ../src/prog-mem.h ../src/smt.h ../src/cache.h ../src/cache-params.h \
+ ../src/core-resources.h ../src/stage-queue.h ../src/trace-cache.h \
+ ../src/trace-fill-unit.h ../src/multi-bpredict.h ../src/stash.h \
+ ../src/sim-cfg.h ../src/jtimer.h ../src/region-alloc.h ../src/syscalls.h \
+ ../src/sim-params.h ../src/context.h ../src/reg-defs.h ../src/emulate.h \
+ ../src/app-mgr.h ../src/callback-queue.h ../src/work-queue.h \
+ ../src/bbtracker.h ../src/adapt-mgr.h
+pht-predict.o: ../src/pht-predict.c ../src/sim-assert.h \
+ ../src/sys-types.h ../src/long-addr.h ../src/pht-predict.h \
+ ../src/utils.h
+predict.o: ../src/predict.c ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/main.h ../src/utils.h ../src/context.h \
+ ../src/reg-defs.h ../src/emulate.h ../src/btb-array.h \
+ ../src/pht-predict.h ../src/core-resources.h ../src/stage-queue.h \
+ ../src/cache-params.h ../src/trace-cache.h ../src/trace-fill-unit.h \
+ ../src/multi-bpredict.h ../src/stash.h ../src/branch-bias-table.h \
+ ../src/app-state.h
+print.o: ../src/print.c ../src/main.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/utils.h ../src/mem.h ../src/prog-mem.h \
+ ../src/inst.h ../src/smt.h ../src/sign-extend.h ../src/context.h \
+ ../src/reg-defs.h ../src/emulate.h ../src/app-state.h
+queue.o: ../src/queue.c ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/main.h ../src/utils.h ../src/stash.h \
+ ../src/core-resources.h ../src/stage-queue.h ../src/cache-params.h \
+ ../src/trace-cache.h ../src/trace-fill-unit.h ../src/multi-bpredict.h \
+ ../src/context.h ../src/reg-defs.h ../src/emulate.h ../src/dyn-inst.h \
+ ../src/cache.h ../src/inst.h ../src/smt.h ../src/sim-params.h \
+ ../src/callback-queue.h ../src/app-state.h ../src/mshr.h \
+ ../src/adapt-mgr.h ../src/sim-cfg.h
+regread.o: ../src/regread.c ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/main.h ../src/utils.h ../src/core-resources.h \
+ ../src/stage-queue.h ../src/cache-params.h ../src/trace-cache.h \
+ ../src/trace-fill-unit.h ../src/multi-bpredict.h ../src/stash.h \
+ ../src/dyn-inst.h
+regrename.o: ../src/regrename.c ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/main.h ../src/utils.h ../src/core-resources.h \
+ ../src/stage-queue.h ../src/cache-params.h ../src/trace-cache.h \
+ ../src/trace-fill-unit.h ../src/multi-bpredict.h ../src/stash.h \
+ ../src/dyn-inst.h ../src/context.h ../src/reg-defs.h ../src/emulate.h \
+ ../src/app-state.h ../src/adapt-mgr.h ../src/sim-cfg.h
+regwrite.o: ../src/regwrite.c ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/main.h ../src/utils.h ../src/core-resources.h \
+ ../src/stage-queue.h ../src/cache-params.h ../src/trace-cache.h \
+ ../src/trace-fill-unit.h ../src/multi-bpredict.h ../src/stash.h \
+ ../src/dyn-inst.h ../src/app-state.h ../src/reg-defs.h ../src/context.h \
+ ../src/emulate.h
+run.o: ../src/run.c ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/main.h ../src/utils.h ../src/sim-params.h \
+ ../src/cache-params.h ../src/cache.h ../src/jtimer.h ../src/sim-cfg.h \
+ ../src/core-resources.h ../src/stage-queue.h ../src/trace-cache.h \
+ ../src/trace-fill-unit.h ../src/multi-bpredict.h ../src/stash.h \
+ ../src/context.h ../src/reg-defs.h ../src/emulate.h ../src/app-state.h \
+ ../src/callback-queue.h ../src/app-mgr.h ../src/dyn-inst.h \
+ ../src/app-stats-log.h ../src/work-queue.h ../src/debug-coverage.h \
+ ../src/adapt-mgr.h
+sim-params.o: ../src/sim-params.c ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/sim-params.h ../src/cache-params.h \
+ ../src/main.h ../src/utils.h ../src/cache.h ../src/cache-req.h \
+ ../src/prog-mem.h
+tlb-array.o: ../src/tlb-array.c ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/tlb-array.h ../src/assoc-array.h \
+ ../src/utils.h ../src/cache-params.h
+sys-types.o: ../src/sys-types.cc ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/sign-extend.h ../src/fp-ctl.h
+linktest-typesys.o: ../src/linktest-typesys.cc ../src/sys-types.h \
+ ../src/long-addr.h ../src/sim-assert.h ../src/hash-map.h
+utils-cc.o: ../src/utils-cc.cc ../src/sys-types.h ../src/long-addr.h \
+ ../src/sim-assert.h ../src/utils-cc.h ../src/scoped-ptr.h \
+ ../src/gzstream.h
+gzstream.o: ../src/gzstream.cc ../src/gzstream.h
+online-stats.o: ../src/online-stats.cc ../src/sim-assert.h \
+ ../src/sys-types.h ../src/long-addr.h ../src/online-stats.h \
+ ../src/hash-map.h ../src/utils.h
+region-alloc.o: ../src/region-alloc.cc ../src/region-alloc.h \
+ ../src/sys-types.h ../src/long-addr.h ../src/utils.h ../src/sim-assert.h
+callback-queue.o: ../src/callback-queue.cc ../src/sim-assert.h \
+ ../src/sys-types.h ../src/long-addr.h ../src/callback-queue.h \
+ ../src/hash-map.h ../src/utils.h ../src/utils-cc.h ../src/scoped-ptr.h
+linktest-utils.o: ../src/linktest-utils.cc ../src/sys-types.h \
+ ../src/long-addr.h ../src/sim-assert.h ../src/utils.h ../src/utils-cc.h \
+ ../src/scoped-ptr.h ../src/online-stats.h ../src/hash-map.h
+app-mgr.o: ../src/app-mgr.cc ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/app-mgr.h ../src/utils.h ../src/utils-cc.h \
+ ../src/scoped-ptr.h ../src/app-state.h ../src/reg-defs.h \
+ ../src/context.h ../src/emulate.h ../src/callback-queue.h \
+ ../src/dyn-inst.h ../src/core-resources.h ../src/stage-queue.h \
+ ../src/cache-params.h ../src/trace-cache.h ../src/trace-fill-unit.h \
+ ../src/multi-bpredict.h ../src/stash.h ../src/sim-cfg.h ../src/main.h \
+ ../src/cache.h ../src/online-stats.h ../src/hash-map.h \
+ ../src/inject-inst.h ../src/sim-params.h ../src/prng.h \
+ ../src/tlb-array.h ../src/cache-array.h ../src/simple-pre.h
+app-state.o: ../src/app-state.cc ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/app-state.h ../src/reg-defs.h ../src/utils.h \
+ ../src/loader.h ../src/prog-mem.h ../src/syscalls.h ../src/stash.h
+app-stats-log.o: ../src/app-stats-log.cc ../src/sim-assert.h \
+ ../src/sys-types.h ../src/long-addr.h ../src/app-stats-log.h \
+ ../src/app-state.h ../src/reg-defs.h ../src/context.h ../src/emulate.h \
+ ../src/callback-queue.h ../src/dyn-inst.h ../src/utils.h \
+ ../src/sim-cfg.h ../src/cache-array.h ../src/cache-params.h \
+ ../src/cache.h ../src/main.h ../src/core-resources.h \
+ ../src/stage-queue.h ../src/trace-cache.h ../src/trace-fill-unit.h \
+ ../src/multi-bpredict.h ../src/stash.h
+arg-file.o: ../src/arg-file.cc ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/arg-file.h ../src/utils.h ../src/simple-pre.h
+assoc-array.o: ../src/assoc-array.cc ../src/sim-assert.h \
+ ../src/sys-types.h ../src/long-addr.h ../src/hash-map.h \
+ ../src/assoc-array.h ../src/utils.h ../src/utils-cc.h \
+ ../src/scoped-ptr.h ../src/sim-cfg.h ../src/prng.h
+branch-bias-table.o: ../src/branch-bias-table.cc ../src/sim-assert.h \
+ ../src/sys-types.h ../src/long-addr.h ../src/branch-bias-table.h \
+ ../src/assoc-array.h ../src/utils.h
+cache-array.o: ../src/cache-array.cc ../src/sim-assert.h \
+ ../src/sys-types.h ../src/long-addr.h ../src/cache-array.h \
+ ../src/cache-params.h ../src/assoc-array.h ../src/coherence-mgr.h \
+ ../src/sim-cfg.h ../src/utils.h ../src/sim-params.h
+cache-queue.o: ../src/cache-queue.cc ../src/sim-assert.h \
+ ../src/sys-types.h ../src/long-addr.h ../src/hash-map.h \
+ ../src/cache-queue.h ../src/sim-params.h ../src/cache-params.h \
+ ../src/cache.h ../src/cache-req.h ../src/core-resources.h \
+ ../src/stage-queue.h ../src/trace-cache.h ../src/trace-fill-unit.h \
+ ../src/multi-bpredict.h ../src/stash.h ../src/utils.h ../src/utils-cc.h \
+ ../src/scoped-ptr.h
+coherence-mgr.o: ../src/coherence-mgr.cc ../src/sim-assert.h \
+ ../src/sys-types.h ../src/long-addr.h ../src/hash-map.h \
+ ../src/coherence-mgr.h ../src/core-resources.h ../src/stage-queue.h \
+ ../src/cache-params.h ../src/trace-cache.h ../src/trace-fill-unit.h \
+ ../src/multi-bpredict.h ../src/stash.h ../src/utils.h ../src/utils-cc.h \
+ ../src/scoped-ptr.h ../src/sim-cfg.h ../src/prng.h
+context.o: ../src/context.cc ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/context.h ../src/reg-defs.h ../src/emulate.h \
+ ../src/callback-queue.h ../src/app-state.h ../src/dyn-inst.h \
+ ../src/utils.h ../src/main.h ../src/core-resources.h \
+ ../src/stage-queue.h ../src/cache-params.h ../src/trace-cache.h \
+ ../src/trace-fill-unit.h ../src/multi-bpredict.h ../src/stash.h \
+ ../src/sim-cfg.h ../src/app-stats-log.h ../src/app-mgr.h
+deadblock-pred.o: ../src/deadblock-pred.cc ../src/sim-assert.h \
+ ../src/sys-types.h ../src/long-addr.h ../src/hash-map.h \
+ ../src/deadblock-pred.h ../src/utils.h ../src/utils-cc.h \
+ ../src/scoped-ptr.h ../src/sim-cfg.h ../src/assoc-array.h \
+ ../src/online-stats.h ../src/main.h
+debug-coverage.o: ../src/debug-coverage.cc ../src/sys-types.h \
+ ../src/long-addr.h ../src/debug-coverage.h ../src/utils-cc.h \
+ ../src/scoped-ptr.h ../src/sim-assert.h ../src/utils.h
+inject-inst.o: ../src/inject-inst.cc ../src/sim-assert.h \
+ ../src/sys-types.h ../src/long-addr.h ../src/inject-inst.h \
+ ../src/core-resources.h ../src/stage-queue.h ../src/cache-params.h \
+ ../src/trace-cache.h ../src/trace-fill-unit.h ../src/multi-bpredict.h \
+ ../src/stash.h ../src/app-state.h ../src/reg-defs.h ../src/dyn-inst.h \
+ ../src/context.h ../src/emulate.h ../src/callback-queue.h ../src/utils.h \
+ ../src/main.h ../src/app-mgr.h
+loader-aout.o: ../src/loader-aout.cc ../src/sim-assert.h \
+ ../src/sys-types.h ../src/long-addr.h ../src/loader.h \
+ ../src/loader-private.h ../src/app-state.h ../src/reg-defs.h \
+ ../src/utils.h ../src/mem.h ../src/prog-mem.h ../src/sim-params.h \
+ ../src/cache-params.h ../src/loader-alphafilehdr.h
+loader-elf.o: ../src/loader-elf.cc ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/loader.h ../src/loader-private.h \
+ ../src/app-state.h ../src/reg-defs.h ../src/utils.h ../src/mem.h \
+ ../src/prog-mem.h ../src/sim-params.h ../src/cache-params.h
+loader.o: ../src/loader.cc ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/loader.h ../src/app-state.h ../src/reg-defs.h \
+ ../src/utils.h ../src/mem.h ../src/prog-mem.h ../src/sim-params.h \
+ ../src/cache-params.h ../src/loader-private.h
+mem-unit.o: ../src/mem-unit.cc ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/cache-params.h ../src/mem-unit.h \
+ ../src/utils.h
+mshr.o: ../src/mshr.cc ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/hash-map.h ../src/mshr.h ../src/utils.h \
+ ../src/utils-cc.h ../src/scoped-ptr.h ../src/sim-cfg.h ../src/main.h
+multi-bpredict.o: ../src/multi-bpredict.cc ../src/sim-assert.h \
+ ../src/sys-types.h ../src/long-addr.h ../src/multi-bpredict.h \
+ ../src/utils.h
+prefetch-streambuf.o: ../src/prefetch-streambuf.cc ../src/sim-assert.h \
+ ../src/sys-types.h ../src/long-addr.h ../src/hash-map.h \
+ ../src/prefetch-streambuf.h ../src/utils.h ../src/utils-cc.h \
+ ../src/scoped-ptr.h ../src/sim-cfg.h ../src/callback-queue.h \
+ ../src/assoc-array.h ../src/cache-array.h ../src/cache-params.h \
+ ../src/cache.h ../src/online-stats.h ../src/core-resources.h \
+ ../src/stage-queue.h ../src/trace-cache.h ../src/trace-fill-unit.h \
+ ../src/multi-bpredict.h ../src/stash.h ../src/main.h
+prog-mem.o: ../src/prog-mem.cc ../src/sys-types.h ../src/long-addr.h \
+ ../src/prog-mem.h ../src/sim-assert.h ../src/region-alloc.h \
+ ../src/utils.h ../src/utils-cc.h ../src/scoped-ptr.h
+sim-cfg.o: ../src/sim-cfg.cc ../src/kv-tree-basic.h ../src/kv-tree-val.h \
+ ../src/kv-tree-path.h ../src/kv-tree.h ../src/sim-assert.h \
+ ../src/sys-types.h ../src/long-addr.h ../src/sim-cfg.h \
+ ../src/core-resources.h ../src/stage-queue.h ../src/cache-params.h \
+ ../src/trace-cache.h ../src/trace-fill-unit.h ../src/multi-bpredict.h \
+ ../src/stash.h ../src/sim-params.h ../src/context.h ../src/reg-defs.h \
+ ../src/emulate.h ../src/callback-queue.h ../src/utils.h \
+ ../src/assoc-array.h ../src/arg-file.h ../src/work-queue.h \
+ ../src/bbtracker.h
+stash.o: ../src/stash.cc ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/hash-map.h ../src/stash.h ../src/utils.h \
+ ../src/utils-cc.h ../src/scoped-ptr.h ../src/emulate.h
+syscalls.o: ../src/syscalls.cc ../src/syscalls-includes.h \
+ ../src/sys-types.h ../src/long-addr.h ../src/sim-assert.h \
+ ../src/syscalls.h ../src/app-state.h ../src/reg-defs.h ../src/prog-mem.h \
+ ../src/sim-cfg.h ../src/sim-params.h ../src/cache-params.h \
+ ../src/utils.h ../src/utils-cc.h ../src/scoped-ptr.h \
+ ../src/callback-queue.h ../src/syscalls-sim-fd.h ../src/debug-coverage.h \
+ ../src/syscalls-private.h ../src/syscalls-private-nums.h \
+ ../src/syscalls-private-errno.h ../src/syscalls-private-table.h
+syscalls-sim-fd.o: ../src/syscalls-sim-fd.cc ../src/syscalls-includes.h \
+ ../src/sys-types.h ../src/long-addr.h ../src/syscalls-sim-fd.h \
+ ../src/utils-cc.h ../src/scoped-ptr.h ../src/callback-queue.h \
+ ../src/sim-assert.h ../src/app-state.h ../src/reg-defs.h \
+ ../src/prog-mem.h ../src/utils.h ../src/hash-map.h \
+ ../src/debug-coverage.h ../src/syscalls-private.h
+trace-cache.o: ../src/trace-cache.cc ../src/sim-assert.h \
+ ../src/sys-types.h ../src/long-addr.h ../src/assoc-array.h \
+ ../src/trace-cache.h ../src/utils.h
+trace-fill-unit.o: ../src/trace-fill-unit.cc ../src/sim-assert.h \
+ ../src/sys-types.h ../src/long-addr.h ../src/trace-fill-unit.h \
+ ../src/trace-cache.h ../src/main.h ../src/utils.h \
+ ../src/core-resources.h ../src/stage-queue.h ../src/cache-params.h \
+ ../src/multi-bpredict.h ../src/stash.h ../src/branch-bias-table.h \
+ ../src/dyn-inst.h ../src/context.h ../src/reg-defs.h ../src/emulate.h \
+ ../src/callback-queue.h ../src/app-state.h
+work-queue.o: ../src/work-queue.cc ../src/sim-assert.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/hash-map.h ../src/work-queue.h ../src/utils.h \
+ ../src/utils-cc.h ../src/scoped-ptr.h ../src/sim-cfg.h \
+ ../src/callback-queue.h ../src/app-mgr.h ../src/app-state.h \
+ ../src/reg-defs.h ../src/main.h ../src/context.h ../src/emulate.h \
+ ../src/jtimer.h ../src/app-stats-log.h ../src/bbtracker.h
+bbtracker.o: ../src/bbtracker.cc ../src/gzstream.h ../src/bbtracker.h
+adapt-mgr.o: ../src/adapt-mgr.cc ../src/adapt-mgr.h ../src/sys-types.h \
+ ../src/long-addr.h ../src/utils.h ../src/core-resources.h \
+ ../src/stage-queue.h ../src/cache-params.h ../src/trace-cache.h \
+ ../src/trace-fill-unit.h ../src/multi-bpredict.h ../src/stash.h \
+ ../src/sim-cfg.h ../src/context.h ../src/reg-defs.h ../src/emulate.h \
+ ../src/callback-queue.h ../src/sim-assert.h
+kv-tree.o: ../src/kv-tree.cc ../src/kv-tree.h ../src/kv-tree-val.h
+kv-tree-basic.o: ../src/kv-tree-basic.cc ../src/kv-tree-basic.h \
+ ../src/kv-tree-val.h ../src/kv-tree-path.h ../src/kv-tree-pparse.h \
+ ../src/kv-tree.h
+kv-tree-path.o: ../src/kv-tree-path.cc ../src/kv-tree-pparse.h \
+ ../src/kv-tree.h ../src/kv-tree-val.h ../src/kv-tree-path.h
+kv-tree-pparse.o: ../src/kv-tree-pparse.cc ../src/kv-tree-pparse.h \
+ ../src/kv-tree.h ../src/kv-tree-val.h
+kv-tree-val.o: ../src/kv-tree-val.cc ../src/kv-tree-val.h

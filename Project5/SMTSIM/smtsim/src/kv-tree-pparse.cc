@@ -1,0 +1,433 @@
+//
+// Key-value tree, path parsing and recursive operations on parsed paths
+//
+// Jeff Brown
+// $JAB-Id: kv-tree-pparse.cc,v 1.7 2005/03/18 07:23:34 jabrown Exp $
+//
+
+const char RCSid_1042672815[] = "$JAB-Id: kv-tree-pparse.cc,v 1.7 2005/03/18 07:23:34 jabrown Exp $";
+
+#include <assert.h>
+#include <stdlib.h>
+
+#include <string>
+#include <vector>
+
+#include "kv-tree-pparse.h"
+
+
+using std::string;
+using std::vector;
+
+
+std::string 
+KVPath::debug_str() const
+{
+    KVPathParser parser("/", "..", ".");
+    string result = parser.to_str(*this);
+    return result;
+}
+
+
+void 
+KVPath::prepend(const KVPath& p2)
+{
+    comps.insert(comps.begin(), p2.comps.begin(), p2.comps.end());
+    fully_qual = p2.fully_qual;
+}
+
+
+void 
+KVPath::append(const KVPath& p2)
+{
+    comps.insert(comps.end(), p2.comps.begin(), p2.comps.end());
+}
+
+
+void
+KVPathParser::parse(KVPath& dest, const string& src) const
+{
+    unsigned scan_offs = 0, sep_len = path_sep.length();
+    dest.clear();
+    assert(sep_len > 0);
+
+    bool scanning = true;
+    while (scanning) {
+        string::size_type next_sep = src.find(path_sep, scan_offs);
+        string next_str;
+
+        if (next_sep != string::npos) {
+            if (next_sep == 0) {
+                dest.set_fully_qual();
+            } else {
+                next_str = src.substr(scan_offs, next_sep - scan_offs);
+            }
+            scan_offs = next_sep + sep_len;
+        } else {
+            next_str = src.substr(scan_offs);
+            scanning = false;
+        }
+
+        if (!next_str.empty()) {
+            if (!path_up.empty() && (next_str == path_up)) {
+                dest.down(KVPathComp(false));
+            } else if (!path_curr.empty() && (next_str == path_curr)) {
+                dest.down(KVPathComp(true));
+            } else {
+                dest.down(KVPathComp(next_str));
+            }
+        }
+    }
+}
+
+
+std::string
+KVPathParser::to_str(const KVPath& src) const
+{
+    string result = "";
+
+    if (src.is_fully_qual())
+        result += path_sep;
+
+    KVPath::const_iterator src_iter = src.begin(), src_end = src.end();
+    while (src_iter != src_end) {
+        const KVPathComp& comp = *src_iter;
+        switch (comp.get_type()) {
+        case KVPathComp::Name:
+            result += comp.get_name();
+            break;
+        case KVPathComp::DirUp:
+            result += path_up;
+            break;
+        case KVPathComp::DirCurr:
+            result += path_curr;
+            break;
+        default:
+            abort();
+        }
+        ++src_iter;
+        if (src_iter != src_end)
+            result += path_sep;
+    }
+
+    return result;
+}
+
+
+KVPath 
+KVPathParser::resolve(const KVPath& src, const KVPath *opt_parent) const
+{
+    typedef vector<KVPathComp> compvec;
+    KVPath result = src;
+
+    if (opt_parent)
+        result.prepend(*opt_parent);
+
+    compvec new_comps;
+
+    KVPath::const_iterator path_iter = result.begin(), path_end = result.end();
+    for (; path_iter != path_end; ++path_iter) {
+        const KVPathComp& comp = *path_iter;
+        switch (comp.get_type()) {
+        case KVPathComp::Name:
+        {
+            const string& name = comp.get_name();
+            if (!name.empty())
+                new_comps.push_back(comp);
+            break;
+        }
+        case KVPathComp::DirUp:
+            // Cancel out ".." at the start of a fully-qualified path, or if
+            // it follows a non-".." component
+            if (new_comps.empty()) {
+                if (!result.is_fully_qual())
+                    new_comps.push_back(comp);
+            } else {
+                if (new_comps.back().get_type() == KVPathComp::DirUp)
+                    new_comps.push_back(comp);
+                else
+                    new_comps.pop_back();
+            }
+            break;
+        case KVPathComp::DirCurr:
+            break;
+        default:
+            abort();
+        }
+    }
+
+    result.clear();
+    result.set_fully_qual();
+
+    compvec::const_iterator comp_iter = new_comps.begin(), 
+        comp_end = new_comps.end();
+    for (; comp_iter != comp_end; ++comp_iter) {
+        result.down(*comp_iter);
+    }
+
+    return result;
+}
+
+
+string 
+KVParsedPath::BadPath::to_str(const KVPathParser& pparser) const 
+{
+    string result;
+    result = reason + ": \"" + pparser.to_str(path) + "\"";
+    return result;
+}
+
+
+KVTree *
+KVParsedPath::walk_root(const KVTree *t)
+{
+    KVTree *walk = const_cast<KVTree *>(t);
+
+    while (KVTree *parent = walk->get_parent())
+        walk = parent;
+
+    return walk;
+}
+
+
+namespace {
+KVTreeVal *
+walk_private(KVTree *t, const KVPath& path, 
+             bool create_missing_trees, bool all_trees, bool no_except)
+{
+    KVTreeVal *result = 0;
+    KVTree *walk = t;
+    int limit = path.size();
+
+    if (path.is_fully_qual())
+        walk = KVParsedPath::walk_root(walk);
+
+    assert(walk != 0);
+    KVPath::const_iterator path_iter = path.begin();
+
+    for (int i = 0; walk && (i < limit); ++i, ++path_iter) {
+        const KVPathComp& comp = *path_iter;
+        const bool is_final_comp = i == (limit - 1);
+        KVTree *next = walk;
+
+        switch (comp.get_type()) {
+        case KVPathComp::Name:
+        {
+            const string& name = comp.get_name();
+            if (!name.empty()) {
+                KVTreeVal *child = walk->get_child(name);
+                if (child) {
+                    if (!(next = dynamic_cast<KVTree *>(child))) {
+                        if (all_trees || !is_final_comp) {
+                            // All components but the last must be trees
+                            if (no_except)
+                                return 0;
+                            KVPath child_path = KVParsedPath::full_path(walk);
+                            child_path.down(comp);
+                            throw KVParsedPath::BadPath(child_path,
+                                                        "not a tree");
+                        }
+                        result = child;
+                    }
+                } else if (create_missing_trees &&
+                           (!is_final_comp || all_trees)) {
+                    KVTree *new_tree = new KVTree();
+                    walk->set_child(name, new_tree, false);
+                    next = new_tree;
+                } else {
+                    next = 0;
+                    if (no_except)
+                        return 0;
+                    KVPath child_path = KVParsedPath::full_path(walk);
+                    child_path.down(comp);
+                    throw KVParsedPath::BadPath(child_path, "not found");
+                }
+            } 
+            break;
+        }
+        case KVPathComp::DirUp:
+            next = walk->get_parent();
+            if (!next)
+                next = walk;
+            break;
+        case KVPathComp::DirCurr:
+            break;
+        default:
+            abort();
+        }
+
+        walk = next;
+    }
+
+    if (!result) {
+        result = walk;
+    }
+
+    // We throw exceptions for unsuccessful cases, so we should never return 0
+    assert(result != 0);
+
+    return result;
+}
+}
+
+
+KVTree *
+KVParsedPath::walk_const(const KVTree *t, const KVPath& path)
+{
+    KVTree *t_notconst = const_cast<KVTree *>(t);
+    KVTreeVal *walk = walk_private(t_notconst, path, false, true, false);
+    KVTree *tree = dynamic_cast<KVTree *>(walk);
+    // If a value wasn't found / wasn't a tree, walk_private should've 
+    // thrown an exception
+    assert(tree);
+    return tree;
+}
+
+
+KVTree *
+KVParsedPath::walk_create(KVTree *t, const KVPath& path)
+{
+    KVTreeVal *walk = walk_private(t, path, true, true, false);
+    KVTree *tree = dynamic_cast<KVTree *>(walk);
+    // If a value was't a tree, walk_private should've thrown an exception
+    assert(tree);
+    return tree;
+}
+
+
+KVPath
+KVParsedPath::full_path(const KVTree *t)
+{
+    const KVTree *walk = t;
+    vector<string> rev_path;
+
+    while (const KVTree *parent = walk->get_parent()) {
+        const string *child_name = parent->get_child_name(walk);
+        if (!child_name)
+            abort();
+        rev_path.push_back(*child_name);
+        walk = parent;
+    }
+
+    KVPath result;
+    result.set_fully_qual();
+
+    while (!rev_path.empty()) {
+        result.down(KVPathComp(rev_path.back()));
+        rev_path.pop_back();
+    }
+
+    return result;
+}
+
+
+const KVTreeVal *
+KVParsedPath::get(const KVTree *t, const KVPath& path)
+{
+    KVTree *t_notconst = const_cast<KVTree *>(t);
+    const KVTreeVal *result = walk_private(t_notconst, path, false, false, 
+                                           false);
+    assert(result);
+    return result;
+}
+
+
+const KVTreeVal *
+KVParsedPath::get_ifexist(const KVTree *t, const KVPath& path)
+{
+    KVTree *t_notconst = const_cast<KVTree *>(t);
+    const KVTreeVal *result;
+    try {
+        result = walk_private(t_notconst, path, false, false, 
+                                               true);
+    } catch (...) {
+        // We told walk_private not to throw exceptions!
+        result = 0;
+        abort();
+    }
+    return result;
+}
+
+
+void
+KVParsedPath::set(KVTree *t, const KVPath& path, KVTreeVal *new_val,
+                  bool weakly)
+{
+    if (!path.empty()) {
+        const KVPathComp final_comp = *(path.rbegin());
+        KVPath holder_path = path;
+        holder_path.up();
+
+        if (final_comp.get_type() == KVPathComp::Name) {
+            const string& final_name = final_comp.get_name();
+            KVTreeVal *holder = walk_private(t, holder_path, true, true,
+                                             false);
+            assert(holder);
+            KVTree *h_tree = dynamic_cast<KVTree *>(holder);
+            assert(h_tree);
+            h_tree->set_child(final_name, new_val, weakly);
+        } else {
+            delete new_val;
+            throw KVParsedPath::BadPath(path, "not a name");
+        }
+    } else {
+        delete new_val;
+        throw KVParsedPath::BadPath(path, "empty path");
+    }
+}
+
+
+void 
+KVParsedPath::del(KVTree *t, const KVPath& path)
+{
+    if (!path.empty()) {
+        const KVPathComp final_comp = *(path.rbegin());
+        KVPath holder_path = path;
+        holder_path.up();
+
+        if (final_comp.get_type() == KVPathComp::Name) {
+            const string& final_name = final_comp.get_name();
+            KVTreeVal *holder = walk_private(t, holder_path, false, true,
+                                             false);
+            assert(holder);
+            KVTree *h_tree = dynamic_cast<KVTree *>(holder);
+            assert(h_tree);
+            h_tree->del_child(final_name);
+        } else {
+            throw KVParsedPath::BadPath(path, "not a name");
+        }
+    } else {
+        throw KVParsedPath::BadPath(path, "empty path");
+    }
+}
+
+
+void 
+KVParsedPath::overlay(KVTree *t, const KVPath& tree_path, KVTree *src,
+                    bool weakly)
+{
+    KVTreeVal *dst = walk_private(t, tree_path, true, true, false);
+    KVTree *dst_tree = dynamic_cast<KVTree *>(dst);
+    assert(dst_tree);
+    try {
+        dst_tree->overlay(src, weakly);
+    } catch (KVTree::OverlayConflict& conf) {
+        KVPath dst_path;
+        {
+            const KVTree *prev_walk = 0;
+            const KVTree *walk = conf.this_holder;
+            while (walk) {
+                if (prev_walk) {
+                    const string *kid_name = walk->get_child_name(prev_walk);
+                    KVPath frag;
+                    frag.down(KVPathComp(*kid_name));
+                    dst_path.prepend(frag);
+                }
+                prev_walk = walk;
+                walk = walk->get_parent();
+            }
+            dst_path.down(KVPathComp(conf.child_name));
+        }
+        throw KVParsedPath::BadPath(dst_path, conf.reason);
+    }
+}

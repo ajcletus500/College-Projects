@@ -1,0 +1,97 @@
+$Id: BUILDING,v 1.1.6.2 2006/02/22 01:16:51 jbrown Exp $
+
+Quick instructions for building this software
+
+
+1. System requirements
+
+GNU Make: the Makefiles use GNU-Make-specific directives and syntax, so you'll
+need a compatible Make to use them.  GNU Make is often invoked as "make" on
+Linux systems, and "gmake" on other systems.  There are some bugs in older
+versions of GNU Make (such as 3.76), so if you see some mysterious syntax
+errors from Make, try upgrading it.
+
+GNU GCC/G++ 3.2 or newer: this software is written in ISO C++ 98 and ISO C 99,
+along with OS-specific extensions.  In order to compile it as-is, you'll need
+a compiler that supports those languages, the most prominent of which is the
+modern GNU compiler suite.  GCC/G++ 2.9X will _not_ work.
+
+A supported operating system and architecture: to date, this software has not
+been packaged for portability to a wide number of systems (through the use of
+autoconf, etc.)  In particular, it currently will not function properly on
+big-endian machines.  While adding support for other systems may be
+straightforward, it currently supports only the following:
+
+        - Linux/x86 (tested with RedHat 7.2, RHEL4U2)
+        - Linux/amd64 (tested with Centos 4.0.0)
+        - FreeBSD/x86 (tested with 4.6-RELEASE)
+        - DEC OSF/Alpha 4.0
+
+
+2. Configuration
+
+First: extract the distribution archive; it should make its own directory tree
+and populate it with files.
+
+Next, change into that newly created directory, and run "./configure".  This
+should create a build directory for you, and create a Makefile inside it.
+
+Optionally, you may create your own build directory to hold the object files
+and binaries.  It is not recommended to compile the simulator into the "src"
+subtree, though; some source and header files may be auto-generated from
+others, and you'd just be asking for trouble.  It also makes searching,
+diffing, and managing source files less convenient.
+
+
+3. Building and Running
+
+Once "configure" has succeeded, you're ready for compilation.  Run your GNU
+make (often "make" or "gmake") from the build directory to compile.  If you
+change any of the #include relationships in the source, be sure to run "make
+depend" to update dependence information used during compilation.  Everything
+should compile without any warnings or errors.
+
+The Makefile created in the build directory sets up a few variables, and then
+includes a platform-specific Makefile from the "src" directory, which in turn
+includes other files.  You can override several build options.  There are a
+few make variables which act as switches, controlling compilation.  They are
+"on" if they have a non-empty value.  The defaults are shown in parentheses:
+
+  OPT(on): build with optimization
+  DEBUG(on): build with debugging support (both compiler-level debug symbols, 
+             and source-level debug tools)
+  STATIC_LINK(off): statically-link the resulting binary.
+
+So, for example, to rebuild the simulator with static linking and without
+optimization, you would type:
+        make clean
+        make STATIC_LINK=y OPT=
+
+Before running the compiled binary, you'll need to ensure that the dynamic
+linker can locate all required libraries.  In particular, it is sometimes the
+case that the runtime libraries for GCC/G++ aren't found by default since
+they're installed in a separate location on your system.  This shouldn't be a
+problem if STATIC_LINK is used.
+
+Try running the binary (located in the build directory) without any
+command-line arguments.  If you see an error messages about missing dynamic
+libraries, you need to 1) find the libraries in question, and 2) tell the
+dynamic linker where they are.  Alternatively, you could rebuild with the
+STATIC_LINK option.  #1 depends on where your compiler is installed; you may
+try using the "which" command to find out where the binary is, and then
+checking for an associated "lib" directory.  There are two main ways to
+accomplish #2:
+
+- Set the environment variable LD_LIBRARY_PATH (a colon-separated list of
+  paths) to include the directory where the libraries are.  You can do this 
+  once in your .cshrc/.bashrc/.shrc/whatever, and then forget about it.  This
+  has the advantage that you only need to do it once, and it makes the
+  libraries visible everywhere.
+  
+OR
+
+- Store this extra library search path in the binary when it is linked, by
+  adding it to the EXTRA_LIB_DIRS variable in the Makefile in the build
+  directory.  
+
+Finally, rebuild the binary to pick up the new libraries.

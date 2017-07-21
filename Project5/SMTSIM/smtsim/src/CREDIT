@@ -1,0 +1,27 @@
+               The SMTSIM Multithreading Simulator
+
+Written by Dean M. Tullsen (tullsen@cs.ucsd.edu) with significant
+assistance by Jack Lo, E. Gun Sirer and (unbeknownst to him) Jim Larus.
+
+Although Susan Eggers, Hank Levy, Joel Emer, and Rebecca Stamm never
+actually got their hands dirty in the code, they each influenced
+pieces of it.
+
+This code is provided "as is" with no promise of support whatsoever,
+but please do send bug reports (especially solved bugs!) to
+tullsen@cs.ucsd.edu.
+
+When using the simulator to produce published research, please cite it
+with:
+
+Simulation and Modeling of a Simultaneous Multithreading Processor, 
+D.M. Tullsen,In the 22nd Annual Computer Measurement Group Conference, 
+December, 1996 
+
+-or-
+
+Simultaneous Multithreading: Maximizing On-Chip Parallelism, D.M. Tullsen, 
+S.J. Eggers, and H.M. Levy, In 22nd Annual International Symposium on 
+Computer Architecture, June, 1995. (also reprinted in 25 Years of the
+International Symposia on Computer Architecture: Selected Papers, 1998, if
+you'd prefer).

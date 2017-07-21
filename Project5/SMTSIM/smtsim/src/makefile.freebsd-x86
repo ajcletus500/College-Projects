@@ -1,0 +1,16 @@
+# GNU Makefile
+# $Id: makefile.freebsd-x86,v 1.12.10.2.2.1.6.2 2009/12/06 09:17:15 jbrown Exp $
+SRC_DIR ?= .
+
+CC ?= gcc34
+CFLAGS ?= -pipe
+CXX ?= g++34
+CXXFLAGS ?= -pipe
+
+DEBUG_OPT_FLAGS = -O2
+OPT_FLAGS = -O2
+DEBUG_FLAGS = -O0 -g
+LINK_PRE_FLAGS += $(CXXFLAGS)
+LINK_POST_FLAGS += -lm -lz
+
+include $(SRC_DIR)/makefile.common

@@ -1,0 +1,27 @@
+# GNU Makefile
+# $Id: makefile.osf-alpha,v 1.11.10.3.2.1.6.2 2009/12/06 09:17:19 jbrown Exp $
+SRC_DIR ?= .
+
+CC ?= gcc34
+CFLAGS ?= -mfp-rounding-mode=d
+CXX ?= g++34
+CXXFLAGS ?= -mfp-rounding-mode=d
+
+DEBUG_OPT_FLAGS = -O2
+OPT_FLAGS = -O2 -fomit-frame-pointer
+DEBUG_FLAGS = -O0 -g
+LINK_PRE_FLAGS += $(CXXFLAGS)
+LINK_POST_FLAGS += -lm -lmld -lz
+
+include $(SRC_DIR)/makefile.common
+
+#CFLAGS=-O2 -DDEBUG
+#Interesting FP flags:
+#  cc: -fprm d -ieee -ieee_with_no_inexact -ieee_with_inexact
+#  gcc: -mfp-rounding-mode=d -mieee -mieee-with-inexact
+
+#emulate.o: emulate.c
+#	cc $(CFLAGS) -fprm d -ieee -c -o $@ $<
+#	cc $(CFLAGS) -fprm d -ieee -ieee_with_noinexact -c -o $@ $<
+#	gcc $(CFLAGS) -mfp-rounding-mode=d -mieee -c -o $@ $<
+# original: cc $(CFLAGS) -fprm d -c -o $@ $<

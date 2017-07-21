@@ -1,0 +1,17 @@
+# GNU Makefile
+# $Id: makefile.linux-amd64,v 1.1.2.2.2.1.6.2 2009/12/06 09:17:16 jbrown Exp $
+SRC_DIR ?= .
+
+# CC / CXX should refer to GCC 3-series or above
+CC ?= gcc
+CFLAGS ?= -pipe
+CXX ?= g++
+CXXFLAGS ?= -pipe
+
+DEBUG_OPT_FLAGS = -O2
+OPT_FLAGS = -O2 -fomit-frame-pointer
+DEBUG_FLAGS = -O0 -g
+LINK_PRE_FLAGS += $(CXXFLAGS)
+LINK_POST_FLAGS += -lm -lz
+
+include $(SRC_DIR)/makefile.common

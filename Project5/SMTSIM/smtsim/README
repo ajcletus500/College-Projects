@@ -1,0 +1,54 @@
+THE SMTSIM Simulator
+
+The simulator is compiled as so:
+
+make smtsim
+
+to change optimization levels (e.g., for debugging), I typically just edit the
+makefile.  In particular,  -DSMTC_DEBUG2 and -DDEBUG allow more debugging
+output and make the program easier to follow when running in gdb or other 
+debugger.
+
+The simulator is run like this:
+
+smtsim [options] argfile1 argfile2 ...
+
+This runs multiple "programs" (one per argfile) on the simulator, each of
+which can be composed of multiple threads.  The simulator runs up to 
+300 million insts * the number of threads specified, or until one of the
+programs exits.  The options are "-d", which produces huge amounts of debugging
+info about each instruction and each pipeline stage and lots of other things--
+this can be very useful; "-dsynch", which outputs synchronization activity as
+it takes place, and -dsystrace, which gives a trace of system call activity.  I
+tend to only use these as I step through the simulator with the debugger--then
+it really adds to your understanding of what is happening (in which case I
+don't actually use the command-line options, but turn the flags themselves on
+and off as needed).  In fact, I would
+suggest running the simulator the first time through gdb under emacs -- that's
+my favorite way to figure out what a program is doing.
+
+An argfile looks like this:
+
+# 1 fpppp < natoms > fpppp.out
+
+which specifies the number of contexts (threads) this program will use (1 in 
+this case); the Alpha executable that will be run (fpppp here), and the command
+line arguments for this program.  It is important to always redirect the 
+simulated programs' output, because the simulator's output goes to stdout, and
+mixing the two creates confusion.
+
+The program runs up to eight total threads, so the sum of the threads specified
+by the multiple argfiles must be less than or equal to eight (The max number 
+of threads can be changed, of course, in the code).
+
+The simulator runs Alpha executables;  however, to run on the simulator, the
+executable has to be compiled with the following flags:
+
+for gcc: -static -Xlinker -T -Xlinker 20000000 -Xlinker -D -Xlinker 30000000
+
+for cc:-non_shared -T 20000000 -D 30000000
+
+That works fine as long as the program does not do forks or synchronization
+(meaning that it works for groups of single-threaded applications).  However,
+the simulator assumes custom fork, lock, release, and terminate primitives.
+See me for a further explanation of what those are.

@@ -1,0 +1,3445 @@
+--Starting up.
+--Command line: /mnt/c/Users/hp/OneDrive/GMU_Notes/Sem4/611/Assignment1/SMTSIM/smtsim/build.linux-amd64/smtsim -conffile /mnt/c/Users/hp/OneDrive/GMU_Notes/Sem4/611/Assignment1/SMTSIM/benchmarks/workloads-list_ffs0.conf -confexpr 'Syscall/root_paths_at_cwd = t;' -confexpr 'Syscall/ForceUniqueNames = { "fort.11"; };' -confexpr 'AppStatsLog/enable = t;' -confexpr 'AppStatsLog/interval = 10e3;' -confexpr 'AppStatsLog/base_name = "/mnt/c/Users/hp/OneDrive/GMU_Notes/Sem4/611/Project/two_core/Results/crafty~apsi_029";' -confexpr 'AppStatsLog/stat_mask/all = f;' -confexpr 'AppStatsLog/stat_mask/cyc = t;' -confexpr 'AppStatsLog/stat_mask/commits = t;' -confexpr 'AppStatsLog/stat_mask/l3cache_hr = t;' -confexpr 'AppStatsLog/stat_mask/mem_delay = t;' -confexpr 'AppStatsLog/stat_mask/itlb_acc = t;' -confexpr 'AppStatsLog/stat_mask/dtlb_acc = t;' -confexpr 'AppStatsLog/stat_mask/icache_acc = t;' -confexpr 'AppStatsLog/stat_mask/dcache_acc = t;' -confexpr 'AppStatsLog/stat_mask/l2cache_acc = t;' -confexpr 'AppStatsLog/stat_mask/l3cache_acc = t;' -confexpr 'AppStatsLog/stat_mask/bpred_acc = t;' -confexpr 'AppStatsLog/stat_mask/fpalu_acc = t;' -confexpr 'AppStatsLog/stat_mask/intalu_acc = t;' -confexpr 'AppStatsLog/stat_mask/ldst_acc = t;' -confexpr 'AppStatsLog/stat_mask/lsq_acc = t;' -confexpr 'AppStatsLog/stat_mask/iq_acc = t;' -confexpr 'AppStatsLog/stat_mask/fq_acc = t;' -confexpr 'AppStatsLog/stat_mask/ireg_acc = t;' -confexpr 'AppStatsLog/stat_mask/freg_acc = t;' -confexpr 'AppStatsLog/stat_mask/iren_acc = t;' -confexpr 'AppStatsLog/stat_mask/fren_acc = t;' -confexpr 'AppStatsLog/stat_mask/rob_acc = t;' -confexpr 'AppStatsLog/stat_mask/lsq_occ = t;' -confexpr 'AppStatsLog/stat_mask/iq_occ = t;' -confexpr 'AppStatsLog/stat_mask/fq_occ = t;' -confexpr 'AppStatsLog/stat_mask/ireg_occ = t;' -confexpr 'AppStatsLog/stat_mask/freg_occ = t;' -confexpr 'AppStatsLog/stat_mask/iren_occ = t;' -confexpr 'AppStatsLog/stat_mask/fren_occ = t;' -confexpr 'AppStatsLog/stat_mask/rob_occ = t;' -confexpr 'Workloads/crafty/ff_dist = 1.000000e+07;' -confexpr 'Workloads/apsi/ff_dist = 1.000000e+07;' -confexpr 'WorkQueue/Jobs/job_1 = { start_time = 0.; workload = "crafty"};' -confexpr 'WorkQueue/Jobs/job_2 = { start_time = 0.; workload = "apsi"};' -confexpr 'WorkQueue/max_running_jobs = 2;' -confexpr 'Global/thread_length = 1.000000e+07;' -confexpr 'Global/num_cores = 2;' -confexpr 'Global/num_contexts = 2;' -confexpr 'Global/ThreadCoreMap/t0 = 0;' -confexpr 'Global/ThreadCoreMap/t1 = 1;' -confexpr 'Global/Mem/private_l2caches = t;' -confexpr 'Global/Mem/L2Cache/size_kb = 128;' -confexpr 'Global/Mem/L2Cache/assoc = 8;' -confexpr 'Global/Mem/L2Cache/access_time = { latency = 10; interval = 2; };' -confexpr 'Global/Mem/L2Cache/access_time_wb = { latency = 10; interval = 2; };' -confexpr 'Global/Mem/use_l3cache = t;' -confexpr 'Global/Mem/L3Cache/size_kb = 4096;' -confexpr 'Global/Mem/L3Cache/assoc = 8;' -confexpr 'Global/Mem/L3Cache/access_time = { latency = 20; interval = 8; };' -confexpr 'Global/Mem/L3Cache/access_time_wb = { latency = 20; interval = 8; };' -confexpr 'Global/Mem/MainMem/read_time = { latency = 250; interval = 100; };' -confexpr 'Global/Mem/MainMem/write_time = { latency = 250; interval = 100; };' -confexpr 'Core/ICache/size_kb = 64;' -confexpr 'Core/ICache/assoc = 2;' -confexpr 'Core/ICache/access_time = { latency = 2; interval = latency; };' -confexpr 'Core/ICache/access_time_wb = { latency = 3; interval = latency; };' -confexpr 'Core/DCache/size_kb = 64;' -confexpr 'Core/DCache/assoc = 2;' -confexpr 'Core/DCache/access_time = { latency = 2; interval = latency; };' -confexpr 'Core/DCache/access_time_wb = { latency = 3; interval = latency; };' -confexpr 'Core/loadstore_queue_size = 24;' -confexpr 'Core/Queue/int_queue_size = 32;' -confexpr 'Core/Queue/float_queue_size = 32;' -confexpr 'Core/Fetch/single_limit = 8;' -confexpr 'Core/Fetch/total_limit = 8;' -confexpr 'Core/Commit/single_limit = 4;' -confexpr 'Core/Commit/total_limit = 4;' -confexpr 'Core/Queue/max_int_issue = 2;' -confexpr 'Core/Queue/max_float_issue = 1;' -confexpr 'Core/Queue/max_ldst_issue = 1;' -confexpr 'Core/Rename/int_rename_regs = 64;' -confexpr 'Core/Rename/float_rename_regs = 64;' -confexpr 'Thread/reorder_buffer_size = 64;' -confexpr 'Thread/active_list_size = 512;' -confexpr 'ResourcePooling/enable = f;' -confdump -
+--Host: CLETUS, pid: 1599
+--Working directory: /mnt/c/Users/hp/OneDrive/GMU_Notes/Sem4/611/Assignment1/SMTSIM/benchmarks
+--Local time: Sun May  7 18:25:27 2017
+--Unix time: 1494195927
+--Note: DEBUG support was compiled in.  Assertions are enabled.
+--Loading built-in configuration.
+Loading config file "/mnt/c/Users/hp/OneDrive/GMU_Notes/Sem4/611/Assignment1/SMTSIM/benchmarks/workloads-list_ffs0.conf"...
+Writing config file "-"...
+--------
+AppStatsLog = {
+  base_name = "/mnt/c/Users/hp/OneDrive/GMU_Notes/Sem4/611/Project/two_core/Results/crafty~apsi_029";
+  enable = t;
+  interval = 10000.;
+  stat_mask = {
+    all = f;
+    app_insts_committed = f;
+    bpred_acc = t;
+    bpred_hr = f;
+    commits = t;
+    cyc = t;
+    dcache_acc = t;
+    dcache_blocks = f;
+    dcache_hr = f;
+    dtlb_acc = t;
+    dtlb_hr = f;
+    fpalu_acc = t;
+    fq_acc = t;
+    fq_occ = t;
+    freg_acc = t;
+    freg_occ = t;
+    fren_acc = t;
+    fren_occ = t;
+    icache_acc = t;
+    icache_blocks = f;
+    icache_hr = f;
+    intalu_acc = t;
+    iq_acc = t;
+    iq_conf = f;
+    iq_occ = t;
+    ireg_acc = t;
+    ireg_occ = t;
+    iren_acc = t;
+    iren_occ = t;
+    itlb_acc = t;
+    itlb_hr = f;
+    l2cache_acc = t;
+    l2cache_blocks = f;
+    l2cache_hr = f;
+    l3cache_acc = t;
+    l3cache_blocks = f;
+    l3cache_hr = t;
+    ldst_acc = t;
+    long_mem_detects = f;
+    long_mem_flushes = f;
+    lsq_acc = t;
+    lsq_occ = t;
+    mem_commits = f;
+    mem_delay = t;
+    retpred_hr = f;
+    rob_acc = t;
+    rob_occ = t;
+    sched_count = f;
+    sched_cyc = f;
+  };
+};
+BasicBlockTracker = {
+  create_bbv_file = f;
+  filename = "";
+  interval = 2e+08;
+};
+Core = {
+  Commit = {
+    single_limit = 4;
+    thread_count_limit = 2;
+    total_limit = 4;
+  };
+  DCache = {
+    access_time = {
+      interval = 2;
+      latency = 2;
+    };
+    access_time_wb = {
+      interval = 3;
+      latency = 3;
+    };
+    assoc = 2;
+    fill_time = {
+      interval = 2;
+      latency = 2;
+    };
+    miss_penalty = 0;
+    n_banks = 8;
+    ports = {
+      r = 0;
+      rw = 1;
+      w = 0;
+    };
+    prefetch_nextblock = f;
+    replace_policy = "LRU";
+    size_kb = 64;
+    track_coher_misses = t;
+    wb_buffer_size = 16;
+  };
+  DataDeadBlock = {
+    dead_block_assoc = 8;
+    dead_block_entries = 1024;
+    enable = f;
+    hist_update_at_commit = f;
+    hist_width = 32;
+  };
+  DataMSHR = {
+    entry_count = 16;
+    max_alloc_per_cyc = 4;
+    waiters_per_entry = 32;
+  };
+  DataStreambuf = {
+    alloc_min_confidence_thresh = 1;
+    always_free_on_match = t;
+    blocks_per_stream = 4;
+    enable = f;
+    force_no_overlap = t;
+    n_streams = 8;
+    predict_match_saturate = 8;
+    predict_miss_saturate = 8;
+    prefetch_as_exclusive = t;
+    prefetch_only_when_quiet = t;
+    stream_priority_age_allocs = 10;
+    stream_priority_saturate = 13;
+    stride_pc_assoc = 4;
+    stride_pc_entries = 256;
+    use_round_robin_sched = f;
+    use_two_miss_alloc_filter = f;
+  };
+  Decode = {
+    n_stages = 1;
+  };
+  ExecTime = {
+    all_extra = 0;
+    fp_arith = 4;
+    fp_bit = 4;
+    fp_compare = 4;
+    fp_condbr = 1;
+    fp_condmove = 4;
+    fp_divs = 17;
+    fp_divt = 30;
+    fp_load = 1;
+    fp_store = 1;
+    ftoi = 2;
+    int_arith = 1;
+    int_compare = 0;
+    int_condbr = 1;
+    int_condmove = 2;
+    int_load = 1;
+    int_mull = 8;
+    int_mulq = 16;
+    int_store = 1;
+    int_umulh = 16;
+    itof = 2;
+    smt_fork = 1;
+    smt_lockrel = 1;
+    smt_terminate = 4;
+    uncond_br = 2;
+  };
+  Fetch = {
+    enable_trace_cache = f;
+    n_stages = 1;
+    single_limit = 8;
+    tcache_skips_to_rename = f;
+    thread_count_limit = 2;
+    total_limit = 8;
+  };
+  ICache = {
+    access_time = {
+      interval = 2;
+      latency = 2;
+    };
+    access_time_wb = {
+      interval = 3;
+      latency = 3;
+    };
+    assoc = 2;
+    fill_time = {
+      interval = 2;
+      latency = 2;
+    };
+    miss_penalty = 0;
+    n_banks = 8;
+    ports = {
+      r = 0;
+      rw = 1;
+      w = 0;
+    };
+    prefetch_nextblock = f;
+    replace_policy = "LRU";
+    size_kb = 64;
+    wb_buffer_size = 16;
+  };
+  InstMSHR = {
+    entry_count = 16;
+    max_alloc_per_cyc = 4;
+    waiters_per_entry = 32;
+  };
+  L2Cache = {
+  };
+  L2MSHR = {
+    entry_count = 32;
+    max_alloc_per_cyc = 4;
+    waiters_per_entry = 4;
+  };
+  MultiBranchPredictor = {
+    n_rows = 2048;
+    predict_width = 3;
+  };
+  Queue = {
+    float_ooo_issue = t;
+    float_queue_size = 32;
+    int_ooo_issue = t;
+    int_queue_size = 32;
+    max_float_issue = 1;
+    max_int_issue = 2;
+    max_ldst_issue = 1;
+    max_sync_issue = 2;
+  };
+  RegRead = {
+    n_stages = 1;
+  };
+  RegWrite = {
+    n_stages = 1;
+  };
+  Rename = {
+    float_rename_regs = 64;
+    int_rename_regs = 64;
+    n_stages = 1;
+  };
+  TraceCache = {
+    assoc = 4;
+    block_insts = 8;
+    is_path_assoc = t;
+    n_entries = 2048;
+    pred_per_block = 3;
+    trim_partial_hits = f;
+  };
+  TraceFillUnit = {
+    align_to_bblock = t;
+    allow_indirect_jumps = t;
+    branch_promote_thresh = 64;
+    output_fifo_len = 10;
+    output_interval = 1;
+  };
+  br_bias_entries = 2048;
+  btb_assoc = 4;
+  btb_entries = 256;
+  dtlb_entries = 128;
+  itlb_entries = 48;
+  loadstore_queue_size = 24;
+  pht_entries = 2048;
+  tlb_filter_invalid = t;
+  tlb_miss_penalty = 160;
+};
+Debug = {
+};
+Global = {
+  Mem = {
+    Coher = {
+      apply_evict_notifies = t;
+      prefer_neighbor_shared = t;
+    };
+    L2Cache = {
+      access_time = {
+        interval = 2;
+        latency = 10;
+      };
+      access_time_wb = {
+        interval = 2;
+        latency = 10;
+      };
+      assoc = 8;
+      fill_time = {
+        interval = 2;
+        latency = 4;
+      };
+      miss_penalty = 0;
+      n_banks = 8;
+      ports = {
+        r = 0;
+        rw = 1;
+        w = 0;
+      };
+      prefetch_nextblock = f;
+      replace_policy = "LRU";
+      size_kb = 128;
+      track_coher_misses = t;
+      wb_buffer_size = 16;
+    };
+    L3Cache = {
+      access_time = {
+        interval = 8;
+        latency = 20;
+      };
+      access_time_wb = {
+        interval = 8;
+        latency = 20;
+      };
+      assoc = 8;
+      fill_time = {
+        interval = 8;
+        latency = 20;
+      };
+      miss_penalty = 0;
+      n_banks = 8;
+      ports = {
+        r = 0;
+        rw = 1;
+        w = 0;
+      };
+      prefetch_nextblock = f;
+      replace_policy = "LRU";
+      size_kb = 4096;
+      wb_buffer_size = 16;
+    };
+    MainMem = {
+      n_banks = 16;
+      read_time = {
+        interval = 100;
+        latency = 250;
+      };
+      write_time = {
+        interval = 100;
+        latency = 250;
+      };
+    };
+    bus_request_time = {
+      interval = 1;
+      latency = 1;
+    };
+    bus_transfer_time = {
+      interval = 2;
+      latency = 4;
+    };
+    cache_block_bytes = 64;
+    cache_request_holders = 256;
+    inst_bytes = 4;
+    page_bytes = 8192;
+    private_l2caches = t;
+    split_bus = f;
+    stack_initial_kb = 64;
+    stack_max_kb = 65536;
+    use_coherence = f;
+    use_l3cache = t;
+  };
+  ThreadCoreMap = {
+    policy = "smt";
+    t0 = 0;
+    t1 = 1;
+  };
+  abort_on_alist_full = t;
+  disable_coredump = t;
+  nice_level = 19;
+  num_contexts = 2;
+  num_cores = 2;
+  reap_alist_at_squash = t;
+  thread_length = 1e+07;
+};
+GlobalCtxSchedLog = {
+};
+GlobalLongMemLog = {
+};
+GlobalMemProfiler = {
+  enable = f;
+  log_at_commit = t;
+  log_dstream = t;
+  log_istream = t;
+  log_name = "memprof.gz";
+};
+Hacking = {
+  L1MSHRPartition = {
+    enable = f;
+    max_prefetch_producers = 12;
+  };
+  MutableMap = {
+  };
+  StaticAffin = {
+    force_sched = f;
+  };
+  StaticSched = {
+    allow_missing_apps = f;
+  };
+  consider_late_flush = f;
+  csched_deduct_nonrun = t;
+  flush_past_long_loads = f;
+  flush_past_long_stores = f;
+  inhibit_solo_flush = t;
+  inst_spill_fill = t;
+  inst_spill_fill_early = f;
+  long_mem_at_commit = t;
+  long_mem_cyc = 25;
+  min_swapin_commits = 1.;
+  min_swapin_cyc = 0.;
+  perfect_branch_pred = f;
+  perfect_tlbs = f;
+  print_appmgr_stats = t;
+  sched_app = "OldestApp";
+  sched_ctx = "FirstIdle";
+  spill_dirty_only = f;
+  spill_dtlb_missonly = f;
+  spill_dtlb_size = 0;
+  spill_ghr = f;
+  spill_retstack_size = 0;
+  swap = "IfProcFull";
+  swap_suppress_guess = f;
+  swapgate_deduct_nonrun = t;
+  swapgate_deduct_swapout = f;
+  thread_swapin_cyc = 20;
+  thread_swapout_cyc = 20;
+};
+ResourcePooling = {
+  enable = f;
+  limit_policy = "LIMIT75";
+  order_policy = "FIXED";
+  share_all = f;
+  share_fq = t;
+  share_fregs = t;
+  share_iq = t;
+  share_iregs = t;
+  share_lsq = t;
+  share_rob = t;
+};
+Syscall = {
+  ForceUniqueNames = {
+    "fort.11" = t;
+  };
+  report_resize_failures = t;
+  root_paths_at_cwd = t;
+  sanitize_host_device_info = t;
+  uniquify_to_subdir = t;
+};
+Thread = {
+  active_list_size = 512;
+  discard_static_noops = t;
+  reorder_buffer_size = 64;
+  retstack_entries = 12;
+};
+WorkQueue = {
+  Jobs = {
+    job_1 = {
+      start_time = 0.;
+      workload = "crafty";
+    };
+    job_2 = {
+      start_time = 0.;
+      workload = "apsi";
+    };
+  };
+  enable = t;
+  exit_on_app_exit = t;
+  max_running_jobs = 2;
+  verbose_sched = t;
+};
+Workloads = {
+  GemsFDTD_06 = {
+    argv = {
+      _0 = "GemsFDTD_base.metallica";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdout = "ref.log";
+  };
+  ammp = {
+    argv = {
+      _0 = "ammp";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "ammp.in";
+    stdout = "ammp.out";
+  };
+  applu = {
+    argv = {
+      _0 = "applu";
+      size = 1;
+    };
+    ff_dist = 10.;
+    stdin = "applu.in";
+    stdout = "applu.out";
+  };
+  apsi = {
+    argv = {
+      _0 = "apsi";
+      size = 1;
+    };
+    ff_dist = 1e+07;
+    stdin = "apsi.in";
+    stdout = "apsi.out";
+  };
+  art_110 = {
+    argv = {
+      _0 = "art";
+      _1 = "-scanfile";
+      _10 = "110";
+      _11 = "-starty";
+      _12 = "200";
+      _13 = "-endx";
+      _14 = "160";
+      _15 = "-endy";
+      _16 = "240";
+      _17 = "-objects";
+      _18 = "10";
+      _2 = "c756hel.in";
+      _3 = "-trainfile1";
+      _4 = "a10.img";
+      _5 = "-trainfile2";
+      _6 = "hc.img";
+      _7 = "-stride";
+      _8 = "2";
+      _9 = "-startx";
+      size = 19;
+    };
+    ff_dist = 0.;
+    stdout = "ref.1.out";
+  };
+  art_470 = {
+    argv = {
+      _0 = "art";
+      _1 = "-scanfile";
+      _10 = "470";
+      _11 = "-starty";
+      _12 = "140";
+      _13 = "-endx";
+      _14 = "520";
+      _15 = "-endy";
+      _16 = "180";
+      _17 = "-objects";
+      _18 = "10";
+      _2 = "c756hel.in";
+      _3 = "-trainfile1";
+      _4 = "a10.img";
+      _5 = "-trainfile2";
+      _6 = "hc.img";
+      _7 = "-stride";
+      _8 = "2";
+      _9 = "-startx";
+      size = 19;
+    };
+    ff_dist = 0.;
+    stdout = "ref.2.out";
+  };
+  astar_06_rivers = {
+    argv = {
+      _0 = "astar_base.metallica";
+      _1 = "rivers.cfg";
+      size = 2;
+    };
+    ff_dist = 0.;
+    stdout = "rivers.out";
+  };
+  bisort_med = {
+    argv = {
+      _0 = "bisort";
+      _1 = "2500000";
+      size = 2;
+    };
+    ff_dist = 0.;
+  };
+  "bt.big" = {
+    argv = {
+      _0 = "bt.A";
+      size = 1;
+    };
+    ff_dist = 0.;
+  };
+  bwaves_06 = {
+    argv = {
+      _0 = "bwaves_base.metallica";
+      size = 1;
+    };
+    ff_dist = 0.;
+  };
+  bzip2_06_chicken = {
+    argv = {
+      _0 = "bzip2_base.metallica";
+      _1 = "chicken.jpg";
+      _2 = "30";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "chicken.jpg.out";
+  };
+  bzip2_graphic = {
+    argv = {
+      _0 = "bzip2";
+      _1 = "bzip2-graphic.in";
+      _2 = "58";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "bzip2-graphic.out";
+  };
+  bzip2_program = {
+    argv = {
+      _0 = "bzip2";
+      _1 = "bzip2-program.in";
+      _2 = "58";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "bzip2-program.out";
+  };
+  bzip2_source = {
+    argv = {
+      _0 = "bzip2";
+      _1 = "bzip2-source.in";
+      _2 = "58";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "bzip2-source.out";
+  };
+  cactusADM_06 = {
+    argv = {
+      _0 = "cactusADM_base.metallica";
+      _1 = "benchADM.par";
+      size = 2;
+    };
+    ff_dist = 0.;
+    stdout = "benchADM.out";
+  };
+  calculix_06 = {
+    argv = {
+      _0 = "calculix_base.metallica";
+      _1 = "-i";
+      _2 = "hyperviscoplastic";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "hyperviscoplastic.log";
+  };
+  "cg.big" = {
+    argv = {
+      _0 = "cg.B";
+      size = 1;
+    };
+    ff_dist = 0.;
+  };
+  crafty = {
+    argv = {
+      _0 = "crafty";
+      size = 1;
+    };
+    ff_dist = 1e+07;
+    stdin = "crafty.in";
+    stdout = "crafty.out";
+  };
+  dealII_06 = {
+    argv = {
+      _0 = "dealII_base.metallica";
+      _1 = "23";
+      size = 2;
+    };
+    ff_dist = 0.;
+    stdout = "log";
+  };
+  em3d_med = {
+    argv = {
+      _0 = "em3d";
+      _1 = "200000";
+      _2 = "3";
+      _3 = "20";
+      size = 4;
+    };
+    ff_dist = 0.;
+  };
+  eon_cook = {
+    argv = {
+      _0 = "eon";
+      _1 = "chair.control.cook";
+      _2 = "chair.camera";
+      _3 = "chair.surfaces";
+      _4 = "chair.cook.ppm";
+      _5 = "ppm";
+      _6 = "pixels_out.cook";
+      size = 7;
+    };
+    ff_dist = 0.;
+    stdout = "cook_log.out";
+  };
+  eon_kajiya = {
+    argv = {
+      _0 = "eon";
+      _1 = "chair.control.kajiya";
+      _2 = "chair.camera";
+      _3 = "chair.surfaces";
+      _4 = "chair.kajiya.ppm";
+      _5 = "ppm";
+      _6 = "pixels_out.kajiya";
+      size = 7;
+    };
+    ff_dist = 0.;
+    stdout = "kajiya_log.out";
+  };
+  eon_rushmeier = {
+    argv = {
+      _0 = "eon";
+      _1 = "chair.control.rushmeier";
+      _2 = "chair.camera";
+      _3 = "chair.surfaces";
+      _4 = "chair.rushmeier.ppm";
+      _5 = "ppm";
+      _6 = "pixels_out.rushmeier";
+      size = 7;
+    };
+    ff_dist = 0.;
+    stdout = "rushmeier_log.out";
+  };
+  "ep.big" = {
+    argv = {
+      _0 = "ep.C";
+      size = 1;
+    };
+    ff_dist = 0.;
+  };
+  epic = {
+    argv = {
+      _0 = "epic";
+      _1 = "test_image.pgm";
+      size = 2;
+    };
+    ff_dist = 0.;
+  };
+  equake = {
+    argv = {
+      _0 = "equake";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "eqinp.in";
+    stdout = "eqinp.out";
+  };
+  facerec = {
+    argv = {
+      _0 = "facerec";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "ref-facerec.in";
+    stdout = "ref-facerec.out";
+  };
+  fma3d = {
+    argv = {
+      _0 = "fma3d";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "fma3d.in";
+    stdout = "fma3d.out";
+  };
+  "ft.big" = {
+    argv = {
+      _0 = "ft.A";
+      size = 1;
+    };
+    ff_dist = 0.;
+  };
+  g721d = {
+    argv = {
+      _0 = "decode";
+      _1 = "-4";
+      _2 = "-l";
+      _3 = "-f";
+      _4 = "clinton.g721";
+      size = 5;
+    };
+    ff_dist = 0.;
+  };
+  galgel = {
+    argv = {
+      _0 = "galgel";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "galgel.in";
+    stdout = "galgel.out";
+  };
+  gamess_06_cytosine = {
+    argv = {
+      _0 = "gamess_base.metallica";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "cytosine.2.config";
+    stdout = "cytosine.2.out";
+  };
+  gamess_06_triazolium = {
+    argv = {
+      _0 = "gamess_base.metallica";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "triazolium.config";
+    stdout = "triazolium.out";
+  };
+  gap = {
+    argv = {
+      _0 = "gap";
+      _1 = "-l";
+      _2 = "./";
+      _3 = "-q";
+      _4 = "-m";
+      _5 = "192M";
+      size = 6;
+    };
+    ff_dist = 0.;
+    stdin = "ref-gap.in";
+    stdout = "ref-gap.out";
+  };
+  gcc_06_typeck = {
+    argv = {
+      _0 = "gcc_base.metallica";
+      _1 = "c-typeck.i";
+      _2 = "-o";
+      _3 = "c-typeck.s";
+      size = 4;
+    };
+    ff_dist = 0.;
+    stdout = "c-typeck.out";
+  };
+  gcc_166 = {
+    argv = {
+      _0 = "cc1";
+      _1 = "166.i";
+      _2 = "-o";
+      _3 = "166.s";
+      size = 4;
+    };
+    ff_dist = 0.;
+    stdout = "166.out";
+  };
+  gcc_200 = {
+    argv = {
+      _0 = "cc1";
+      _1 = "200.i";
+      _2 = "-o";
+      _3 = "200.s";
+      size = 4;
+    };
+    ff_dist = 0.;
+    stdout = "200.out";
+  };
+  gcc_expr = {
+    argv = {
+      _0 = "cc1";
+      _1 = "expr.i";
+      _2 = "-o";
+      _3 = "expr.s";
+      size = 4;
+    };
+    ff_dist = 0.;
+    stdout = "expr.out";
+  };
+  gcc_integrate = {
+    argv = {
+      _0 = "cc1";
+      _1 = "integrate.i";
+      _2 = "-o";
+      _3 = "integrate.s";
+      size = 4;
+    };
+    ff_dist = 0.;
+    stdout = "integrate.out";
+  };
+  gcc_scilab = {
+    argv = {
+      _0 = "cc1";
+      _1 = "scilab.i";
+      _2 = "-o";
+      _3 = "scilab.s";
+      size = 4;
+    };
+    ff_dist = 0.;
+    stdout = "scilab.out";
+  };
+  gobmk_06_nngs = {
+    argv = {
+      _0 = "gobmk_base.metallica";
+      _1 = "--quiet";
+      _2 = "--mode";
+      _3 = "gtp";
+      size = 4;
+    };
+    ff_dist = 0.;
+    stdin = "nngs.tst";
+    stdout = "nngs.out";
+  };
+  gromacs_06 = {
+    argv = {
+      _0 = "gromacs_base.metallica";
+      _1 = "-silent";
+      _2 = "-deffnm";
+      _3 = "gromacs";
+      _4 = "-nice";
+      _5 = "0";
+      size = 6;
+    };
+    ff_dist = 0.;
+  };
+  gzip_graphic = {
+    argv = {
+      _0 = "gzip";
+      _1 = "gzip-graphic.in";
+      _2 = "60";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "gzip-graphic.out";
+  };
+  gzip_log = {
+    argv = {
+      _0 = "gzip";
+      _1 = "gzip-log.in";
+      _2 = "60";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "gzip-log.out";
+  };
+  gzip_program = {
+    argv = {
+      _0 = "gzip";
+      _1 = "gzip-program.in";
+      _2 = "60";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "gzip-program.out";
+  };
+  gzip_source = {
+    argv = {
+      _0 = "gzip";
+      _1 = "gzip-source.in";
+      _2 = "60";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "gzip-source.out";
+  };
+  h264ref_06_sss_encoder_main = {
+    argv = {
+      _0 = "h264ref_base.metallica";
+      _1 = "-d";
+      _2 = "sss_encoder_main.cfg";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "sss_main_encodelog.out";
+  };
+  health = {
+    argv = {
+      _0 = "health";
+      size = 1;
+    };
+    ff_dist = 0.;
+  };
+  hmmer_06_nph3 = {
+    argv = {
+      _0 = "hmmer_base.metallica";
+      _1 = "nph3.hmm";
+      _2 = "swiss41";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "nph3.out";
+  };
+  jpege = {
+    argv = {
+      _0 = "cjpeg";
+      _1 = "-dct";
+      _2 = "int";
+      _3 = "-progressive";
+      _4 = "-opt";
+      _5 = "-outfile";
+      _6 = "teste";
+      _7 = "monalisa.ppm";
+      size = 8;
+    };
+    ff_dist = 0.;
+  };
+  lbm_06 = {
+    argv = {
+      _0 = "lbm_base.metallica";
+      _1 = "3000";
+      _2 = "reference.dat";
+      _3 = "0";
+      _4 = "0";
+      _5 = "100_100_130_ldc.of";
+      size = 6;
+    };
+    ff_dist = 0.;
+    stdout = "lbm.out";
+  };
+  leslie3d_06 = {
+    argv = {
+      _0 = "leslie3d_base.metallica";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "leslie3d.in";
+    stdout = "leslie3d.stdout";
+  };
+  libquantum_06 = {
+    argv = {
+      _0 = "libquantum_base.metallica";
+      _1 = "1397";
+      _2 = "8";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "ref.out";
+  };
+  lucas = {
+    argv = {
+      _0 = "lucas";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "lucas2.in";
+    stdout = "lucas2.out";
+  };
+  mcf = {
+    argv = {
+      _0 = "mcf";
+      _1 = "inp-mcf.in";
+      size = 2;
+    };
+    ff_dist = 0.;
+    stdout = "inp-mcf.out";
+  };
+  mcf_06 = {
+    argv = {
+      _0 = "mcf_base.metallica";
+      _1 = "inp.in";
+      size = 2;
+    };
+    ff_dist = 0.;
+    stdout = "inp.out";
+  };
+  mesa = {
+    argv = {
+      _0 = "mesa";
+      _1 = "-frames";
+      _2 = "1000";
+      _3 = "-meshfile";
+      _4 = "mesa.in";
+      _5 = "-ppmfile";
+      _6 = "mesa.ppm";
+      size = 7;
+    };
+    ff_dist = 0.;
+  };
+  mesa_texgen = {
+    argv = {
+      _0 = "texgen";
+      _1 = "c";
+      size = 2;
+    };
+    ff_dist = 0.;
+  };
+  "mg.big" = {
+    argv = {
+      _0 = "mg.B";
+      size = 1;
+    };
+    ff_dist = 0.;
+  };
+  mgrid = {
+    argv = {
+      _0 = "mgrid";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "mgrid.in";
+    stdout = "mgrid.out";
+  };
+  milc_06 = {
+    argv = {
+      _0 = "milc_base.metallica";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "su3imp.in";
+    stdout = "su3imp.out";
+  };
+  mst = {
+    argv = {
+      _0 = "mst";
+      _1 = "2048";
+      size = 2;
+    };
+    ff_dist = 0.;
+  };
+  namd_06 = {
+    argv = {
+      _0 = "namd_base.metallica";
+      _1 = "--input";
+      _2 = "namd.input";
+      _3 = "--iterations";
+      _4 = "38";
+      _5 = "--output";
+      _6 = "namd.out";
+      size = 7;
+    };
+    ff_dist = 0.;
+    stdout = "namd.stdout";
+  };
+  omnetpp_06 = {
+    argv = {
+      _0 = "omnetpp_base.metallica";
+      _1 = "omnetpp.ini";
+      size = 2;
+    };
+    ff_dist = 0.;
+    stdout = "omnetpp.log";
+  };
+  parser = {
+    argv = {
+      _0 = "parser";
+      _1 = "2.1.dict";
+      _2 = "-batch";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdin = "ref-parser.in";
+    stdout = "ref-parser.out";
+  };
+  perim_big = {
+    argv = {
+      _0 = "perimeter";
+      _1 = "12";
+      size = 2;
+    };
+    ff_dist = 0.;
+  };
+  perlbench_06_checkspam = {
+    argv = {
+      _0 = "perlbench_base.metallica";
+      _1 = "-I./lib";
+      _10 = "1";
+      _11 = "1";
+      _2 = "checkspam.pl";
+      _3 = "2500";
+      _4 = "5";
+      _5 = "25";
+      _6 = "11";
+      _7 = "150";
+      _8 = "1";
+      _9 = "1";
+      size = 12;
+    };
+    ff_dist = 0.;
+    stdout = "checkspam.2500.5.25.11.150.1.1.1.1.out";
+  };
+  perlbmk_diffmail = {
+    argv = {
+      _0 = "perlbmk";
+      _1 = "-I./lib";
+      _2 = "diffmail.pl";
+      _3 = "2";
+      _4 = "550";
+      _5 = "15";
+      _6 = "24";
+      _7 = "23";
+      _8 = "100";
+      size = 9;
+    };
+    ff_dist = 0.;
+    stdout = "2.550.15.24.23.100.out";
+  };
+  perlbmk_makerand = {
+    argv = {
+      _0 = "perlbmk";
+      _1 = "-I.";
+      _2 = "-I./lib";
+      _3 = "makerand.pl";
+      size = 4;
+    };
+    ff_dist = 0.;
+    stdout = "makerand.out";
+  };
+  perlbmk_perfect = {
+    argv = {
+      _0 = "perlbmk";
+      _1 = "-I./lib";
+      _2 = "perfect.pl";
+      _3 = "b";
+      _4 = "3";
+      _5 = "m";
+      _6 = "4";
+      size = 7;
+    };
+    ff_dist = 0.;
+    stdout = "b.3.m.4.out";
+  };
+  perlbmk_splitmail535 = {
+    argv = {
+      _0 = "perlbmk";
+      _1 = "-I./lib";
+      _2 = "splitmail.pl";
+      _3 = "535";
+      _4 = "13";
+      _5 = "25";
+      _6 = "24";
+      _7 = "1091";
+      size = 8;
+    };
+    ff_dist = 0.;
+    stdout = "535.13.25.24.1091.out";
+  };
+  perlbmk_splitmail704 = {
+    argv = {
+      _0 = "perlbmk";
+      _1 = "-I./lib";
+      _2 = "splitmail.pl";
+      _3 = "704";
+      _4 = "12";
+      _5 = "26";
+      _6 = "16";
+      _7 = "836";
+      size = 8;
+    };
+    ff_dist = 0.;
+    stdout = "704.12.26.16.836.out";
+  };
+  perlbmk_splitmail850 = {
+    argv = {
+      _0 = "perlbmk";
+      _1 = "-I./lib";
+      _2 = "splitmail.pl";
+      _3 = "850";
+      _4 = "5";
+      _5 = "19";
+      _6 = "18";
+      _7 = "1500";
+      size = 8;
+    };
+    ff_dist = 0.;
+    stdout = "850.5.19.18.1500.out";
+  };
+  perlbmk_splitmail957 = {
+    argv = {
+      _0 = "perlbmk";
+      _1 = "-I./lib";
+      _2 = "splitmail.pl";
+      _3 = "957";
+      _4 = "12";
+      _5 = "23";
+      _6 = "26";
+      _7 = "1014";
+      size = 8;
+    };
+    ff_dist = 0.;
+    stdout = "957.12.23.26.1014.out";
+  };
+  povray_06 = {
+    argv = {
+      _0 = "povray_base.metallica";
+      _1 = "SPEC-benchmark-ref.ini";
+      size = 2;
+    };
+    ff_dist = 0.;
+    stdout = "SPEC-benchmark-ref.stdout";
+  };
+  sixtrack = {
+    argv = {
+      _0 = "sixtrack";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "inp-sixtrack.in";
+    stdout = "inp-sixtrack.out";
+  };
+  sjeng_06 = {
+    argv = {
+      _0 = "sjeng_base.metallica";
+      _1 = "ref.txt";
+      size = 2;
+    };
+    ff_dist = 0.;
+    stdout = "ref.out";
+  };
+  soplex_06_pds_50 = {
+    argv = {
+      _0 = "soplex_base.metallica";
+      _1 = "-s1";
+      _2 = "-e";
+      _3 = "-m45000";
+      _4 = "pds_50.mps";
+      size = 5;
+    };
+    ff_dist = 0.;
+    stdout = "pds-50.mps.out";
+  };
+  soplex_06_ref = {
+    argv = {
+      _0 = "soplex_base.metallica";
+      _1 = "-m3500";
+      _2 = "ref.mps";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "ref.out";
+  };
+  "sp.big" = {
+    argv = {
+      _0 = "sp.B";
+      size = 1;
+    };
+    ff_dist = 0.;
+  };
+  sphinx3_06 = {
+    argv = {
+      _0 = "sphinx_livepretend_base.metallica";
+      _1 = "ctlfile";
+      _2 = ".";
+      _3 = "args.an4";
+      size = 4;
+    };
+    ff_dist = 0.;
+    stdout = "an4.log";
+  };
+  swim = {
+    argv = {
+      _0 = "swim";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "swim.in";
+    stdout = "swim.out";
+  };
+  treeadd = {
+    argv = {
+      _0 = "treeadd";
+      size = 1;
+    };
+    ff_dist = 0.;
+  };
+  twolf = {
+    argv = {
+      _0 = "twolf";
+      _1 = "ref";
+      size = 2;
+    };
+    ff_dist = 0.;
+    stdout = "ref-twolf.out";
+  };
+  vortex_1 = {
+    argv = {
+      _0 = "vortex";
+      _1 = "lendian1.raw";
+      size = 2;
+    };
+    ff_dist = 0.;
+  };
+  vortex_2 = {
+    argv = {
+      _0 = "vortex";
+      _1 = "lendian2.raw";
+      size = 2;
+    };
+    ff_dist = 0.;
+  };
+  vortex_3 = {
+    argv = {
+      _0 = "vortex";
+      _1 = "lendian3.raw";
+      size = 2;
+    };
+    ff_dist = 0.;
+  };
+  vpr_place = {
+    argv = {
+      _0 = "vpr";
+      _1 = "net.in";
+      _10 = "0.005";
+      _11 = "-alpha_t";
+      _12 = "0.9412";
+      _13 = "-inner_num";
+      _14 = "2";
+      _2 = "arch.in";
+      _3 = "place.out";
+      _4 = "dum.out";
+      _5 = "-nodisp";
+      _6 = "-place_only";
+      _7 = "-init_t";
+      _8 = "5";
+      _9 = "-exit_t";
+      size = 15;
+    };
+    ff_dist = 0.;
+    stdout = "vpr_place.out";
+  };
+  vpr_route = {
+    argv = {
+      _0 = "vpr";
+      _1 = "net.in";
+      _10 = "2";
+      _11 = "-acc_fac";
+      _12 = "1";
+      _13 = "-first_iter_pres_fac";
+      _14 = "4";
+      _15 = "-initial_pres_fac";
+      _16 = "8";
+      _2 = "arch.in";
+      _3 = "place.in";
+      _4 = "route.out";
+      _5 = "-nodisp";
+      _6 = "-route_only";
+      _7 = "-route_chan_width";
+      _8 = "15";
+      _9 = "-pres_fac_mult";
+      size = 17;
+    };
+    ff_dist = 0.;
+    stdout = "vpr-route.out";
+  };
+  wupwise = {
+    argv = {
+      _0 = "wupwise";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdout = "wupwise.out";
+  };
+  zeusmp_06 = {
+    argv = {
+      _0 = "zeusmp_base.metallica";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdout = "zeusmp.stdout";
+  };
+};
+--------
+Contexts: 2, cores: 2
+  context 0 on core 0
+  context 1 on core 1
+Printing Pooled Resources:
+  ROB 128 128 
+   IQ  64  64 
+   FQ  64  64 
+ IREG 128 128 
+ FREG 128 128 
+  LSQ  48  48 
+
+--Startup complete; beginning simulation.
+WorkQueue::sim_prestart_jobs: pre-starting jobs: 0 1
+App A0: (crafty)
+--Logging A0 stats every 10000 cyc to "/mnt/c/Users/hp/OneDrive/GMU_Notes/Sem4/611/Project/two_core/Results/crafty~apsi_029.A0": cyc commits l3cache_hr mem_delay itlb_acc dtlb_acc icache_acc dcache_acc l2cache_acc l3cache_acc bpred_acc intalu_acc fpalu_acc ldst_acc iq_acc fq_acc ireg_acc freg_acc iren_acc fren_acc lsq_acc rob_acc iq_occ fq_occ ireg_occ freg_occ lsq_occ rob_occ
+--Fast-forwarding app A0 for 10000000 insts...
+--FF'd 10000000 insts in 0.3280/0.000/0.3280(100.0%) sec: 3.049e+07 inst/s
+WorkQueue: job 0 "WorkQueue/Jobs/job_1" started at time 0, initial apps [ 0 ]
+App A1: (apsi)
+--Logging A1 stats every 10000 cyc to "/mnt/c/Users/hp/OneDrive/GMU_Notes/Sem4/611/Project/two_core/Results/crafty~apsi_029.A1": cyc commits l3cache_hr mem_delay itlb_acc dtlb_acc icache_acc dcache_acc l2cache_acc l3cache_acc bpred_acc intalu_acc fpalu_acc ldst_acc iq_acc fq_acc ireg_acc freg_acc iren_acc fren_acc lsq_acc rob_acc iq_occ fq_occ ireg_occ freg_occ lsq_occ rob_occ
+--Fast-forwarding app A1 for 10000000 insts...
+--FF'd 10000000 insts in 0.4060/0.1250/0.5630(94.32%) sec: 2.463e+07 inst/s
+WorkQueue: job 1 "WorkQueue/Jobs/job_2" started at time 0, initial apps [ 1 ]
+Printing Pooled Resources:
+  ROB  96  96 
+   IQ  48  48 
+   FQ  48  48 
+ IREG  96  96 
+ FREG  96  96 
+  LSQ  36  36 
+
+cycles : 0, commits no : 0, ipc : -nan
+appmgr: A0 swap-in C0 T0 final_fill_commit at 39; swapin delay 39 (targfetch) 39 (fillcommit), migrate delay -1 (tf) 1 (fc)
+appmgr: A1 swap-in C1 T1 final_fill_commit at 41; swapin delay 41 (targfetch) 41 (fillcommit), migrate delay -1 (tf) 1 (fc)
+cycles : 24968, commits no : 10001, ipc : 0.400553
+cycles : 42180, commits no : 20000, ipc : 0.580932
+cycles : 49627, commits no : 30000, ipc : 1.342823
+cycles : 56929, commits no : 40002, ipc : 1.369762
+cycles : 66815, commits no : 50001, ipc : 1.011430
+cycles : 78667, commits no : 60000, ipc : 0.843655
+cycles : 91364, commits no : 70000, ipc : 0.787588
+cycles : 106052, commits no : 80002, ipc : 0.680964
+cycles : 118627, commits no : 90001, ipc : 0.795149
+cycles : 130843, commits no : 100000, ipc : 0.818517
+cycles : 143390, commits no : 110001, ipc : 0.797083
+cycles : 155768, commits no : 120000, ipc : 0.807804
+cycles : 168592, commits no : 130000, ipc : 0.779788
+cycles : 176068, commits no : 140000, ipc : 1.337614
+cycles : 188985, commits no : 150000, ipc : 0.774174
+cycles : 196504, commits no : 160000, ipc : 1.329964
+cycles : 203973, commits no : 170000, ipc : 1.338867
+cycles : 218391, commits no : 180003, ipc : 0.693786
+cycles : 253536, commits no : 190001, ipc : 0.284479
+cycles : 262032, commits no : 200000, ipc : 1.176907
+cycles : 270533, commits no : 210001, ipc : 1.176450
+cycles : 278810, commits no : 220000, ipc : 1.208046
+cycles : 287285, commits no : 230003, ipc : 1.180295
+cycles : 295470, commits no : 240000, ipc : 1.221381
+cycles : 303920, commits no : 250003, ipc : 1.183787
+cycles : 312104, commits no : 260001, ipc : 1.221652
+cycles : 320538, commits no : 270000, ipc : 1.185558
+cycles : 328739, commits no : 280000, ipc : 1.219363
+cycles : 337159, commits no : 290000, ipc : 1.187648
+cycles : 345421, commits no : 300000, ipc : 1.210361
+cycles : 353861, commits no : 310003, ipc : 1.185190
+cycles : 362185, commits no : 320003, ipc : 1.201346
+cycles : 370575, commits no : 330000, ipc : 1.191537
+cycles : 379132, commits no : 340000, ipc : 1.168634
+cycles : 387801, commits no : 350002, ipc : 1.153766
+cycles : 396263, commits no : 360002, ipc : 1.181754
+cycles : 404554, commits no : 370000, ipc : 1.205886
+cycles : 412937, commits no : 380001, ipc : 1.193010
+cycles : 421153, commits no : 390000, ipc : 1.217016
+cycles : 429508, commits no : 400000, ipc : 1.196888
+cycles : 437691, commits no : 410000, ipc : 1.222046
+cycles : 446053, commits no : 420000, ipc : 1.195886
+cycles : 454201, commits no : 430001, ipc : 1.227418
+cycles : 462579, commits no : 440000, ipc : 1.193483
+cycles : 470793, commits no : 450000, ipc : 1.217434
+cycles : 479147, commits no : 460000, ipc : 1.197031
+cycles : 487492, commits no : 470000, ipc : 1.198322
+cycles : 495876, commits no : 480001, ipc : 1.192867
+cycles : 504232, commits no : 490000, ipc : 1.196625
+cycles : 512720, commits no : 500000, ipc : 1.178134
+cycles : 521196, commits no : 510000, ipc : 1.179802
+cycles : 529606, commits no : 520001, ipc : 1.189180
+cycles : 538047, commits no : 530000, ipc : 1.184575
+cycles : 546270, commits no : 540000, ipc : 1.216101
+cycles : 554647, commits no : 550000, ipc : 1.193745
+cycles : 562841, commits no : 560001, ipc : 1.220527
+cycles : 571205, commits no : 570000, ipc : 1.195481
+cycles : 579385, commits no : 580001, ipc : 1.222616
+cycles : 587797, commits no : 590000, ipc : 1.188659
+cycles : 596048, commits no : 600001, ipc : 1.212095
+cycles : 604492, commits no : 610000, ipc : 1.184154
+cycles : 612821, commits no : 620002, ipc : 1.200864
+cycles : 621220, commits no : 630001, ipc : 1.190499
+cycles : 629601, commits no : 640000, ipc : 1.193056
+cycles : 638159, commits no : 650000, ipc : 1.168497
+cycles : 646666, commits no : 660001, ipc : 1.175620
+cycles : 655013, commits no : 670000, ipc : 1.197915
+cycles : 663437, commits no : 680002, ipc : 1.187322
+cycles : 671756, commits no : 690000, ipc : 1.201827
+cycles : 680090, commits no : 700000, ipc : 1.199904
+cycles : 688437, commits no : 710001, ipc : 1.198155
+cycles : 696790, commits no : 720000, ipc : 1.197055
+cycles : 705022, commits no : 730003, ipc : 1.215136
+cycles : 713318, commits no : 740001, ipc : 1.205159
+cycles : 721640, commits no : 750000, ipc : 1.201514
+cycles : 729991, commits no : 760001, ipc : 1.197581
+cycles : 738267, commits no : 770001, ipc : 1.208313
+cycles : 746628, commits no : 780002, ipc : 1.196149
+cycles : 754972, commits no : 790000, ipc : 1.198226
+cycles : 763425, commits no : 800000, ipc : 1.183012
+cycles : 771977, commits no : 810000, ipc : 1.169317
+cycles : 780292, commits no : 820001, ipc : 1.202766
+cycles : 788717, commits no : 830001, ipc : 1.186944
+cycles : 796959, commits no : 840002, ipc : 1.213419
+cycles : 805330, commits no : 850000, ipc : 1.194361
+cycles : 813628, commits no : 860000, ipc : 1.205110
+cycles : 821964, commits no : 870000, ipc : 1.199616
+cycles : 830301, commits no : 880000, ipc : 1.199472
+cycles : 838614, commits no : 890002, ipc : 1.203176
+cycles : 846942, commits no : 900003, ipc : 1.200889
+cycles : 855285, commits no : 910001, ipc : 1.198370
+cycles : 863607, commits no : 920002, ipc : 1.201754
+cycles : 871971, commits no : 930002, ipc : 1.195600
+cycles : 880389, commits no : 940000, ipc : 1.187693
+cycles : 888744, commits no : 950000, ipc : 1.196888
+cycles : 897405, commits no : 960001, ipc : 1.154716
+cycles : 905650, commits no : 970001, ipc : 1.212856
+cycles : 914085, commits no : 980001, ipc : 1.185537
+cycles : 922367, commits no : 990001, ipc : 1.207438
+cycles : 930674, commits no : 1000003, ipc : 1.204045
+cycles : 938937, commits no : 1010000, ipc : 1.209851
+cycles : 947160, commits no : 1020002, ipc : 1.216344
+cycles : 955468, commits no : 1030003, ipc : 1.203779
+cycles : 963681, commits no : 1040002, ipc : 1.217460
+cycles : 971989, commits no : 1050000, ipc : 1.203418
+cycles : 980268, commits no : 1060001, ipc : 1.207996
+cycles : 988603, commits no : 1070000, ipc : 1.199640
+cycles : 996842, commits no : 1080000, ipc : 1.213740
+cycles : 1005202, commits no : 1090002, ipc : 1.196411
+cycles : 1026945, commits no : 1100001, ipc : 0.459872
+cycles : 1093938, commits no : 1110000, ipc : 0.149254
+cycles : 1144862, commits no : 1120000, ipc : 0.196371
+cycles : 1195704, commits no : 1130000, ipc : 0.196688
+cycles : 1246828, commits no : 1140001, ipc : 0.195622
+cycles : 1297537, commits no : 1150000, ipc : 0.197184
+cycles : 1348285, commits no : 1160000, ipc : 0.197052
+cycles : 1398931, commits no : 1170000, ipc : 0.197449
+cycles : 1449847, commits no : 1180003, ipc : 0.196461
+cycles : 1500614, commits no : 1190003, ipc : 0.196978
+cycles : 1551755, commits no : 1200001, ipc : 0.195499
+cycles : 1602935, commits no : 1210001, ipc : 0.195389
+cycles : 1653735, commits no : 1220000, ipc : 0.196831
+cycles : 1704710, commits no : 1230001, ipc : 0.196194
+cycles : 1755520, commits no : 1240000, ipc : 0.196792
+cycles : 1804677, commits no : 1250002, ipc : 0.203471
+cycles : 1852705, commits no : 1260000, ipc : 0.208170
+cycles : 1900701, commits no : 1270001, ipc : 0.208372
+cycles : 1948706, commits no : 1280001, ipc : 0.208312
+cycles : 1996844, commits no : 1290001, ipc : 0.207736
+cycles : 2044618, commits no : 1300001, ipc : 0.209319
+cycles : 2092612, commits no : 1310002, ipc : 0.208380
+cycles : 2140374, commits no : 1320001, ipc : 0.209351
+cycles : 2188286, commits no : 1330001, ipc : 0.208716
+cycles : 2235946, commits no : 1340003, ipc : 0.209862
+cycles : 2283914, commits no : 1350000, ipc : 0.208410
+cycles : 2331986, commits no : 1360001, ipc : 0.208042
+cycles : 2379998, commits no : 1370001, ipc : 0.208281
+cycles : 2428017, commits no : 1380001, ipc : 0.208251
+cycles : 2475975, commits no : 1390001, ipc : 0.208516
+cycles : 2524252, commits no : 1400001, ipc : 0.207138
+cycles : 2572303, commits no : 1410001, ipc : 0.208112
+cycles : 2620321, commits no : 1420001, ipc : 0.208255
+cycles : 2667944, commits no : 1430002, ipc : 0.210004
+cycles : 2715926, commits no : 1440000, ipc : 0.208370
+cycles : 2763925, commits no : 1450001, ipc : 0.208359
+cycles : 2811797, commits no : 1460001, ipc : 0.208890
+cycles : 2859772, commits no : 1470001, ipc : 0.208442
+cycles : 2907841, commits no : 1480001, ipc : 0.208034
+cycles : 2955759, commits no : 1490001, ipc : 0.208690
+cycles : 3003767, commits no : 1500001, ipc : 0.208299
+cycles : 3051751, commits no : 1510001, ipc : 0.208403
+cycles : 3099831, commits no : 1520002, ipc : 0.208007
+cycles : 3147840, commits no : 1530003, ipc : 0.208315
+cycles : 3195459, commits no : 1540001, ipc : 0.209958
+cycles : 3213000, commits no : 1550003, ipc : 0.570207
+cycles : 3227064, commits no : 1560000, ipc : 0.710822
+cycles : 3241231, commits no : 1570000, ipc : 0.705866
+cycles : 3255405, commits no : 1580000, ipc : 0.705517
+cycles : 3269391, commits no : 1590001, ipc : 0.715072
+cycles : 3283804, commits no : 1600000, ipc : 0.693749
+cycles : 3297927, commits no : 1610000, ipc : 0.708065
+cycles : 3312004, commits no : 1620000, ipc : 0.710379
+cycles : 3326378, commits no : 1630001, ipc : 0.695770
+cycles : 3340651, commits no : 1640002, ipc : 0.700694
+cycles : 3354666, commits no : 1650000, ipc : 0.713379
+cycles : 3368762, commits no : 1660001, ipc : 0.709492
+cycles : 3382900, commits no : 1670002, ipc : 0.707384
+cycles : 3397043, commits no : 1680003, ipc : 0.707134
+cycles : 3411321, commits no : 1690001, ipc : 0.700238
+cycles : 3425295, commits no : 1700000, ipc : 0.715543
+cycles : 3439326, commits no : 1710001, ipc : 0.712779
+cycles : 3453399, commits no : 1720002, ipc : 0.710652
+cycles : 3467567, commits no : 1730000, ipc : 0.705675
+cycles : 3482178, commits no : 1740000, ipc : 0.684416
+cycles : 3496212, commits no : 1750000, ipc : 0.712555
+cycles : 3510208, commits no : 1760002, ipc : 0.714633
+cycles : 3524253, commits no : 1770000, ipc : 0.711855
+cycles : 3538388, commits no : 1780002, ipc : 0.707605
+cycles : 3552902, commits no : 1790000, ipc : 0.688852
+cycles : 3566934, commits no : 1800002, ipc : 0.712799
+cycles : 3581059, commits no : 1810002, ipc : 0.707965
+cycles : 3595087, commits no : 1820001, ipc : 0.712789
+cycles : 3609206, commits no : 1830003, ipc : 0.708407
+cycles : 3623440, commits no : 1840002, ipc : 0.702473
+cycles : 3637696, commits no : 1850002, ipc : 0.701459
+cycles : 3651757, commits no : 1860003, ipc : 0.711258
+cycles : 3665914, commits no : 1870000, ipc : 0.706152
+cycles : 3679873, commits no : 1880000, ipc : 0.716384
+cycles : 3694312, commits no : 1890000, ipc : 0.692569
+cycles : 3708326, commits no : 1900001, ipc : 0.713643
+cycles : 3722447, commits no : 1910000, ipc : 0.708094
+cycles : 3736431, commits no : 1920000, ipc : 0.715103
+cycles : 3750489, commits no : 1930000, ipc : 0.711339
+cycles : 3765051, commits no : 1940001, ipc : 0.686788
+cycles : 3779142, commits no : 1950002, ipc : 0.709744
+cycles : 3793103, commits no : 1960000, ipc : 0.716138
+cycles : 3807236, commits no : 1970002, ipc : 0.707705
+cycles : 3821301, commits no : 1980002, ipc : 0.710985
+cycles : 3835290, commits no : 1990000, ipc : 0.714704
+cycles : 3849346, commits no : 2000003, ipc : 0.711653
+cycles : 3863415, commits no : 2010000, ipc : 0.710569
+cycles : 3877502, commits no : 2020001, ipc : 0.709945
+cycles : 3891488, commits no : 2030002, ipc : 0.715072
+cycles : 3905840, commits no : 2040000, ipc : 0.696628
+cycles : 3949602, commits no : 2050000, ipc : 0.228509
+cycles : 3994703, commits no : 2060001, ipc : 0.221747
+cycles : 4016646, commits no : 2070001, ipc : 0.455726
+cycles : 4026719, commits no : 2080000, ipc : 0.992654
+cycles : 4060382, commits no : 2090000, ipc : 0.297062
+cycles : 4073068, commits no : 2100000, ipc : 0.788271
+cycles : 4081618, commits no : 2110000, ipc : 1.169591
+cycles : 4095431, commits no : 2120000, ipc : 0.723956
+cycles : 4106864, commits no : 2130000, ipc : 0.874661
+cycles : 4168395, commits no : 2140000, ipc : 0.162520
+cycles : 4232707, commits no : 2150000, ipc : 0.155492
+cycles : 4247036, commits no : 2160000, ipc : 0.697885
+cycles : 4257924, commits no : 2170000, ipc : 0.918442
+cycles : 4266099, commits no : 2180000, ipc : 1.223242
+cycles : 4304708, commits no : 2190003, ipc : 0.259085
+cycles : 4349416, commits no : 2200000, ipc : 0.223607
+cycles : 4359136, commits no : 2210000, ipc : 1.028807
+cycles : 4368907, commits no : 2220000, ipc : 1.023437
+cycles : 4378623, commits no : 2230001, ipc : 1.029333
+cycles : 4388368, commits no : 2240000, ipc : 1.026065
+cycles : 4398132, commits no : 2250000, ipc : 1.024170
+cycles : 4407859, commits no : 2260000, ipc : 1.028066
+cycles : 4417623, commits no : 2270000, ipc : 1.024170
+cycles : 4427320, commits no : 2280001, ipc : 1.031350
+cycles : 4437088, commits no : 2290000, ipc : 1.023649
+cycles : 4446840, commits no : 2300001, ipc : 1.025533
+cycles : 4456614, commits no : 2310000, ipc : 1.023020
+cycles : 4466355, commits no : 2320000, ipc : 1.026589
+cycles : 4476056, commits no : 2330000, ipc : 1.030822
+cycles : 4486119, commits no : 2340000, ipc : 0.993739
+cycles : 4495817, commits no : 2350001, ipc : 1.031244
+cycles : 4505546, commits no : 2360002, ipc : 1.027958
+cycles : 4514834, commits no : 2370002, ipc : 1.076658
+cycles : 4523809, commits no : 2380002, ipc : 1.114206
+cycles : 4533100, commits no : 2390002, ipc : 1.076310
+cycles : 4542405, commits no : 2400002, ipc : 1.074691
+cycles : 4551717, commits no : 2410002, ipc : 1.073883
+cycles : 4561010, commits no : 2420002, ipc : 1.076079
+cycles : 4570316, commits no : 2430002, ipc : 1.074576
+cycles : 4579606, commits no : 2440002, ipc : 1.076426
+cycles : 4588864, commits no : 2450002, ipc : 1.080147
+cycles : 4598152, commits no : 2460002, ipc : 1.076658
+cycles : 4607419, commits no : 2470002, ipc : 1.079098
+cycles : 4616681, commits no : 2480002, ipc : 1.079680
+cycles : 4625960, commits no : 2490002, ipc : 1.077702
+cycles : 4635243, commits no : 2500002, ipc : 1.077238
+cycles : 4644539, commits no : 2510002, ipc : 1.075732
+cycles : 4653837, commits no : 2520002, ipc : 1.075500
+cycles : 4663139, commits no : 2530002, ipc : 1.075038
+cycles : 4672414, commits no : 2540002, ipc : 1.078167
+cycles : 4681707, commits no : 2550002, ipc : 1.076079
+cycles : 4690996, commits no : 2560002, ipc : 1.076542
+cycles : 4700290, commits no : 2570002, ipc : 1.075963
+cycles : 4709606, commits no : 2580002, ipc : 1.073422
+cycles : 4718872, commits no : 2590002, ipc : 1.079214
+cycles : 4728156, commits no : 2600002, ipc : 1.077122
+cycles : 4737457, commits no : 2610002, ipc : 1.075153
+cycles : 4746754, commits no : 2620002, ipc : 1.075616
+cycles : 4756056, commits no : 2630002, ipc : 1.075038
+cycles : 4765343, commits no : 2640002, ipc : 1.076774
+cycles : 4774593, commits no : 2650002, ipc : 1.081081
+cycles : 4783862, commits no : 2660002, ipc : 1.078865
+cycles : 4793138, commits no : 2670002, ipc : 1.078051
+cycles : 4807852, commits no : 2680001, ipc : 0.679557
+cycles : 4926743, commits no : 2690002, ipc : 0.084119
+cycles : 4948594, commits no : 2700003, ipc : 0.457691
+cycles : 4959751, commits no : 2710001, ipc : 0.896119
+cycles : 4972308, commits no : 2720001, ipc : 0.796369
+cycles : 4984200, commits no : 2730001, ipc : 0.840901
+cycles : 4997841, commits no : 2740002, ipc : 0.733157
+cycles : 5008024, commits no : 2750000, ipc : 0.981832
+cycles : 5018526, commits no : 2760000, ipc : 0.952200
+cycles : 5027836, commits no : 2770000, ipc : 1.074114
+cycles : 5037154, commits no : 2780001, ipc : 1.073299
+cycles : 5046480, commits no : 2790001, ipc : 1.072271
+cycles : 5057383, commits no : 2800003, ipc : 0.917362
+cycles : 5072368, commits no : 2810001, ipc : 0.667201
+cycles : 5084422, commits no : 2820002, ipc : 0.829683
+cycles : 5096505, commits no : 2830003, ipc : 0.827692
+cycles : 5107896, commits no : 2840001, ipc : 0.877710
+cycles : 5119343, commits no : 2850000, ipc : 0.873504
+cycles : 5129353, commits no : 2860000, ipc : 0.999001
+cycles : 5139327, commits no : 2870001, ipc : 1.002707
+cycles : 5145543, commits no : 2880000, ipc : 1.608591
+cycles : 5165383, commits no : 2890000, ipc : 0.504032
+cycles : 5230792, commits no : 2900000, ipc : 0.152884
+cycles : 5260718, commits no : 2910000, ipc : 0.334158
+cycles : 5267738, commits no : 2920000, ipc : 1.424501
+cycles : 5274200, commits no : 2930000, ipc : 1.547508
+cycles : 5319621, commits no : 2940000, ipc : 0.220162
+cycles : 5335606, commits no : 2950001, ipc : 0.625649
+cycles : 5345682, commits no : 2960000, ipc : 0.992358
+cycles : 5352313, commits no : 2970001, ipc : 1.508219
+cycles : 5368462, commits no : 2980001, ipc : 0.619233
+cycles : 5392163, commits no : 2990000, ipc : 0.421881
+cycles : 5400528, commits no : 3000003, ipc : 1.195816
+cycles : 5431514, commits no : 3010003, ipc : 0.322726
+cycles : 5446489, commits no : 3020000, ipc : 0.667579
+cycles : 5456153, commits no : 3030000, ipc : 1.034768
+cycles : 5465292, commits no : 3040001, ipc : 1.094321
+cycles : 5472759, commits no : 3050001, ipc : 1.339226
+cycles : 5494922, commits no : 3060001, ipc : 0.451202
+cycles : 5504110, commits no : 3070001, ipc : 1.088376
+cycles : 5512638, commits no : 3080002, ipc : 1.172725
+cycles : 5521915, commits no : 3090000, ipc : 1.077719
+cycles : 5535116, commits no : 3100002, ipc : 0.757670
+cycles : 5546105, commits no : 3110002, ipc : 0.910001
+cycles : 5559691, commits no : 3120000, ipc : 0.735905
+cycles : 5571214, commits no : 3130001, ipc : 0.867916
+cycles : 5587597, commits no : 3140002, ipc : 0.610450
+cycles : 5596711, commits no : 3150002, ipc : 1.097213
+cycles : 5606782, commits no : 3160002, ipc : 0.992950
+cycles : 5616031, commits no : 3170000, ipc : 1.080982
+cycles : 5625161, commits no : 3180001, ipc : 1.095400
+cycles : 5635413, commits no : 3190000, ipc : 0.975322
+cycles : 5643778, commits no : 3200000, ipc : 1.195457
+cycles : 5651189, commits no : 3210002, ipc : 1.349615
+cycles : 5662255, commits no : 3220001, ipc : 0.903579
+cycles : 5675788, commits no : 3230001, ipc : 0.738934
+cycles : 5687377, commits no : 3240000, ipc : 0.862801
+cycles : 5697347, commits no : 3250003, ipc : 1.003310
+cycles : 5706633, commits no : 3260000, ipc : 1.076567
+cycles : 5717440, commits no : 3270001, ipc : 0.925419
+cycles : 5727622, commits no : 3280002, ipc : 0.982224
+cycles : 5738150, commits no : 3290001, ipc : 0.949753
+cycles : 5747117, commits no : 3300000, ipc : 1.115089
+cycles : 5755430, commits no : 3310000, ipc : 1.202935
+cycles : 5766898, commits no : 3320000, ipc : 0.871992
+cycles : 5776538, commits no : 3330002, ipc : 1.037552
+cycles : 5786267, commits no : 3340001, ipc : 1.027752
+cycles : 5794272, commits no : 3350003, ipc : 1.249469
+cycles : 5803540, commits no : 3360000, ipc : 1.078658
+cycles : 5812520, commits no : 3370000, ipc : 1.113586
+cycles : 5821514, commits no : 3380002, ipc : 1.112075
+cycles : 5831732, commits no : 3390000, ipc : 0.978469
+cycles : 5839625, commits no : 3400000, ipc : 1.266945
+cycles : 5847930, commits no : 3410003, ipc : 1.204455
+cycles : 5855826, commits no : 3420001, ipc : 1.266211
+cycles : 5866038, commits no : 3430000, ipc : 0.979142
+cycles : 5878524, commits no : 3440002, ipc : 0.801057
+cycles : 5891329, commits no : 3450000, ipc : 0.780789
+cycles : 5900204, commits no : 3460001, ipc : 1.126873
+cycles : 5910446, commits no : 3470001, ipc : 0.976372
+cycles : 5918704, commits no : 3480003, ipc : 1.211189
+cycles : 5929222, commits no : 3490001, ipc : 0.950561
+cycles : 5937558, commits no : 3500000, ipc : 1.199496
+cycles : 5947883, commits no : 3510000, ipc : 0.968523
+cycles : 5957563, commits no : 3520000, ipc : 1.033058
+cycles : 5967515, commits no : 3530001, ipc : 1.004924
+cycles : 5976787, commits no : 3540000, ipc : 1.078408
+cycles : 5987236, commits no : 3550000, ipc : 0.957029
+cycles : 5996482, commits no : 3560001, ipc : 1.081657
+cycles : 6005411, commits no : 3570000, ipc : 1.119834
+cycles : 6013980, commits no : 3580001, ipc : 1.167114
+cycles : 6023094, commits no : 3590001, ipc : 1.097213
+cycles : 6035723, commits no : 3600000, ipc : 0.791749
+cycles : 6046202, commits no : 3610000, ipc : 0.954290
+cycles : 6055314, commits no : 3620003, ipc : 1.097783
+cycles : 6064961, commits no : 3630000, ipc : 1.036281
+cycles : 6074765, commits no : 3640000, ipc : 1.019992
+cycles : 6083356, commits no : 3650002, ipc : 1.164242
+cycles : 6093513, commits no : 3660000, ipc : 0.984346
+cycles : 6106946, commits no : 3670002, ipc : 0.744584
+cycles : 6119097, commits no : 3680000, ipc : 0.822813
+cycles : 6129552, commits no : 3690001, ipc : 0.956576
+cycles : 6144335, commits no : 3700003, ipc : 0.676588
+cycles : 6156493, commits no : 3710002, ipc : 0.822421
+cycles : 6165711, commits no : 3720003, ipc : 1.084942
+cycles : 6174276, commits no : 3730000, ipc : 1.167192
+cycles : 6183787, commits no : 3740000, ipc : 1.051414
+cycles : 6191929, commits no : 3750001, ipc : 1.228322
+cycles : 6201572, commits no : 3760001, ipc : 1.037022
+cycles : 6214353, commits no : 3770000, ipc : 0.782333
+cycles : 6223741, commits no : 3780003, ipc : 1.065509
+cycles : 6233467, commits no : 3790002, ipc : 1.028069
+cycles : 6244255, commits no : 3800000, ipc : 0.926771
+cycles : 6254553, commits no : 3810002, ipc : 0.971257
+cycles : 6263807, commits no : 3820001, ipc : 1.080506
+cycles : 6273170, commits no : 3830000, ipc : 1.067927
+cycles : 6283090, commits no : 3840003, ipc : 1.008367
+cycles : 6292260, commits no : 3850001, ipc : 1.090294
+cycles : 6301172, commits no : 3860000, ipc : 1.121970
+cycles : 6309699, commits no : 3870000, ipc : 1.172745
+cycles : 6318976, commits no : 3880003, ipc : 1.078258
+cycles : 6327663, commits no : 3890002, ipc : 1.151030
+cycles : 6337165, commits no : 3900001, ipc : 1.052305
+cycles : 6347051, commits no : 3910000, ipc : 1.011430
+cycles : 6357378, commits no : 3920001, ipc : 0.968432
+cycles : 6367105, commits no : 3930000, ipc : 1.027963
+cycles : 6375849, commits no : 3940002, ipc : 1.143870
+cycles : 6384575, commits no : 3950001, ipc : 1.145886
+cycles : 6393479, commits no : 3960000, ipc : 1.122978
+cycles : 6401135, commits no : 3970000, ipc : 1.306165
+cycles : 6409253, commits no : 3980000, ipc : 1.231830
+cycles : 6416748, commits no : 3990000, ipc : 1.334223
+cycles : 6425743, commits no : 4000000, ipc : 1.111729
+cycles : 6435080, commits no : 4010000, ipc : 1.071008
+cycles : 6445014, commits no : 4020001, ipc : 1.006745
+cycles : 6454284, commits no : 4030002, ipc : 1.078856
+cycles : 6462675, commits no : 4040000, ipc : 1.191515
+cycles : 6471690, commits no : 4050000, ipc : 1.109262
+cycles : 6479850, commits no : 4060000, ipc : 1.225490
+cycles : 6490597, commits no : 4070002, ipc : 0.930678
+cycles : 6506511, commits no : 4080002, ipc : 0.628378
+cycles : 6512999, commits no : 4090000, ipc : 1.540999
+cycles : 6521088, commits no : 4100000, ipc : 1.236247
+cycles : 6530513, commits no : 4110002, ipc : 1.061220
+cycles : 6538150, commits no : 4120001, ipc : 1.309284
+cycles : 6545045, commits no : 4130000, ipc : 1.450181
+cycles : 6554150, commits no : 4140000, ipc : 1.098298
+cycles : 6563106, commits no : 4150001, ipc : 1.116682
+cycles : 6571526, commits no : 4160000, ipc : 1.187530
+cycles : 6583285, commits no : 4170001, ipc : 0.850497
+cycles : 6593011, commits no : 4180000, ipc : 1.028069
+cycles : 6604008, commits no : 4190001, ipc : 0.909430
+cycles : 6611745, commits no : 4200000, ipc : 1.292361
+cycles : 6619546, commits no : 4210003, ipc : 1.282272
+cycles : 6629015, commits no : 4220001, ipc : 1.055866
+cycles : 6637966, commits no : 4230000, ipc : 1.117082
+cycles : 6647199, commits no : 4240001, ipc : 1.083180
+cycles : 6656541, commits no : 4250002, ipc : 1.070542
+cycles : 6663749, commits no : 4260002, ipc : 1.387347
+cycles : 6671842, commits no : 4270002, ipc : 1.235636
+cycles : 6680809, commits no : 4280001, ipc : 1.115089
+cycles : 6689944, commits no : 4290000, ipc : 1.094581
+cycles : 6698261, commits no : 4300002, ipc : 1.202597
+cycles : 6706428, commits no : 4310000, ipc : 1.224195
+cycles : 6717121, commits no : 4320001, ipc : 0.935285
+cycles : 6728970, commits no : 4330001, ipc : 0.843953
+cycles : 6738388, commits no : 4340000, ipc : 1.061690
+cycles : 6747956, commits no : 4350003, ipc : 1.045464
+cycles : 6758533, commits no : 4360002, ipc : 0.945353
+cycles : 6774040, commits no : 4370000, ipc : 0.644741
+cycles : 6786578, commits no : 4380001, ipc : 0.797655
+cycles : 6795262, commits no : 4390000, ipc : 1.151428
+cycles : 6804225, commits no : 4400003, ipc : 1.116033
+cycles : 6811892, commits no : 4410002, ipc : 1.304161
+cycles : 6819234, commits no : 4420001, ipc : 1.361890
+cycles : 6826078, commits no : 4430002, ipc : 1.461280
+cycles : 6832708, commits no : 4440001, ipc : 1.508145
+cycles : 6843385, commits no : 4450002, ipc : 0.936686
+cycles : 6853046, commits no : 4460002, ipc : 1.035089
+cycles : 6863063, commits no : 4470002, ipc : 0.998303
+cycles : 6872734, commits no : 4480000, ipc : 1.033812
+cycles : 6884290, commits no : 4490001, ipc : 0.865438
+cycles : 6893326, commits no : 4500000, ipc : 1.106574
+cycles : 6902857, commits no : 4510002, ipc : 1.049418
+cycles : 6910910, commits no : 4520000, ipc : 1.241525
+cycles : 6920143, commits no : 4530003, ipc : 1.083397
+cycles : 6926816, commits no : 4540003, ipc : 1.498576
+cycles : 6933731, commits no : 4550001, ipc : 1.445842
+cycles : 6940496, commits no : 4560003, ipc : 1.478492
+cycles : 6948065, commits no : 4570001, ipc : 1.320914
+cycles : 6956973, commits no : 4580000, ipc : 1.122474
+cycles : 6965856, commits no : 4590002, ipc : 1.125971
+cycles : 6974301, commits no : 4600000, ipc : 1.183896
+cycles : 6982565, commits no : 4610001, ipc : 1.210189
+cycles : 6989641, commits no : 4620000, ipc : 1.413087
+cycles : 6997307, commits no : 4630002, ipc : 1.304722
+cycles : 7004786, commits no : 4640001, ipc : 1.336943
+cycles : 7011954, commits no : 4650003, ipc : 1.395368
+cycles : 7018777, commits no : 4660001, ipc : 1.465338
+cycles : 7025881, commits no : 4670000, ipc : 1.407517
+cycles : 7034883, commits no : 4680001, ipc : 1.110975
+cycles : 7043769, commits no : 4690000, ipc : 1.125253
+cycles : 7052681, commits no : 4700000, ipc : 1.122083
+cycles : 7061277, commits no : 4710002, ipc : 1.163564
+cycles : 7070453, commits no : 4720003, ipc : 1.089908
+cycles : 7078951, commits no : 4730001, ipc : 1.176512
+cycles : 7087223, commits no : 4740000, ipc : 1.208777
+cycles : 7095070, commits no : 4750000, ipc : 1.274372
+cycles : 7103665, commits no : 4760001, ipc : 1.163584
+cycles : 7112161, commits no : 4770000, ipc : 1.176907
+cycles : 7120990, commits no : 4780000, ipc : 1.132631
+cycles : 7128880, commits no : 4790000, ipc : 1.267427
+cycles : 7136595, commits no : 4800001, ipc : 1.296306
+cycles : 7146492, commits no : 4810000, ipc : 1.010306
+cycles : 7155482, commits no : 4820002, ipc : 1.112570
+cycles : 7161910, commits no : 4830003, ipc : 1.555849
+cycles : 7170292, commits no : 4840000, ipc : 1.192675
+cycles : 7178955, commits no : 4850001, ipc : 1.154450
+cycles : 7185485, commits no : 4860000, ipc : 1.531240
+cycles : 7192257, commits no : 4870002, ipc : 1.476964
+cycles : 7200430, commits no : 4880000, ipc : 1.223296
+cycles : 7208234, commits no : 4890000, ipc : 1.281394
+cycles : 7216360, commits no : 4900000, ipc : 1.230618
+cycles : 7224909, commits no : 4910001, ipc : 1.169844
+cycles : 7233314, commits no : 4920001, ipc : 1.189768
+cycles : 7239823, commits no : 4930002, ipc : 1.536488
+cycles : 7248136, commits no : 4940001, ipc : 1.202815
+cycles : 7255853, commits no : 4950002, ipc : 1.295970
+cycles : 7263748, commits no : 4960001, ipc : 1.266498
+cycles : 7272827, commits no : 4970003, ipc : 1.101663
+cycles : 7280854, commits no : 4980000, ipc : 1.245422
+cycles : 7289130, commits no : 4990000, ipc : 1.208313
+cycles : 7298211, commits no : 5000000, ipc : 1.101200
+cycles : 7311555, commits no : 5010000, ipc : 0.749400
+cycles : 7322235, commits no : 5020003, ipc : 0.936610
+cycles : 7334907, commits no : 5030000, ipc : 0.788905
+cycles : 7346817, commits no : 5040000, ipc : 0.839631
+cycles : 7359213, commits no : 5050000, ipc : 0.806712
+cycles : 7367299, commits no : 5060000, ipc : 1.236705
+cycles : 7376844, commits no : 5070000, ipc : 1.047669
+cycles : 7384036, commits no : 5080000, ipc : 1.390434
+cycles : 7391430, commits no : 5090000, ipc : 1.352448
+cycles : 7399106, commits no : 5100000, ipc : 1.302762
+cycles : 7410178, commits no : 5110000, ipc : 0.903179
+cycles : 7418416, commits no : 5120003, ipc : 1.214251
+cycles : 7426401, commits no : 5130001, ipc : 1.252098
+cycles : 7436011, commits no : 5140001, ipc : 1.040583
+cycles : 7442525, commits no : 5150000, ipc : 1.535002
+cycles : 7449560, commits no : 5160000, ipc : 1.421464
+cycles : 7457387, commits no : 5170001, ipc : 1.277756
+cycles : 7466232, commits no : 5180003, ipc : 1.130808
+cycles : 7473056, commits no : 5190000, ipc : 1.464977
+cycles : 7480182, commits no : 5200000, ipc : 1.403312
+cycles : 7488658, commits no : 5210002, ipc : 1.180038
+cycles : 7495426, commits no : 5220000, ipc : 1.477246
+cycles : 7502216, commits no : 5230000, ipc : 1.472754
+cycles : 7511388, commits no : 5240000, ipc : 1.090275
+cycles : 7522187, commits no : 5250000, ipc : 0.926012
+cycles : 7530604, commits no : 5260000, ipc : 1.188072
+cycles : 7540221, commits no : 5270000, ipc : 1.039825
+cycles : 7549371, commits no : 5280000, ipc : 1.092896
+cycles : 7557308, commits no : 5290001, ipc : 1.260048
+cycles : 7564955, commits no : 5300001, ipc : 1.307702
+cycles : 7571410, commits no : 5310001, ipc : 1.549187
+cycles : 7578735, commits no : 5320002, ipc : 1.365324
+cycles : 7587066, commits no : 5330000, ipc : 1.200096
+cycles : 7596726, commits no : 5340001, ipc : 1.035300
+cycles : 7604853, commits no : 5350001, ipc : 1.230466
+cycles : 7612015, commits no : 5360000, ipc : 1.396118
+cycles : 7618459, commits no : 5370000, ipc : 1.551831
+cycles : 7630657, commits no : 5380001, ipc : 0.819889
+cycles : 7640060, commits no : 5390001, ipc : 1.063490
+cycles : 7649468, commits no : 5400000, ipc : 1.062819
+cycles : 7659287, commits no : 5410001, ipc : 1.018535
+cycles : 7668622, commits no : 5420001, ipc : 1.071237
+cycles : 7677542, commits no : 5430003, ipc : 1.121300
+cycles : 7684203, commits no : 5440002, ipc : 1.501126
+cycles : 7691326, commits no : 5450002, ipc : 1.403903
+cycles : 7697774, commits no : 5460000, ipc : 1.550558
+cycles : 7704965, commits no : 5470002, ipc : 1.390905
+cycles : 7713609, commits no : 5480000, ipc : 1.156640
+cycles : 7721555, commits no : 5490003, ipc : 1.258872
+cycles : 7729171, commits no : 5500001, ipc : 1.312763
+cycles : 7736482, commits no : 5510002, ipc : 1.367939
+cycles : 7742918, commits no : 5520003, ipc : 1.553916
+cycles : 7749785, commits no : 5530000, ipc : 1.455803
+cycles : 7756767, commits no : 5540000, ipc : 1.432254
+cycles : 7765609, commits no : 5550002, ipc : 1.131192
+cycles : 7774109, commits no : 5560001, ipc : 1.176353
+cycles : 7781620, commits no : 5570002, ipc : 1.331514
+cycles : 7788736, commits no : 5580001, ipc : 1.405143
+cycles : 7795168, commits no : 5590000, ipc : 1.554571
+cycles : 7802092, commits no : 5600001, ipc : 1.444396
+cycles : 7809462, commits no : 5610000, ipc : 1.356716
+cycles : 7818074, commits no : 5620000, ipc : 1.161170
+cycles : 7826089, commits no : 5630000, ipc : 1.247661
+cycles : 7833698, commits no : 5640003, ipc : 1.314627
+cycles : 7842291, commits no : 5650002, ipc : 1.163622
+cycles : 7849948, commits no : 5660000, ipc : 1.305733
+cycles : 7856725, commits no : 5670001, ipc : 1.475727
+cycles : 7865468, commits no : 5680003, ipc : 1.144001
+cycles : 7872860, commits no : 5690002, ipc : 1.352679
+cycles : 7884168, commits no : 5700000, ipc : 0.884153
+cycles : 7893867, commits no : 5710003, ipc : 1.031343
+cycles : 7903483, commits no : 5720001, ipc : 1.039725
+cycles : 7912626, commits no : 5730001, ipc : 1.093733
+cycles : 7922116, commits no : 5740000, ipc : 1.053635
+cycles : 7929112, commits no : 5750002, ipc : 1.429674
+cycles : 7936411, commits no : 5760002, ipc : 1.370051
+cycles : 7944970, commits no : 5770002, ipc : 1.168361
+cycles : 7951609, commits no : 5780003, ipc : 1.506402
+cycles : 7958956, commits no : 5790003, ipc : 1.361100
+cycles : 7966721, commits no : 5800000, ipc : 1.287444
+cycles : 7973634, commits no : 5810000, ipc : 1.446550
+cycles : 7981313, commits no : 5820000, ipc : 1.302253
+cycles : 7989607, commits no : 5830001, ipc : 1.205811
+cycles : 7997685, commits no : 5840000, ipc : 1.237806
+cycles : 8010046, commits no : 5850001, ipc : 0.809077
+cycles : 8021820, commits no : 5860003, ipc : 0.849499
+cycles : 8033155, commits no : 5870001, ipc : 0.882047
+cycles : 8044189, commits no : 5880000, ipc : 0.906199
+cycles : 8056896, commits no : 5890001, ipc : 0.787046
+cycles : 8067802, commits no : 5900000, ipc : 0.916835
+cycles : 8078811, commits no : 5910000, ipc : 0.908348
+cycles : 8088166, commits no : 5920001, ipc : 1.069054
+cycles : 8097865, commits no : 5930002, ipc : 1.031137
+cycles : 8109676, commits no : 5940000, ipc : 0.846499
+cycles : 8117400, commits no : 5950001, ipc : 1.294795
+cycles : 8124963, commits no : 5960000, ipc : 1.322094
+cycles : 8131798, commits no : 5970000, ipc : 1.463058
+cycles : 8143294, commits no : 5980000, ipc : 0.869868
+cycles : 8150984, commits no : 5990000, ipc : 1.300390
+cycles : 8158715, commits no : 6000000, ipc : 1.293494
+cycles : 8169085, commits no : 6010003, ipc : 0.964609
+cycles : 8177712, commits no : 6020001, ipc : 1.158920
+cycles : 8186988, commits no : 6030001, ipc : 1.078051
+cycles : 8197581, commits no : 6040002, ipc : 0.944114
+cycles : 8206293, commits no : 6050000, ipc : 1.147612
+cycles : 8215398, commits no : 6060003, ipc : 1.098627
+cycles : 8223646, commits no : 6070003, ipc : 1.212415
+cycles : 8231006, commits no : 6080000, ipc : 1.358288
+cycles : 8238677, commits no : 6090001, ipc : 1.303741
+cycles : 8246328, commits no : 6100003, ipc : 1.307280
+cycles : 8255807, commits no : 6110002, ipc : 1.054858
+cycles : 8265859, commits no : 6120001, ipc : 0.994727
+cycles : 8273402, commits no : 6130002, ipc : 1.325865
+cycles : 8283072, commits no : 6140003, ipc : 1.034230
+cycles : 8291990, commits no : 6150001, ipc : 1.121103
+cycles : 8301470, commits no : 6160001, ipc : 1.054852
+cycles : 8309916, commits no : 6170000, ipc : 1.183874
+cycles : 8318127, commits no : 6180000, ipc : 1.217878
+cycles : 8326329, commits no : 6190001, ipc : 1.219337
+cycles : 8333966, commits no : 6200000, ipc : 1.309284
+cycles : 8341847, commits no : 6210001, ipc : 1.269001
+cycles : 8350373, commits no : 6220001, ipc : 1.172883
+cycles : 8357763, commits no : 6230000, ipc : 1.353045
+cycles : 8365322, commits no : 6240003, ipc : 1.323323
+cycles : 8372650, commits no : 6250000, ipc : 1.364219
+cycles : 8380607, commits no : 6260001, ipc : 1.256881
+cycles : 8389099, commits no : 6270002, ipc : 1.177697
+cycles : 8396427, commits no : 6280001, ipc : 1.364492
+cycles : 8404252, commits no : 6290000, ipc : 1.277828
+cycles : 8412777, commits no : 6300000, ipc : 1.173020
+cycles : 8420787, commits no : 6310000, ipc : 1.248439
+cycles : 8428264, commits no : 6320002, ipc : 1.337702
+cycles : 8437861, commits no : 6330003, ipc : 1.042096
+cycles : 8447033, commits no : 6340001, ipc : 1.090057
+cycles : 8456778, commits no : 6350002, ipc : 1.026270
+cycles : 8465092, commits no : 6360001, ipc : 1.202670
+cycles : 8473343, commits no : 6370000, ipc : 1.211853
+cycles : 8481360, commits no : 6380002, ipc : 1.247599
+cycles : 8489917, commits no : 6390001, ipc : 1.168517
+cycles : 8501632, commits no : 6400003, ipc : 0.853777
+cycles : 8510158, commits no : 6410001, ipc : 1.172648
+cycles : 8518159, commits no : 6420002, ipc : 1.249969
+cycles : 8525035, commits no : 6430003, ipc : 1.454479
+cycles : 8532370, commits no : 6440001, ipc : 1.363054
+cycles : 8539390, commits no : 6450003, ipc : 1.424786
+cycles : 8546518, commits no : 6460000, ipc : 1.402497
+cycles : 8555406, commits no : 6470002, ipc : 1.125337
+cycles : 8563547, commits no : 6480001, ipc : 1.228227
+cycles : 8571705, commits no : 6490002, ipc : 1.225913
+cycles : 8580623, commits no : 6500001, ipc : 1.121215
+cycles : 8588605, commits no : 6510002, ipc : 1.252944
+cycles : 8596776, commits no : 6520002, ipc : 1.223840
+cycles : 8605073, commits no : 6530000, ipc : 1.205014
+cycles : 8612454, commits no : 6540000, ipc : 1.354830
+cycles : 8620661, commits no : 6550000, ipc : 1.218472
+cycles : 8628019, commits no : 6560001, ipc : 1.359201
+cycles : 8638448, commits no : 6570002, ipc : 0.958961
+cycles : 8649816, commits no : 6580000, ipc : 0.879486
+cycles : 8658130, commits no : 6590000, ipc : 1.202790
+cycles : 8667108, commits no : 6600000, ipc : 1.113834
+cycles : 8673760, commits no : 6610003, ipc : 1.503758
+cycles : 8680407, commits no : 6620002, ipc : 1.504288
+cycles : 8687147, commits no : 6630000, ipc : 1.483383
+cycles : 8696394, commits no : 6640000, ipc : 1.081432
+cycles : 8703789, commits no : 6650002, ipc : 1.352535
+cycles : 8711419, commits no : 6660002, ipc : 1.310616
+cycles : 8720066, commits no : 6670001, ipc : 1.156355
+cycles : 8729668, commits no : 6680001, ipc : 1.041450
+cycles : 8738031, commits no : 6690000, ipc : 1.195624
+cycles : 8747938, commits no : 6700003, ipc : 1.009690
+cycles : 8755212, commits no : 6710000, ipc : 1.374347
+cycles : 8762745, commits no : 6720002, ipc : 1.327758
+cycles : 8771937, commits no : 6730000, ipc : 1.087685
+cycles : 8780676, commits no : 6740000, ipc : 1.144296
+cycles : 8789320, commits no : 6750001, ipc : 1.156988
+cycles : 8797675, commits no : 6760001, ipc : 1.196888
+cycles : 8806810, commits no : 6770001, ipc : 1.094691
+cycles : 8815513, commits no : 6780000, ipc : 1.148914
+cycles : 8823212, commits no : 6790000, ipc : 1.298870
+cycles : 8830479, commits no : 6800003, ipc : 1.376496
+cycles : 8837234, commits no : 6810002, ipc : 1.480237
+cycles : 8843820, commits no : 6820002, ipc : 1.518372
+cycles : 8851032, commits no : 6830001, ipc : 1.386439
+cycles : 8858354, commits no : 6840001, ipc : 1.365747
+cycles : 8866371, commits no : 6850001, ipc : 1.247349
+cycles : 8874331, commits no : 6860000, ipc : 1.256156
+cycles : 8881718, commits no : 6870001, ipc : 1.353865
+cycles : 8889859, commits no : 6880003, ipc : 1.228596
+cycles : 8897615, commits no : 6890000, ipc : 1.288938
+cycles : 8905855, commits no : 6900002, ipc : 1.213835
+cycles : 8914491, commits no : 6910000, ipc : 1.157712
+cycles : 8921790, commits no : 6920002, ipc : 1.370325
+cycles : 8929845, commits no : 6930003, ipc : 1.241589
+cycles : 8937150, commits no : 6940002, ipc : 1.368788
+cycles : 8945797, commits no : 6950002, ipc : 1.156470
+cycles : 8955713, commits no : 6960001, ipc : 1.008370
+cycles : 8964438, commits no : 6970000, ipc : 1.146017
+cycles : 8972434, commits no : 6980000, ipc : 1.250625
+cycles : 8981530, commits no : 6990003, ipc : 1.099714
+cycles : 8988313, commits no : 7000000, ipc : 1.473832
+cycles : 8995511, commits no : 7010000, ipc : 1.389275
+cycles : 9002809, commits no : 7020001, ipc : 1.370375
+cycles : 9010814, commits no : 7030000, ipc : 1.249094
+cycles : 9017900, commits no : 7040002, ipc : 1.411516
+cycles : 9025260, commits no : 7050002, ipc : 1.358696
+cycles : 9034388, commits no : 7060001, ipc : 1.095421
+cycles : 9043510, commits no : 7070002, ipc : 1.096360
+cycles : 9052192, commits no : 7080001, ipc : 1.151693
+cycles : 9062202, commits no : 7090000, ipc : 0.998901
+cycles : 9072288, commits no : 7100001, ipc : 0.991572
+cycles : 9079360, commits no : 7110000, ipc : 1.413886
+cycles : 9086804, commits no : 7120000, ipc : 1.343364
+cycles : 9095359, commits no : 7130000, ipc : 1.168907
+cycles : 9103415, commits no : 7140000, ipc : 1.241311
+cycles : 9111197, commits no : 7150000, ipc : 1.285017
+cycles : 9119286, commits no : 7160001, ipc : 1.236370
+cycles : 9128257, commits no : 7170000, ipc : 1.114591
+cycles : 9136686, commits no : 7180001, ipc : 1.186499
+cycles : 9143763, commits no : 7190000, ipc : 1.412887
+cycles : 9151418, commits no : 7200000, ipc : 1.306336
+cycles : 9158142, commits no : 7210003, ipc : 1.487656
+cycles : 9164799, commits no : 7220003, ipc : 1.502178
+cycles : 9172017, commits no : 7230000, ipc : 1.385010
+cycles : 9179335, commits no : 7240003, ipc : 1.366904
+cycles : 9188014, commits no : 7250000, ipc : 1.151861
+cycles : 9196262, commits no : 7260003, ipc : 1.212779
+cycles : 9204153, commits no : 7270001, ipc : 1.267013
+cycles : 9212237, commits no : 7280000, ipc : 1.236888
+cycles : 9220025, commits no : 7290001, ipc : 1.284155
+cycles : 9228206, commits no : 7300002, ipc : 1.222467
+cycles : 9235999, commits no : 7310001, ipc : 1.283074
+cycles : 9243751, commits no : 7320000, ipc : 1.289861
+cycles : 9251710, commits no : 7330001, ipc : 1.256565
+cycles : 9259691, commits no : 7340001, ipc : 1.252976
+cycles : 9266975, commits no : 7350001, ipc : 1.372872
+cycles : 9274411, commits no : 7360000, ipc : 1.344675
+cycles : 9284599, commits no : 7370002, ipc : 0.981743
+cycles : 9293482, commits no : 7380002, ipc : 1.125746
+cycles : 9302230, commits no : 7390000, ipc : 1.142890
+cycles : 9310839, commits no : 7400001, ipc : 1.161691
+cycles : 9319603, commits no : 7410001, ipc : 1.141032
+cycles : 9327925, commits no : 7420002, ipc : 1.201754
+cycles : 9335838, commits no : 7430002, ipc : 1.263743
+cycles : 9344206, commits no : 7440000, ipc : 1.194790
+cycles : 9352163, commits no : 7450001, ipc : 1.256881
+cycles : 9359450, commits no : 7460001, ipc : 1.372307
+cycles : 9366991, commits no : 7470001, ipc : 1.326084
+cycles : 9375934, commits no : 7480000, ipc : 1.118081
+cycles : 9384469, commits no : 7490002, ipc : 1.171880
+cycles : 9391969, commits no : 7500000, ipc : 1.333067
+cycles : 9399864, commits no : 7510000, ipc : 1.266624
+cycles : 9409255, commits no : 7520001, ipc : 1.064956
+cycles : 9418020, commits no : 7530001, ipc : 1.140901
+cycles : 9427160, commits no : 7540001, ipc : 1.094092
+cycles : 9435636, commits no : 7550000, ipc : 1.179684
+cycles : 9444023, commits no : 7560001, ipc : 1.192441
+cycles : 9452167, commits no : 7570001, ipc : 1.227898
+cycles : 9460306, commits no : 7580001, ipc : 1.228652
+cycles : 9470048, commits no : 7590000, ipc : 1.026381
+cycles : 9477675, commits no : 7600002, ipc : 1.311394
+cycles : 9484985, commits no : 7610000, ipc : 1.367715
+cycles : 9492553, commits no : 7620001, ipc : 1.321485
+cycles : 9501310, commits no : 7630003, ipc : 1.142172
+cycles : 9510114, commits no : 7640000, ipc : 1.135507
+cycles : 9517890, commits no : 7650003, ipc : 1.286394
+cycles : 9526075, commits no : 7660000, ipc : 1.221381
+cycles : 9534691, commits no : 7670001, ipc : 1.160747
+cycles : 9544339, commits no : 7680002, ipc : 1.036588
+cycles : 9554161, commits no : 7690000, ipc : 1.017919
+cycles : 9567521, commits no : 7700000, ipc : 0.748503
+cycles : 9576586, commits no : 7710002, ipc : 1.103365
+cycles : 9586647, commits no : 7720002, ipc : 0.993937
+cycles : 9596129, commits no : 7730001, ipc : 1.054524
+cycles : 9606112, commits no : 7740000, ipc : 1.001603
+cycles : 9615972, commits no : 7750001, ipc : 1.014300
+cycles : 9624423, commits no : 7760000, ipc : 1.183174
+cycles : 9632376, commits no : 7770000, ipc : 1.257387
+cycles : 9640649, commits no : 7780000, ipc : 1.208751
+cycles : 9649507, commits no : 7790000, ipc : 1.128923
+cycles : 9657988, commits no : 7800000, ipc : 1.179106
+cycles : 9666203, commits no : 7810002, ipc : 1.217529
+cycles : 9676611, commits no : 7820000, ipc : 0.960607
+cycles : 9685573, commits no : 7830000, ipc : 1.115822
+cycles : 9696062, commits no : 7840001, ipc : 0.953475
+cycles : 9704959, commits no : 7850003, ipc : 1.124199
+cycles : 9713999, commits no : 7860003, ipc : 1.106195
+cycles : 9722131, commits no : 7870001, ipc : 1.229464
+cycles : 9731684, commits no : 7880000, ipc : 1.046687
+cycles : 9739621, commits no : 7890002, ipc : 1.260174
+cycles : 9747270, commits no : 7900001, ipc : 1.307230
+cycles : 9755977, commits no : 7910003, ipc : 1.148731
+cycles : 9763851, commits no : 7920000, ipc : 1.269621
+cycles : 9771986, commits no : 7930000, ipc : 1.229256
+cycles : 9780751, commits no : 7940001, ipc : 1.141015
+cycles : 9789764, commits no : 7950000, ipc : 1.109398
+cycles : 9799114, commits no : 7960000, ipc : 1.069519
+cycles : 9807050, commits no : 7970000, ipc : 1.260081
+cycles : 9814171, commits no : 7980003, ipc : 1.404718
+cycles : 9820796, commits no : 7990000, ipc : 1.508981
+cycles : 9829982, commits no : 8000002, ipc : 1.088831
+cycles : 9837756, commits no : 8010002, ipc : 1.286339
+cycles : 9846701, commits no : 8020000, ipc : 1.117719
+cycles : 9857385, commits no : 8030000, ipc : 0.935979
+cycles : 9868213, commits no : 8040002, ipc : 0.923716
+cycles : 9877436, commits no : 8050000, ipc : 1.084029
+cycles : 9886860, commits no : 8060003, ipc : 1.061439
+cycles : 9895304, commits no : 8070000, ipc : 1.183918
+cycles : 9904072, commits no : 8080000, ipc : 1.140511
+cycles : 9913675, commits no : 8090001, ipc : 1.041445
+cycles : 9921916, commits no : 8100001, ipc : 1.213445
+cycles : 9928660, commits no : 8110000, ipc : 1.482651
+cycles : 9935674, commits no : 8120002, ipc : 1.426005
+cycles : 9944693, commits no : 8130003, ipc : 1.108881
+cycles : 9952336, commits no : 8140000, ipc : 1.307994
+cycles : 9960210, commits no : 8150000, ipc : 1.270002
+cycles : 9970881, commits no : 8160000, ipc : 0.937119
+cycles : 9980936, commits no : 8170002, ipc : 0.994729
+cycles : 9989396, commits no : 8180000, ipc : 1.181797
+cycles : 9997701, commits no : 8190000, ipc : 1.204094
+cycles : 10006067, commits no : 8200001, ipc : 1.195434
+cycles : 10013801, commits no : 8210001, ipc : 1.292992
+cycles : 10020596, commits no : 8220002, ipc : 1.471817
+cycles : 10027360, commits no : 8230002, ipc : 1.478415
+cycles : 10035571, commits no : 8240001, ipc : 1.217757
+cycles : 10043054, commits no : 8250001, ipc : 1.336362
+cycles : 10050513, commits no : 8260000, ipc : 1.340528
+cycles : 10058625, commits no : 8270000, ipc : 1.232742
+cycles : 10069295, commits no : 8280002, ipc : 0.937395
+cycles : 10076616, commits no : 8290001, ipc : 1.365797
+cycles : 10084029, commits no : 8300000, ipc : 1.348847
+cycles : 10093006, commits no : 8310000, ipc : 1.113958
+cycles : 10101219, commits no : 8320000, ipc : 1.217582
+cycles : 10109138, commits no : 8330001, ipc : 1.262912
+cycles : 10117023, commits no : 8340001, ipc : 1.268231
+cycles : 10125437, commits no : 8350003, ipc : 1.188733
+cycles : 10133539, commits no : 8360000, ipc : 1.233893
+cycles : 10141237, commits no : 8370000, ipc : 1.299039
+cycles : 10149467, commits no : 8380000, ipc : 1.215067
+cycles : 10157251, commits no : 8390000, ipc : 1.284687
+cycles : 10165455, commits no : 8400002, ipc : 1.219161
+cycles : 10174187, commits no : 8410003, ipc : 1.145328
+cycles : 10182277, commits no : 8420000, ipc : 1.235723
+cycles : 10190104, commits no : 8430001, ipc : 1.277756
+cycles : 10197817, commits no : 8440000, ipc : 1.296383
+cycles : 10208749, commits no : 8450001, ipc : 0.914837
+cycles : 10218139, commits no : 8460000, ipc : 1.064856
+cycles : 10224919, commits no : 8470003, ipc : 1.475369
+cycles : 10232263, commits no : 8480002, ipc : 1.361520
+cycles : 10240663, commits no : 8490000, ipc : 1.190238
+cycles : 10249829, commits no : 8500002, ipc : 1.091207
+cycles : 10258153, commits no : 8510000, ipc : 1.201105
+cycles : 10266421, commits no : 8520002, ipc : 1.209724
+cycles : 10274521, commits no : 8530001, ipc : 1.234444
+cycles : 10281965, commits no : 8540001, ipc : 1.343364
+cycles : 10291852, commits no : 8550000, ipc : 1.011328
+cycles : 10303424, commits no : 8560000, ipc : 0.864155
+cycles : 10315432, commits no : 8570000, ipc : 0.832778
+cycles : 10325124, commits no : 8580002, ipc : 1.031985
+cycles : 10331723, commits no : 8590000, ipc : 1.515078
+cycles : 10338398, commits no : 8600000, ipc : 1.498127
+cycles : 10347891, commits no : 8610000, ipc : 1.053408
+cycles : 10356877, commits no : 8620002, ipc : 1.113065
+cycles : 10365869, commits no : 8630002, ipc : 1.112100
+cycles : 10374623, commits no : 8640001, ipc : 1.142221
+cycles : 10386400, commits no : 8650002, ipc : 0.849198
+cycles : 10395696, commits no : 8660000, ipc : 1.075516
+cycles : 10404664, commits no : 8670000, ipc : 1.115076
+cycles : 10412706, commits no : 8680000, ipc : 1.243472
+cycles : 10423798, commits no : 8690002, ipc : 0.901731
+cycles : 10432328, commits no : 8700000, ipc : 1.172099
+cycles : 10441692, commits no : 8710000, ipc : 1.067920
+cycles : 10450554, commits no : 8720001, ipc : 1.128526
+cycles : 10458300, commits no : 8730003, ipc : 1.291247
+cycles : 10465088, commits no : 8740000, ipc : 1.472746
+cycles : 10472623, commits no : 8750000, ipc : 1.327140
+cycles : 10479765, commits no : 8760001, ipc : 1.400308
+cycles : 10487501, commits no : 8770001, ipc : 1.292658
+cycles : 10499386, commits no : 8780000, ipc : 0.841313
+cycles : 10506794, commits no : 8790002, ipc : 1.350162
+cycles : 10515839, commits no : 8800002, ipc : 1.105583
+cycles : 10524398, commits no : 8810000, ipc : 1.168127
+cycles : 10530858, commits no : 8820000, ipc : 1.547988
+cycles : 10538381, commits no : 8830000, ipc : 1.329257
+cycles : 10550607, commits no : 8840001, ipc : 0.818011
+cycles : 10561003, commits no : 8850001, ipc : 0.961908
+cycles : 10570597, commits no : 8860003, ipc : 1.042527
+cycles : 10579849, commits no : 8870001, ipc : 1.080631
+cycles : 10587208, commits no : 8880002, ipc : 1.359016
+cycles : 10599490, commits no : 8890000, ipc : 0.814037
+cycles : 10609897, commits no : 8900001, ipc : 0.960988
+cycles : 10620398, commits no : 8910000, ipc : 0.952195
+cycles : 10627876, commits no : 8920000, ipc : 1.337256
+cycles : 10637265, commits no : 8930001, ipc : 1.065183
+cycles : 10645677, commits no : 8940001, ipc : 1.188778
+cycles : 10653813, commits no : 8950002, ipc : 1.229228
+cycles : 10663775, commits no : 8960003, ipc : 1.003915
+cycles : 10672877, commits no : 8970000, ipc : 1.098330
+cycles : 10683045, commits no : 8980000, ipc : 0.983478
+cycles : 10692608, commits no : 8990001, ipc : 1.045802
+cycles : 10702908, commits no : 9000003, ipc : 0.971068
+cycles : 10711343, commits no : 9010001, ipc : 1.185299
+cycles : 10721262, commits no : 9020000, ipc : 1.008065
+cycles : 10728777, commits no : 9030001, ipc : 1.330805
+cycles : 10735397, commits no : 9040000, ipc : 1.510423
+cycles : 10742109, commits no : 9050000, ipc : 1.489869
+cycles : 10751473, commits no : 9060002, ipc : 1.068133
+cycles : 10759198, commits no : 9070003, ipc : 1.294628
+cycles : 10766272, commits no : 9080001, ipc : 1.413345
+cycles : 10774518, commits no : 9090001, ipc : 1.212709
+cycles : 10783160, commits no : 9100000, ipc : 1.157024
+cycles : 10794289, commits no : 9110000, ipc : 0.898553
+cycles : 10803998, commits no : 9120000, ipc : 1.029972
+cycles : 10811354, commits no : 9130001, ipc : 1.359570
+cycles : 10818114, commits no : 9140002, ipc : 1.479438
+cycles : 10826199, commits no : 9150002, ipc : 1.236858
+cycles : 10833091, commits no : 9160000, ipc : 1.450667
+cycles : 10841691, commits no : 9170001, ipc : 1.162907
+cycles : 10849201, commits no : 9180000, ipc : 1.331425
+cycles : 10858371, commits no : 9190000, ipc : 1.090513
+cycles : 10868439, commits no : 9200001, ipc : 0.993345
+cycles : 10875857, commits no : 9210002, ipc : 1.348207
+cycles : 10882373, commits no : 9220003, ipc : 1.534837
+cycles : 10889035, commits no : 9230003, ipc : 1.501051
+cycles : 10897034, commits no : 9240001, ipc : 1.249906
+cycles : 10906747, commits no : 9250000, ipc : 1.029445
+cycles : 10914688, commits no : 9260000, ipc : 1.259287
+cycles : 10921859, commits no : 9270003, ipc : 1.394924
+cycles : 10929048, commits no : 9280000, ipc : 1.390597
+cycles : 10935634, commits no : 9290000, ipc : 1.518372
+cycles : 10942178, commits no : 9300000, ipc : 1.528117
+cycles : 10950352, commits no : 9310000, ipc : 1.223391
+cycles : 10958118, commits no : 9320002, ipc : 1.287922
+cycles : 10964554, commits no : 9330000, ipc : 1.553449
+cycles : 10971849, commits no : 9340001, ipc : 1.370939
+cycles : 10981172, commits no : 9350001, ipc : 1.072616
+cycles : 10987922, commits no : 9360002, ipc : 1.481630
+cycles : 10994527, commits no : 9370002, ipc : 1.514005
+cycles : 11005263, commits no : 9380000, ipc : 0.931259
+cycles : 11012814, commits no : 9390000, ipc : 1.324328
+cycles : 11019230, commits no : 9400002, ipc : 1.558915
+cycles : 11026893, commits no : 9410002, ipc : 1.304972
+cycles : 11034573, commits no : 9420000, ipc : 1.301823
+cycles : 11046349, commits no : 9430000, ipc : 0.849185
+cycles : 11054117, commits no : 9440000, ipc : 1.287333
+cycles : 11060653, commits no : 9450001, ipc : 1.530141
+cycles : 11067349, commits no : 9460002, ipc : 1.493578
+cycles : 11076508, commits no : 9470000, ipc : 1.091604
+cycles : 11084296, commits no : 9480001, ipc : 1.284155
+cycles : 11090721, commits no : 9490003, ipc : 1.556731
+cycles : 11097901, commits no : 9500001, ipc : 1.392479
+cycles : 11111700, commits no : 9510001, ipc : 0.724690
+cycles : 11120231, commits no : 9520000, ipc : 1.172078
+cycles : 11128399, commits no : 9530003, ipc : 1.224657
+cycles : 11135385, commits no : 9540001, ipc : 1.431148
+cycles : 11142423, commits no : 9550000, ipc : 1.420716
+cycles : 11148944, commits no : 9560000, ipc : 1.533507
+cycles : 11157157, commits no : 9570000, ipc : 1.217582
+cycles : 11163864, commits no : 9580000, ipc : 1.490980
+cycles : 11170860, commits no : 9590001, ipc : 1.429531
+cycles : 11178920, commits no : 9600000, ipc : 1.240571
+cycles : 11189001, commits no : 9610000, ipc : 0.991965
+cycles : 11198473, commits no : 9620001, ipc : 1.055849
+cycles : 11205324, commits no : 9630002, ipc : 1.459787
+cycles : 11212019, commits no : 9640000, ipc : 1.493353
+cycles : 11219683, commits no : 9650000, ipc : 1.304802
+cycles : 11226245, commits no : 9660000, ipc : 1.523926
+cycles : 11232911, commits no : 9670002, ipc : 1.500450
+cycles : 11240731, commits no : 9680002, ipc : 1.278772
+cycles : 11249799, commits no : 9690000, ipc : 1.102558
+cycles : 11256959, commits no : 9700002, ipc : 1.396927
+cycles : 11263539, commits no : 9710001, ipc : 1.519605
+cycles : 11272795, commits no : 9720000, ipc : 1.080272
+cycles : 11281885, commits no : 9730001, ipc : 1.100220
+cycles : 11291579, commits no : 9740002, ipc : 1.031669
+cycles : 11299869, commits no : 9750001, ipc : 1.206152
+cycles : 11308455, commits no : 9760002, ipc : 1.164803
+cycles : 11315472, commits no : 9770000, ipc : 1.424825
+cycles : 11322195, commits no : 9780000, ipc : 1.487431
+cycles : 11330517, commits no : 9790002, ipc : 1.201874
+cycles : 11337663, commits no : 9800000, ipc : 1.399104
+cycles : 11345027, commits no : 9810001, ipc : 1.358093
+cycles : 11356026, commits no : 9820001, ipc : 0.909174
+cycles : 11368276, commits no : 9830000, ipc : 0.816245
+cycles : 11378563, commits no : 9840000, ipc : 0.972101
+cycles : 11389546, commits no : 9850001, ipc : 0.910589
+cycles : 11399887, commits no : 9860003, ipc : 0.967218
+cycles : 11406367, commits no : 9870002, ipc : 1.543056
+cycles : 11414427, commits no : 9880001, ipc : 1.240571
+cycles : 11422553, commits no : 9890001, ipc : 1.230618
+cycles : 11429912, commits no : 9900001, ipc : 1.358880
+cycles : 11447402, commits no : 9910003, ipc : 0.571870
+cycles : 11460572, commits no : 9920000, ipc : 0.759074
+cycles : 11479641, commits no : 9930002, ipc : 0.524516
+cycles : 11503047, commits no : 9940000, ipc : 0.427155
+cycles : 11515818, commits no : 9950000, ipc : 0.783024
+cycles : 11528278, commits no : 9960000, ipc : 0.802568
+cycles : 11538909, commits no : 9970000, ipc : 0.940645
+cycles : 11546941, commits no : 9980000, ipc : 1.245020
+cycles : 11554148, commits no : 9990002, ipc : 1.387817
+cycles : 11560812, commits no : 10000000, ipc : 1.500300
+cycles : 11569977, commits no : 10010000, ipc : 1.091107
+cycles : 11577242, commits no : 10020000, ipc : 1.376462
+cycles : 11584419, commits no : 10030002, ipc : 1.393618
+cycles : 11591149, commits no : 10040002, ipc : 1.485884
+cycles : 11597845, commits no : 10050000, ipc : 1.493130
+cycles : 11604615, commits no : 10060000, ipc : 1.477105
+cycles : 11612256, commits no : 10070003, ipc : 1.309122
+cycles : 11622448, commits no : 10080000, ipc : 0.980867
+cycles : 11630604, commits no : 10090000, ipc : 1.226091
+cycles : 11639382, commits no : 10100001, ipc : 1.139326
+cycles : 11646341, commits no : 10110003, ipc : 1.437276
+cycles : 11652985, commits no : 10120000, ipc : 1.504666
+cycles : 11659849, commits no : 10130002, ipc : 1.457168
+cycles : 11667707, commits no : 10140002, ipc : 1.272588
+cycles : 11675209, commits no : 10150000, ipc : 1.332711
+cycles : 11681800, commits no : 10160001, ipc : 1.517372
+cycles : 11688561, commits no : 10170003, ipc : 1.479367
+cycles : 11695241, commits no : 10180003, ipc : 1.497006
+cycles : 11701827, commits no : 10190000, ipc : 1.517917
+cycles : 11708654, commits no : 10200000, ipc : 1.464772
+cycles : 11716294, commits no : 10210000, ipc : 1.308900
+cycles : 11725411, commits no : 10220000, ipc : 1.096852
+cycles : 11733406, commits no : 10230003, ipc : 1.251157
+cycles : 11742613, commits no : 10240000, ipc : 1.085804
+cycles : 11751024, commits no : 10250001, ipc : 1.189038
+cycles : 11757724, commits no : 10260002, ipc : 1.492687
+cycles : 11764616, commits no : 10270001, ipc : 1.450813
+cycles : 11773082, commits no : 10280003, ipc : 1.181432
+cycles : 11779714, commits no : 10290003, ipc : 1.507841
+cycles : 11786487, commits no : 10300002, ipc : 1.476303
+cycles : 11793115, commits no : 10310001, ipc : 1.508600
+cycles : 11799731, commits no : 10320000, ipc : 1.511336
+cycles : 11806543, commits no : 10330001, ipc : 1.468144
+cycles : 11813812, commits no : 10340001, ipc : 1.375705
+cycles : 11822879, commits no : 10350002, ipc : 1.103011
+cycles : 11831057, commits no : 10360000, ipc : 1.222548
+cycles : 11839175, commits no : 10370000, ipc : 1.231830
+cycles : 11845838, commits no : 10380000, ipc : 1.500825
+cycles : 11852623, commits no : 10390000, ipc : 1.473839
+cycles : 11859284, commits no : 10400003, ipc : 1.501727
+cycles : 11867459, commits no : 10410000, ipc : 1.222875
+cycles : 11873997, commits no : 10420002, ipc : 1.529826
+cycles : 11880532, commits no : 10430000, ipc : 1.529916
+cycles : 11887418, commits no : 10440001, ipc : 1.452367
+cycles : 11894024, commits no : 10450001, ipc : 1.513775
+cycles : 11900716, commits no : 10460001, ipc : 1.494322
+cycles : 11907608, commits no : 10470003, ipc : 1.451248
+cycles : 11917581, commits no : 10480003, ipc : 1.002707
+cycles : 11929924, commits no : 10490001, ipc : 0.810014
+cycles : 11938607, commits no : 10500000, ipc : 1.151561
+cycles : 11946247, commits no : 10510000, ipc : 1.308900
+cycles : 11955900, commits no : 10520002, ipc : 1.036155
+cycles : 11963253, commits no : 10530001, ipc : 1.359853
+cycles : 11971307, commits no : 10540003, ipc : 1.241867
+cycles : 11980191, commits no : 10550000, ipc : 1.125281
+cycles : 11987356, commits no : 10560000, ipc : 1.395673
+cycles : 11997710, commits no : 10570003, ipc : 0.966100
+cycles : 12004096, commits no : 10580000, ipc : 1.565456
+cycles : 12014057, commits no : 10590003, ipc : 1.004216
+cycles : 12020821, commits no : 10600000, ipc : 1.477972
+cycles : 12030617, commits no : 10610000, ipc : 1.020825
+cycles : 12037605, commits no : 10620001, ipc : 1.431168
+cycles : 12044099, commits no : 10630002, ipc : 1.540037
+cycles : 12050585, commits no : 10640002, ipc : 1.541782
+cycles : 12058110, commits no : 10650000, ipc : 1.328638
+cycles : 12064796, commits no : 10660001, ipc : 1.495812
+cycles : 12071637, commits no : 10670002, ipc : 1.461921
+cycles : 12078383, commits no : 10680000, ipc : 1.482063
+cycles : 12085508, commits no : 10690000, ipc : 1.403509
+cycles : 12093662, commits no : 10700003, ipc : 1.226760
+cycles : 12104105, commits no : 10710000, ipc : 0.957292
+cycles : 12113115, commits no : 10720000, ipc : 1.109878
+cycles : 12123019, commits no : 10730002, ipc : 1.009895
+cycles : 12130517, commits no : 10740002, ipc : 1.333689
+cycles : 12137958, commits no : 10750001, ipc : 1.343771
+cycles : 12145458, commits no : 10760001, ipc : 1.333333
+cycles : 12158036, commits no : 10770000, ipc : 0.794959
+cycles : 12164957, commits no : 10780000, ipc : 1.444878
+cycles : 12173758, commits no : 10790000, ipc : 1.136235
+cycles : 12181087, commits no : 10800000, ipc : 1.364443
+cycles : 12188558, commits no : 10810001, ipc : 1.338643
+cycles : 12195444, commits no : 10820001, ipc : 1.452222
+cycles : 12205532, commits no : 10830000, ipc : 0.991178
+cycles : 12212545, commits no : 10840002, ipc : 1.426208
+cycles : 12218973, commits no : 10850000, ipc : 1.555383
+cycles : 12227372, commits no : 10860001, ipc : 1.190737
+cycles : 12235296, commits no : 10870001, ipc : 1.261989
+cycles : 12242655, commits no : 10880000, ipc : 1.358744
+cycles : 12249484, commits no : 10890000, ipc : 1.464343
+cycles : 12256256, commits no : 10900002, ipc : 1.476964
+cycles : 12262985, commits no : 10910001, ipc : 1.485956
+cycles : 12269970, commits no : 10920000, ipc : 1.431496
+cycles : 12276819, commits no : 10930003, ipc : 1.460505
+cycles : 12286473, commits no : 10940003, ipc : 1.035840
+cycles : 12295076, commits no : 10950000, ipc : 1.162037
+cycles : 12307307, commits no : 10960000, ipc : 0.817595
+cycles : 12322591, commits no : 10970001, ipc : 0.654344
+cycles : 12333031, commits no : 10980001, ipc : 0.957854
+cycles : 12343482, commits no : 10990001, ipc : 0.956846
+cycles : 12354326, commits no : 11000003, ipc : 0.922353
+cycles : 12363941, commits no : 11010000, ipc : 1.039730
+cycles : 12372988, commits no : 11020001, ipc : 1.105449
+cycles : 12382652, commits no : 11030000, ipc : 1.034665
+cycles : 12394198, commits no : 11040000, ipc : 0.866101
+cycles : 12403975, commits no : 11050000, ipc : 1.022809
+cycles : 12413370, commits no : 11060000, ipc : 1.064396
+cycles : 12421816, commits no : 11070001, ipc : 1.184111
+cycles : 12431727, commits no : 11080000, ipc : 1.008879
+cycles : 12438578, commits no : 11090000, ipc : 1.459641
+cycles : 12445615, commits no : 11100003, ipc : 1.421486
+cycles : 12452235, commits no : 11110000, ipc : 1.510121
+cycles : 12458821, commits no : 11120003, ipc : 1.518828
+cycles : 12465697, commits no : 11130001, ipc : 1.454043
+cycles : 12474198, commits no : 11140000, ipc : 1.176215
+cycles : 12483004, commits no : 11150000, ipc : 1.135589
+cycles : 12489795, commits no : 11160000, ipc : 1.472537
+cycles : 12496626, commits no : 11170000, ipc : 1.463915
+cycles : 12506324, commits no : 11180001, ipc : 1.031244
+cycles : 12513864, commits no : 11190000, ipc : 1.326127
+cycles : 12520964, commits no : 11200003, ipc : 1.408873
+cycles : 12528742, commits no : 11210003, ipc : 1.285678
+cycles : 12536816, commits no : 11220001, ipc : 1.238296
+cycles : 12543552, commits no : 11230000, ipc : 1.484412
+cycles : 12550371, commits no : 11240000, ipc : 1.466491
+cycles : 12559600, commits no : 11250000, ipc : 1.083541
+cycles : 12566583, commits no : 11260000, ipc : 1.432049
+cycles : 12573393, commits no : 11270002, ipc : 1.468722
+cycles : 12580856, commits no : 11280002, ipc : 1.339944
+cycles : 12588954, commits no : 11290002, ipc : 1.234873
+cycles : 12595704, commits no : 11300000, ipc : 1.481185
+cycles : 12602432, commits no : 11310002, ipc : 1.486623
+cycles : 12613084, commits no : 11320003, ipc : 0.938885
+cycles : 12623175, commits no : 11330000, ipc : 0.990685
+cycles : 12631874, commits no : 11340000, ipc : 1.149557
+cycles : 12641101, commits no : 11350000, ipc : 1.083776
+cycles : 12651193, commits no : 11360000, ipc : 0.990884
+cycles : 12659847, commits no : 11370000, ipc : 1.155535
+cycles : 12668222, commits no : 11380000, ipc : 1.194030
+cycles : 12677479, commits no : 11390001, ipc : 1.080372
+cycles : 12691061, commits no : 11400003, ipc : 0.736416
+cycles : 12702762, commits no : 11410001, ipc : 0.854457
+cycles : 12713848, commits no : 11420003, ipc : 0.902219
+cycles : 12725437, commits no : 11430000, ipc : 0.862628
+cycles : 12738586, commits no : 11440000, ipc : 0.760514
+cycles : 12751449, commits no : 11450002, ipc : 0.777579
+cycles : 12759551, commits no : 11460001, ipc : 1.234140
+cycles : 12768995, commits no : 11470002, ipc : 1.058979
+cycles : 12779190, commits no : 11480001, ipc : 0.980775
+cycles : 12789873, commits no : 11490000, ipc : 0.935973
+cycles : 12797956, commits no : 11500001, ipc : 1.237288
+cycles : 12807884, commits no : 11510000, ipc : 1.007151
+cycles : 12815354, commits no : 11520000, ipc : 1.338688
+cycles : 12824990, commits no : 11530003, ipc : 1.038086
+cycles : 12834934, commits no : 11540001, ipc : 1.005430
+cycles : 12844401, commits no : 11550003, ipc : 1.056512
+cycles : 12851600, commits no : 11560000, ipc : 1.388665
+cycles : 12858401, commits no : 11570000, ipc : 1.470372
+cycles : 12865498, commits no : 11580000, ipc : 1.409046
+cycles : 12872813, commits no : 11590001, ipc : 1.367191
+cycles : 12879827, commits no : 11600001, ipc : 1.425720
+cycles : 12891131, commits no : 11610000, ipc : 0.884554
+cycles : 12901554, commits no : 11620002, ipc : 0.959609
+cycles : 12912124, commits no : 11630000, ipc : 0.945885
+cycles : 12922458, commits no : 11640001, ipc : 0.967776
+cycles : 12929817, commits no : 11650001, ipc : 1.358880
+cycles : 12939443, commits no : 11660001, ipc : 1.038853
+cycles : 12949261, commits no : 11670001, ipc : 1.018537
+cycles : 12957390, commits no : 11680000, ipc : 1.230041
+cycles : 12966496, commits no : 11690000, ipc : 1.098177
+cycles : 12975526, commits no : 11700002, ipc : 1.107641
+cycles : 12983667, commits no : 11710000, ipc : 1.228105
+cycles : 12993892, commits no : 11720001, ipc : 0.978093
+cycles : 13003709, commits no : 11730001, ipc : 1.018641
+cycles : 13011777, commits no : 11740003, ipc : 1.239712
+cycles : 13018692, commits no : 11750002, ipc : 1.445987
+cycles : 13025623, commits no : 11760000, ipc : 1.442505
+cycles : 13033017, commits no : 11770001, ipc : 1.352583
+cycles : 13040113, commits no : 11780003, ipc : 1.409526
+cycles : 13049530, commits no : 11790002, ipc : 1.061803
+cycles : 13057623, commits no : 11800002, ipc : 1.235636
+cycles : 13065691, commits no : 11810003, ipc : 1.239588
+cycles : 13073233, commits no : 11820001, ipc : 1.325643
+cycles : 13080789, commits no : 11830000, ipc : 1.323319
+cycles : 13089296, commits no : 11840001, ipc : 1.175620
+cycles : 13105047, commits no : 11850000, ipc : 0.634817
+cycles : 13120409, commits no : 11860002, ipc : 0.651087
+cycles : 13131798, commits no : 11870003, ipc : 0.878128
+cycles : 13149025, commits no : 11880000, ipc : 0.580310
+cycles : 13164671, commits no : 11890000, ipc : 0.639141
+cycles : 13176087, commits no : 11900003, ipc : 0.876226
+cycles : 13187361, commits no : 11910001, ipc : 0.886819
+cycles : 13196373, commits no : 11920000, ipc : 1.109521
+cycles : 13205386, commits no : 11930000, ipc : 1.109509
+cycles : 13219206, commits no : 11940002, ipc : 0.723734
+cycles : 13228098, commits no : 11950000, ipc : 1.124381
+cycles : 13238805, commits no : 11960000, ipc : 0.933968
+cycles : 13249786, commits no : 11970002, ipc : 0.910846
+cycles : 13257626, commits no : 11980002, ipc : 1.275510
+cycles : 13265787, commits no : 11990000, ipc : 1.225095
+cycles : 13272717, commits no : 12000001, ipc : 1.443146
+cycles : 13279355, commits no : 12010001, ipc : 1.506478
+cycles : 13289371, commits no : 12020003, ipc : 0.998602
+cycles : 13298027, commits no : 12030000, ipc : 1.154921
+cycles : 13310288, commits no : 12040000, ipc : 0.815594
+cycles : 13320379, commits no : 12050003, ipc : 0.991279
+cycles : 13330004, commits no : 12060000, ipc : 1.038649
+cycles : 13341077, commits no : 12070002, ipc : 0.903278
+cycles : 13350705, commits no : 12080003, ipc : 1.038741
+cycles : 13360272, commits no : 12090000, ipc : 1.044946
+cycles : 13368313, commits no : 12100000, ipc : 1.243626
+cycles : 13376509, commits no : 12110000, ipc : 1.220107
+cycles : 13386842, commits no : 12120000, ipc : 0.967773
+cycles : 13396181, commits no : 12130000, ipc : 1.070778
+cycles : 13403836, commits no : 12140003, ipc : 1.306728
+cycles : 13410748, commits no : 12150001, ipc : 1.446470
+cycles : 13417604, commits no : 12160003, ipc : 1.458868
+cycles : 13425364, commits no : 12170000, ipc : 1.288273
+cycles : 13433724, commits no : 12180003, ipc : 1.196531
+cycles : 13442476, commits no : 12190000, ipc : 1.142253
+cycles : 13451242, commits no : 12200003, ipc : 1.141113
+cycles : 13459344, commits no : 12210000, ipc : 1.233893
+cycles : 13467302, commits no : 12220003, ipc : 1.256974
+cycles : 13475107, commits no : 12230000, ipc : 1.280846
+cycles : 13483057, commits no : 12240001, ipc : 1.257987
+cycles : 13491463, commits no : 12250000, ipc : 1.189507
+cycles : 13500164, commits no : 12260000, ipc : 1.149293
+cycles : 13509133, commits no : 12270000, ipc : 1.114951
+cycles : 13517618, commits no : 12280000, ipc : 1.178550
+cycles : 13524331, commits no : 12290000, ipc : 1.489647
+cycles : 13531518, commits no : 12300003, ipc : 1.391819
+cycles : 13538545, commits no : 12310001, ipc : 1.422798
+cycles : 13546154, commits no : 12320002, ipc : 1.314365
+cycles : 13555297, commits no : 12330003, ipc : 1.093842
+cycles : 13565155, commits no : 12340001, ipc : 1.014202
+cycles : 13575054, commits no : 12350000, ipc : 1.010102
+cycles : 13585743, commits no : 12360000, ipc : 0.935541
+cycles : 13595131, commits no : 12370000, ipc : 1.065190
+cycles : 13604073, commits no : 12380000, ipc : 1.118318
+cycles : 13613494, commits no : 12390002, ipc : 1.061671
+cycles : 13622639, commits no : 12400003, ipc : 1.093603
+cycles : 13632468, commits no : 12410000, ipc : 1.017092
+cycles : 13642389, commits no : 12420000, ipc : 1.007963
+cycles : 13650905, commits no : 12430000, ipc : 1.174260
+cycles : 13660491, commits no : 12440001, ipc : 1.043292
+cycles : 13673495, commits no : 12450001, ipc : 0.768994
+cycles : 13682858, commits no : 12460002, ipc : 1.068141
+cycles : 13689760, commits no : 12470001, ipc : 1.448711
+cycles : 13698755, commits no : 12480000, ipc : 1.111618
+cycles : 13707461, commits no : 12490000, ipc : 1.148633
+cycles : 13714238, commits no : 12500000, ipc : 1.475579
+cycles : 13723013, commits no : 12510003, ipc : 1.139943
+cycles : 13731570, commits no : 12520001, ipc : 1.168400
+cycles : 13741429, commits no : 12530002, ipc : 1.014403
+cycles : 13750487, commits no : 12540000, ipc : 1.103776
+cycles : 13761317, commits no : 12550002, ipc : 0.923546
+cycles : 13768174, commits no : 12560000, ipc : 1.458072
+cycles : 13776418, commits no : 12570001, ipc : 1.213125
+cycles : 13786297, commits no : 12580000, ipc : 1.012147
+cycles : 13795668, commits no : 12590002, ipc : 1.067335
+cycles : 13804842, commits no : 12600003, ipc : 1.090146
+cycles : 13815028, commits no : 12610000, ipc : 0.981445
+cycles : 13828766, commits no : 12620000, ipc : 0.727908
+cycles : 13837979, commits no : 12630002, ipc : 1.085640
+cycles : 13844844, commits no : 12640000, ipc : 1.456373
+cycles : 13851354, commits no : 12650001, ipc : 1.536252
+cycles : 13858013, commits no : 12660003, ipc : 1.502027
+cycles : 13865292, commits no : 12670001, ipc : 1.373540
+cycles : 13872787, commits no : 12680000, ipc : 1.334089
+cycles : 13883302, commits no : 12690000, ipc : 0.951022
+cycles : 13890694, commits no : 12700000, ipc : 1.352814
+cycles : 13897873, commits no : 12710000, ipc : 1.392952
+cycles : 13908131, commits no : 12720000, ipc : 0.974849
+cycles : 13921984, commits no : 12730001, ipc : 0.721937
+cycles : 13934540, commits no : 12740002, ipc : 0.796512
+cycles : 13943145, commits no : 12750000, ipc : 1.161883
+cycles : 13951543, commits no : 12760001, ipc : 1.190879
+cycles : 13958385, commits no : 12770000, ipc : 1.461415
+cycles : 13964952, commits no : 12780000, ipc : 1.522765
+cycles : 13973117, commits no : 12790000, ipc : 1.224740
+cycles : 13983844, commits no : 12800000, ipc : 0.932227
+cycles : 13994027, commits no : 12810002, ipc : 0.982225
+cycles : 14004008, commits no : 12820002, ipc : 1.001904
+cycles : 14014204, commits no : 12830000, ipc : 0.980581
+cycles : 14025907, commits no : 12840000, ipc : 0.854482
+cycles : 14034594, commits no : 12850000, ipc : 1.151145
+cycles : 14042894, commits no : 12860003, ipc : 1.205181
+cycles : 14049278, commits no : 12870000, ipc : 1.565946
+cycles : 14055809, commits no : 12880000, ipc : 1.531159
+cycles : 14066019, commits no : 12890002, ipc : 0.979628
+cycles : 14076097, commits no : 12900000, ipc : 0.992062
+cycles : 14085771, commits no : 12910000, ipc : 1.033699
+cycles : 14096347, commits no : 12920003, ipc : 0.945821
+cycles : 14103538, commits no : 12930000, ipc : 1.390210
+cycles : 14110550, commits no : 12940000, ipc : 1.426127
+cycles : 14120372, commits no : 12950003, ipc : 1.018428
+cycles : 14128495, commits no : 12960000, ipc : 1.230703
+cycles : 14137033, commits no : 12970002, ipc : 1.171469
+cycles : 14143444, commits no : 12980001, ipc : 1.559663
+cycles : 14149811, commits no : 12990003, ipc : 1.570912
+cycles : 14156365, commits no : 13000000, ipc : 1.525328
+cycles : 14164104, commits no : 13010003, ipc : 1.292544
+cycles : 14174007, commits no : 13020000, ipc : 1.009492
+cycles : 14181654, commits no : 13030003, ipc : 1.308095
+cycles : 14188919, commits no : 13040003, ipc : 1.376462
+cycles : 14195334, commits no : 13050000, ipc : 1.558379
+cycles : 14201688, commits no : 13060003, ipc : 1.574284
+cycles : 14208259, commits no : 13070002, ipc : 1.521686
+cycles : 14216411, commits no : 13080000, ipc : 1.226447
+cycles : 14224535, commits no : 13090001, ipc : 1.231044
+cycles : 14232735, commits no : 13100000, ipc : 1.219390
+cycles : 14239208, commits no : 13110000, ipc : 1.544879
+cycles : 14245549, commits no : 13120002, ipc : 1.577354
+cycles : 14252009, commits no : 13130000, ipc : 1.547678
+cycles : 14259895, commits no : 13140001, ipc : 1.268197
+cycles : 14268301, commits no : 13150000, ipc : 1.189507
+cycles : 14276307, commits no : 13160001, ipc : 1.249188
+cycles : 14282827, commits no : 13170001, ipc : 1.533742
+cycles : 14289275, commits no : 13180000, ipc : 1.550713
+cycles : 14295617, commits no : 13190000, ipc : 1.576790
+cycles : 14302287, commits no : 13200001, ipc : 1.499400
+cycles : 14311509, commits no : 13210000, ipc : 1.084255
+cycles : 14319830, commits no : 13220000, ipc : 1.201779
+cycles : 14326533, commits no : 13230000, ipc : 1.491869
+cycles : 14335782, commits no : 13240003, ipc : 1.081522
+cycles : 14344207, commits no : 13250000, ipc : 1.186588
+cycles : 14354459, commits no : 13260000, ipc : 0.975419
+cycles : 14363323, commits no : 13270003, ipc : 1.128497
+cycles : 14374277, commits no : 13280000, ipc : 0.912635
+cycles : 14384285, commits no : 13290001, ipc : 0.999301
+cycles : 14394454, commits no : 13300003, ipc : 0.983578
+cycles : 14403975, commits no : 13310001, ipc : 1.050100
+cycles : 14413660, commits no : 13320002, ipc : 1.032628
+cycles : 14421950, commits no : 13330000, ipc : 1.206031
+cycles : 14432215, commits no : 13340000, ipc : 0.974184
+cycles : 14442171, commits no : 13350001, ipc : 1.004520
+cycles : 14450802, commits no : 13360000, ipc : 1.158498
+cycles : 14457509, commits no : 13370002, ipc : 1.491278
+cycles : 14464090, commits no : 13380002, ipc : 1.519526
+cycles : 14470746, commits no : 13390001, ipc : 1.502254
+cycles : 14477769, commits no : 13400000, ipc : 1.423751
+cycles : 14485427, commits no : 13410002, ipc : 1.306085
+cycles : 14494519, commits no : 13420000, ipc : 1.099648
+cycles : 14510752, commits no : 13430000, ipc : 0.616029
+cycles : 14519066, commits no : 13440000, ipc : 1.202790
+cycles : 14527921, commits no : 13450001, ipc : 1.129418
+cycles : 14535365, commits no : 13460001, ipc : 1.343364
+cycles : 14542213, commits no : 13470000, ipc : 1.460134
+cycles : 14548755, commits no : 13480002, ipc : 1.528890
+cycles : 14555375, commits no : 13490000, ipc : 1.510272
+cycles : 14562439, commits no : 13500001, ipc : 1.415770
+cycles : 14569387, commits no : 13510000, ipc : 1.439119
+cycles : 14579311, commits no : 13520000, ipc : 1.007658
+cycles : 14586962, commits no : 13530000, ipc : 1.307019
+cycles : 14593773, commits no : 13540001, ipc : 1.468360
+cycles : 14601797, commits no : 13550001, ipc : 1.246261
+cycles : 14610659, commits no : 13560002, ipc : 1.128526
+cycles : 14617327, commits no : 13570002, ipc : 1.499700
+cycles : 14624792, commits no : 13580000, ipc : 1.339317
+cycles : 14633331, commits no : 13590000, ipc : 1.171097
+cycles : 14640207, commits no : 13600001, ipc : 1.454479
+cycles : 14647559, commits no : 13610003, ipc : 1.360446
+cycles : 14656550, commits no : 13620000, ipc : 1.111890
+cycles : 14667045, commits no : 13630001, ipc : 0.952930
+cycles : 14674660, commits no : 13640002, ipc : 1.313329
+cycles : 14681391, commits no : 13650000, ipc : 1.485366
+cycles : 14688168, commits no : 13660000, ipc : 1.475579
+cycles : 14694923, commits no : 13670003, ipc : 1.480829
+cycles : 14703549, commits no : 13680001, ipc : 1.159054
+cycles : 14711221, commits no : 13690001, ipc : 1.303441
+cycles : 14721494, commits no : 13700001, ipc : 0.973426
+cycles : 14732431, commits no : 13710000, ipc : 0.914236
+cycles : 14743642, commits no : 13720002, ipc : 0.892159
+cycles : 14750753, commits no : 13730000, ipc : 1.405991
+cycles : 14757951, commits no : 13740000, ipc : 1.389275
+cycles : 14767661, commits no : 13750001, ipc : 1.029969
+cycles : 14778410, commits no : 13760000, ipc : 0.930226
+cycles : 14789232, commits no : 13770000, ipc : 0.924044
+cycles : 14798483, commits no : 13780000, ipc : 1.080964
+cycles : 14808197, commits no : 13790000, ipc : 1.029442
+cycles : 14817068, commits no : 13800000, ipc : 1.127269
+cycles : 14826095, commits no : 13810000, ipc : 1.107788
+cycles : 14835201, commits no : 13820003, ipc : 1.098506
+cycles : 14844028, commits no : 13830000, ipc : 1.132548
+cycles : 14852885, commits no : 13840000, ipc : 1.129050
+cycles : 14861858, commits no : 13850000, ipc : 1.114455
+cycles : 14870956, commits no : 13860003, ipc : 1.099472
+cycles : 14879589, commits no : 13870003, ipc : 1.158346
+cycles : 14888086, commits no : 13880000, ipc : 1.176533
+cycles : 14896785, commits no : 13890003, ipc : 1.149902
+cycles : 14905247, commits no : 13900003, ipc : 1.181754
+cycles : 14915370, commits no : 13910000, ipc : 0.987553
+cycles : 14925442, commits no : 13920001, ipc : 0.992951
+cycles : 14931950, commits no : 13930000, ipc : 1.536417
+cycles : 14940181, commits no : 13940001, ipc : 1.215041
+cycles : 14949541, commits no : 13950000, ipc : 1.068269
+cycles : 14956818, commits no : 13960000, ipc : 1.374193
+cycles : 14963794, commits no : 13970001, ipc : 1.433630
+cycles : 14973546, commits no : 13980002, ipc : 1.025533
+cycles : 14983214, commits no : 13990001, ipc : 1.034237
+cycles : 14992965, commits no : 14000000, ipc : 1.025433
+cycles : 15001723, commits no : 14010000, ipc : 1.141813
+cycles : 15009289, commits no : 14020001, ipc : 1.321835
+cycles : 15018784, commits no : 14030000, ipc : 1.053081
+cycles : 15027455, commits no : 14040002, ipc : 1.153500
+cycles : 15036665, commits no : 14050001, ipc : 1.085668
+cycles : 15045462, commits no : 14060002, ipc : 1.136865
+cycles : 15055861, commits no : 14070000, ipc : 0.961439
+cycles : 15066382, commits no : 14080000, ipc : 0.950480
+cycles : 15076145, commits no : 14090001, ipc : 1.024378
+cycles : 15084252, commits no : 14100003, ipc : 1.233749
+cycles : 15091446, commits no : 14110000, ipc : 1.389630
+cycles : 15098979, commits no : 14120001, ipc : 1.327625
+cycles : 15106811, commits no : 14130000, ipc : 1.276685
+cycles : 15116071, commits no : 14140001, ipc : 1.080022
+cycles : 15125060, commits no : 14150001, ipc : 1.112471
+cycles : 15134022, commits no : 14160000, ipc : 1.115711
+cycles : 15143978, commits no : 14170002, ipc : 1.004620
+cycles : 15153688, commits no : 14180000, ipc : 1.029660
+cycles : 15162554, commits no : 14190000, ipc : 1.127904
+cycles : 15170914, commits no : 14200000, ipc : 1.196172
+cycles : 15179847, commits no : 14210000, ipc : 1.119445
+cycles : 15188967, commits no : 14220000, ipc : 1.096491
+cycles : 15197281, commits no : 14230000, ipc : 1.202790
+cycles : 15206002, commits no : 14240001, ipc : 1.146772
+cycles : 15214057, commits no : 14250003, ipc : 1.241713
+cycles : 15221989, commits no : 14260000, ipc : 1.260338
+cycles : 15230686, commits no : 14270000, ipc : 1.149822
+cycles : 15240632, commits no : 14280001, ipc : 1.005530
+cycles : 15249970, commits no : 14290000, ipc : 1.070786
+cycles : 15257129, commits no : 14300003, ipc : 1.397262
+cycles : 15263807, commits no : 14310001, ipc : 1.497155
+cycles : 15272211, commits no : 14320002, ipc : 1.190029
+cycles : 15280685, commits no : 14330002, ipc : 1.180080
+cycles : 15287182, commits no : 14340000, ipc : 1.538864
+cycles : 15294375, commits no : 14350000, ipc : 1.390241
+cycles : 15303234, commits no : 14360001, ipc : 1.128908
+cycles : 15312593, commits no : 14370002, ipc : 1.068597
+cycles : 15321175, commits no : 14380001, ipc : 1.165113
+cycles : 15330582, commits no : 14390001, ipc : 1.063038
+cycles : 15339986, commits no : 14400001, ipc : 1.063377
+cycles : 15346768, commits no : 14410001, ipc : 1.474491
+cycles : 15353697, commits no : 14420001, ipc : 1.443210
+cycles : 15362364, commits no : 14430001, ipc : 1.153802
+cycles : 15370909, commits no : 14440003, ipc : 1.170509
+cycles : 15379513, commits no : 14450000, ipc : 1.161901
+cycles : 15387847, commits no : 14460001, ipc : 1.200024
+cycles : 15396840, commits no : 14470000, ipc : 1.111865
+cycles : 15406725, commits no : 14480000, ipc : 1.011634
+cycles : 15416415, commits no : 14490003, ipc : 1.032301
+cycles : 15427841, commits no : 14500002, ipc : 0.875109
+cycles : 15438222, commits no : 14510000, ipc : 0.963106
+cycles : 15447487, commits no : 14520000, ipc : 1.079331
+cycles : 15455949, commits no : 14530000, ipc : 1.181754
+cycles : 15465612, commits no : 14540002, ipc : 1.035082
+cycles : 15476122, commits no : 14550000, ipc : 0.951284
+cycles : 15485380, commits no : 14560003, ipc : 1.080471
+cycles : 15492881, commits no : 14570002, ipc : 1.333022
+cycles : 15502676, commits no : 14580003, ipc : 1.021031
+cycles : 15509849, commits no : 14590001, ipc : 1.393838
+cycles : 15517365, commits no : 14600000, ipc : 1.330362
+cycles : 15526369, commits no : 14610000, ipc : 1.110618
+cycles : 15534168, commits no : 14620003, ipc : 1.282600
+cycles : 15543628, commits no : 14630000, ipc : 1.056765
+cycles : 15553237, commits no : 14640000, ipc : 1.040691
+cycles : 15562341, commits no : 14650000, ipc : 1.098418
+cycles : 15571809, commits no : 14660002, ipc : 1.056401
+cycles : 15581246, commits no : 14670000, ipc : 1.059447
+cycles : 15590665, commits no : 14680001, ipc : 1.061790
+cycles : 15602061, commits no : 14690000, ipc : 0.877413
+cycles : 15618162, commits no : 14700002, ipc : 0.621204
+cycles : 15626862, commits no : 14710001, ipc : 1.149310
+cycles : 15636536, commits no : 14720003, ipc : 1.033905
+cycles : 15645567, commits no : 14730001, ipc : 1.107076
+cycles : 15655911, commits no : 14740000, ipc : 0.966647
+cycles : 15666167, commits no : 14750003, ipc : 0.975331
+cycles : 15679773, commits no : 14760001, ipc : 0.734823
+cycles : 15691320, commits no : 14770001, ipc : 0.866026
+cycles : 15702539, commits no : 14780001, ipc : 0.891345
+cycles : 15712375, commits no : 14790001, ipc : 1.016673
+cycles : 15721943, commits no : 14800000, ipc : 1.045046
+cycles : 15728731, commits no : 14810001, ipc : 1.473335
+cycles : 15735414, commits no : 14820003, ipc : 1.496633
+cycles : 15742274, commits no : 14830000, ipc : 1.457289
+cycles : 15749692, commits no : 14840000, ipc : 1.348072
+cycles : 15757973, commits no : 14850001, ipc : 1.207704
+cycles : 15768758, commits no : 14860000, ipc : 0.927121
+cycles : 15778404, commits no : 14870001, ipc : 1.036803
+cycles : 15787163, commits no : 14880000, ipc : 1.141569
+cycles : 15796093, commits no : 14890002, ipc : 1.120045
+cycles : 15806527, commits no : 14900001, ipc : 0.958309
+cycles : 15818339, commits no : 14910002, ipc : 0.846681
+cycles : 15828604, commits no : 14920001, ipc : 0.974087
+cycles : 15838219, commits no : 14930001, ipc : 1.040042
+cycles : 15846882, commits no : 14940003, ipc : 1.154565
+cycles : 15857005, commits no : 14950000, ipc : 0.987553
+cycles : 15864350, commits no : 14960001, ipc : 1.361606
+cycles : 15870966, commits no : 14970003, ipc : 1.511790
+cycles : 15877590, commits no : 14980001, ipc : 1.509360
+cycles : 15885682, commits no : 14990001, ipc : 1.235788
+cycles : 15893616, commits no : 15000000, ipc : 1.260272
+cycles : 15903870, commits no : 15010001, ipc : 0.975327
+cycles : 15911855, commits no : 15020000, ipc : 1.252223
+cycles : 15920880, commits no : 15030000, ipc : 1.108033
+cycles : 15930688, commits no : 15040003, ipc : 1.019882
+cycles : 15938817, commits no : 15050000, ipc : 1.229795
+cycles : 15947472, commits no : 15060003, ipc : 1.155748
+cycles : 15955115, commits no : 15070000, ipc : 1.307994
+cycles : 15962054, commits no : 15080000, ipc : 1.441130
+cycles : 15968634, commits no : 15090002, ipc : 1.520061
+cycles : 15975231, commits no : 15100001, ipc : 1.515689
+cycles : 15982984, commits no : 15110001, ipc : 1.289823
+cycles : 15990338, commits no : 15120001, ipc : 1.359804
+cycles : 16000625, commits no : 15130002, ipc : 0.972198
+cycles : 16010209, commits no : 15140000, ipc : 1.043197
+cycles : 16019715, commits no : 15150002, ipc : 1.052178
+cycles : 16028634, commits no : 15160000, ipc : 1.120978
+cycles : 16037297, commits no : 15170002, ipc : 1.154565
+cycles : 16046103, commits no : 15180000, ipc : 1.135362
+cycles : 16054799, commits no : 15190000, ipc : 1.149954
+cycles : 16066503, commits no : 15200002, ipc : 0.854580
+cycles : 16076254, commits no : 15210001, ipc : 1.025433
+cycles : 16084659, commits no : 15220000, ipc : 1.189649
+cycles : 16095711, commits no : 15230000, ipc : 0.904814
+cycles : 16106333, commits no : 15240000, ipc : 0.941442
+cycles : 16116559, commits no : 15250002, ipc : 0.978095
+cycles : 16126862, commits no : 15260000, ipc : 0.970397
+cycles : 16135205, commits no : 15270000, ipc : 1.198610
+cycles : 16143857, commits no : 15280000, ipc : 1.155802
+cycles : 16150335, commits no : 15290003, ipc : 1.544149
+cycles : 16157449, commits no : 15300001, ipc : 1.405398
+cycles : 16166905, commits no : 15310000, ipc : 1.057424
+cycles : 16174078, commits no : 15320002, ipc : 1.394396
+cycles : 16182186, commits no : 15330000, ipc : 1.233103
+cycles : 16191118, commits no : 15340000, ipc : 1.119570
+cycles : 16198045, commits no : 15350000, ipc : 1.443626
+cycles : 16206121, commits no : 15360002, ipc : 1.238484
+cycles : 16215971, commits no : 15370001, ipc : 1.015127
+cycles : 16224671, commits no : 15380000, ipc : 1.149310
+cycles : 16234073, commits no : 15390001, ipc : 1.063710
+cycles : 16241424, commits no : 15400001, ipc : 1.360359
+cycles : 16249229, commits no : 15410000, ipc : 1.281102
+cycles : 16255719, commits no : 15420002, ipc : 1.541140
+cycles : 16262553, commits no : 15430001, ipc : 1.463126
+cycles : 16271223, commits no : 15440000, ipc : 1.153287
+cycles : 16280396, commits no : 15450001, ipc : 1.090265
+cycles : 16288896, commits no : 15460001, ipc : 1.176471
+cycles : 16297397, commits no : 15470000, ipc : 1.176215
+cycles : 16305198, commits no : 15480000, ipc : 1.281887
+cycles : 16312841, commits no : 15490000, ipc : 1.308387
+cycles : 16319321, commits no : 15500000, ipc : 1.543210
+cycles : 16326239, commits no : 15510000, ipc : 1.445504
+cycles : 16337096, commits no : 15520000, ipc : 0.921065
+cycles : 16346118, commits no : 15530000, ipc : 1.108402
+cycles : 16355318, commits no : 15540001, ipc : 1.087065
+cycles : 16363893, commits no : 15550000, ipc : 1.166064
+cycles : 16371740, commits no : 15560001, ipc : 1.274500
+cycles : 16380775, commits no : 15570003, ipc : 1.107028
+cycles : 16389872, commits no : 15580000, ipc : 1.098934
+cycles : 16399465, commits no : 15590000, ipc : 1.042427
+cycles : 16409247, commits no : 15600001, ipc : 1.022388
+cycles : 16418048, commits no : 15610001, ipc : 1.136235
+cycles : 16427625, commits no : 15620000, ipc : 1.044064
+cycles : 16436649, commits no : 15630000, ipc : 1.108156
+cycles : 16447840, commits no : 15640002, ipc : 0.893754
+cycles : 16457516, commits no : 15650003, ipc : 1.033588
+cycles : 16467319, commits no : 15660000, ipc : 1.019790
+cycles : 16476610, commits no : 15670000, ipc : 1.076310
+cycles : 16485456, commits no : 15680000, ipc : 1.130454
+cycles : 16492142, commits no : 15690001, ipc : 1.495812
+cycles : 16498772, commits no : 15700000, ipc : 1.508145
+cycles : 16505507, commits no : 15710000, ipc : 1.484781
+cycles : 16514168, commits no : 15720000, ipc : 1.154601
+cycles : 16524245, commits no : 15730001, ipc : 0.992458
+cycles : 16533621, commits no : 15740002, ipc : 1.066660
+cycles : 16542336, commits no : 15750001, ipc : 1.147332
+cycles : 16551891, commits no : 15760002, ipc : 1.046677
+cycles : 16561408, commits no : 15770002, ipc : 1.050751
+cycles : 16569854, commits no : 15780001, ipc : 1.183874
+cycles : 16578319, commits no : 15790000, ipc : 1.181217
+cycles : 16586765, commits no : 15800001, ipc : 1.184111
+cycles : 16595077, commits no : 15810001, ipc : 1.203080
+cycles : 16603757, commits no : 15820003, ipc : 1.152304
+cycles : 16612349, commits no : 15830001, ipc : 1.163641
+cycles : 16621814, commits no : 15840002, ipc : 1.056630
+cycles : 16630827, commits no : 15850000, ipc : 1.109287
+cycles : 16640172, commits no : 15860000, ipc : 1.070091
+cycles : 16648957, commits no : 15870001, ipc : 1.138418
+cycles : 16657541, commits no : 15880003, ipc : 1.165191
+cycles : 16667298, commits no : 15890002, ipc : 1.024803
+cycles : 16675891, commits no : 15900001, ipc : 1.163622
+cycles : 16686070, commits no : 15910001, ipc : 0.982415
+cycles : 16693427, commits no : 15920000, ipc : 1.359114
+cycles : 16702403, commits no : 15930000, ipc : 1.114082
+cycles : 16712310, commits no : 15940000, ipc : 1.009387
+cycles : 16720665, commits no : 15950000, ipc : 1.196888
+cycles : 16728442, commits no : 15960001, ipc : 1.285971
+cycles : 16735327, commits no : 15970000, ipc : 1.452288
+cycles : 16743777, commits no : 15980001, ipc : 1.183550
+cycles : 16752167, commits no : 15990002, ipc : 1.192014
+cycles : 16759009, commits no : 16000000, ipc : 1.461269
+cycles : 16766728, commits no : 16010000, ipc : 1.295505
+cycles : 16776352, commits no : 16020001, ipc : 1.039173
+cycles : 16785933, commits no : 16030002, ipc : 1.043837
+cycles : 16795654, commits no : 16040000, ipc : 1.028495
+cycles : 16806555, commits no : 16050002, ipc : 0.917530
+cycles : 16818321, commits no : 16060000, ipc : 0.849737
+cycles : 16832521, commits no : 16070001, ipc : 0.704296
+cycles : 16845392, commits no : 16080001, ipc : 0.776940
+cycles : 16854940, commits no : 16090001, ipc : 1.047340
+cycles : 16863988, commits no : 16100001, ipc : 1.105217
+cycles : 16874688, commits no : 16110002, ipc : 0.934673
+cycles : 16882838, commits no : 16120001, ipc : 1.226871
+cycles : 16893096, commits no : 16130001, ipc : 0.974849
+cycles : 16904347, commits no : 16140001, ipc : 0.888810
+cycles : 16914827, commits no : 16150000, ipc : 0.954103
+cycles : 16922110, commits no : 16160000, ipc : 1.373061
+cycles : 16929527, commits no : 16170001, ipc : 1.348389
+cycles : 16938511, commits no : 16180000, ipc : 1.112979
+cycles : 16945558, commits no : 16190000, ipc : 1.419044
+cycles : 16956062, commits no : 16200001, ipc : 0.952114
+cycles : 16967264, commits no : 16210001, ipc : 0.892698
+cycles : 16977422, commits no : 16220003, ipc : 0.984643
+cycles : 16987069, commits no : 16230000, ipc : 1.036281
+cycles : 16996550, commits no : 16240001, ipc : 1.054847
+cycles : 17003911, commits no : 16250000, ipc : 1.358375
+cycles : 17010922, commits no : 16260000, ipc : 1.426330
+cycles : 17019433, commits no : 16270001, ipc : 1.175068
+cycles : 17026557, commits no : 16280000, ipc : 1.403565
+cycles : 17034185, commits no : 16290003, ipc : 1.311353
+cycles : 17042673, commits no : 16300001, ipc : 1.177898
+cycles : 17051152, commits no : 16310000, ipc : 1.179266
+cycles : 17059462, commits no : 16320003, ipc : 1.203730
+cycles : 17066637, commits no : 16330003, ipc : 1.393728
+cycles : 17073262, commits no : 16340003, ipc : 1.509434
+cycles : 17080656, commits no : 16350003, ipc : 1.352448
+cycles : 17087897, commits no : 16360001, ipc : 1.380749
+cycles : 17094813, commits no : 16370001, ipc : 1.445922
+cycles : 17103224, commits no : 16380001, ipc : 1.188919
+cycles : 17112832, commits no : 16390000, ipc : 1.040695
+cycles : 17120858, commits no : 16400001, ipc : 1.246075
+cycles : 17129281, commits no : 16410000, ipc : 1.187107
+cycles : 17138450, commits no : 16420001, ipc : 1.090741
+cycles : 17148029, commits no : 16430000, ipc : 1.043846
+cycles : 17155196, commits no : 16440000, ipc : 1.395284
+cycles : 17163794, commits no : 16450000, ipc : 1.163061
+cycles : 17170921, commits no : 16460000, ipc : 1.403115
+cycles : 17178241, commits no : 16470001, ipc : 1.366257
+cycles : 17186567, commits no : 16480001, ipc : 1.201057
+cycles : 17194957, commits no : 16490003, ipc : 1.192134
+cycles : 17202597, commits no : 16500000, ipc : 1.308508
+cycles : 17210345, commits no : 16510003, ipc : 1.291043
+cycles : 17218431, commits no : 16520000, ipc : 1.236334
+cycles : 17226738, commits no : 16530000, ipc : 1.203804
+cycles : 17234732, commits no : 16540002, ipc : 1.251188
+cycles : 17243084, commits no : 16550001, ipc : 1.197198
+cycles : 17251070, commits no : 16560001, ipc : 1.252191
+cycles : 17259303, commits no : 16570001, ipc : 1.214624
+cycles : 17267418, commits no : 16580000, ipc : 1.232163
+cycles : 17277181, commits no : 16590003, ipc : 1.024583
+cycles : 17288461, commits no : 16600000, ipc : 0.886259
+cycles : 17299610, commits no : 16610001, ipc : 0.897031
+cycles : 17309715, commits no : 16620000, ipc : 0.989510
+cycles : 17319694, commits no : 16630002, ipc : 1.002305
+cycles : 17329059, commits no : 16640003, ipc : 1.067912
+cycles : 17337499, commits no : 16650000, ipc : 1.184479
+cycles : 17346798, commits no : 16660000, ipc : 1.075384
+cycles : 17354646, commits no : 16670000, ipc : 1.274210
+cycles : 17364905, commits no : 16680001, ipc : 0.974851
+cycles : 17375199, commits no : 16690001, ipc : 0.971440
+cycles : 17384403, commits no : 16700003, ipc : 1.086701
+cycles : 17393892, commits no : 16710000, ipc : 1.053536
+cycles : 17402344, commits no : 16720000, ipc : 1.183152
+cycles : 17410732, commits no : 16730003, ipc : 1.192537
+cycles : 17418595, commits no : 16740000, ipc : 1.271398
+cycles : 17426315, commits no : 16750001, ipc : 1.295466
+cycles : 17434316, commits no : 16760000, ipc : 1.249719
+cycles : 17442080, commits no : 16770001, ipc : 1.288125
+cycles : 17450044, commits no : 16780001, ipc : 1.255650
+cycles : 17457583, commits no : 16790000, ipc : 1.326303
+cycles : 17464389, commits no : 16800003, ipc : 1.469733
+cycles : 17471860, commits no : 16810001, ipc : 1.338241
+cycles : 17479009, commits no : 16820001, ipc : 1.398797
+cycles : 17485577, commits no : 16830000, ipc : 1.522381
+cycles : 17495899, commits no : 16840000, ipc : 0.968804
+cycles : 17506397, commits no : 16850001, ipc : 0.952658
+cycles : 17516466, commits no : 16860000, ipc : 0.993048
+cycles : 17526323, commits no : 16870000, ipc : 1.014507
+cycles : 17535611, commits no : 16880000, ipc : 1.076658
+cycles : 17544221, commits no : 16890002, ipc : 1.161672
+cycles : 17553213, commits no : 16900000, ipc : 1.111877
+cycles : 17561379, commits no : 16910000, ipc : 1.224590
+cycles : 17570035, commits no : 16920001, ipc : 1.155384
+cycles : 17578454, commits no : 16930000, ipc : 1.187671
+cycles : 17588821, commits no : 16940001, ipc : 0.964696
+cycles : 17598662, commits no : 16950000, ipc : 1.016055
+cycles : 17607482, commits no : 16960002, ipc : 1.134014
+cycles : 17616905, commits no : 16970000, ipc : 1.061021
+cycles : 17624776, commits no : 16980000, ipc : 1.270487
+cycles : 17634045, commits no : 16990001, ipc : 1.078973
+cycles : 17641889, commits no : 17000002, ipc : 1.274987
+cycles : 17648587, commits no : 17010000, ipc : 1.492684
+cycles : 17655158, commits no : 17020000, ipc : 1.521838
+cycles : 17662362, commits no : 17030000, ipc : 1.388118
+cycles : 17670336, commits no : 17040000, ipc : 1.254076
+cycles : 17679671, commits no : 17050000, ipc : 1.071237
+cycles : 17687773, commits no : 17060000, ipc : 1.234263
+cycles : 17696246, commits no : 17070000, ipc : 1.180220
+cycles : 17705045, commits no : 17080000, ipc : 1.136493
+cycles : 17713274, commits no : 17090000, ipc : 1.215214
+cycles : 17722815, commits no : 17100001, ipc : 1.048213
+cycles : 17730479, commits no : 17110000, ipc : 1.304671
+cycles : 17738189, commits no : 17120002, ipc : 1.297276
+cycles : 17744797, commits no : 17130000, ipc : 1.513015
+cycles : 17751340, commits no : 17140000, ipc : 1.528351
+cycles : 17758098, commits no : 17150000, ipc : 1.479728
+cycles : 17765139, commits no : 17160000, ipc : 1.420253
+cycles : 17774125, commits no : 17170000, ipc : 1.112842
+cycles : 17782463, commits no : 17180000, ipc : 1.199328
+cycles : 17792084, commits no : 17190000, ipc : 1.039393
+cycles : 17800472, commits no : 17200001, ipc : 1.192299
+cycles : 17809008, commits no : 17210001, ipc : 1.171509
+cycles : 17816783, commits no : 17220001, ipc : 1.286174
+cycles : 17825718, commits no : 17230000, ipc : 1.119082
+cycles : 17832657, commits no : 17240001, ipc : 1.441274
+cycles : 17839335, commits no : 17250001, ipc : 1.497454
+cycles : 17847135, commits no : 17260000, ipc : 1.281923
+cycles : 17860266, commits no : 17270002, ipc : 0.761709
+cycles : 17871040, commits no : 17280000, ipc : 0.927975
+cycles : 17881302, commits no : 17290000, ipc : 0.974469
+cycles : 17890308, commits no : 17300000, ipc : 1.110371
+cycles : 17898436, commits no : 17310000, ipc : 1.230315
+cycles : 17908164, commits no : 17320001, ipc : 1.028063
+***** exiting (allinstructions) *****
+Contexts: 2  Fetch Width: 16
+No of useful instructions fetched: 20000084 (6.98% proc util.)
+No of total instructions fetched:  23577813 (8.23% proc util.)
+ includes 734072 misfetch (3.1%), 2843657 (12.1%) wrong-path fetches
+ and 0 non-WP flushed for failed lock and other (0.0%)
+No of useful instructions issued/executed: 20000180 (6.98% proc util.)
+No of total instructions issued/executed:  21040929 (7.34% proc util.)
+ includes 1040749 wrong-path (4.9%) insts and 0 flushed (0.0%)
+    fp 133, 0.00%
+    synch 0, 0.00%
+    integer 13578446, 64.53%
+    load/store 7462350, 35.47%
+No of cycles taken: 17909887
+Parallelism [ 0.967, 0.150,] = 1.117
+Core 0 scheduling stats
+  Avg pre-sched occupancy of IQ: 7.20 (22.49%), FQ: 0.00 (0.00%)
+  Rename IQ full cyc: 220306 (1.23%), FQ: 0 (0.00%)
+  Avg occupancy of I regs: 20.06 (31.34%), FP regs: 0.00 (0.00%)
+  Rename I regs full cyc: 0 (0.00%), FP regs: 0 (0.00%)
+  Avg occupancy of LSQ: 9.99 (41.63%)
+  Rename LSQ full cyc: 3115040 (17.39%)
+  Avg occupancy of alus IALUS: 0.68 (34.17%), FPALUS: 0.00 (0.00%), LDST: 0.34 (34.19%)
+  Issue conflicts, I unit: 16681894 (0.93), FP: 11 (0.00), LDST: 11133597 (0.62)
+  Issue conflicts, D-MSHR: 0 (0.00), mb: 2910 (0.00), wmb: 0 (0.00), mem: 2217451 (0.12)
+  Total conflicts (non-issued, ready insts): 24793817 (1.38)
+  Total conflict cyc buckets: 2093065 2561105 2137819 610702 752 0 0 0 0 0 0 0 0 0 0 0
+Core 1 scheduling stats
+  Avg pre-sched occupancy of IQ: 0.15 (0.48%), FQ: 0.00 (0.00%)
+  Rename IQ full cyc: 8 (0.00%), FQ: 0 (0.00%)
+  Avg occupancy of I regs: 17.98 (28.09%), FP regs: 0.00 (0.00%)
+  Rename I regs full cyc: 0 (0.00%), FP regs: 0 (0.00%)
+  Avg occupancy of LSQ: 24.00 (99.99%)
+  Rename LSQ full cyc: 17570891 (98.11%)
+  Avg occupancy of alus IALUS: 0.07 (3.74%), FPALUS: 0.00 (0.00%), LDST: 0.07 (7.48%)
+  Issue conflicts, I unit: 32977 (0.00), FP: 0 (0.00), LDST: 10080 (0.00)
+  Issue conflicts, D-MSHR: 0 (0.00), mb: 0 (0.00), wmb: 0 (0.00), mem: 0 (0.00)
+  Total conflicts (non-issued, ready insts): 32977 (0.00)
+  Total conflict cyc buckets: 1331 7740 2307 5 21 0 0 0 0 0 0 0 0 0 0 0
+Context 0 scheduling stats
+  Avg occupancy of ROB: 25.40 (39.69%)
+  Fetch I-MSHR full: 0 (0.00%)
+  Rename ROB full cyc: 696749 (3.89%), fetch alist full cyc: 0 (0.00%)
+Context 1 scheduling stats
+  Avg occupancy of ROB: 47.98 (74.97%)
+  Fetch I-MSHR full: 0 (0.00%)
+  Rename ROB full cyc: 0 (0.00%), fetch alist full cyc: 0 (0.00%)
+Commits: [ 17322048 2677952 ] = 20000000
+Syscalls: [ 21 0 ] = 21
+In-flight: [ 22 62 ] = 84
+App statistics
+  ID_order: [ 0 1 ]
+  insts: [ 29726224 12678014 ]
+  commits: [ 17322048 2677952 ]
+  discards: [ 2404151 0 ]
+  syscalls: [ 23 10 ]
+  total_cyc: [ 17909887 17909887 ]
+  sched_cyc: [ 17909847 17909845 ]
+  sched_count: [ 1 1 ]
+  commits/schedcyc: [ 0.967 0.150 ]
+  commits/totalcyc: [ 0.967 0.150 ]
+  icache_miss_pct: [ 0.88 0.00 ]
+  dcache_accesses: [ 6012591 167381 ]
+  dcache_non-merged_miss_pct: [ 1.22 100.00 ]
+  l2cache_accesses: [ 102597 167376 ]
+  l2cache_non-merged_miss_pct: [ 40.43 100.00 ]
+  l3cache_accesses: [ 41427 167376 ]
+  l3cache_non-merged_miss_pct: [ 48.44 100.00 ]
+  mem_accesses: [ 20180 167376 ]
+  itlb_miss_pct: [ 0.00 0.00 ]
+  dtlb_miss_pct: [ 0.07 0.89 ]
+  bpred_miss_pct: [ 12.06 0.00 ]
+  retpred_miss_pct: [ 0.00 -nan ]
+  avg_mem_delay_cyc: [ 7.8 314.8 ]
+  instq_conf_cyc/schedcyc_pct: [ 1.23 0.00 ]
+  long_mem_detected: [ 28008 124964 ]
+  long_mem_flushed: [ 0 0 ]
+Cache Statistics
+Core 0:
+  Reads: 9248324   Writes: 1346814
+  Hit times (excluding exec) from: L1=2, L2=14, L3=43, M=313
+  Ideal est. transfer bandwidth (bytes/cyc * banks * ports):
+          part    access     wb-to      fill
+           L1I        16        na       256
+           L1D        32        na       256
+            L2       256       256       256
+           Bus         8        na        32
+            L3        64        64        64
+           Mem     10.24     10.24        na
+  ICACHE: size: 64 KB assoc: 2
+  ICACHE: hits: 4542332 misses: 40215  Hit Ratio: 99.12%
+  ICACHE: coher misses: 0 invalidates: 0
+          wbfull_confs: 0
+  DCACHE: size: 64 KB assoc: 2
+  DCACHE: hits: 5939290 misses: 73301 writebacks: 32382  Hit Ratio: 98.78%
+  DCACHE: coher misses: 0 upgrade misses: 0
+          coher writebacks: 0 invalidates: 0
+          wbfull_confs: 0 coher_busy: 0 
+  SCACHE: size: 128 KB assoc: 8
+  SCACHE: hits: 69926 misses: 43590 writebacks: 22324  Hit Ratio: 61.60%
+  SCACHE: coher misses: 0 upgrade misses: 0 
+          coher writebacks: 0 invalidates: 0
+          wbfull_confs: 0 coher_busy: 0
+  Stalls for L2 MSHR conflicts: 0
+  ITLB: size: 48, misses 38, miss rate 0.00
+  DTLB: size: 128, misses 2994, miss rate 0.05
+  icache bank util. 0.063 0.078 0.067 0.066 0.076 0.052 0.055 0.059 
+  dcache bank util. 0.065 0.072 0.079 0.064 0.121 0.118 0.086 0.087 
+  L2 bank util. 0.002 0.003 0.003 0.002 0.003 0.003 0.002 0.003 
+Core 1:
+  Reads: 334753   Writes: 167381
+  Hit times (excluding exec) from: L1=2, L2=14, L3=43, M=313
+  Ideal est. transfer bandwidth (bytes/cyc * banks * ports):
+          part    access     wb-to      fill
+           L1I        16        na       256
+           L1D        32        na       256
+            L2       256       256       256
+           Bus         8        na        32
+            L3        64        64        64
+           Mem     10.24     10.24        na
+  ICACHE: size: 64 KB assoc: 2
+  ICACHE: hits: 334752 misses: 1  Hit Ratio: 100.00%
+  ICACHE: coher misses: 0 invalidates: 0
+          wbfull_confs: 0
+  DCACHE: size: 64 KB assoc: 2
+  DCACHE: hits: 6 misses: 167375 writebacks: 166349  Hit Ratio: 0.00%
+  DCACHE: coher misses: 0 upgrade misses: 0
+          coher writebacks: 0 invalidates: 0
+          wbfull_confs: 0 coher_busy: 0 
+  SCACHE: size: 128 KB assoc: 8
+  SCACHE: hits: 0 misses: 167376 writebacks: 132096  Hit Ratio: 0.00%
+  SCACHE: coher misses: 0 upgrade misses: 0 
+          coher writebacks: 0 invalidates: 0
+          wbfull_confs: 0 coher_busy: 0
+  Stalls for L2 MSHR conflicts: 0
+  ITLB: size: 48, misses 1, miss rate 0.00
+  DTLB: size: 128, misses 1308, miss rate 0.78
+  icache bank util. 0.000 0.000 0.000 0.000 0.000 0.037 0.000 0.000 
+  dcache bank util. 0.021 0.021 0.021 0.021 0.021 0.021 0.021 0.021 
+  L2 bank util. 0.007 0.007 0.007 0.007 0.007 0.007 0.007 0.007 
+Stall for miss queue full 0 cycles (0.00%)
+3CACHE: size: 4096 KB assoc: 8
+3CACHE: hits: 22560 misses: 188406  writebacks: 120005  Hit Ratio: 10.69%
+3CACHE: wbfull_confs: 0
+avg mem delay 62.930
+Unified bus: 616470 xfers, 0 syncs, 16887913 idle_cyc, 0 sync_cyc, 0.057 util
+L3 util. = 0.033
+MemUnit stats: 188406 reads, 120120 writes
+MemUnit bank util: 0.107 0.108 0.108 0.108 0.108 0.109 0.108 0.108 0.108 0.108 0.107 0.107 0.107 0.108 0.107 0.108
+Core 0:
+  branch prediction, hits = 1232874, misses = 169098, hit rate = 87.94%
+  jump prediction, hits = 1515058, misses = 269173, hit rate = 84.91%
+  return_stack prediction, hits = 325437, misses = 11, hit rate = 100.00%
+Core 1:
+  branch prediction, hits = 334752, misses = 0, hit rate = 100.00%
+  jump prediction, hits = 334751, misses = 1, hit rate = 100.00%
+  return_stack prediction, hits = 0, misses = 0, hit rate = -nan%
+Commit group stats:
+  started 0, inflight 0, squashed 0, aborted 0, committed 0 (-nan% of started, -nan% of not-squashed)
+  blocked cyc/mean: [ 0/-nan 0/-nan ]
+GlobalAppMgr stats:
+  App state/cycle breakdown:
+    "cyc","ctx_run","ctx_stalled","ready","swapping","waiting"
+    "A0",13872963,4036885,0,39,0
+    "A1",2883571,15026275,0,41,0
+  App occupancy cycles on cores:
+    "cyc","C0","C1"
+    "A0",17909887,0
+    "A1",0,17909887
+  App swap-ins on cores:
+    "events","C0","C1"
+    "A0",1,0
+    "A1",0,1
+  Core "scheduled - stalled" TLP cycles:
+    "cyc",0,1
+    "C0",4036885,13873002
+    "C1",15026275,2883612
+  Core scheduled TLP cycles:
+    "cyc",0,1
+    "C0",0,17909887
+    "C1",0,17909887
+  App same-core fraction: [ -nan -nan ]
+  App mean swapped-in cyc: [ 17909887 17909887 ]
+  App scheduled IPC: [ 0.967 0.150 ]
+  App L1D blocks on cores:
+    "blocks","C0","C1"
+    "A0",1024,0
+    "A1",0,1024
+  App L2 blocks on cores:
+    "blocks","C0","C1"
+    "A0",2048,0
+    "A1",0,2048
+  App L3 blocks: [ 3743 61793 ]
+  App activate/deactivate timing stats:
+    A0
+      deact_halt: - (n=0)
+      deact_swapout: - (n=0)
+      deact_sum: - (n=0)
+      activ_fetch: 39/39/39 (n=1,sd=0)
+      activ_commit: 39/39/39 (n=1,sd=0)
+      migrate_fetch: - (n=0)
+      migrate_commit: - (n=0)
+    A1
+      deact_halt: - (n=0)
+      deact_swapout: - (n=0)
+      deact_sum: - (n=0)
+      activ_fetch: 41/41/41 (n=1,sd=0)
+      activ_commit: 41/41/41 (n=1,sd=0)
+      migrate_fetch: - (n=0)
+      migrate_commit: - (n=0)
+GlobalAdaptMgr Stats:
+  last_occupancy_per_ctx
+    ROB   22 48 
+    IQ    13 1 
+    FQ    0 0 
+    IREG  14 18 
+    FREG  0 0 
+    LSQ   10 24 
+  max_occupancy_per_ctx
+    ROB   64 52 
+    IQ    32 32 
+    FQ    7 0 
+    IREG  64 31 
+    FREG  31 31 
+    LSQ   24 24 
+  resource_size_per_ctx
+    ROB   96 96 
+    IQ    48 48 
+    FQ    48 48 
+    IREG  96 96 
+    FREG  96 96 
+    LSQ   36 36 
+total IPC 20000084/17909887 = 1.117
+
+--Sim'd 1.791e+07 cyc, 2.000e+07 insts in 45.94/0.2490/46.52(99.28%) sec
+--Sim rate: 3.899e+05 cyc/s, 4.354e+05 inst/s
+--Total run time: 46.67/0.3900/47.49(99.10%) sec

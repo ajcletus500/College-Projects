@@ -1,0 +1,53 @@
+Unable to open parameter file 'benchADM.par'
+--------------------------------------------------------------------------------
+
+       10                                  
+  1   0101       ************************  
+  01  1010 10      The Cactus Code V4.0    
+ 1010 1101 011      www.cactuscode.org     
+  1001 100101    ************************  
+    00010101                               
+     100011     (c) Copyright The Authors  
+      0100      GNU Licensed. No Warranty  
+      0101                                 
+
+--------------------------------------------------------------------------------
+
+Cactus version: 4.0.b11
+Parameter file: benchADM.par
+--------------------------------------------------------------------------------
+
+Activating thorn Cactus...Success -> active implementation Cactus
+--------------------------------------------------------------------------------
+  if (recover)
+    Recover parameters
+  endif
+
+  Startup routines
+
+  Parameter checking routines
+
+  Initialisation
+    if (recover)
+    endif
+    if (checkpoint initial data)
+    endif
+    if (analysis)
+    endif
+
+  do loop over timesteps
+    Rotate timelevels
+    iteration = iteration + 1
+    t = t+dt
+    if (checkpoint)
+    endif
+    if (analysis)
+    endif
+  enddo
+  Termination routines
+  Shutdown routines
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Done.
