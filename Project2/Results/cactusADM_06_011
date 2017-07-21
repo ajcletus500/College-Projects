@@ -1,0 +1,4699 @@
+--Starting up.
+--Command line: /mnt/c/Users/hp/OneDrive/GMU_Notes/Sem4/611/Assignment1/SMTSIM/smtsim/build.linux-amd64/smtsim -conffile /mnt/c/Users/hp/OneDrive/GMU_Notes/Sem4/611/Assignment1/SMTSIM/benchmarks/workloads-list_ffs0.conf -confexpr 'Syscall/root_paths_at_cwd = t;' -confexpr 'Syscall/ForceUniqueNames = { "fort.11"; };' -confexpr 'AppStatsLog/enable = t;' -confexpr 'AppStatsLog/interval = 10e3;' -confexpr 'AppStatsLog/base_name = "/mnt/c/Users/hp/OneDrive/GMU_Notes/Sem4/611/Assignment3/Results/cactusADM_06_011";' -confexpr 'AppStatsLog/stat_mask/all = f;' -confexpr 'AppStatsLog/stat_mask/cyc = t;' -confexpr 'AppStatsLog/stat_mask/commits = t;' -confexpr 'AppStatsLog/stat_mask/l3cache_hr = t;' -confexpr 'AppStatsLog/stat_mask/mem_delay = t;' -confexpr 'AppStatsLog/stat_mask/itlb_acc = t;' -confexpr 'AppStatsLog/stat_mask/dtlb_acc = t;' -confexpr 'AppStatsLog/stat_mask/icache_acc = t;' -confexpr 'AppStatsLog/stat_mask/dcache_acc = t;' -confexpr 'AppStatsLog/stat_mask/l2cache_acc = t;' -confexpr 'AppStatsLog/stat_mask/l3cache_acc = t;' -confexpr 'AppStatsLog/stat_mask/bpred_acc = t;' -confexpr 'AppStatsLog/stat_mask/fpalu_acc = t;' -confexpr 'AppStatsLog/stat_mask/intalu_acc = t;' -confexpr 'AppStatsLog/stat_mask/ldst_acc = t;' -confexpr 'AppStatsLog/stat_mask/lsq_acc = t;' -confexpr 'AppStatsLog/stat_mask/iq_acc = t;' -confexpr 'AppStatsLog/stat_mask/fq_acc = t;' -confexpr 'AppStatsLog/stat_mask/ireg_acc = t;' -confexpr 'AppStatsLog/stat_mask/freg_acc = t;' -confexpr 'AppStatsLog/stat_mask/iren_acc = t;' -confexpr 'AppStatsLog/stat_mask/fren_acc = t;' -confexpr 'AppStatsLog/stat_mask/rob_acc = t;' -confexpr 'AppStatsLog/stat_mask/lsq_occ = t;' -confexpr 'AppStatsLog/stat_mask/iq_occ = t;' -confexpr 'AppStatsLog/stat_mask/fq_occ = t;' -confexpr 'AppStatsLog/stat_mask/ireg_occ = t;' -confexpr 'AppStatsLog/stat_mask/freg_occ = t;' -confexpr 'AppStatsLog/stat_mask/iren_occ = t;' -confexpr 'AppStatsLog/stat_mask/fren_occ = t;' -confexpr 'AppStatsLog/stat_mask/rob_occ = t;' -confexpr 'Workloads/cactusADM_06/ff_dist = 1.000000e+06;' -confexpr 'WorkQueue/Jobs/job_1 = { start_time = 0.; workload = "cactusADM_06"};' -confexpr 'WorkQueue/max_running_jobs = 1;' -confexpr 'Global/thread_length = 1.000000e+06;' -confexpr 'Global/num_cores = 1;' -confexpr 'Global/num_contexts = 1;' -confexpr 'Global/ThreadCoreMap/t0 = 0;' -confexpr 'Global/Mem/private_l2caches = t;' -confexpr 'Global/Mem/L2Cache/size_kb = 256;' -confexpr 'Global/Mem/L2Cache/access_time = { latency = 10; interval = 2; };' -confexpr 'Global/Mem/L2Cache/access_time_wb = { latency = 10; interval = 2; };' -confexpr 'Global/Mem/use_l3cache = t;' -confexpr 'Global/Mem/L3Cache/size_kb = 8192;' -confexpr 'Global/Mem/L3Cache/assoc = 8;' -confexpr 'Global/Mem/L3Cache/access_time = { latency = 20; interval = 8; };' -confexpr 'Global/Mem/L3Cache/access_time_wb = { latency = 20; interval = 8; };' -confexpr 'Global/Mem/MainMem/read_time = { latency = 250; interval = 100; };' -confexpr 'Global/Mem/MainMem/write_time = { latency = 250; interval = 100; };' -confexpr 'Core/ICache/size_kb = 4;' -confexpr 'Core/ICache/assoc = 16;' -confexpr 'Core/ICache/access_time = { latency = 2; interval = latency; };' -confexpr 'Core/ICache/access_time_wb = { latency = 3; interval = latency; };' -confexpr 'Core/DCache/size_kb = 4;' -confexpr 'Core/DCache/assoc = 16;' -confexpr 'Core/DCache/access_time = { latency = 2; interval = latency; };' -confexpr 'Core/DCache/access_time_wb = { latency = 3; interval = latency; };' -confexpr 'Core/loadstore_queue_size = 32;' -confexpr 'Core/Queue/int_queue_size = 32;' -confexpr 'Core/Queue/float_queue_size = 32;' -confexpr 'Core/Fetch/single_limit = 2;' -confexpr 'Core/Fetch/total_limit = 2;' -confexpr 'Core/Commit/single_limit = 2;' -confexpr 'Core/Commit/total_limit = 2;' -confexpr 'Core/Queue/max_int_issue = 2;' -confexpr 'Core/Queue/max_float_issue = 2;' -confexpr 'Core/Queue/max_ldst_issue = 2;' -confexpr 'Core/Rename/int_rename_regs = 32;' -confexpr 'Core/Rename/float_rename_regs = 32;' -confexpr 'Thread/reorder_buffer_size = 48;' -confexpr 'Core/Decode/total_limit = 2;' -confexpr 'Thread/active_list_size = 512;' -confexpr 'ResourcePooling/enable = f;' -confdump -
+--Host: CLETUS, pid: 863
+--Working directory: /mnt/c/Users/hp/OneDrive/GMU_Notes/Sem4/611/Assignment1/SMTSIM/benchmarks
+--Local time: Sun Feb 26 16:06:06 2017
+--Unix time: 1488143166
+--Note: DEBUG support was compiled in.  Assertions are enabled.
+--Loading built-in configuration.
+Loading config file "/mnt/c/Users/hp/OneDrive/GMU_Notes/Sem4/611/Assignment1/SMTSIM/benchmarks/workloads-list_ffs0.conf"...
+Writing config file "-"...
+--------
+AppStatsLog = {
+  base_name = "/mnt/c/Users/hp/OneDrive/GMU_Notes/Sem4/611/Assignment3/Results/cactusADM_06_011";
+  enable = t;
+  interval = 10000.;
+  stat_mask = {
+    all = f;
+    app_insts_committed = f;
+    bpred_acc = t;
+    bpred_hr = f;
+    commits = t;
+    cyc = t;
+    dcache_acc = t;
+    dcache_blocks = f;
+    dcache_hr = f;
+    dtlb_acc = t;
+    dtlb_hr = f;
+    fpalu_acc = t;
+    fq_acc = t;
+    fq_occ = t;
+    freg_acc = t;
+    freg_occ = t;
+    fren_acc = t;
+    fren_occ = t;
+    icache_acc = t;
+    icache_blocks = f;
+    icache_hr = f;
+    intalu_acc = t;
+    iq_acc = t;
+    iq_conf = f;
+    iq_occ = t;
+    ireg_acc = t;
+    ireg_occ = t;
+    iren_acc = t;
+    iren_occ = t;
+    itlb_acc = t;
+    itlb_hr = f;
+    l2cache_acc = t;
+    l2cache_blocks = f;
+    l2cache_hr = f;
+    l3cache_acc = t;
+    l3cache_blocks = f;
+    l3cache_hr = t;
+    ldst_acc = t;
+    long_mem_detects = f;
+    long_mem_flushes = f;
+    lsq_acc = t;
+    lsq_occ = t;
+    mem_commits = f;
+    mem_delay = t;
+    retpred_hr = f;
+    rob_acc = t;
+    rob_occ = t;
+    sched_count = f;
+    sched_cyc = f;
+  };
+};
+BasicBlockTracker = {
+  create_bbv_file = f;
+  filename = "";
+  interval = 2e+08;
+};
+Core = {
+  Commit = {
+    single_limit = 2;
+    thread_count_limit = 2;
+    total_limit = 2;
+  };
+  DCache = {
+    access_time = {
+      interval = 2;
+      latency = 2;
+    };
+    access_time_wb = {
+      interval = 3;
+      latency = 3;
+    };
+    assoc = 16;
+    fill_time = {
+      interval = 2;
+      latency = 2;
+    };
+    miss_penalty = 0;
+    n_banks = 8;
+    ports = {
+      r = 0;
+      rw = 1;
+      w = 0;
+    };
+    prefetch_nextblock = f;
+    replace_policy = "LRU";
+    size_kb = 4;
+    track_coher_misses = t;
+    wb_buffer_size = 16;
+  };
+  DataDeadBlock = {
+    dead_block_assoc = 8;
+    dead_block_entries = 1024;
+    enable = f;
+    hist_update_at_commit = f;
+    hist_width = 32;
+  };
+  DataMSHR = {
+    entry_count = 16;
+    max_alloc_per_cyc = 4;
+    waiters_per_entry = 32;
+  };
+  DataStreambuf = {
+    alloc_min_confidence_thresh = 1;
+    always_free_on_match = t;
+    blocks_per_stream = 4;
+    enable = f;
+    force_no_overlap = t;
+    n_streams = 8;
+    predict_match_saturate = 8;
+    predict_miss_saturate = 8;
+    prefetch_as_exclusive = t;
+    prefetch_only_when_quiet = t;
+    stream_priority_age_allocs = 10;
+    stream_priority_saturate = 13;
+    stride_pc_assoc = 4;
+    stride_pc_entries = 256;
+    use_round_robin_sched = f;
+    use_two_miss_alloc_filter = f;
+  };
+  Decode = {
+    n_stages = 1;
+    total_limit = 2;
+  };
+  ExecTime = {
+    all_extra = 0;
+    fp_arith = 4;
+    fp_bit = 4;
+    fp_compare = 4;
+    fp_condbr = 1;
+    fp_condmove = 4;
+    fp_divs = 17;
+    fp_divt = 30;
+    fp_load = 1;
+    fp_store = 1;
+    ftoi = 2;
+    int_arith = 1;
+    int_compare = 0;
+    int_condbr = 1;
+    int_condmove = 2;
+    int_load = 1;
+    int_mull = 8;
+    int_mulq = 16;
+    int_store = 1;
+    int_umulh = 16;
+    itof = 2;
+    smt_fork = 1;
+    smt_lockrel = 1;
+    smt_terminate = 4;
+    uncond_br = 2;
+  };
+  Fetch = {
+    enable_trace_cache = f;
+    n_stages = 1;
+    single_limit = 2;
+    tcache_skips_to_rename = f;
+    thread_count_limit = 2;
+    total_limit = 2;
+  };
+  ICache = {
+    access_time = {
+      interval = 2;
+      latency = 2;
+    };
+    access_time_wb = {
+      interval = 3;
+      latency = 3;
+    };
+    assoc = 16;
+    fill_time = {
+      interval = 2;
+      latency = 2;
+    };
+    miss_penalty = 0;
+    n_banks = 8;
+    ports = {
+      r = 0;
+      rw = 1;
+      w = 0;
+    };
+    prefetch_nextblock = f;
+    replace_policy = "LRU";
+    size_kb = 4;
+    wb_buffer_size = 16;
+  };
+  InstMSHR = {
+    entry_count = 16;
+    max_alloc_per_cyc = 4;
+    waiters_per_entry = 32;
+  };
+  L2Cache = {
+  };
+  L2MSHR = {
+    entry_count = 32;
+    max_alloc_per_cyc = 4;
+    waiters_per_entry = 4;
+  };
+  MultiBranchPredictor = {
+    n_rows = 2048;
+    predict_width = 3;
+  };
+  Queue = {
+    float_ooo_issue = t;
+    float_queue_size = 32;
+    int_ooo_issue = t;
+    int_queue_size = 32;
+    max_float_issue = 2;
+    max_int_issue = 2;
+    max_ldst_issue = 2;
+    max_sync_issue = 2;
+  };
+  RegRead = {
+    n_stages = 1;
+  };
+  RegWrite = {
+    n_stages = 1;
+  };
+  Rename = {
+    float_rename_regs = 32;
+    int_rename_regs = 32;
+    n_stages = 1;
+  };
+  TraceCache = {
+    assoc = 4;
+    block_insts = 8;
+    is_path_assoc = t;
+    n_entries = 2048;
+    pred_per_block = 3;
+    trim_partial_hits = f;
+  };
+  TraceFillUnit = {
+    align_to_bblock = t;
+    allow_indirect_jumps = t;
+    branch_promote_thresh = 64;
+    output_fifo_len = 10;
+    output_interval = 1;
+  };
+  br_bias_entries = 2048;
+  btb_assoc = 4;
+  btb_entries = 256;
+  dtlb_entries = 128;
+  itlb_entries = 48;
+  loadstore_queue_size = 32;
+  pht_entries = 2048;
+  tlb_filter_invalid = t;
+  tlb_miss_penalty = 160;
+};
+Debug = {
+};
+Global = {
+  Mem = {
+    Coher = {
+      apply_evict_notifies = t;
+      prefer_neighbor_shared = t;
+    };
+    L2Cache = {
+      access_time = {
+        interval = 2;
+        latency = 10;
+      };
+      access_time_wb = {
+        interval = 2;
+        latency = 10;
+      };
+      assoc = 2;
+      fill_time = {
+        interval = 2;
+        latency = 4;
+      };
+      miss_penalty = 0;
+      n_banks = 8;
+      ports = {
+        r = 0;
+        rw = 1;
+        w = 0;
+      };
+      prefetch_nextblock = f;
+      replace_policy = "LRU";
+      size_kb = 256;
+      track_coher_misses = t;
+      wb_buffer_size = 16;
+    };
+    L3Cache = {
+      access_time = {
+        interval = 8;
+        latency = 20;
+      };
+      access_time_wb = {
+        interval = 8;
+        latency = 20;
+      };
+      assoc = 8;
+      fill_time = {
+        interval = 8;
+        latency = 20;
+      };
+      miss_penalty = 0;
+      n_banks = 8;
+      ports = {
+        r = 0;
+        rw = 1;
+        w = 0;
+      };
+      prefetch_nextblock = f;
+      replace_policy = "LRU";
+      size_kb = 8192;
+      wb_buffer_size = 16;
+    };
+    MainMem = {
+      n_banks = 16;
+      read_time = {
+        interval = 100;
+        latency = 250;
+      };
+      write_time = {
+        interval = 100;
+        latency = 250;
+      };
+    };
+    bus_request_time = {
+      interval = 1;
+      latency = 1;
+    };
+    bus_transfer_time = {
+      interval = 2;
+      latency = 4;
+    };
+    cache_block_bytes = 64;
+    cache_request_holders = 256;
+    inst_bytes = 4;
+    page_bytes = 8192;
+    private_l2caches = t;
+    split_bus = f;
+    stack_initial_kb = 64;
+    stack_max_kb = 65536;
+    use_coherence = f;
+    use_l3cache = t;
+  };
+  ThreadCoreMap = {
+    policy = "smt";
+    t0 = 0;
+  };
+  abort_on_alist_full = t;
+  disable_coredump = t;
+  nice_level = 19;
+  num_contexts = 1;
+  num_cores = 1;
+  reap_alist_at_squash = t;
+  thread_length = 1e+06;
+};
+GlobalCtxSchedLog = {
+};
+GlobalLongMemLog = {
+};
+GlobalMemProfiler = {
+  enable = f;
+  log_at_commit = t;
+  log_dstream = t;
+  log_istream = t;
+  log_name = "memprof.gz";
+};
+Hacking = {
+  L1MSHRPartition = {
+    enable = f;
+    max_prefetch_producers = 12;
+  };
+  MutableMap = {
+  };
+  StaticAffin = {
+    force_sched = f;
+  };
+  StaticSched = {
+    allow_missing_apps = f;
+  };
+  consider_late_flush = f;
+  csched_deduct_nonrun = t;
+  flush_past_long_loads = f;
+  flush_past_long_stores = f;
+  inhibit_solo_flush = t;
+  inst_spill_fill = t;
+  inst_spill_fill_early = f;
+  long_mem_at_commit = t;
+  long_mem_cyc = 25;
+  min_swapin_commits = 1.;
+  min_swapin_cyc = 0.;
+  perfect_branch_pred = f;
+  perfect_tlbs = f;
+  print_appmgr_stats = t;
+  sched_app = "OldestApp";
+  sched_ctx = "FirstIdle";
+  spill_dirty_only = f;
+  spill_dtlb_missonly = f;
+  spill_dtlb_size = 0;
+  spill_ghr = f;
+  spill_retstack_size = 0;
+  swap = "IfProcFull";
+  swap_suppress_guess = f;
+  swapgate_deduct_nonrun = t;
+  swapgate_deduct_swapout = f;
+  thread_swapin_cyc = 20;
+  thread_swapout_cyc = 20;
+};
+ResourcePooling = {
+  enable = f;
+  limit_policy = "LIMIT75";
+  order_policy = "FIXED";
+  share_all = f;
+  share_fq = t;
+  share_fregs = t;
+  share_iq = t;
+  share_iregs = t;
+  share_lsq = t;
+  share_rob = t;
+};
+Syscall = {
+  ForceUniqueNames = {
+    "fort.11" = t;
+  };
+  report_resize_failures = t;
+  root_paths_at_cwd = t;
+  sanitize_host_device_info = t;
+  uniquify_to_subdir = t;
+};
+Thread = {
+  active_list_size = 512;
+  discard_static_noops = t;
+  reorder_buffer_size = 48;
+  retstack_entries = 12;
+};
+WorkQueue = {
+  Jobs = {
+    job_1 = {
+      start_time = 0.;
+      workload = "cactusADM_06";
+    };
+  };
+  enable = t;
+  exit_on_app_exit = t;
+  max_running_jobs = 1;
+  verbose_sched = t;
+};
+Workloads = {
+  GemsFDTD_06 = {
+    argv = {
+      _0 = "GemsFDTD_base.metallica";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdout = "ref.log";
+  };
+  ammp = {
+    argv = {
+      _0 = "ammp";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "ammp.in";
+    stdout = "ammp.out";
+  };
+  applu = {
+    argv = {
+      _0 = "applu";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "applu.in";
+    stdout = "applu.out";
+  };
+  apsi = {
+    argv = {
+      _0 = "apsi";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "apsi.in";
+    stdout = "apsi.out";
+  };
+  art_110 = {
+    argv = {
+      _0 = "art";
+      _1 = "-scanfile";
+      _10 = "110";
+      _11 = "-starty";
+      _12 = "200";
+      _13 = "-endx";
+      _14 = "160";
+      _15 = "-endy";
+      _16 = "240";
+      _17 = "-objects";
+      _18 = "10";
+      _2 = "c756hel.in";
+      _3 = "-trainfile1";
+      _4 = "a10.img";
+      _5 = "-trainfile2";
+      _6 = "hc.img";
+      _7 = "-stride";
+      _8 = "2";
+      _9 = "-startx";
+      size = 19;
+    };
+    ff_dist = 0.;
+    stdout = "ref.1.out";
+  };
+  art_470 = {
+    argv = {
+      _0 = "art";
+      _1 = "-scanfile";
+      _10 = "470";
+      _11 = "-starty";
+      _12 = "140";
+      _13 = "-endx";
+      _14 = "520";
+      _15 = "-endy";
+      _16 = "180";
+      _17 = "-objects";
+      _18 = "10";
+      _2 = "c756hel.in";
+      _3 = "-trainfile1";
+      _4 = "a10.img";
+      _5 = "-trainfile2";
+      _6 = "hc.img";
+      _7 = "-stride";
+      _8 = "2";
+      _9 = "-startx";
+      size = 19;
+    };
+    ff_dist = 0.;
+    stdout = "ref.2.out";
+  };
+  astar_06_rivers = {
+    argv = {
+      _0 = "astar_base.metallica";
+      _1 = "rivers.cfg";
+      size = 2;
+    };
+    ff_dist = 0.;
+    stdout = "rivers.out";
+  };
+  bisort_med = {
+    argv = {
+      _0 = "bisort";
+      _1 = "2500000";
+      size = 2;
+    };
+    ff_dist = 0.;
+  };
+  "bt.big" = {
+    argv = {
+      _0 = "bt.A";
+      size = 1;
+    };
+    ff_dist = 0.;
+  };
+  bwaves_06 = {
+    argv = {
+      _0 = "bwaves_base.metallica";
+      size = 1;
+    };
+    ff_dist = 0.;
+  };
+  bzip2_06_chicken = {
+    argv = {
+      _0 = "bzip2_base.metallica";
+      _1 = "chicken.jpg";
+      _2 = "30";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "chicken.jpg.out";
+  };
+  bzip2_graphic = {
+    argv = {
+      _0 = "bzip2";
+      _1 = "bzip2-graphic.in";
+      _2 = "58";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "bzip2-graphic.out";
+  };
+  bzip2_program = {
+    argv = {
+      _0 = "bzip2";
+      _1 = "bzip2-program.in";
+      _2 = "58";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "bzip2-program.out";
+  };
+  bzip2_source = {
+    argv = {
+      _0 = "bzip2";
+      _1 = "bzip2-source.in";
+      _2 = "58";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "bzip2-source.out";
+  };
+  cactusADM_06 = {
+    argv = {
+      _0 = "cactusADM_base.metallica";
+      _1 = "benchADM.par";
+      size = 2;
+    };
+    ff_dist = 1e+06;
+    stdout = "benchADM.out";
+  };
+  calculix_06 = {
+    argv = {
+      _0 = "calculix_base.metallica";
+      _1 = "-i";
+      _2 = "hyperviscoplastic";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "hyperviscoplastic.log";
+  };
+  "cg.big" = {
+    argv = {
+      _0 = "cg.B";
+      size = 1;
+    };
+    ff_dist = 0.;
+  };
+  crafty = {
+    argv = {
+      _0 = "crafty";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "crafty.in";
+    stdout = "crafty.out";
+  };
+  dealII_06 = {
+    argv = {
+      _0 = "dealII_base.metallica";
+      _1 = "23";
+      size = 2;
+    };
+    ff_dist = 0.;
+    stdout = "log";
+  };
+  em3d_med = {
+    argv = {
+      _0 = "em3d";
+      _1 = "200000";
+      _2 = "3";
+      _3 = "20";
+      size = 4;
+    };
+    ff_dist = 0.;
+  };
+  eon_cook = {
+    argv = {
+      _0 = "eon";
+      _1 = "chair.control.cook";
+      _2 = "chair.camera";
+      _3 = "chair.surfaces";
+      _4 = "chair.cook.ppm";
+      _5 = "ppm";
+      _6 = "pixels_out.cook";
+      size = 7;
+    };
+    ff_dist = 0.;
+    stdout = "cook_log.out";
+  };
+  eon_kajiya = {
+    argv = {
+      _0 = "eon";
+      _1 = "chair.control.kajiya";
+      _2 = "chair.camera";
+      _3 = "chair.surfaces";
+      _4 = "chair.kajiya.ppm";
+      _5 = "ppm";
+      _6 = "pixels_out.kajiya";
+      size = 7;
+    };
+    ff_dist = 0.;
+    stdout = "kajiya_log.out";
+  };
+  eon_rushmeier = {
+    argv = {
+      _0 = "eon";
+      _1 = "chair.control.rushmeier";
+      _2 = "chair.camera";
+      _3 = "chair.surfaces";
+      _4 = "chair.rushmeier.ppm";
+      _5 = "ppm";
+      _6 = "pixels_out.rushmeier";
+      size = 7;
+    };
+    ff_dist = 0.;
+    stdout = "rushmeier_log.out";
+  };
+  "ep.big" = {
+    argv = {
+      _0 = "ep.C";
+      size = 1;
+    };
+    ff_dist = 0.;
+  };
+  epic = {
+    argv = {
+      _0 = "epic";
+      _1 = "test_image.pgm";
+      size = 2;
+    };
+    ff_dist = 0.;
+  };
+  equake = {
+    argv = {
+      _0 = "equake";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "eqinp.in";
+    stdout = "eqinp.out";
+  };
+  facerec = {
+    argv = {
+      _0 = "facerec";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "ref-facerec.in";
+    stdout = "ref-facerec.out";
+  };
+  fma3d = {
+    argv = {
+      _0 = "fma3d";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "fma3d.in";
+    stdout = "fma3d.out";
+  };
+  "ft.big" = {
+    argv = {
+      _0 = "ft.A";
+      size = 1;
+    };
+    ff_dist = 0.;
+  };
+  g721d = {
+    argv = {
+      _0 = "decode";
+      _1 = "-4";
+      _2 = "-l";
+      _3 = "-f";
+      _4 = "clinton.g721";
+      size = 5;
+    };
+    ff_dist = 0.;
+  };
+  galgel = {
+    argv = {
+      _0 = "galgel";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "galgel.in";
+    stdout = "galgel.out";
+  };
+  gamess_06_cytosine = {
+    argv = {
+      _0 = "gamess_base.metallica";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "cytosine.2.config";
+    stdout = "cytosine.2.out";
+  };
+  gamess_06_triazolium = {
+    argv = {
+      _0 = "gamess_base.metallica";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "triazolium.config";
+    stdout = "triazolium.out";
+  };
+  gap = {
+    argv = {
+      _0 = "gap";
+      _1 = "-l";
+      _2 = "./";
+      _3 = "-q";
+      _4 = "-m";
+      _5 = "192M";
+      size = 6;
+    };
+    ff_dist = 0.;
+    stdin = "ref-gap.in";
+    stdout = "ref-gap.out";
+  };
+  gcc_06_typeck = {
+    argv = {
+      _0 = "gcc_base.metallica";
+      _1 = "c-typeck.i";
+      _2 = "-o";
+      _3 = "c-typeck.s";
+      size = 4;
+    };
+    ff_dist = 0.;
+    stdout = "c-typeck.out";
+  };
+  gcc_166 = {
+    argv = {
+      _0 = "cc1";
+      _1 = "166.i";
+      _2 = "-o";
+      _3 = "166.s";
+      size = 4;
+    };
+    ff_dist = 0.;
+    stdout = "166.out";
+  };
+  gcc_200 = {
+    argv = {
+      _0 = "cc1";
+      _1 = "200.i";
+      _2 = "-o";
+      _3 = "200.s";
+      size = 4;
+    };
+    ff_dist = 0.;
+    stdout = "200.out";
+  };
+  gcc_expr = {
+    argv = {
+      _0 = "cc1";
+      _1 = "expr.i";
+      _2 = "-o";
+      _3 = "expr.s";
+      size = 4;
+    };
+    ff_dist = 0.;
+    stdout = "expr.out";
+  };
+  gcc_integrate = {
+    argv = {
+      _0 = "cc1";
+      _1 = "integrate.i";
+      _2 = "-o";
+      _3 = "integrate.s";
+      size = 4;
+    };
+    ff_dist = 0.;
+    stdout = "integrate.out";
+  };
+  gcc_scilab = {
+    argv = {
+      _0 = "cc1";
+      _1 = "scilab.i";
+      _2 = "-o";
+      _3 = "scilab.s";
+      size = 4;
+    };
+    ff_dist = 0.;
+    stdout = "scilab.out";
+  };
+  gobmk_06_nngs = {
+    argv = {
+      _0 = "gobmk_base.metallica";
+      _1 = "--quiet";
+      _2 = "--mode";
+      _3 = "gtp";
+      size = 4;
+    };
+    ff_dist = 0.;
+    stdin = "nngs.tst";
+    stdout = "nngs.out";
+  };
+  gromacs_06 = {
+    argv = {
+      _0 = "gromacs_base.metallica";
+      _1 = "-silent";
+      _2 = "-deffnm";
+      _3 = "gromacs";
+      _4 = "-nice";
+      _5 = "0";
+      size = 6;
+    };
+    ff_dist = 0.;
+  };
+  gzip_graphic = {
+    argv = {
+      _0 = "gzip";
+      _1 = "gzip-graphic.in";
+      _2 = "60";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "gzip-graphic.out";
+  };
+  gzip_log = {
+    argv = {
+      _0 = "gzip";
+      _1 = "gzip-log.in";
+      _2 = "60";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "gzip-log.out";
+  };
+  gzip_program = {
+    argv = {
+      _0 = "gzip";
+      _1 = "gzip-program.in";
+      _2 = "60";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "gzip-program.out";
+  };
+  gzip_source = {
+    argv = {
+      _0 = "gzip";
+      _1 = "gzip-source.in";
+      _2 = "60";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "gzip-source.out";
+  };
+  h264ref_06_sss_encoder_main = {
+    argv = {
+      _0 = "h264ref_base.metallica";
+      _1 = "-d";
+      _2 = "sss_encoder_main.cfg";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "sss_main_encodelog.out";
+  };
+  health = {
+    argv = {
+      _0 = "health";
+      size = 1;
+    };
+    ff_dist = 0.;
+  };
+  hmmer_06_nph3 = {
+    argv = {
+      _0 = "hmmer_base.metallica";
+      _1 = "nph3.hmm";
+      _2 = "swiss41";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "nph3.out";
+  };
+  jpege = {
+    argv = {
+      _0 = "cjpeg";
+      _1 = "-dct";
+      _2 = "int";
+      _3 = "-progressive";
+      _4 = "-opt";
+      _5 = "-outfile";
+      _6 = "teste";
+      _7 = "monalisa.ppm";
+      size = 8;
+    };
+    ff_dist = 0.;
+  };
+  lbm_06 = {
+    argv = {
+      _0 = "lbm_base.metallica";
+      _1 = "3000";
+      _2 = "reference.dat";
+      _3 = "0";
+      _4 = "0";
+      _5 = "100_100_130_ldc.of";
+      size = 6;
+    };
+    ff_dist = 0.;
+    stdout = "lbm.out";
+  };
+  leslie3d_06 = {
+    argv = {
+      _0 = "leslie3d_base.metallica";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "leslie3d.in";
+    stdout = "leslie3d.stdout";
+  };
+  libquantum_06 = {
+    argv = {
+      _0 = "libquantum_base.metallica";
+      _1 = "1397";
+      _2 = "8";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "ref.out";
+  };
+  lucas = {
+    argv = {
+      _0 = "lucas";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "lucas2.in";
+    stdout = "lucas2.out";
+  };
+  mcf = {
+    argv = {
+      _0 = "mcf";
+      _1 = "inp-mcf.in";
+      size = 2;
+    };
+    ff_dist = 0.;
+    stdout = "inp-mcf.out";
+  };
+  mcf_06 = {
+    argv = {
+      _0 = "mcf_base.metallica";
+      _1 = "inp.in";
+      size = 2;
+    };
+    ff_dist = 0.;
+    stdout = "inp.out";
+  };
+  mesa = {
+    argv = {
+      _0 = "mesa";
+      _1 = "-frames";
+      _2 = "1000";
+      _3 = "-meshfile";
+      _4 = "mesa.in";
+      _5 = "-ppmfile";
+      _6 = "mesa.ppm";
+      size = 7;
+    };
+    ff_dist = 0.;
+  };
+  mesa_texgen = {
+    argv = {
+      _0 = "texgen";
+      _1 = "c";
+      size = 2;
+    };
+    ff_dist = 0.;
+  };
+  "mg.big" = {
+    argv = {
+      _0 = "mg.B";
+      size = 1;
+    };
+    ff_dist = 0.;
+  };
+  mgrid = {
+    argv = {
+      _0 = "mgrid";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "mgrid.in";
+    stdout = "mgrid.out";
+  };
+  milc_06 = {
+    argv = {
+      _0 = "milc_base.metallica";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "su3imp.in";
+    stdout = "su3imp.out";
+  };
+  mst = {
+    argv = {
+      _0 = "mst";
+      _1 = "2048";
+      size = 2;
+    };
+    ff_dist = 0.;
+  };
+  namd_06 = {
+    argv = {
+      _0 = "namd_base.metallica";
+      _1 = "--input";
+      _2 = "namd.input";
+      _3 = "--iterations";
+      _4 = "38";
+      _5 = "--output";
+      _6 = "namd.out";
+      size = 7;
+    };
+    ff_dist = 0.;
+    stdout = "namd.stdout";
+  };
+  omnetpp_06 = {
+    argv = {
+      _0 = "omnetpp_base.metallica";
+      _1 = "omnetpp.ini";
+      size = 2;
+    };
+    ff_dist = 0.;
+    stdout = "omnetpp.log";
+  };
+  parser = {
+    argv = {
+      _0 = "parser";
+      _1 = "2.1.dict";
+      _2 = "-batch";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdin = "ref-parser.in";
+    stdout = "ref-parser.out";
+  };
+  perim_big = {
+    argv = {
+      _0 = "perimeter";
+      _1 = "12";
+      size = 2;
+    };
+    ff_dist = 0.;
+  };
+  perlbench_06_checkspam = {
+    argv = {
+      _0 = "perlbench_base.metallica";
+      _1 = "-I./lib";
+      _10 = "1";
+      _11 = "1";
+      _2 = "checkspam.pl";
+      _3 = "2500";
+      _4 = "5";
+      _5 = "25";
+      _6 = "11";
+      _7 = "150";
+      _8 = "1";
+      _9 = "1";
+      size = 12;
+    };
+    ff_dist = 0.;
+    stdout = "checkspam.2500.5.25.11.150.1.1.1.1.out";
+  };
+  perlbmk_diffmail = {
+    argv = {
+      _0 = "perlbmk";
+      _1 = "-I./lib";
+      _2 = "diffmail.pl";
+      _3 = "2";
+      _4 = "550";
+      _5 = "15";
+      _6 = "24";
+      _7 = "23";
+      _8 = "100";
+      size = 9;
+    };
+    ff_dist = 0.;
+    stdout = "2.550.15.24.23.100.out";
+  };
+  perlbmk_makerand = {
+    argv = {
+      _0 = "perlbmk";
+      _1 = "-I.";
+      _2 = "-I./lib";
+      _3 = "makerand.pl";
+      size = 4;
+    };
+    ff_dist = 0.;
+    stdout = "makerand.out";
+  };
+  perlbmk_perfect = {
+    argv = {
+      _0 = "perlbmk";
+      _1 = "-I./lib";
+      _2 = "perfect.pl";
+      _3 = "b";
+      _4 = "3";
+      _5 = "m";
+      _6 = "4";
+      size = 7;
+    };
+    ff_dist = 0.;
+    stdout = "b.3.m.4.out";
+  };
+  perlbmk_splitmail535 = {
+    argv = {
+      _0 = "perlbmk";
+      _1 = "-I./lib";
+      _2 = "splitmail.pl";
+      _3 = "535";
+      _4 = "13";
+      _5 = "25";
+      _6 = "24";
+      _7 = "1091";
+      size = 8;
+    };
+    ff_dist = 0.;
+    stdout = "535.13.25.24.1091.out";
+  };
+  perlbmk_splitmail704 = {
+    argv = {
+      _0 = "perlbmk";
+      _1 = "-I./lib";
+      _2 = "splitmail.pl";
+      _3 = "704";
+      _4 = "12";
+      _5 = "26";
+      _6 = "16";
+      _7 = "836";
+      size = 8;
+    };
+    ff_dist = 0.;
+    stdout = "704.12.26.16.836.out";
+  };
+  perlbmk_splitmail850 = {
+    argv = {
+      _0 = "perlbmk";
+      _1 = "-I./lib";
+      _2 = "splitmail.pl";
+      _3 = "850";
+      _4 = "5";
+      _5 = "19";
+      _6 = "18";
+      _7 = "1500";
+      size = 8;
+    };
+    ff_dist = 0.;
+    stdout = "850.5.19.18.1500.out";
+  };
+  perlbmk_splitmail957 = {
+    argv = {
+      _0 = "perlbmk";
+      _1 = "-I./lib";
+      _2 = "splitmail.pl";
+      _3 = "957";
+      _4 = "12";
+      _5 = "23";
+      _6 = "26";
+      _7 = "1014";
+      size = 8;
+    };
+    ff_dist = 0.;
+    stdout = "957.12.23.26.1014.out";
+  };
+  povray_06 = {
+    argv = {
+      _0 = "povray_base.metallica";
+      _1 = "SPEC-benchmark-ref.ini";
+      size = 2;
+    };
+    ff_dist = 0.;
+    stdout = "SPEC-benchmark-ref.stdout";
+  };
+  sixtrack = {
+    argv = {
+      _0 = "sixtrack";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "inp-sixtrack.in";
+    stdout = "inp-sixtrack.out";
+  };
+  sjeng_06 = {
+    argv = {
+      _0 = "sjeng_base.metallica";
+      _1 = "ref.txt";
+      size = 2;
+    };
+    ff_dist = 0.;
+    stdout = "ref.out";
+  };
+  soplex_06_pds_50 = {
+    argv = {
+      _0 = "soplex_base.metallica";
+      _1 = "-s1";
+      _2 = "-e";
+      _3 = "-m45000";
+      _4 = "pds_50.mps";
+      size = 5;
+    };
+    ff_dist = 0.;
+    stdout = "pds-50.mps.out";
+  };
+  soplex_06_ref = {
+    argv = {
+      _0 = "soplex_base.metallica";
+      _1 = "-m3500";
+      _2 = "ref.mps";
+      size = 3;
+    };
+    ff_dist = 0.;
+    stdout = "ref.out";
+  };
+  "sp.big" = {
+    argv = {
+      _0 = "sp.B";
+      size = 1;
+    };
+    ff_dist = 0.;
+  };
+  sphinx3_06 = {
+    argv = {
+      _0 = "sphinx_livepretend_base.metallica";
+      _1 = "ctlfile";
+      _2 = ".";
+      _3 = "args.an4";
+      size = 4;
+    };
+    ff_dist = 0.;
+    stdout = "an4.log";
+  };
+  swim = {
+    argv = {
+      _0 = "swim";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdin = "swim.in";
+    stdout = "swim.out";
+  };
+  treeadd = {
+    argv = {
+      _0 = "treeadd";
+      size = 1;
+    };
+    ff_dist = 0.;
+  };
+  twolf = {
+    argv = {
+      _0 = "twolf";
+      _1 = "ref";
+      size = 2;
+    };
+    ff_dist = 0.;
+    stdout = "ref-twolf.out";
+  };
+  vortex_1 = {
+    argv = {
+      _0 = "vortex";
+      _1 = "lendian1.raw";
+      size = 2;
+    };
+    ff_dist = 0.;
+  };
+  vortex_2 = {
+    argv = {
+      _0 = "vortex";
+      _1 = "lendian2.raw";
+      size = 2;
+    };
+    ff_dist = 0.;
+  };
+  vortex_3 = {
+    argv = {
+      _0 = "vortex";
+      _1 = "lendian3.raw";
+      size = 2;
+    };
+    ff_dist = 0.;
+  };
+  vpr_place = {
+    argv = {
+      _0 = "vpr";
+      _1 = "net.in";
+      _10 = "0.005";
+      _11 = "-alpha_t";
+      _12 = "0.9412";
+      _13 = "-inner_num";
+      _14 = "2";
+      _2 = "arch.in";
+      _3 = "place.out";
+      _4 = "dum.out";
+      _5 = "-nodisp";
+      _6 = "-place_only";
+      _7 = "-init_t";
+      _8 = "5";
+      _9 = "-exit_t";
+      size = 15;
+    };
+    ff_dist = 0.;
+    stdout = "vpr_place.out";
+  };
+  vpr_route = {
+    argv = {
+      _0 = "vpr";
+      _1 = "net.in";
+      _10 = "2";
+      _11 = "-acc_fac";
+      _12 = "1";
+      _13 = "-first_iter_pres_fac";
+      _14 = "4";
+      _15 = "-initial_pres_fac";
+      _16 = "8";
+      _2 = "arch.in";
+      _3 = "place.in";
+      _4 = "route.out";
+      _5 = "-nodisp";
+      _6 = "-route_only";
+      _7 = "-route_chan_width";
+      _8 = "15";
+      _9 = "-pres_fac_mult";
+      size = 17;
+    };
+    ff_dist = 0.;
+    stdout = "vpr-route.out";
+  };
+  wupwise = {
+    argv = {
+      _0 = "wupwise";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdout = "wupwise.out";
+  };
+  zeusmp_06 = {
+    argv = {
+      _0 = "zeusmp_base.metallica";
+      size = 1;
+    };
+    ff_dist = 0.;
+    stdout = "zeusmp.stdout";
+  };
+};
+--------
+Contexts: 1, cores: 1
+  context 0 on core 0
+Printing Pooled Resources:
+  ROB  48 
+   IQ  32 
+   FQ  32 
+ IREG  32 
+ FREG  32 
+  LSQ  32 
+
+--Startup complete; beginning simulation.
+WorkQueue::sim_prestart_jobs: pre-starting jobs: 0
+App A0: (cactusADM_base.metallica benchADM.par)
+--Logging A0 stats every 10000 cyc to "/mnt/c/Users/hp/OneDrive/GMU_Notes/Sem4/611/Assignment3/Results/cactusADM_06_011.A0": cyc commits l3cache_hr mem_delay itlb_acc dtlb_acc icache_acc dcache_acc l2cache_acc l3cache_acc bpred_acc intalu_acc fpalu_acc ldst_acc iq_acc fq_acc ireg_acc freg_acc iren_acc fren_acc lsq_acc rob_acc iq_occ fq_occ ireg_occ freg_occ lsq_occ rob_occ
+--Fast-forwarding app A0 for 1000000 insts...
+--FF'd 1000000 insts in 0.04600/0.000/0.04800(95.83%) sec: 2.174e+07 inst/s
+WorkQueue: job 0 "WorkQueue/Jobs/job_1" started at time 0, initial apps [ 0 ]
+Printing Pooled Resources:
+  ROB  36 
+   IQ  24 
+   FQ  24 
+ IREG  24 
+ FREG  24 
+  LSQ  24 
+
+appmgr: A0 swap-in C0 T0 final_fill_commit at 40; swapin delay 40 (targfetch) 40 (fillcommit), migrate delay -1 (tf) 1 (fc)
+tick ReadExcl 214 0:20100380
+tick 484 0:20100380
+tick ReadExcl 539 0:201003c0
+tick ReadExcl 693 0:30001f00
+tick ReadExcl 704 0:30026240
+tick 809 0:201003c0
+tick ReadExcl 874 0:20100400
+tick 963 0:30001f00
+tick 974 0:30026240
+tick ReadExcl 1018 0:1ffef6c0
+tick ReadExcl 1030 0:20036800
+tick 1144 0:20100400
+tick ReadExcl 1189 0:20100d40
+tick 1288 0:1ffef6c0
+tick 1300 0:20036800
+tick ReadExcl 1334 0:20100980
+tick 1459 0:20100d40
+tick 1604 0:20100980
+tick ReadExcl 1652 0:201008c0
+tick 1922 0:201008c0
+tick ReadExcl 1969 0:20100900
+tick ReadExcl 1974 0:1ffef700
+tick 2239 0:20100900
+tick 2247 0:1ffef700
+tick ReadExcl 2294 0:300262c0
+tick ReadExcl 2452 0:200528c0
+tick 2564 0:300262c0
+tick 2722 0:200528c0
+tick ReadExcl 2766 0:20052900
+tick 3036 0:20052900
+tick ReadExcl 3085 0:1ffef900
+tick ReadExcl 3104 0:1ffef780
+tick ReadExcl 3114 0:20052940
+tick 3355 0:1ffef900
+tick 3374 0:1ffef780
+tick 3384 0:20052940
+tick ReadExcl 3453 0:20053980
+tick ReadExcl 3454 0:1ffef740
+tick 3723 0:20053980
+tick 3724 0:1ffef740
+tick ReadExcl 3775 0:1ffef7c0
+tick ReadExcl 3934 0:20050cc0
+tick 4045 0:1ffef7c0
+tick 4204 0:20050cc0
+tick ReadExcl 4251 0:20050d00
+tick ReadExcl 4413 0:20014e00
+tick 4521 0:20050d00
+tick ReadExcl 4587 0:20051500
+tick 4683 0:20014e00
+tick ReadExcl 4741 0:200303c0
+tick 4857 0:20051500
+tick ReadExcl 4924 0:300263c0
+tick ReadExcl 4960 0:20052300
+tick 5011 0:200303c0
+tick 5194 0:300263c0
+tick ReadExcl 5217 0:20012600
+tick ReadExcl 5218 0:20012540
+tick 5230 0:20052300
+tick ReadExcl 5285 0:20052340
+tick 5487 0:20012600
+tick 5488 0:20012540
+tick 5555 0:20052340
+tick ReadExcl 5619 0:200126c0
+tick ReadExcl 5623 0:20053700
+tick ReadExcl 5624 0:1ffef800
+tick 5889 0:200126c0
+tick 5893 0:20053700
+tick 5894 0:1ffef800
+tick ReadExcl 5936 0:20052500
+tick 6206 0:20052500
+tick ReadExcl 6267 0:20053740
+tick 6537 0:20053740
+tick ReadExcl 6585 0:20053880
+tick 6855 0:20053880
+tick ReadExcl 6911 0:200538c0
+tick 7181 0:200538c0
+tick ReadExcl 7229 0:20053940
+tick 7499 0:20053940
+tick ReadExcl 7617 0:20052280
+tick 7887 0:20052280
+tick ReadExcl 7931 0:200522c0
+tick 8201 0:200522c0
+tick ReadExcl 8246 0:20052540
+tick 8516 0:20052540
+tick ReadExcl 8564 0:20052600
+tick 8834 0:20052600
+tick ReadExcl 8901 0:20052640
+tick 9171 0:20052640
+tick ReadExcl 9216 0:20050540
+tick 9486 0:20050540
+tick ReadExcl 9530 0:20050580
+tick ReadExcl 9535 0:30026380
+tick 9800 0:20050580
+tick 9808 0:30026380
+tick ReadExcl 9852 0:20052680
+tick 10122 0:20052680
+tick ReadExcl 10187 0:200526c0
+tick ReadExcl 10344 0:3001b400
+tick 10457 0:200526c0
+tick ReadExcl 10522 0:20052700
+tick ReadExcl 10523 0:20052780
+tick 10614 0:3001b400
+tick 10792 0:20052700
+tick 10793 0:20052780
+tick ReadExcl 10907 0:200125c0
+tick 11177 0:200125c0
+tick ReadExcl 11224 0:20050fc0
+tick 11494 0:20050fc0
+tick ReadExcl 11545 0:20051000
+tick 11815 0:20051000
+tick ReadExcl 11862 0:20051040
+tick 12132 0:20051040
+tick ReadExcl 12195 0:20051100
+tick 12465 0:20051100
+tick ReadExcl 12516 0:20051340
+tick 12786 0:20051340
+tick ReadExcl 12836 0:20051380
+tick 13106 0:20051380
+tick ReadExcl 13175 0:200505c0
+tick 13445 0:200505c0
+tick ReadExcl 13722 0:200539c0
+tick 13992 0:200539c0
+tick ReadExcl 14041 0:20053a00
+tick 14311 0:20053a00
+tick ReadExcl 14359 0:20053a80
+tick 14629 0:20053a80
+tick ReadExcl 14673 0:20053ac0
+tick ReadExcl 14680 0:20030380
+tick 14943 0:20053ac0
+tick 14950 0:20030380
+tick ReadExcl 14989 0:201004c0
+tick 15259 0:201004c0
+tick ReadExcl 15314 0:20036740
+tick ReadExcl 15318 0:20100500
+tick 15584 0:20036740
+tick 15588 0:20100500
+tick ReadExcl 15661 0:20053b00
+tick ReadExcl 15789 0:30002c80
+tick 15931 0:20053b00
+tick 16059 0:30002c80
+tick ReadExcl 16105 0:20100200
+tick ReadExcl 16150 0:20056e40
+tick 16375 0:20100200
+tick 16420 0:20056e40
+tick ReadExcl 16422 0:20100240
+tick 16698 0:20100240
+tick ReadExcl 16758 0:20100280
+tick ReadExcl 16759 0:30002d00
+tick ReadExcl 16910 0:3000f040
+tick 17028 0:20100280
+tick 17029 0:30002d00
+tick ReadExcl 17077 0:30026280
+tick ReadExcl 17093 0:201002c0
+tick ReadExcl 17095 0:30002d40
+tick 17180 0:3000f040
+tick ReadExcl 17243 0:2000a280
+tick 17347 0:30026280
+tick 17363 0:201002c0
+tick 17365 0:30002d40
+tick ReadExcl 17418 0:30002e00
+tick ReadExcl 17424 0:3000f000
+tick ReadExcl 17437 0:20100300
+tick 17513 0:2000a280
+tick ReadExcl 17562 0:2000a1c0
+tick 17688 0:30002e00
+tick 17696 0:3000f000
+tick 17707 0:20100300
+tick ReadExcl 17734 0:30002080
+tick 17832 0:2000a1c0
+tick 18004 0:30002080
+tick ReadExcl 18067 0:20056e80
+tick 18337 0:20056e80
+tick ReadExcl 18386 0:1ffef940
+tick ReadExcl 18393 0:20056780
+tick 18656 0:1ffef940
+tick 18663 0:20056780
+tick ReadExcl 18720 0:1ffef840
+tick ReadExcl 18727 0:200567c0
+tick 18990 0:1ffef840
+tick 18997 0:200567c0
+tick ReadExcl 19205 0:200ff280
+tick 19475 0:200ff280
+tick ReadExcl 19528 0:200ff2c0
+tick 19798 0:200ff2c0
+tick ReadExcl 19857 0:200fedc0
+tick 20127 0:200fedc0
+tick ReadExcl 20174 0:200fee00
+tick 20444 0:200fee00
+tick ReadExcl 20504 0:200fee40
+tick 20774 0:200fee40
+tick ReadExcl 20818 0:200fee80
+tick 21088 0:200fee80
+tick ReadExcl 21137 0:3000f6c0
+tick ReadExcl 21143 0:200feec0
+tick 21407 0:3000f6c0
+tick 21507 0:200feec0
+tick ReadExcl 21566 0:200fef00
+tick ReadExcl 21568 0:30001940
+tick 21836 0:200fef00
+tick 21838 0:30001940
+tick ReadExcl 21892 0:200fef40
+tick ReadExcl 21896 0:20036880
+tick 22162 0:200fef40
+tick 22166 0:20036880
+tick ReadExcl 22215 0:200fef80
+tick ReadExcl 22216 0:200ff000
+tick ReadExcl 22225 0:30001e00
+tick 22485 0:200fef80
+tick 22486 0:200ff000
+tick 22495 0:30001e00
+tick ReadExcl 22541 0:3001ac80
+tick ReadExcl 22552 0:200ff040
+tick 22811 0:3001ac80
+tick 22822 0:200ff040
+tick ReadExcl 22857 0:3001adc0
+tick ReadExcl 22879 0:200ff100
+tick 23127 0:3001adc0
+tick 23149 0:200ff100
+tick ReadExcl 23219 0:200ff300
+tick 23489 0:200ff300
+tick ReadExcl 23539 0:200ff340
+tick ReadExcl 23566 0:20056800
+tick ReadExcl 23727 0:20103dc0
+tick 23809 0:200ff340
+tick 23836 0:20056800
+tick 23997 0:20103dc0
+tick ReadExcl 24048 0:20103e00
+tick 24318 0:20103e00
+tick ReadExcl 24535 0:20104000
+tick 24805 0:20104000
+tick ReadExcl 24859 0:20104080
+tick 25129 0:20104080
+tick ReadExcl 25196 0:201040c0
+tick 25466 0:201040c0
+tick ReadExcl 25515 0:300260c0
+tick ReadExcl 25520 0:20104140
+tick 25785 0:300260c0
+tick 25790 0:20104140
+tick ReadExcl 25851 0:20104180
+tick 26121 0:20104180
+tick ReadExcl 26186 0:30026100
+tick ReadExcl 26210 0:30026140
+tick ReadExcl 26234 0:30026180
+tick 26456 0:30026100
+tick 26480 0:30026140
+tick 26504 0:30026180
+tick ReadExcl 26507 0:201041c0
+tick 26777 0:201041c0
+tick ReadExcl 26858 0:1ffef880
+tick ReadExcl 26859 0:20056840
+tick 27128 0:1ffef880
+tick 27129 0:20056840
+tick ReadExcl 27185 0:20056880
+tick ReadExcl 27188 0:30026340
+tick 27455 0:20056880
+tick 27458 0:30026340
+tick ReadExcl 27499 0:200568c0
+tick 27769 0:200568c0
+tick ReadExcl 27818 0:20030400
+tick ReadExcl 27834 0:20056c00
+tick 28088 0:20030400
+tick ReadExcl 28134 0:200128c0
+tick 28188 0:20056c00
+tick ReadExcl 28232 0:20056c40
+tick 28404 0:200128c0
+tick ReadExcl 28451 0:20056b00
+tick 28502 0:20056c40
+tick 28721 0:20056b00
+tick ReadExcl 28783 0:20056b40
+tick 29053 0:20056b40
+tick ReadExcl 29101 0:20056b80
+tick 29371 0:20056b80
+tick ReadExcl 29425 0:20056bc0
+tick 29695 0:20056bc0
+tick ReadExcl 29785 0:20012880
+tick 30055 0:20012880
+tick ReadExcl 30258 0:20056900
+tick 30528 0:20056900
+tick ReadExcl 30877 0:20056940
+tick 31147 0:20056940
+tick ReadExcl 31209 0:20056980
+tick 31479 0:20056980
+tick ReadExcl 32678 0:200569c0
+tick 32948 0:200569c0
+tick ReadExcl 40626 0:3001acc0
+tick 40896 0:3001acc0
+tick ReadExcl 50922 0:3001b3c0
+tick 51192 0:3001b3c0
+tick ReadExcl 51285 0:30002580
+tick ReadExcl 51298 0:2000a200
+tick 51555 0:30002580
+tick 51568 0:2000a200
+tick ReadExcl 51625 0:3001b9c0
+tick ReadExcl 51626 0:20100340
+tick ReadExcl 51628 0:3001ba00
+tick 51895 0:3001b9c0
+tick 51896 0:20100340
+tick 51898 0:3001ba00
+tick ReadExcl 51989 0:30002700
+tick ReadExcl 52059 0:20056ec0
+tick 52259 0:30002700
+tick 52329 0:20056ec0
+tick ReadExcl 52387 0:1ffef8c0
+tick ReadExcl 52554 0:20065700
+tick 52657 0:1ffef8c0
+tick 52824 0:20065700
+tick ReadExcl 52874 0:20065740
+tick 53144 0:20065740
+tick ReadExcl 53195 0:20057240
+tick 53465 0:20057240
+tick ReadExcl 53515 0:20057280
+tick 53785 0:20057280
+tick ReadExcl 53843 0:20104e80
+tick 54113 0:20104e80
+tick ReadExcl 54167 0:20104ec0
+tick ReadExcl 54322 0:3002b180
+tick 54437 0:20104ec0
+tick ReadExcl 54509 0:200572c0
+tick 54592 0:3002b180
+tick 54779 0:200572c0
+tick ReadExcl 54844 0:20057300
+tick 55114 0:20057300
+tick ReadExcl 55179 0:20057340
+tick 55449 0:20057340
+tick ReadExcl 55579 0:30001980
+tick 55849 0:30001980
+tick ReadExcl 55899 0:30001e80
+tick 56169 0:30001e80
+tick ReadExcl 56215 0:3002af40
+tick ReadExcl 56216 0:3002af00
+tick 56485 0:3002af40
+tick 56486 0:3002af00
+tick ReadExcl 56531 0:3002af80
+tick 56801 0:3002af80
+tick ReadExcl 56850 0:20057380
+tick ReadExcl 56851 0:20057200
+tick 57120 0:20057380
+tick 57121 0:20057200
+tick ReadExcl 57194 0:20056f00
+tick 57464 0:20056f00
+tick ReadExcl 57529 0:20056f40
+tick 57799 0:20056f40
+tick ReadExcl 57870 0:20056f80
+tick 58140 0:20056f80
+tick ReadExcl 58212 0:20056fc0
+tick 58482 0:20056fc0
+tick ReadExcl 58546 0:20057000
+tick 58816 0:20057000
+tick ReadExcl 58867 0:20057140
+tick 59137 0:20057140
+tick ReadExcl 59188 0:20057180
+tick 59458 0:20057180
+tick ReadExcl 59518 0:20053c00
+tick 59788 0:20053c00
+tick ReadExcl 59838 0:1ffef500
+tick ReadExcl 59840 0:1ffef540
+tick ReadExcl 59849 0:1ffef680
+tick ReadExcl 59850 0:20053c40
+tick 60108 0:1ffef500
+tick 60110 0:1ffef540
+tick 60119 0:1ffef680
+tick 60120 0:20053c40
+tick ReadExcl 60180 0:1ffef600
+tick ReadExcl 60222 0:1ffef4c0
+tick 60450 0:1ffef600
+tick 60492 0:1ffef4c0
+tick ReadExcl 60613 0:20053c80
+tick 60883 0:20053c80
+tick ReadExcl 61082 0:3002b2c0
+tick ReadExcl 61141 0:20053cc0
+tick ReadExcl 61176 0:30004ec0
+tick 61352 0:3002b2c0
+tick 61411 0:20053cc0
+tick 61452 0:30004ec0
+tick ReadExcl 61526 0:3002b280
+tick 61796 0:3002b280
+tick ReadExcl 61957 0:30002000
+tick ReadExcl 61969 0:30002180
+tick ReadExcl 62008 0:200ff080
+tick 62227 0:30002000
+tick 62239 0:30002180
+tick 62278 0:200ff080
+tick ReadExcl 62293 0:3002b300
+tick ReadExcl 62342 0:3002b380
+tick ReadExcl 62348 0:200ff0c0
+tick ReadExcl 62353 0:3002b340
+tick 62563 0:3002b300
+tick 62612 0:3002b380
+tick 62618 0:200ff0c0
+tick 62623 0:3002b340
+tick ReadExcl 62948 0:20053d00
+tick 63218 0:20053d00
+tick ReadExcl 63437 0:3002b3c0
+tick ReadExcl 63511 0:1ffef5c0
+tick 63707 0:3002b3c0
+tick 63781 0:1ffef5c0
+tick ReadExcl 64074 0:200fefc0
+tick ReadExcl 64076 0:30002300
+tick 64344 0:200fefc0
+tick 64346 0:30002300
+tick ReadExcl 64411 0:30002480
+tick 64681 0:30002480
+tick ReadExcl 64727 0:3002b400
+tick ReadExcl 64731 0:3002b600
+tick ReadExcl 64732 0:3002b5c0
+tick ReadExcl 64734 0:3002b500
+tick 64997 0:3002b400
+tick 65002 0:3002b5c0
+tick 65004 0:3002b500
+tick 65005 0:3002b600
+tick ReadExcl 65050 0:3002b4c0
+tick ReadExcl 65066 0:3002b480
+tick ReadExcl 65080 0:3002b440
+tick ReadExcl 65229 0:0
+tick 65320 0:3002b4c0
+tick 65336 0:3002b480
+tick 65350 0:3002b440
+tick ReadExcl 65401 0:20053d40
+tick 65499 0:0
+tick 65671 0:20053d40
+tick ReadExcl 66145 0:20053d80
+tick 66415 0:20053d80
+tick ReadExcl 66494 0:20053dc0
+tick 66764 0:20053dc0
+tick ReadExcl 66815 0:20053f00
+tick 67085 0:20053f00
+tick ReadExcl 67158 0:20053f40
+tick ReadExcl 67319 0:20054040
+tick 67428 0:20053f40
+tick 67589 0:20054040
+tick ReadExcl 67645 0:20054080
+tick 67915 0:20054080
+tick ReadExcl 67980 0:200540c0
+tick 68250 0:200540c0
+tick ReadExcl 68310 0:1ffef640
+tick ReadExcl 68311 0:20054100
+tick 68580 0:1ffef640
+tick 68581 0:20054100
+tick ReadExcl 68646 0:20054140
+tick 68916 0:20054140
+tick ReadExcl 68980 0:20054180
+tick 69250 0:20054180
+tick ReadExcl 69303 0:1ffef580
+tick ReadExcl 69315 0:200541c0
+tick 69573 0:1ffef580
+tick 69585 0:200541c0
+tick ReadExcl 69650 0:20054200
+tick 69920 0:20054200
+tick ReadExcl 69974 0:20054a00
+tick 70244 0:20054a00
+tick ReadExcl 70294 0:20054a40
+tick 70564 0:20054a40
+tick ReadExcl 70613 0:20012840
+tick ReadExcl 70621 0:20055d00
+tick 70883 0:20012840
+tick 70891 0:20055d00
+tick ReadExcl 70930 0:20055680
+tick 71200 0:20055680
+tick ReadExcl 71260 0:200566c0
+tick 71530 0:200566c0
+tick ReadExcl 71582 0:200556c0
+tick 71852 0:200556c0
+tick ReadExcl 71903 0:20055740
+tick 72173 0:20055740
+tick ReadExcl 72239 0:20055700
+tick ReadExcl 72244 0:30000040
+tick 72509 0:20055700
+tick 72514 0:30000040
+tick ReadExcl 72578 0:20100780
+tick 72848 0:20100780
+tick ReadExcl 72903 0:200368c0
+tick ReadExcl 72909 0:201007c0
+tick 73173 0:200368c0
+tick 73179 0:201007c0
+tick ReadExcl 73247 0:20100800
+tick 73517 0:20100800
+tick ReadExcl 73567 0:20100840
+tick 73837 0:20100840
+tick ReadExcl 73902 0:20100880
+tick ReadExcl 73910 0:2000a180
+tick ReadExcl 73927 0:20100940
+tick 74172 0:20100880
+tick 74180 0:2000a180
+tick 74197 0:20100940
+tick ReadExcl 74345 0:30001f80
+tick ReadExcl 74413 0:20105d40
+tick 74615 0:30001f80
+tick ReadExcl 74661 0:3001ae00
+tick 74683 0:20105d40
+tick ReadExcl 74899 0:20106680
+tick 74931 0:3001ae00
+tick ReadExcl 74985 0:3001ae40
+tick 75169 0:20106680
+tick ReadExcl 75217 0:20106740
+tick 75255 0:3001ae40
+tick 75487 0:20106740
+tick ReadExcl 75550 0:20106780
+tick 75820 0:20106780
+tick ReadExcl 75880 0:20106a00
+tick 76150 0:20106a00
+tick ReadExcl 76206 0:20106c40
+tick 76476 0:20106c40
+tick ReadExcl 76524 0:20106cc0
+tick 76794 0:20106cc0
+tick ReadExcl 76838 0:20106d00
+tick 77108 0:20106d00
+tick ReadExcl 77178 0:20106d40
+tick 77448 0:20106d40
+tick ReadExcl 77499 0:20106a40
+tick 77769 0:20106a40
+tick ReadExcl 77814 0:20106ac0
+tick 78084 0:20106ac0
+tick ReadExcl 78129 0:20106b00
+tick 78399 0:20106b00
+tick ReadExcl 78443 0:20106b40
+tick 78713 0:20106b40
+tick ReadExcl 79031 0:20055780
+tick 79301 0:20055780
+tick ReadExcl 79366 0:200557c0
+tick 79636 0:200557c0
+tick ReadExcl 79701 0:20055800
+tick 79971 0:20055800
+tick ReadExcl 80036 0:20055840
+tick 80306 0:20055840
+tick ReadExcl 80389 0:20012800
+tick 80659 0:20012800
+tick ReadExcl 80706 0:20054d00
+tick 80976 0:20054d00
+tick ReadExcl 81029 0:20054d40
+tick 81299 0:20054d40
+tick ReadExcl 81347 0:200508c0
+tick 81617 0:200508c0
+tick ReadExcl 81661 0:20050900
+tick 81931 0:20050900
+tick ReadExcl 81991 0:20050a40
+tick 82261 0:20050a40
+tick ReadExcl 82319 0:20050940
+tick 82589 0:20050940
+tick ReadExcl 82654 0:200509c0
+tick 82924 0:200509c0
+tick ReadExcl 82982 0:20050840
+tick 83252 0:20050840
+tick ReadExcl 83305 0:20050880
+tick 83575 0:20050880
+tick ReadExcl 83645 0:20050700
+tick 83915 0:20050700
+tick ReadExcl 83965 0:1ffef480
+tick ReadExcl 83966 0:20050740
+tick 84235 0:1ffef480
+tick 84236 0:20050740
+tick ReadExcl 84307 0:20012400
+tick ReadExcl 84308 0:20050780
+tick ReadExcl 84319 0:1ffef440
+tick 84577 0:20012400
+tick 84578 0:20050780
+tick 84589 0:1ffef440
+tick ReadExcl 84655 0:20050980
+tick ReadExcl 84687 0:20054d80
+tick 84925 0:20050980
+tick 85025 0:20054d80
+tick ReadExcl 85081 0:20054dc0
+tick 85351 0:20054dc0
+tick ReadExcl 85416 0:20054e00
+tick 85686 0:20054e00
+tick ReadExcl 86066 0:300019c0
+tick 86336 0:300019c0
+tick ReadExcl 86386 0:30002100
+tick 86656 0:30002100
+tick ReadExcl 86702 0:3001aec0
+tick ReadExcl 86703 0:3001ae80
+tick 86972 0:3001aec0
+tick 86973 0:3001ae80
+tick ReadExcl 87203 0:20106c80
+tick 87473 0:20106c80
+tick ReadExcl 87610 0:3001af00
+tick 87880 0:3001af00
+tick ReadExcl 88193 0:20054a80
+tick 88463 0:20054a80
+tick ReadExcl 88511 0:20054ac0
+tick 88781 0:20054ac0
+tick ReadExcl 88825 0:20054b00
+tick 89095 0:20054b00
+tick ReadExcl 89157 0:200551c0
+tick 89427 0:200551c0
+tick ReadExcl 89473 0:200563c0
+tick 89743 0:200563c0
+tick ReadExcl 89802 0:20056400
+tick 90072 0:20056400
+tick ReadExcl 90143 0:20056440
+tick 90413 0:20056440
+tick ReadExcl 90478 0:20056480
+tick 90748 0:20056480
+tick ReadExcl 90831 0:200564c0
+tick 91101 0:200564c0
+tick ReadExcl 91146 0:20056500
+tick 91416 0:20056500
+tick ReadExcl 91469 0:20056540
+tick 91739 0:20056540
+tick ReadExcl 92222 0:20050a00
+tick 92492 0:20050a00
+tick ReadExcl 92641 0:20012440
+tick 92911 0:20012440
+tick ReadExcl 93285 0:20054c40
+tick 93555 0:20054c40
+tick ReadExcl 93607 0:20054c80
+tick 93877 0:20054c80
+tick ReadExcl 93944 0:20054cc0
+tick 94214 0:20054cc0
+tick ReadExcl 94391 0:20055880
+tick 94661 0:20055880
+tick ReadExcl 94759 0:200558c0
+tick 95029 0:200558c0
+tick ReadExcl 95101 0:20055900
+tick ReadExcl 95102 0:20055980
+tick 95371 0:20055900
+tick 95372 0:20055980
+tick ReadExcl 95418 0:20055ac0
+tick 95688 0:20055ac0
+tick ReadExcl 95747 0:20055b80
+tick 96017 0:20055b80
+tick ReadExcl 96260 0:3001af40
+tick 96530 0:3001af40
+tick ReadExcl 96645 0:20055b40
+tick 96915 0:20055b40
+tick ReadExcl 97353 0:30001a80
+tick 97623 0:30001a80
+tick ReadExcl 97673 0:30002280
+tick 97943 0:30002280
+tick ReadExcl 97989 0:3001af80
+tick 98259 0:3001af80
+tick ReadExcl 98474 0:3001afc0
+tick ReadExcl 98541 0:3001b000
+tick 98744 0:3001afc0
+tick 98811 0:3001b000
+tick ReadExcl 99131 0:3001b040
+tick 99401 0:3001b040
+tick ReadExcl 99857 0:20054e40
+tick 100127 0:20054e40
+tick ReadExcl 100189 0:20054e80
+tick 100459 0:20054e80
+tick ReadExcl 100537 0:20054ec0
+tick 100807 0:20054ec0
+tick ReadExcl 100860 0:20054f00
+tick 101130 0:20054f00
+tick ReadExcl 101192 0:20055200
+tick ReadExcl 101453 0:20054b40
+tick 101462 0:20055200
+tick 101723 0:20054b40
+tick ReadExcl 102235 0:3001b080
+tick 102505 0:3001b080
+tick ReadExcl 103276 0:2000a240
+tick 103546 0:2000a240
+tick ReadExcl 103597 0:30002400
+tick 103867 0:30002400
+tick ReadExcl 103913 0:3001b100
+tick ReadExcl 103914 0:3001b0c0
+tick 104183 0:3001b100
+tick 104184 0:3001b0c0
+tick ReadExcl 104287 0:20106b80
+tick 104557 0:20106b80
+tick ReadExcl 104622 0:20106bc0
+tick 104892 0:20106bc0
+tick ReadExcl 104957 0:20106c00
+tick 105227 0:20106c00
+tick ReadExcl 105331 0:3001b140
+tick ReadExcl 105423 0:3001b180
+tick 105601 0:3001b140
+tick ReadExcl 105650 0:3001b1c0
+tick 105693 0:3001b180
+tick ReadExcl 105742 0:3001b200
+tick 105920 0:3001b1c0
+tick ReadExcl 105969 0:3001b240
+tick 106012 0:3001b200
+tick 106239 0:3001b240
+tick ReadExcl 108166 0:3001b280
+tick 108436 0:3001b280
+tick ReadExcl 108704 0:20054f40
+tick 108974 0:20054f40
+tick ReadExcl 109028 0:20054f80
+tick 109298 0:20054f80
+tick ReadExcl 109986 0:3001b2c0
+tick 110256 0:3001b2c0
+tick ReadExcl 110649 0:20054240
+tick ReadExcl 110654 0:20054380
+tick 110919 0:20054240
+tick 110924 0:20054380
+tick ReadExcl 110989 0:200543c0
+tick ReadExcl 110990 0:20054540
+tick 111259 0:200543c0
+tick 111260 0:20054540
+tick ReadExcl 111306 0:200546c0
+tick 111576 0:200546c0
+tick ReadExcl 111623 0:20054700
+tick 111893 0:20054700
+tick ReadExcl 111963 0:20054740
+tick 112233 0:20054740
+tick ReadExcl 112306 0:20054780
+tick 112576 0:20054780
+tick ReadExcl 112637 0:200547c0
+tick 112907 0:200547c0
+tick ReadExcl 112958 0:20054840
+tick 113228 0:20054840
+tick ReadExcl 113281 0:20054880
+tick 113551 0:20054880
+tick ReadExcl 113628 0:20054800
+tick 113898 0:20054800
+tick ReadExcl 114181 0:200548c0
+tick 114451 0:200548c0
+tick ReadExcl 114501 0:20054900
+tick 114771 0:20054900
+tick ReadExcl 115076 0:20054940
+tick 115346 0:20054940
+tick ReadExcl 115758 0:20054980
+tick 116028 0:20054980
+tick ReadExcl 116369 0:200549c0
+tick 116639 0:200549c0
+tick ReadExcl 117262 0:20056680
+tick 117532 0:20056680
+tick ReadExcl 117608 0:200571c0
+tick 117878 0:200571c0
+tick ReadExcl 118013 0:1ffef980
+tick ReadExcl 118014 0:200573c0
+tick 118283 0:1ffef980
+tick 118284 0:200573c0
+tick ReadExcl 118648 0:20057400
+tick 118918 0:20057400
+tick ReadExcl 118985 0:20050a80
+tick 119255 0:20050a80
+tick ReadExcl 119471 0:20050ac0
+tick 119741 0:20050ac0
+tick ReadExcl 119834 0:30026300
+tick 120104 0:30026300
+tick ReadExcl 120157 0:30002200
+tick ReadExcl 120201 0:20050b00
+tick 120427 0:30002200
+tick 120471 0:20050b00
+tick ReadExcl 120533 0:20065780
+tick 120803 0:20065780
+tick ReadExcl 120859 0:20065e80
+tick 121129 0:20065e80
+tick ReadExcl 121177 0:20065ec0
+tick 121447 0:20065ec0
+tick ReadExcl 121526 0:20030fc0
+tick ReadExcl 121682 0:20108700
+tick 121796 0:20030fc0
+tick 121952 0:20108700
+tick ReadExcl 122005 0:20108740
+tick 122275 0:20108740
+tick ReadExcl 122335 0:20036bc0
+tick ReadExcl 122348 0:20108780
+tick 122605 0:20036bc0
+tick 122618 0:20108780
+tick ReadExcl 122650 0:3000ef80
+tick ReadExcl 122673 0:201087c0
+tick 122920 0:3000ef80
+tick 122943 0:201087c0
+tick ReadExcl 123021 0:20108800
+tick ReadExcl 123036 0:20108840
+tick ReadExcl 123125 0:2002fb00
+tick ReadExcl 123126 0:2002fb40
+tick 123291 0:20108800
+tick 123306 0:20108840
+tick ReadExcl 123353 0:20108880
+tick 123395 0:2002fb00
+tick 123396 0:2002fb40
+tick ReadExcl 123452 0:2000abc0
+tick 123623 0:20108880
+tick ReadExcl 123674 0:20065f00
+tick 123722 0:2000abc0
+tick 123944 0:20065f00
+tick ReadExcl 124015 0:20065f40
+tick 124285 0:20065f40
+tick ReadExcl 124339 0:20065f80
+tick 124609 0:20065f80
+tick ReadExcl 124667 0:20065fc0
+tick 124937 0:20065fc0
+tick ReadExcl 124996 0:20105800
+tick 125266 0:20105800
+tick ReadExcl 125310 0:20105840
+tick 125580 0:20105840
+tick ReadExcl 125801 0:20118440
+tick 126071 0:20118440
+tick ReadExcl 126120 0:20037a00
+tick ReadExcl 126127 0:20118480
+tick 126390 0:20037a00
+tick 126397 0:20118480
+tick ReadExcl 126452 0:201184c0
+tick ReadExcl 126462 0:20105880
+tick 126722 0:201184c0
+tick 126732 0:20105880
+tick ReadExcl 126953 0:20066000
+tick 127223 0:20066000
+tick ReadExcl 127273 0:20066040
+tick 127543 0:20066040
+tick ReadExcl 127753 0:20079b80
+tick 128023 0:20079b80
+tick ReadExcl 128075 0:3002afc0
+tick ReadExcl 128082 0:20079d40
+tick 128345 0:3002afc0
+tick 128352 0:20079d40
+tick ReadExcl 128401 0:1ffef9c0
+tick ReadExcl 128402 0:20079d80
+tick ReadExcl 128550 0:30013940
+tick 128671 0:1ffef9c0
+tick 128672 0:20079d80
+tick ReadExcl 128728 0:3002b200
+tick 128820 0:30013940
+tick ReadExcl 128886 0:2007a400
+tick 128998 0:3002b200
+tick 129156 0:2007a400
+tick ReadExcl 129208 0:1ffefa00
+tick ReadExcl 129221 0:2007a440
+tick ReadExcl 129386 0:fffffffffffb7b80
+tick 129478 0:1ffefa00
+tick 129491 0:2007a440
+tick 129656 0:fffffffffffb7b80
+tick ReadExcl 129684 0:2008d800
+tick 129954 0:2008d800
+tick ReadExcl 130007 0:2008d840
+tick ReadExcl 130009 0:1ffefa40
+tick 130277 0:2008d840
+tick 130285 0:1ffefa40
+tick ReadExcl 130333 0:1ffefa80
+tick ReadExcl 130342 0:2008d880
+tick 130603 0:1ffefa80
+tick 130612 0:2008d880
+tick ReadExcl 130666 0:2007a000
+tick 130936 0:2007a000
+tick ReadExcl 130980 0:2007a040
+tick 131250 0:2007a040
+tick ReadExcl 131315 0:2007a080
+tick 131585 0:2007a080
+tick ReadExcl 131630 0:20078e00
+tick 131900 0:20078e00
+tick ReadExcl 131953 0:20078e40
+tick ReadExcl 132114 0:20082d80
+tick 132223 0:20078e40
+tick 132384 0:20082d80
+tick ReadExcl 132431 0:20082dc0
+tick 132701 0:20082dc0
+tick ReadExcl 132766 0:20082e00
+tick ReadExcl 132919 0:2001e000
+tick ReadExcl 132925 0:20019480
+tick ReadExcl 132931 0:20032700
+tick 133036 0:20082e00
+tick ReadExcl 133094 0:20082e40
+tick 133189 0:2001e000
+tick 133195 0:20019480
+tick 133201 0:20032700
+tick ReadExcl 133267 0:2000a840
+tick 133364 0:20082e40
+tick ReadExcl 133414 0:2000a800
+tick ReadExcl 133417 0:20082ec0
+tick 133537 0:2000a840
+tick 133684 0:2000a800
+tick 133687 0:20082ec0
+tick ReadExcl 133874 0:20078e80
+tick 134144 0:20078e80
+tick ReadExcl 134218 0:200194c0
+tick ReadExcl 134266 0:20082e80
+tick 134488 0:200194c0
+tick 134536 0:20082e80
+tick ReadExcl 135090 0:20078ec0
+tick 135360 0:20078ec0
+tick ReadExcl 135418 0:20031ec0
+tick ReadExcl 135430 0:20082f00
+tick 135688 0:20031ec0
+tick 135700 0:20082f00
+tick ReadExcl 135733 0:3000f440
+tick ReadExcl 135774 0:2001e7c0
+tick 136003 0:3000f440
+tick 136044 0:2001e7c0
+tick ReadExcl 136114 0:2000a8c0
+tick ReadExcl 136149 0:20082f40
+tick ReadExcl 136209 0:3001dec0
+tick 136384 0:2000a8c0
+tick 136419 0:20082f40
+tick 136479 0:3001dec0
+tick ReadExcl 136524 0:3001df00
+tick 136794 0:3001df00
+tick ReadExcl 137026 0:2000a7c0
+tick 137296 0:2000a7c0
+tick ReadExcl 137561 0:30028040
+tick 137831 0:30028040
+tick ReadExcl 137876 0:30028000
+tick 138146 0:30028000
+tick ReadExcl 138434 0:300282c0
+tick 138704 0:300282c0
+tick ReadExcl 138749 0:30028280
+tick 139019 0:30028280
+tick ReadExcl 139188 0:300284c0
+tick 139458 0:300284c0
+tick ReadExcl 139503 0:30028500
+tick 139773 0:30028500
+tick ReadExcl 139942 0:30028680
+tick 140212 0:30028680
+tick ReadExcl 140257 0:300286c0
+tick 140527 0:300286c0
+tick ReadExcl 140696 0:300287c0
+tick 140966 0:300287c0
+tick ReadExcl 141011 0:30028780
+tick 141281 0:30028780
+tick ReadExcl 141450 0:30028a40
+tick 141720 0:30028a40
+tick ReadExcl 141765 0:30028a80
+tick 142035 0:30028a80
+tick ReadExcl 142204 0:30028c80
+tick 142474 0:30028c80
+tick ReadExcl 142519 0:30028cc0
+tick 142789 0:30028cc0
+tick ReadExcl 142958 0:30028e00
+tick 143228 0:30028e00
+tick ReadExcl 143273 0:30028e40
+tick 143543 0:30028e40
+tick ReadExcl 143712 0:30029040
+tick 143982 0:30029040
+tick ReadExcl 144027 0:30029080
+tick 144297 0:30029080
+tick ReadExcl 144466 0:30028f40
+tick 144736 0:30028f40
+tick ReadExcl 144781 0:30028f00
+tick 145051 0:30028f00
+tick ReadExcl 145220 0:30029340
+tick 145490 0:30029340
+tick ReadExcl 145535 0:30029300
+tick 145805 0:30029300
+tick ReadExcl 145974 0:30029500
+tick 146244 0:30029500
+tick ReadExcl 146289 0:300294c0
+tick 146559 0:300294c0
+tick ReadExcl 146728 0:30029700
+tick 146998 0:30029700
+tick ReadExcl 147043 0:300296c0
+tick 147313 0:300296c0
+tick ReadExcl 147482 0:300298c0
+tick 147752 0:300298c0
+tick ReadExcl 147797 0:30029880
+tick 148067 0:30029880
+tick ReadExcl 148236 0:30029200
+tick 148506 0:30029200
+tick ReadExcl 148551 0:300297c0
+tick 148821 0:300297c0
+tick ReadExcl 148990 0:30029b80
+tick 149260 0:30029b80
+tick ReadExcl 149305 0:30029bc0
+tick 149575 0:30029bc0
+tick ReadExcl 149744 0:30029dc0
+tick 150014 0:30029dc0
+tick ReadExcl 150059 0:30029e00
+tick 150329 0:30029e00
+tick ReadExcl 150498 0:30029f40
+tick 150768 0:30029f40
+tick ReadExcl 150813 0:30029f80
+tick 151083 0:30029f80
+tick ReadExcl 151252 0:3002a140
+tick 151522 0:3002a140
+tick ReadExcl 151567 0:3002a180
+tick 151837 0:3002a180
+tick ReadExcl 152006 0:3002a340
+tick 152276 0:3002a340
+tick ReadExcl 152321 0:3002a300
+tick 152591 0:3002a300
+tick ReadExcl 152760 0:3002a4c0
+tick 153030 0:3002a4c0
+tick ReadExcl 153075 0:3002a500
+tick 153345 0:3002a500
+tick ReadExcl 153514 0:3002a680
+tick 153784 0:3002a680
+tick ReadExcl 153829 0:3002a6c0
+tick 154099 0:3002a6c0
+tick ReadExcl 154268 0:3002a9c0
+tick 154538 0:3002a9c0
+tick ReadExcl 154583 0:3002a980
+tick 154853 0:3002a980
+tick ReadExcl 155022 0:3002ab00
+tick 155292 0:3002ab00
+tick ReadExcl 155337 0:3002aac0
+tick 155607 0:3002aac0
+tick ReadExcl 155776 0:3002ad40
+tick 156046 0:3002ad40
+tick ReadExcl 156091 0:3002ad00
+tick 156361 0:3002ad00
+tick ReadExcl 156530 0:3002ae80
+tick 156800 0:3002ae80
+tick ReadExcl 156845 0:3002ae40
+tick 157115 0:3002ae40
+tick ReadExcl 157284 0:3002b0c0
+tick 157554 0:3002b0c0
+tick ReadExcl 157599 0:3002b080
+tick 157869 0:3002b080
+tick ReadExcl 158038 0:3002b1c0
+tick 158308 0:3002b1c0
+tick ReadExcl 158527 0:2000a880
+tick 158797 0:2000a880
+tick ReadExcl 159280 0:20078f80
+tick 159550 0:20078f80
+tick ReadExcl 159611 0:30013840
+tick ReadExcl 159625 0:20031f00
+tick 159881 0:30013840
+tick 159895 0:20031f00
+tick ReadExcl 160003 0:30001d00
+tick 160273 0:30001d00
+tick ReadExcl 160319 0:3002ac00
+tick ReadExcl 160343 0:2007a0c0
+tick 160589 0:3002ac00
+tick 160613 0:2007a0c0
+tick ReadExcl 160867 0:20105c00
+tick ReadExcl 160915 0:201117c0
+tick 161137 0:20105c00
+tick 161185 0:201117c0
+tick ReadExcl 161196 0:20105c40
+tick ReadExcl 161370 0:2001df80
+tick 161466 0:20105c40
+tick ReadExcl 161518 0:20036a80
+tick 161640 0:2001df80
+tick 161788 0:20036a80
+tick ReadExcl 162207 0:20106f00
+tick ReadExcl 162328 0:20105c80
+tick 162477 0:20106f00
+tick 162598 0:20105c80
+tick ReadExcl 162652 0:2007a100
+tick 162922 0:2007a100
+tick ReadExcl 163350 0:201067c0
+tick 163620 0:201067c0
+tick ReadExcl 163682 0:20106800
+tick 163952 0:20106800
+tick ReadExcl 164010 0:20106840
+tick 164280 0:20106840
+tick ReadExcl 164425 0:2001e800
+tick 164695 0:2001e800
+tick ReadExcl 165109 0:20106e80
+tick 165379 0:20106e80
+tick ReadExcl 165426 0:20106ec0
+tick 165696 0:20106ec0
+tick ReadExcl 165828 0:2007a140
+tick 166098 0:2007a140
+tick ReadExcl 167094 0:2001e080
+tick ReadExcl 167100 0:20019940
+tick 167364 0:2001e080
+tick 167370 0:20019940
+tick ReadExcl 167886 0:2007a180
+tick ReadExcl 167887 0:2007a200
+tick 168156 0:2007a180
+tick 168157 0:2007a200
+tick ReadExcl 168205 0:2007a240
+tick 168475 0:2007a240
+tick ReadExcl 168540 0:2007a280
+tick ReadExcl 168545 0:300138c0
+tick 168810 0:2007a280
+tick 168815 0:300138c0
+tick ReadExcl 175625 0:20083040
+tick ReadExcl 175800 0:2007a2c0
+tick 175895 0:20083040
+tick 176070 0:2007a2c0
+tick ReadExcl 176345 0:2007a300
+tick 176615 0:2007a300
+tick ReadExcl 176686 0:2007a340
+tick 176956 0:2007a340
+tick ReadExcl 177001 0:20083080
+tick 177271 0:20083080
+tick ReadExcl 177333 0:200830c0
+tick ReadExcl 177335 0:20083140
+tick 177603 0:200830c0
+tick 177605 0:20083140
+tick ReadExcl 177649 0:20083180
+tick 177919 0:20083180
+tick ReadExcl 178223 0:200831c0
+tick 178493 0:200831c0
+tick ReadExcl 184785 0:1ffef400
+tick 185055 0:1ffef400
+tick ReadExcl 185242 0:20083100
+tick 185512 0:20083100
+tick ReadExcl 185768 0:20105100
+tick 186038 0:20105100
+tick ReadExcl 186085 0:20105140
+tick 186355 0:20105140
+tick ReadExcl 186431 0:20105180
+tick 186701 0:20105180
+tick ReadExcl 187388 0:20083200
+tick 187658 0:20083200
+tick ReadExcl 187738 0:2007a380
+tick 188008 0:2007a380
+tick ReadExcl 188070 0:2007a3c0
+tick 188340 0:2007a3c0
+tick ReadExcl 188395 0:200795c0
+tick 188665 0:200795c0
+tick ReadExcl 188724 0:20079600
+tick 188994 0:20079600
+tick ReadExcl 189765 0:20079640
+tick 190035 0:20079640
+tick ReadExcl 190259 0:2001e840
+tick ReadExcl 190307 0:2001e880
+tick 190529 0:2001e840
+tick 190577 0:2001e880
+tick ReadExcl 191022 0:20079680
+tick ReadExcl 191056 0:20079700
+tick 191292 0:20079680
+tick 191326 0:20079700
+tick ReadExcl 191377 0:200796c0
+tick ReadExcl 191387 0:20079740
+tick 191647 0:200796c0
+tick 191657 0:20079740
+tick ReadExcl 193794 0:20079780
+tick 194064 0:20079780
+tick ReadExcl 194113 0:20031f40
+tick ReadExcl 194281 0:20074440
+tick 194383 0:20031f40
+tick ReadExcl 194429 0:20019840
+tick 194551 0:20074440
+tick ReadExcl 194603 0:20031c40
+tick ReadExcl 194660 0:20074480
+tick 194699 0:20019840
+tick 194873 0:20031c40
+tick ReadExcl 194918 0:3000f400
+tick 194930 0:20074480
+tick ReadExcl 194987 0:200797c0
+tick 195188 0:3000f400
+tick ReadExcl 195241 0:3001c1c0
+tick 195257 0:200797c0
+tick 195511 0:3001c1c0
+tick ReadExcl 195556 0:3001c180
+tick 195826 0:3001c180
+tick ReadExcl 195973 0:3001c5c0
+tick 196243 0:3001c5c0
+tick ReadExcl 196288 0:3001c600
+tick 196558 0:3001c600
+tick ReadExcl 196710 0:3001c7c0
+tick 196980 0:3001c7c0
+tick ReadExcl 197025 0:3001c800
+tick 197295 0:3001c800
+tick ReadExcl 197431 0:3001c9c0
+tick 197701 0:3001c9c0
+tick ReadExcl 197746 0:3001c980
+tick 198016 0:3001c980
+tick ReadExcl 198067 0:3001cb80
+tick 198337 0:3001cb80
+tick ReadExcl 198382 0:3001cbc0
+tick 198652 0:3001cbc0
+tick ReadExcl 198703 0:3001cdc0
+tick 198973 0:3001cdc0
+tick ReadExcl 199018 0:3001cd80
+tick 199288 0:3001cd80
+tick ReadExcl 199339 0:3001cfc0
+tick 199609 0:3001cfc0
+tick ReadExcl 199654 0:3001d000
+tick 199924 0:3001d000
+tick ReadExcl 200442 0:3001cf80
+tick ReadExcl 200457 0:20066180
+tick 200712 0:3001cf80
+tick 200727 0:20066180
+tick ReadExcl 200771 0:200661c0
+tick 201041 0:200661c0
+tick ReadExcl 201092 0:20066280
+tick 201362 0:20066280
+tick ReadExcl 201407 0:20075700
+tick 201677 0:20075700
+tick ReadExcl 201727 0:20075740
+tick 201997 0:20075740
+tick ReadExcl 202049 0:20031d00
+tick ReadExcl 202060 0:20075780
+tick 202319 0:20031d00
+tick 202330 0:20075780
+tick ReadExcl 202381 0:200757c0
+tick 202651 0:200757c0
+tick ReadExcl 203041 0:2000a700
+tick ReadExcl 203066 0:20075800
+tick 203311 0:2000a700
+tick 203336 0:20075800
+tick ReadExcl 203744 0:2000a780
+tick 204014 0:2000a780
+tick ReadExcl 204142 0:20079800
+tick 204412 0:20079800
+tick ReadExcl 206911 0:200659c0
+tick 207181 0:200659c0
+tick ReadExcl 207234 0:20065a00
+tick 207504 0:20065a00
+tick ReadExcl 207618 0:20030f80
+tick 207888 0:20030f80
+tick ReadExcl 207941 0:200fe740
+tick ReadExcl 208115 0:20065a40
+tick 208211 0:200fe740
+tick 208385 0:20065a40
+tick ReadExcl 208475 0:201051c0
+tick 208745 0:201051c0
+tick ReadExcl 208809 0:20105200
+tick 209079 0:20105200
+tick ReadExcl 209323 0:2008d8c0
+tick ReadExcl 209457 0:200b7dc0
+tick 209593 0:2008d8c0
+tick 209727 0:200b7dc0
+tick ReadExcl 218186 0:ffffffffffffffc0
+tick 218456 0:ffffffffffffffc0
+tick ReadExcl 219279 0:2001e8c0
+tick 219549 0:2001e8c0
+tick ReadExcl 219857 0:3002b580
+tick ReadExcl 219866 0:3002b540
+tick 220127 0:3002b580
+tick 220136 0:3002b540
+tick ReadExcl 220464 0:2001e180
+tick ReadExcl 220488 0:2001e1c0
+tick 220734 0:2001e180
+tick 220758 0:2001e1c0
+tick ReadExcl 221088 0:201066c0
+tick 221358 0:201066c0
+tick ReadExcl 222172 0:2001e140
+tick 222442 0:2001e140
+tick ReadExcl 238061 0:1ffef3c0
+tick 238331 0:1ffef3c0
+tick ReadExcl 240159 0:3002b700
+tick ReadExcl 240166 0:3002b6c0
+tick ReadExcl 240184 0:3002b680
+tick ReadExcl 240193 0:3002b640
+tick 240429 0:3002b700
+tick 240436 0:3002b6c0
+tick 240454 0:3002b680
+tick 240463 0:3002b640
+tick ReadExcl 241417 0:2001e640
+tick 241687 0:2001e640
+tick ReadExcl 242109 0:20106a80
+tick 242379 0:20106a80
+tick ReadExcl 242652 0:20079880
+tick 242922 0:20079880
+tick ReadExcl 242966 0:200798c0
+tick 243236 0:200798c0
+tick ReadExcl 245069 0:20079900
+tick 245339 0:20079900
+tick ReadExcl 245387 0:200656c0
+tick 245657 0:200656c0
+tick ReadExcl 245732 0:20056c80
+tick 246002 0:20056c80
+tick ReadExcl 246058 0:20056cc0
+tick 246328 0:20056cc0
+tick ReadExcl 246392 0:20056d00
+tick ReadExcl 246509 0:30001a40
+tick 246662 0:20056d00
+tick 246779 0:30001a40
+tick ReadExcl 246829 0:30002380
+tick ReadExcl 246933 0:20056dc0
+tick 247099 0:30002380
+tick 247203 0:20056dc0
+tick ReadExcl 247253 0:20056e00
+tick 247523 0:20056e00
+tick ReadExcl 247679 0:20050b40
+tick 247949 0:20050b40
+tick ReadExcl 248320 0:20050b80
+tick 248590 0:20050b80
+tick ReadExcl 248641 0:20050c00
+tick ReadExcl 248658 0:3000f180
+tick 248911 0:20050c00
+tick 248928 0:3000f180
+tick ReadExcl 248959 0:20050c40
+tick 249229 0:20050c40
+tick ReadExcl 249492 0:20050c80
+tick 249762 0:20050c80
+tick ReadExcl 249922 0:20012580
+tick 250192 0:20012580
+tick ReadExcl 250353 0:20051080
+tick ReadExcl 250377 0:200511c0
+tick 250623 0:20051080
+tick 250647 0:200511c0
+tick ReadExcl 250711 0:20051200
+tick 250981 0:20051200
+tick ReadExcl 251037 0:20051240
+tick 251307 0:20051240
+tick ReadExcl 251359 0:20051280
+tick 251629 0:20051280
+tick ReadExcl 251679 0:200512c0
+tick 251949 0:200512c0
+tick ReadExcl 252346 0:30026080
+tick 252616 0:30026080
+tick ReadExcl 253448 0:30026400
+tick 253718 0:30026400
+tick ReadExcl 253958 0:20056a00
+tick 254228 0:20056a00
+tick ReadExcl 254275 0:20056a40
+tick 254545 0:20056a40
+tick ReadExcl 256923 0:20056a80
+tick 257193 0:20056a80
+tick ReadExcl 258447 0:20053ec0
+tick 258717 0:20053ec0
+tick ReadExcl 259341 0:20054b80
+tick 259611 0:20054b80
+tick ReadExcl 261571 0:20079940
+tick ReadExcl 261670 0:2008d900
+tick 261841 0:20079940
+tick 261940 0:2008d900
+tick ReadExcl 262005 0:2008d940
+tick 262275 0:2008d940
+tick ReadExcl 271892 0:2001e900
+tick 272162 0:2001e900
+tick ReadExcl 272446 0:3002b780
+tick ReadExcl 272448 0:3002b740
+tick 272716 0:3002b780
+tick 272718 0:3002b740
+tick ReadExcl 273400 0:20106880
+tick 273670 0:20106880
+tick ReadExcl 273719 0:201068c0
+tick 273989 0:201068c0
+tick ReadExcl 274036 0:20106900
+tick 274306 0:20106900
+tick ReadExcl 283307 0:3002b7c0
+tick 283577 0:3002b7c0
+tick ReadExcl 290785 0:1ffef380
+tick 291055 0:1ffef380
+tick ReadExcl 292687 0:30002600
+tick 292957 0:30002600
+tick ReadExcl 293004 0:3002b800
+tick ReadExcl 293008 0:3002bc00
+tick ReadExcl 293009 0:3002bbc0
+tick ReadExcl 293011 0:3002ba00
+tick 293274 0:3002b800
+tick 293279 0:3002bbc0
+tick 293290 0:3002ba00
+tick ReadExcl 293327 0:3002b9c0
+tick ReadExcl 293343 0:3002b900
+tick ReadExcl 293357 0:3002b8c0
+tick 293374 0:3002bc00
+tick ReadExcl 293427 0:3002b880
+tick ReadExcl 293441 0:3002b840
+tick 293597 0:3002b9c0
+tick 293613 0:3002b900
+tick 293627 0:3002b8c0
+tick 293697 0:3002b880
+tick 293711 0:3002b840
+tick ReadExcl 294376 0:2001dfc0
+tick 294646 0:2001dfc0
+tick ReadExcl 294874 0:2001e940
+tick 295144 0:2001e940
+tick ReadExcl 298053 0:30026480
+tick ReadExcl 298060 0:30026440
+tick ReadExcl 298105 0:300265c0
+tick ReadExcl 298114 0:30026580
+tick 298323 0:30026480
+tick 298330 0:30026440
+tick 298375 0:300265c0
+tick 298384 0:30026580
+tick ReadExcl 299425 0:20012640
+tick 299695 0:20012640
+tick ReadExcl 299745 0:20050d40
+tick 300015 0:20050d40
+tick ReadExcl 300066 0:20050e40
+tick 300336 0:20050e40
+tick ReadExcl 300502 0:20052380
+tick 300772 0:20052380
+tick ReadExcl 300823 0:200523c0
+tick 301093 0:200523c0
+tick ReadExcl 301155 0:20052400
+tick 301425 0:20052400
+tick ReadExcl 301487 0:20052440
+tick 301757 0:20052440
+tick ReadExcl 301805 0:200524c0
+tick 302075 0:200524c0
+tick ReadExcl 302478 0:20051540
+tick ReadExcl 302479 0:200515c0
+tick 302748 0:20051540
+tick 302749 0:200515c0
+tick ReadExcl 302797 0:20051600
+tick 303067 0:20051600
+tick ReadExcl 303118 0:20051680
+tick ReadExcl 303142 0:20051580
+tick 303388 0:20051680
+tick 303412 0:20051580
+tick ReadExcl 304415 0:200516c0
+tick 304685 0:200516c0
+tick ReadExcl 304757 0:20051700
+tick 305027 0:20051700
+tick ReadExcl 305075 0:20051780
+tick 305345 0:20051780
+tick ReadExcl 305398 0:200517c0
+tick 305668 0:200517c0
+tick ReadExcl 305733 0:20051800
+tick 306003 0:20051800
+tick ReadExcl 306061 0:20051840
+tick 306331 0:20051840
+tick ReadExcl 306391 0:20051880
+tick 306661 0:20051880
+tick ReadExcl 306714 0:200518c0
+tick 306984 0:200518c0
+tick ReadExcl 307029 0:20051900
+tick 307299 0:20051900
+tick ReadExcl 307352 0:20051940
+tick 307622 0:20051940
+tick ReadExcl 307667 0:200519c0
+tick 307937 0:200519c0
+tick ReadExcl 307987 0:20051a00
+tick 308257 0:20051a00
+tick ReadExcl 308321 0:20050600
+tick 308591 0:20050600
+tick ReadExcl 308649 0:20050640
+tick 308919 0:20050640
+tick ReadExcl 308978 0:20050680
+tick 309248 0:20050680
+tick ReadExcl 309307 0:200506c0
+tick 309577 0:200506c0
+tick ReadExcl 309893 0:20051a40
+tick 310163 0:20051a40
+tick ReadExcl 310343 0:20012680
+tick 310613 0:20012680
+tick ReadExcl 310670 0:20052980
+tick 310940 0:20052980
+tick ReadExcl 310991 0:200529c0
+tick 311261 0:200529c0
+tick ReadExcl 311314 0:20052a00
+tick 311584 0:20052a00
+tick ReadExcl 311629 0:20052a40
+tick 311899 0:20052a40
+tick ReadExcl 311956 0:20052a80
+tick 312226 0:20052a80
+tick ReadExcl 312362 0:20052ac0
+tick 312632 0:20052ac0
+tick ReadExcl 312677 0:20052b00
+tick 312947 0:20052b00
+tick ReadExcl 313004 0:20052b40
+tick 313274 0:20052b40
+tick ReadExcl 313368 0:2000ad00
+tick ReadExcl 313393 0:20052b80
+tick 313638 0:2000ad00
+tick 313663 0:20052b80
+tick ReadExcl 313711 0:20052c00
+tick 313981 0:20052c00
+tick ReadExcl 314031 0:20052c40
+tick 314301 0:20052c40
+tick ReadExcl 314346 0:20052d40
+tick 314616 0:20052d40
+tick ReadExcl 314667 0:20052dc0
+tick 314937 0:20052dc0
+tick ReadExcl 314984 0:20052e00
+tick 315254 0:20052e00
+tick ReadExcl 315333 0:20052e40
+tick 315603 0:20052e40
+tick ReadExcl 316026 0:20052e80
+tick 316296 0:20052e80
+tick ReadExcl 317164 0:40
+tick 317434 0:40
+tick ReadExcl 319019 0:20052240
+tick 319289 0:20052240
+tick ReadExcl 320045 0:20050e80
+tick ReadExcl 320046 0:20050f80
+tick 320315 0:20050e80
+tick 320316 0:20050f80
+tick ReadExcl 321290 0:300264c0
+tick ReadExcl 321314 0:30026500
+tick ReadExcl 321338 0:30026540
+tick 321560 0:300264c0
+tick 321584 0:30026500
+tick 321608 0:30026540
+tick ReadExcl 325261 0:20057040
+tick 325531 0:20057040
+tick ReadExcl 325604 0:200570c0
+tick 325874 0:200570c0
+tick ReadExcl 325921 0:20057100
+tick 326191 0:20057100
+tick ReadExcl 327742 0:3002b980
+tick ReadExcl 327751 0:3002b940
+tick 328012 0:3002b980
+tick 328021 0:3002b940
+tick ReadExcl 329172 0:20055400
+tick 329442 0:20055400
+tick ReadExcl 329489 0:20055440
+tick 329759 0:20055440
+tick ReadExcl 331777 0:20055e80
+tick 332047 0:20055e80
+tick ReadExcl 332103 0:20055ec0
+tick 332373 0:20055ec0
+tick ReadExcl 332531 0:20055e00
+tick 332801 0:20055e00
+tick ReadExcl 332869 0:20055e40
+tick 333139 0:20055e40
+tick ReadExcl 335427 0:20055480
+tick 335697 0:20055480
+tick ReadExcl 338814 0:2008d980
+tick 339084 0:2008d980
+tick ReadExcl 339149 0:2008d9c0
+tick 339419 0:2008d9c0
+tick ReadExcl 349264 0:2001e980
+tick 349534 0:2001e980
+tick ReadExcl 350187 0:2001e0c0
+tick 350457 0:2001e0c0
+tick ReadExcl 359354 0:20082f80
+tick 359624 0:20082f80
+tick ReadExcl 367346 0:1ffef340
+tick 367616 0:1ffef340
+tick ReadExcl 369395 0:3002bb00
+tick ReadExcl 369397 0:3002bac0
+tick ReadExcl 369427 0:3002ba80
+tick ReadExcl 369436 0:3002ba40
+tick 369665 0:3002bb00
+tick 369667 0:3002bac0
+tick 369697 0:3002ba80
+tick 369706 0:3002ba40
+tick ReadExcl 370728 0:2001e9c0
+tick 370998 0:2001e9c0
+tick ReadExcl 376396 0:2008da00
+tick 376666 0:2008da00
+tick ReadExcl 376731 0:2008da40
+tick 377001 0:2008da40
+tick ReadExcl 385450 0:3002bb80
+tick ReadExcl 385452 0:3002bb40
+tick 385720 0:3002bb80
+tick 385722 0:3002bb40
+tick ReadExcl 387131 0:2001ea00
+tick 387401 0:2001ea00
+tick ReadExcl 405692 0:3002be00
+tick ReadExcl 405694 0:3002bdc0
+tick ReadExcl 405712 0:3002bd00
+tick ReadExcl 405726 0:3002bcc0
+tick ReadExcl 405744 0:3002bc80
+tick ReadExcl 405758 0:3002bc40
+tick 405962 0:3002be00
+tick 405964 0:3002bdc0
+tick 405982 0:3002bd00
+tick 405996 0:3002bcc0
+tick 406014 0:3002bc80
+tick 406028 0:3002bc40
+tick ReadExcl 411982 0:30002880
+tick 412252 0:30002880
+tick ReadExcl 418497 0:20054bc0
+tick 418767 0:20054bc0
+tick ReadExcl 418825 0:20054c00
+tick 419095 0:20054c00
+tick ReadExcl 419303 0:20055b00
+tick 419573 0:20055b00
+tick ReadExcl 421715 0:2008da80
+tick 421985 0:2008da80
+tick ReadExcl 431227 0:3002bd80
+tick ReadExcl 431231 0:3002bd40
+tick 431497 0:3002bd80
+tick 431501 0:3002bd40
+tick ReadExcl 432831 0:2001ea40
+tick 433101 0:2001ea40
+tick ReadExcl 433656 0:300261c0
+tick 433926 0:300261c0
+tick ReadExcl 452003 0:1ffef300
+tick 452273 0:1ffef300
+tick ReadExcl 452421 0:3002bf00
+tick ReadExcl 452423 0:3002bec0
+tick ReadExcl 452441 0:3002be80
+tick ReadExcl 452450 0:3002be40
+tick 452691 0:3002bf00
+tick 452693 0:3002bec0
+tick 452711 0:3002be80
+tick 452720 0:3002be40
+tick ReadExcl 460351 0:20104040
+tick 460621 0:20104040
+tick ReadExcl 467359 0:2008dac0
+tick 467629 0:2008dac0
+tick ReadExcl 476933 0:30013900
+tick ReadExcl 477185 0:3002bf80
+tick ReadExcl 477189 0:3002bf40
+tick 477203 0:30013900
+tick 477455 0:3002bf80
+tick 477459 0:3002bf40
+tick ReadExcl 478949 0:2001ea80
+tick 479219 0:2001ea80
+tick ReadExcl 479412 0:3002bfc0
+tick 479682 0:3002bfc0
+tick ReadExcl 498687 0:1ffef2c0
+tick 498957 0:1ffef2c0
+tick ReadExcl 499122 0:30002780
+tick ReadExcl 499128 0:30002900
+tick ReadExcl 499165 0:200ff580
+tick 499392 0:30002780
+tick 499398 0:30002900
+tick 499435 0:200ff580
+tick ReadExcl 499488 0:200ff5c0
+tick ReadExcl 499490 0:1ffef280
+tick 499758 0:200ff5c0
+tick 499760 0:1ffef280
+tick ReadExcl 499807 0:20036840
+tick ReadExcl 499823 0:200ff600
+tick ReadExcl 499825 0:30002d80
+tick 500077 0:20036840
+tick 500093 0:200ff600
+tick 500095 0:30002d80
+tick ReadExcl 500153 0:20101f00
+tick 500423 0:20101f00
+tick ReadExcl 500473 0:1ffef240
+tick ReadExcl 500476 0:20101f40
+tick 500743 0:1ffef240
+tick 500746 0:20101f40
+tick ReadExcl 500809 0:20101f80
+tick 501079 0:20101f80
+tick ReadExcl 501128 0:200367c0
+tick ReadExcl 501140 0:20101fc0
+tick 501398 0:200367c0
+tick 501498 0:20101fc0
+tick ReadExcl 501543 0:201018c0
+tick 501813 0:201018c0
+tick ReadExcl 501865 0:1ffef1c0
+tick ReadExcl 501871 0:1ffef200
+tick ReadExcl 501878 0:20101900
+tick 502135 0:1ffef1c0
+tick 502141 0:1ffef200
+tick 502148 0:20101900
+tick ReadExcl 502207 0:20101940
+tick 502477 0:20101940
+tick ReadExcl 502541 0:20101980
+tick ReadExcl 502708 0:30018580
+tick 502811 0:20101980
+tick ReadExcl 502871 0:20101b40
+tick 502978 0:30018580
+tick 503141 0:20101b40
+tick ReadExcl 503188 0:20101b80
+tick 503458 0:20101b80
+tick ReadExcl 503523 0:20101bc0
+tick 503793 0:20101bc0
+tick ReadExcl 503842 0:300185c0
+tick ReadExcl 503843 0:20101c80
+tick 504112 0:300185c0
+tick 504113 0:20101c80
+tick ReadExcl 504165 0:201029c0
+tick 504435 0:201029c0
+tick ReadExcl 504485 0:20102b80
+tick 504755 0:20102b80
+tick ReadExcl 504806 0:20101cc0
+tick 505076 0:20101cc0
+tick ReadExcl 505124 0:20101d00
+tick 505394 0:20101d00
+tick ReadExcl 505442 0:20101d80
+tick 505712 0:20101d80
+tick ReadExcl 505771 0:20101dc0
+tick ReadExcl 505772 0:20101700
+tick 506041 0:20101dc0
+tick 506042 0:20101700
+tick ReadExcl 506104 0:20101740
+tick 506374 0:20101740
+tick ReadExcl 506426 0:30018600
+tick ReadExcl 506438 0:3000f680
+tick ReadExcl 506439 0:20101e00
+tick 506696 0:30018600
+tick 506708 0:3000f680
+tick 506796 0:20101e00
+tick ReadExcl 506847 0:20102bc0
+tick 507117 0:20102bc0
+tick ReadExcl 507175 0:20102c00
+tick 507445 0:20102c00
+tick ReadExcl 507497 0:20102c40
+tick 507767 0:20102c40
+tick ReadExcl 507823 0:20102cc0
+tick 508093 0:20102cc0
+tick ReadExcl 508140 0:20102d00
+tick 508410 0:20102d00
+tick ReadExcl 508455 0:20102d40
+tick 508725 0:20102d40
+tick ReadExcl 508772 0:20102d80
+tick ReadExcl 508788 0:20101e40
+tick 509042 0:20102d80
+tick 509058 0:20101e40
+tick ReadExcl 509116 0:20101e80
+tick 509386 0:20101e80
+tick ReadExcl 509458 0:20102000
+tick 509728 0:20102000
+tick ReadExcl 509792 0:20102040
+tick 510062 0:20102040
+tick ReadExcl 510125 0:200ff640
+tick 510395 0:200ff640
+tick ReadExcl 510443 0:20100b80
+tick 510713 0:20100b80
+tick ReadExcl 510778 0:20100bc0
+tick ReadExcl 510779 0:20100cc0
+tick 511048 0:20100bc0
+tick 511049 0:20100cc0
+tick ReadExcl 511112 0:3001a600
+tick ReadExcl 511115 0:20100d00
+tick ReadExcl 511120 0:3001a680
+tick 511382 0:3001a600
+tick 511385 0:20100d00
+tick 511390 0:3001a680
+tick ReadExcl 511472 0:200ff680
+tick 511742 0:200ff680
+tick ReadExcl 511801 0:200ff780
+tick 512071 0:200ff780
+tick ReadExcl 512129 0:200ff7c0
+tick ReadExcl 512283 0:3002c000
+tick 512399 0:200ff7c0
+tick 512553 0:3002c000
+tick ReadExcl 512777 0:3002d000
+tick ReadExcl 512786 0:3002cfc0
+tick ReadExcl 512821 0:3002c800
+tick ReadExcl 512835 0:3002c7c0
+tick ReadExcl 512858 0:3002c400
+tick ReadExcl 512867 0:3002c3c0
+tick 513047 0:3002d000
+tick 513056 0:3002cfc0
+tick ReadExcl 513100 0:3002c200
+tick ReadExcl 513109 0:3002c1c0
+tick 513147 0:3002c800
+tick 513156 0:3002c7c0
+tick ReadExcl 513200 0:3002c100
+tick ReadExcl 513209 0:3002c0c0
+tick 513247 0:3002c400
+tick 513256 0:3002c3c0
+tick ReadExcl 513300 0:3002c080
+tick ReadExcl 513309 0:3002c040
+tick 513370 0:3002c200
+tick 513379 0:3002c1c0
+tick 513470 0:3002c100
+tick 513479 0:3002c0c0
+tick ReadExcl 513540 0:200ff800
+tick 513570 0:3002c080
+tick 513579 0:3002c040
+tick 513810 0:200ff800
+tick ReadExcl 513863 0:200ff840
+tick 514133 0:200ff840
+tick ReadExcl 514706 0:20082d80
+tick 515266 0:30002d80
+tick ReadExcl 522151 0:30026600
+tick ReadExcl 522175 0:30026640
+tick ReadExcl 522199 0:30026680
+tick 522421 0:30026600
+tick 522445 0:30026640
+tick 522469 0:30026680
+tick ReadExcl 529064 0:2008db00
+tick 529334 0:2008db00
+tick ReadExcl 529386 0:1ffefac0
+tick ReadExcl 529399 0:2008db40
+tick ReadExcl 529561 0:20098b40
+tick 529656 0:1ffefac0
+tick 529669 0:2008db40
+tick 529831 0:20098b40
+tick ReadExcl 529875 0:20098b80
+tick 530145 0:20098b80
+tick ReadExcl 530350 0:2008eec0
+tick 530620 0:2008eec0
+tick ReadExcl 530664 0:2008ef00
+tick 530934 0:2008ef00
+tick ReadExcl 530999 0:2008ef40
+tick ReadExcl 531001 0:200330c0
+tick 531269 0:2008ef40
+tick 531271 0:200330c0
+tick ReadExcl 531334 0:2008ef80
+tick ReadExcl 531474 0:2001fa00
+tick 531604 0:2008ef80
+tick 531744 0:2001fa00
+tick ReadExcl 531862 0:2001fa40
+tick 532132 0:2001fa40
+tick ReadExcl 533258 0:3002c180
+tick ReadExcl 533262 0:3002c140
+tick 533528 0:3002c180
+tick 533532 0:3002c140
+tick ReadExcl 533851 0:2001f9c0
+tick 534121 0:2001f9c0
+tick ReadExcl 537199 0:3000f840
+tick 537469 0:3000f840
+tick ReadExcl 538858 0:3002c300
+tick ReadExcl 538867 0:3002c2c0
+tick ReadExcl 538885 0:3002c280
+tick ReadExcl 538899 0:3002c240
+tick 539128 0:3002c300
+tick 539137 0:3002c2c0
+tick 539155 0:3002c280
+tick 539169 0:3002c240
+tick ReadExcl 540751 0:2001fa80
+tick 541021 0:2001fa80
+tick ReadExcl 542287 0:3001c140
+tick 542557 0:3001c140
+tick ReadExcl 544140 0:2008efc0
+tick 544410 0:2008efc0
+tick ReadExcl 546960 0:3002c380
+tick ReadExcl 546969 0:3002c340
+tick 547230 0:3002c380
+tick 547239 0:3002c340
+tick ReadExcl 547508 0:2001fac0
+tick 547778 0:2001fac0
+tick ReadExcl 549708 0:300134c0
+tick 549978 0:300134c0
+tick ReadExcl 552159 0:3002c600
+tick ReadExcl 552161 0:3002c5c0
+tick ReadExcl 552179 0:3002c500
+tick ReadExcl 552188 0:3002c4c0
+tick ReadExcl 552206 0:3002c480
+tick ReadExcl 552220 0:3002c440
+tick 552429 0:3002c600
+tick 552431 0:3002c5c0
+tick 552449 0:3002c500
+tick 552458 0:3002c4c0
+tick 552476 0:3002c480
+tick 552490 0:3002c440
+tick ReadExcl 556042 0:2008f000
+tick 556312 0:2008f000
+tick ReadExcl 561318 0:20078f00
+tick 561588 0:20078f00
+tick ReadExcl 562844 0:2001fb00
+tick 563114 0:2001fb00
+tick ReadExcl 563420 0:3002c580
+tick ReadExcl 563422 0:3002c540
+tick 563690 0:3002c580
+tick 563692 0:3002c540
+tick ReadExcl 564388 0:20106940
+tick 564658 0:20106940
+tick ReadExcl 565436 0:2007a1c0
+tick 565706 0:2007a1c0
+tick ReadExcl 576733 0:20019880
+tick ReadExcl 576745 0:20079840
+tick 577003 0:20019880
+tick 577015 0:20079840
+tick ReadExcl 577050 0:20079cc0
+tick 577320 0:20079cc0
+tick ReadExcl 577368 0:20066440
+tick 577638 0:20066440
+tick ReadExcl 577682 0:20066480
+tick 577952 0:20066480
+tick ReadExcl 578017 0:200664c0
+tick 578287 0:200664c0
+tick ReadExcl 578332 0:200663c0
+tick 578602 0:200663c0
+tick ReadExcl 578661 0:20066400
+tick 578931 0:20066400
+tick ReadExcl 579137 0:20014e80
+tick 579407 0:20014e80
+tick ReadExcl 579862 0:20066500
+tick 580132 0:20066500
+tick ReadExcl 580277 0:2008f040
+tick 580547 0:2008f040
+tick ReadExcl 580783 0:20095980
+tick 581053 0:20095980
+tick ReadExcl 581118 0:200959c0
+tick 581388 0:200959c0
+tick ReadExcl 581440 0:20033500
+tick ReadExcl 581453 0:20095a00
+tick 581710 0:20033500
+tick 581723 0:20095a00
+tick ReadExcl 582048 0:20023380
+tick 582318 0:20023380
+tick ReadExcl 583958 0:3002c700
+tick ReadExcl 583960 0:3002c6c0
+tick ReadExcl 583990 0:3002c680
+tick ReadExcl 583999 0:3002c640
+tick 584228 0:3002c700
+tick 584230 0:3002c6c0
+tick 584260 0:3002c680
+tick 584269 0:3002c640
+tick ReadExcl 585695 0:200233c0
+tick 585965 0:200233c0
+tick ReadExcl 590187 0:3002c780
+tick ReadExcl 590196 0:3002c740
+tick 590457 0:3002c780
+tick 590466 0:3002c740
+tick ReadExcl 592904 0:20079bc0
+tick 593174 0:20079bc0
+tick ReadExcl 593272 0:20079c00
+tick 593542 0:20079c00
+tick ReadExcl 593620 0:20108500
+tick ReadExcl 593705 0:20031f80
+tick 593890 0:20108500
+tick ReadExcl 593943 0:20108540
+tick 593975 0:20031f80
+tick 594213 0:20108540
+tick ReadExcl 594419 0:20113140
+tick 594689 0:20113140
+tick ReadExcl 594736 0:20113180
+tick 595006 0:20113180
+tick ReadExcl 595055 0:20037480
+tick ReadExcl 595060 0:20112e80
+tick ReadExcl 595061 0:20030140
+tick 595325 0:20037480
+tick 595331 0:20030140
+tick 595333 0:20112e80
+tick ReadExcl 595392 0:20112ec0
+tick 595662 0:20112ec0
+tick ReadExcl 595719 0:2000b280
+tick ReadExcl 595734 0:20112f00
+tick 595989 0:2000b280
+tick 596004 0:20112f00
+tick ReadExcl 596055 0:20112f40
+tick 596325 0:20112f40
+tick ReadExcl 596396 0:20112f80
+tick ReadExcl 596557 0:2012ecc0
+tick 596666 0:20112f80
+tick 596827 0:2012ecc0
+tick ReadExcl 596883 0:2012ed00
+tick 597153 0:2012ed00
+tick ReadExcl 597218 0:2012ed40
+tick 597488 0:2012ed40
+tick ReadExcl 597551 0:2012ed80
+tick 597821 0:2012ed80
+tick ReadExcl 597873 0:2012edc0
+tick 598143 0:2012edc0
+tick ReadExcl 598210 0:2012ee00
+tick 598480 0:2012ee00
+tick ReadExcl 598550 0:2012ee40
+tick ReadExcl 598698 0:20038480
+tick 598820 0:2012ee40
+tick ReadExcl 598865 0:2012f300
+tick 598968 0:20038480
+tick 599135 0:2012f300
+tick ReadExcl 599174 0:2000dd00
+tick ReadExcl 599194 0:2012f3c0
+tick 599444 0:2000dd00
+tick 599464 0:2012f3c0
+tick ReadExcl 599491 0:2012ee80
+tick 599761 0:2012ee80
+tick ReadExcl 599825 0:2012eec0
+tick 600095 0:2012eec0
+tick ReadExcl 600143 0:2012ef00
+tick ReadExcl 600178 0:2012f2c0
+tick 600413 0:2012ef00
+tick 600448 0:2012f2c0
+tick ReadExcl 600624 0:2012f400
+tick 600894 0:2012f400
+tick ReadExcl 600959 0:2012f440
+tick 601229 0:2012f440
+tick 601261 0:3000f440
+tick ReadExcl 601274 0:2012f480
+tick 601544 0:2012f480
+tick ReadExcl 601608 0:2012f4c0
+tick 601878 0:2012f4c0
+tick ReadExcl 601943 0:2012f500
+tick 602213 0:2012f500
+tick ReadExcl 602265 0:2012f540
+tick 602535 0:2012f540
+tick ReadExcl 602757 0:20130700
+tick 603027 0:20130700
+tick ReadExcl 603074 0:20130740
+tick 603344 0:20130740
+tick ReadExcl 603404 0:20130800
+tick ReadExcl 603559 0:20010e40
+tick 603674 0:20130800
+tick ReadExcl 603721 0:20130840
+tick 603829 0:20010e40
+tick 603991 0:20130840
+tick ReadExcl 604063 0:20130880
+tick 604333 0:20130880
+tick ReadExcl 604388 0:20112fc0
+tick 604658 0:20112fc0
+tick ReadExcl 604716 0:3000f0c0
+tick ReadExcl 604719 0:3000f080
+tick ReadExcl 604720 0:20113000
+tick 604986 0:3000f0c0
+tick 604989 0:3000f080
+tick 604990 0:20113000
+tick ReadExcl 605047 0:20113040
+tick ReadExcl 605049 0:20113100
+tick ReadExcl 605208 0:201150c0
+tick 605317 0:20113040
+tick 605319 0:20113100
+tick ReadExcl 605410 0:20079c40
+tick 605478 0:201150c0
+tick 605680 0:20079c40
+tick ReadExcl 606048 0:3000f400
+tick 606080 0:1ffef400
+tick ReadExcl 606834 0:3001c780
+tick ReadExcl 606848 0:20079c80
+tick 607104 0:3001c780
+tick 607118 0:20079c80
+tick ReadExcl 607605 0:20065b00
+tick 607875 0:20065b00
+tick ReadExcl 607919 0:20065b40
+tick 608189 0:20065b40
+tick ReadExcl 608769 0:20014dc0
+tick 609039 0:20014dc0
+tick 609338 0:3000f440
+tick ReadExcl 610238 0:20012780
+tick 610508 0:20012780
+tick ReadExcl 610708 0:200527c0
+tick 610978 0:200527c0
+tick ReadExcl 611026 0:20052840
+tick 611296 0:20052840
+tick ReadExcl 611346 0:20052880
+tick 611616 0:20052880
+tick ReadExcl 622647 0:30002500
+tick ReadExcl 622653 0:30002680
+tick 622917 0:30002500
+tick 622923 0:30002680
+tick ReadExcl 622964 0:30026700
+tick ReadExcl 622965 0:300266c0
+tick ReadExcl 622967 0:30026980
+tick ReadExcl 622968 0:30026940
+tick ReadExcl 622970 0:30026840
+tick 623234 0:30026700
+tick 623235 0:300266c0
+tick 623237 0:30026980
+tick 623238 0:30026940
+tick 623240 0:30026840
+tick ReadExcl 623289 0:30026800
+tick 623559 0:30026800
+tick ReadExcl 623767 0:30026740
+tick ReadExcl 623845 0:30026780
+tick 624037 0:30026740
+tick 624115 0:30026780
+tick ReadExcl 646982 0:3002cc00
+tick ReadExcl 646996 0:3002cbc0
+tick ReadExcl 647031 0:3002ca00
+tick ReadExcl 647045 0:3002c9c0
+tick ReadExcl 647063 0:3002c900
+tick ReadExcl 647077 0:3002c8c0
+tick 647252 0:3002cc00
+tick 647266 0:3002cbc0
+tick 647301 0:3002ca00
+tick ReadExcl 647305 0:3002c880
+tick 647315 0:3002c9c0
+tick ReadExcl 647316 0:3002c840
+tick 647333 0:3002c900
+tick 647347 0:3002c8c0
+tick 647575 0:3002c880
+tick 647586 0:3002c840
+tick ReadExcl 649131 0:3002c980
+tick ReadExcl 649140 0:3002c940
+tick 649401 0:3002c980
+tick 649410 0:3002c940
+tick ReadExcl 650293 0:3002cb00
+tick ReadExcl 650307 0:3002cac0
+tick ReadExcl 650325 0:3002ca80
+tick ReadExcl 650339 0:3002ca40
+tick 650563 0:3002cb00
+tick 650577 0:3002cac0
+tick 650595 0:3002ca80
+tick 650609 0:3002ca40
+tick ReadExcl 658803 0:3001b300
+tick 659073 0:3001b300
+tick ReadExcl 659422 0:3001b340
+tick 659692 0:3001b340
+tick ReadExcl 664403 0:20065b80
+tick 664673 0:20065b80
+tick ReadExcl 664728 0:20065bc0
+tick 664998 0:20065bc0
+tick ReadExcl 665063 0:20065c00
+tick 665333 0:20065c00
+tick ReadExcl 665396 0:20065c40
+tick 665666 0:20065c40
+tick ReadExcl 665756 0:30013640
+tick ReadExcl 665847 0:20095a40
+tick 666026 0:30013640
+tick 666126 0:20095a40
+tick ReadExcl 667157 0:3000f440
+tick ReadExcl 669692 0:20023400
+tick 669962 0:20023400
+tick ReadExcl 678254 0:2012f440
+tick 678286 0:1ffef440
+tick ReadExcl 693304 0:30026880
+tick ReadExcl 693387 0:300268c0
+tick 693574 0:30026880
+tick 693657 0:300268c0
+tick ReadExcl 717878 0:3002cb80
+tick ReadExcl 717887 0:3002cb40
+tick 718148 0:3002cb80
+tick 718157 0:3002cb40
+tick ReadExcl 719060 0:3002ce00
+tick ReadExcl 719067 0:3002cdc0
+tick ReadExcl 719085 0:3002cd00
+tick ReadExcl 719094 0:3002ccc0
+tick ReadExcl 719112 0:3002cc80
+tick ReadExcl 719126 0:3002cc40
+tick 719330 0:3002ce00
+tick 719337 0:3002cdc0
+tick 719355 0:3002cd00
+tick 719364 0:3002ccc0
+tick 719382 0:3002cc80
+tick 719396 0:3002cc40
+tick ReadExcl 720987 0:20056640
+tick 721257 0:20056640
+tick ReadExcl 721501 0:1ffef440
+tick ReadExcl 732583 0:20095a80
+tick 732853 0:20095a80
+tick ReadExcl 732918 0:20095ac0
+tick 733188 0:20095ac0
+tick ReadExcl 734202 0:3000f440
+tick ReadExcl 744041 0:20023440
+tick 744311 0:20023440
+tick ReadExcl 744950 0:20079b00
+tick 745220 0:20079b00
+tick ReadExcl 745271 0:20107a40
+tick 745541 0:20107a40
+tick ReadExcl 745588 0:20107a80
+tick 745858 0:20107a80
+tick ReadExcl 745907 0:20036b00
+tick ReadExcl 745923 0:20107ac0
+tick 746177 0:20036b00
+tick 746193 0:20107ac0
+tick ReadExcl 746241 0:20107b00
+tick 746511 0:20107b00
+tick ReadExcl 746581 0:20107b40
+tick 746851 0:20107b40
+tick ReadExcl 746905 0:20107b80
+tick 747175 0:20107b80
+tick ReadExcl 747229 0:20107bc0
+tick 747499 0:20107bc0
+tick ReadExcl 747544 0:20107c00
+tick 747814 0:20107c00
+tick ReadExcl 747862 0:20118c40
+tick 748132 0:20118c40
+tick ReadExcl 748196 0:20118c80
+tick 748466 0:20118c80
+tick ReadExcl 748522 0:20118cc0
+tick ReadExcl 748675 0:2000e000
+tick 748792 0:20118cc0
+tick ReadExcl 748843 0:20107c40
+tick 748945 0:2000e000
+tick 749113 0:20107c40
+tick ReadExcl 749184 0:20107c80
+tick 749454 0:20107c80
+tick ReadExcl 749502 0:20107a00
+tick 749772 0:20107a00
+tick ReadExcl 749836 0:20107cc0
+tick 750106 0:20107cc0
+tick ReadExcl 750280 0:2000ab00
+tick ReadExcl 750331 0:20107d00
+tick 750550 0:2000ab00
+tick 750601 0:20107d00
+tick ReadExcl 750648 0:20107d40
+tick ReadExcl 750663 0:20107dc0
+tick 750918 0:20107d40
+tick 750933 0:20107dc0
+tick ReadExcl 750997 0:20107e00
+tick 751267 0:20107e00
+tick ReadExcl 751327 0:20079b40
+tick 751597 0:20079b40
+tick ReadExcl 752911 0:20065e40
+tick 753181 0:20065e40
+tick ReadExcl 768391 0:30026900
+tick 768661 0:30026900
+tick ReadExcl 790843 0:3002cd80
+tick ReadExcl 790852 0:3002cd40
+tick 791113 0:3002cd80
+tick 791122 0:3002cd40
+tick ReadExcl 793838 0:1ffef400
+tick ReadExcl 805021 0:20095b00
+tick 805291 0:20095b00
+tick ReadExcl 805356 0:20095b40
+tick 805626 0:20095b40
+tick ReadExcl 805691 0:20095b80
+tick 805961 0:20095b80
+tick ReadExcl 813001 0:20023480
+tick 813271 0:20023480
+tick ReadExcl 828938 0:200234c0
+tick 829208 0:200234c0
+tick ReadExcl 829544 0:3002cf00
+tick ReadExcl 829551 0:3002cec0
+tick ReadExcl 829569 0:3002ce80
+tick ReadExcl 829578 0:3002ce40
+tick 829814 0:3002cf00
+tick 829821 0:3002cec0
+tick 829839 0:3002ce80
+tick 829848 0:3002ce40
+tick ReadExcl 831769 0:20023500
+tick 832039 0:20023500
+tick ReadExcl 833237 0:3002cf80
+tick ReadExcl 833246 0:3002cf40
+tick 833507 0:3002cf80
+tick 833516 0:3002cf40
+tick ReadExcl 834361 0:20023540
+tick 834631 0:20023540
+tick ReadExcl 836724 0:20023580
+tick 836994 0:20023580
+tick ReadExcl 843859 0:20095bc0
+tick 844129 0:20095bc0
+tick ReadExcl 850317 0:3002d800
+tick ReadExcl 850319 0:3002d7c0
+tick ReadExcl 850354 0:3002d400
+tick ReadExcl 850368 0:3002d3c0
+tick ReadExcl 850391 0:3002d200
+tick ReadExcl 850400 0:3002d1c0
+tick 850587 0:3002d800
+tick 850589 0:3002d7c0
+tick ReadExcl 850640 0:3002d100
+tick ReadExcl 850649 0:3002d0c0
+tick 850661 0:3002d200
+tick 850670 0:3002d1c0
+tick 850687 0:3002d400
+tick 850689 0:3002d3c0
+tick ReadExcl 850740 0:3002d080
+tick ReadExcl 850749 0:3002d040
+tick 850910 0:3002d100
+tick 850919 0:3002d0c0
+tick 851010 0:3002d080
+tick 851019 0:3002d040
+tick ReadExcl 851928 0:200235c0
+tick 852198 0:200235c0
+tick ReadExcl 865700 0:3002d180
+tick ReadExcl 865702 0:3002d140
+tick 865970 0:3002d180
+tick 865972 0:3002d140
+tick ReadExcl 869088 0:20033540
+tick ReadExcl 869089 0:20095c00
+tick 869358 0:20033540
+tick 869359 0:20095c00
+tick ReadExcl 870018 0:20023600
+tick 870288 0:20023600
+tick ReadExcl 875962 0:3002d300
+tick ReadExcl 875976 0:3002d2c0
+tick ReadExcl 875994 0:3002d280
+tick ReadExcl 876003 0:3002d240
+tick 876232 0:3002d300
+tick 876246 0:3002d2c0
+tick 876264 0:3002d280
+tick 876273 0:3002d240
+tick ReadExcl 878904 0:30013680
+tick ReadExcl 879008 0:20095c40
+tick 879174 0:30013680
+tick 879278 0:20095c40
+tick ReadExcl 881466 0:300267c0
+tick 881736 0:300267c0
+tick ReadExcl 882778 0:20023640
+tick 883048 0:20023640
+tick ReadExcl 883769 0:3002d380
+tick ReadExcl 883778 0:3002d340
+tick 884039 0:3002d380
+tick 884048 0:3002d340
+tick ReadExcl 890276 0:20095c80
+tick 890546 0:20095c80
+tick ReadExcl 893783 0:3002d600
+tick ReadExcl 893790 0:3002d5c0
+tick ReadExcl 893813 0:3002d500
+tick ReadExcl 893827 0:3002d4c0
+tick ReadExcl 893845 0:3002d480
+tick ReadExcl 893859 0:3002d440
+tick 894053 0:3002d600
+tick 894060 0:3002d5c0
+tick 894083 0:3002d500
+tick 894097 0:3002d4c0
+tick 894115 0:3002d480
+tick 894129 0:3002d440
+tick ReadExcl 894441 0:20023680
+tick 894711 0:20023680
+tick ReadExcl 900327 0:3002d580
+tick ReadExcl 900336 0:3002d540
+tick 900597 0:3002d580
+tick 900606 0:3002d540
+tick ReadExcl 902667 0:20095cc0
+tick 902937 0:20095cc0
+tick ReadExcl 903002 0:20095d00
+tick 903272 0:20095d00
+tick ReadExcl 907162 0:200236c0
+tick 907432 0:200236c0
+tick ReadExcl 912873 0:3002d700
+tick ReadExcl 912875 0:3002d6c0
+tick ReadExcl 912893 0:3002d680
+tick ReadExcl 912907 0:3002d640
+tick 913143 0:3002d700
+tick 913145 0:3002d6c0
+tick 913163 0:3002d680
+tick 913177 0:3002d640
+tick ReadExcl 917297 0:30026ac0
+tick ReadExcl 917306 0:30026a80
+tick 917567 0:30026ac0
+tick 917576 0:30026a80
+tick ReadExcl 919861 0:300269c0
+tick ReadExcl 919890 0:30026a00
+tick ReadExcl 919914 0:30026a40
+tick 920131 0:300269c0
+tick 920160 0:30026a00
+tick 920184 0:30026a40
+tick ReadExcl 926594 0:20095d40
+tick 926864 0:20095d40
+tick ReadExcl 929722 0:3002d780
+tick ReadExcl 929726 0:3002d740
+tick 929992 0:3002d780
+tick 929996 0:3002d740
+tick ReadExcl 931274 0:20023700
+tick 931544 0:20023700
+tick ReadExcl 938180 0:3002dc00
+tick ReadExcl 938187 0:3002dbc0
+tick ReadExcl 938205 0:3002da00
+tick ReadExcl 938214 0:3002d9c0
+tick ReadExcl 938232 0:3002d900
+tick ReadExcl 938246 0:3002d8c0
+tick 938450 0:3002dc00
+tick 938457 0:3002dbc0
+tick 938475 0:3002da00
+tick 938484 0:3002d9c0
+tick 938502 0:3002d900
+tick ReadExcl 938503 0:3002d880
+tick ReadExcl 938512 0:3002d840
+tick 938516 0:3002d8c0
+tick 938773 0:3002d880
+tick 938782 0:3002d840
+tick ReadExcl 940703 0:20095d80
+tick 940973 0:20095d80
+tick ReadExcl 945546 0:20023740
+tick 945816 0:20023740
+tick ReadExcl 946551 0:3002d980
+tick ReadExcl 946560 0:3002d940
+tick 946821 0:3002d980
+tick 946830 0:3002d940
+tick ReadExcl 955648 0:20095dc0
+tick 955918 0:20095dc0
+tick ReadExcl 960161 0:20023780
+tick 960431 0:20023780
+tick ReadExcl 960778 0:3002db00
+tick ReadExcl 960785 0:3002dac0
+tick ReadExcl 960803 0:3002da80
+tick ReadExcl 960817 0:3002da40
+tick 961048 0:3002db00
+tick 961055 0:3002dac0
+tick 961073 0:3002da80
+tick 961087 0:3002da40
+tick ReadExcl 969535 0:3002db80
+tick ReadExcl 969537 0:3002db40
+tick 969805 0:3002db80
+tick 969807 0:3002db40
+tick ReadExcl 971436 0:20095e00
+tick 971706 0:20095e00
+tick ReadExcl 971771 0:20095e40
+tick 972041 0:20095e40
+tick ReadExcl 976695 0:200237c0
+tick 976965 0:200237c0
+tick ReadExcl 985219 0:3002de00
+tick ReadExcl 985221 0:3002ddc0
+tick ReadExcl 985239 0:3002dd00
+tick ReadExcl 985253 0:3002dcc0
+tick ReadExcl 985271 0:3002dc80
+tick ReadExcl 985280 0:3002dc40
+tick 985489 0:3002de00
+tick 985491 0:3002ddc0
+tick 985509 0:3002dd00
+tick 985523 0:3002dcc0
+tick 985541 0:3002dc80
+tick 985550 0:3002dc40
+tick ReadExcl 988387 0:3002dd80
+tick ReadExcl 988396 0:3002dd40
+tick 988657 0:3002dd80
+tick 988666 0:3002dd40
+tick ReadExcl 989480 0:20023800
+tick 989750 0:20023800
+tick ReadExcl 994015 0:20095e80
+tick 994285 0:20095e80
+tick ReadExcl 998648 0:3002df00
+tick ReadExcl 998650 0:3002dec0
+tick ReadExcl 998668 0:3002de80
+tick ReadExcl 998682 0:3002de40
+tick 998918 0:3002df00
+tick 998920 0:3002dec0
+tick 998938 0:3002de80
+tick 998952 0:3002de40
+tick ReadExcl 1006448 0:20095ec0
+tick 1006718 0:20095ec0
+tick ReadExcl 1008995 0:20023840
+tick 1009265 0:20023840
+tick ReadExcl 1009800 0:20023880
+tick 1010070 0:20023880
+tick ReadExcl 1011223 0:3002df80
+tick ReadExcl 1011232 0:3002df40
+tick 1011493 0:3002df80
+tick 1011502 0:3002df40
+tick ReadExcl 1018661 0:3002dfc0
+tick 1018931 0:3002dfc0
+tick ReadExcl 1020697 0:30002d80
+tick ReadExcl 1021412 0:20102d80
+tick ReadExcl 1021650 0:3001a5c0
+tick ReadExcl 1021658 0:3001a640
+tick 1021920 0:3001a5c0
+tick ReadExcl 1021922 0:3002e000
+tick 1021928 0:3001a640
+tick 1022192 0:3002e000
+tick ReadExcl 1022411 0:3002f000
+tick ReadExcl 1022420 0:3002efc0
+tick ReadExcl 1022455 0:3002e800
+tick ReadExcl 1022469 0:3002e7c0
+tick ReadExcl 1022492 0:3002e400
+tick ReadExcl 1022501 0:3002e3c0
+tick 1022681 0:3002f000
+tick 1022690 0:3002efc0
+tick ReadExcl 1022734 0:3002e200
+tick ReadExcl 1022743 0:3002e1c0
+tick 1022781 0:3002e800
+tick 1022790 0:3002e7c0
+tick ReadExcl 1022834 0:3002e100
+tick ReadExcl 1022848 0:3002e0c0
+tick 1022881 0:3002e400
+tick 1022890 0:3002e3c0
+tick ReadExcl 1022934 0:3002e080
+tick ReadExcl 1022948 0:3002e040
+tick 1023004 0:3002e200
+tick 1023013 0:3002e1c0
+tick 1023104 0:3002e100
+tick 1023118 0:3002e0c0
+tick 1023204 0:3002e080
+tick 1023218 0:3002e040
+tick ReadExcl 1025208 0:2000dfc0
+tick 1025478 0:2000dfc0
+tick ReadExcl 1025710 0:20082d80
+tick ReadExcl 1030747 0:30002800
+tick ReadExcl 1030753 0:30002980
+tick 1031017 0:30002800
+tick 1031023 0:30002980
+tick ReadExcl 1031073 0:30026c00
+tick ReadExcl 1031085 0:30026bc0
+tick ReadExcl 1031135 0:30027600
+tick ReadExcl 1031149 0:300275c0
+tick ReadExcl 1031184 0:30027100
+tick 1031343 0:30026c00
+tick 1031355 0:30026bc0
+tick 1031405 0:30027600
+tick 1031419 0:300275c0
+tick 1031454 0:30027100
+tick ReadExcl 1031472 0:300270c0
+tick ReadExcl 1031495 0:30026e80
+tick ReadExcl 1031504 0:30026e40
+tick ReadExcl 1031527 0:30026d40
+tick ReadExcl 1031536 0:30026d00
+tick ReadExcl 1031554 0:30026c80
+tick 1031742 0:300270c0
+tick 1031765 0:30026e80
+tick 1031774 0:30026e40
+tick 1031797 0:30026d40
+tick 1031806 0:30026d00
+tick ReadExcl 1031820 0:30026c40
+tick 1031824 0:30026c80
+tick 1032090 0:30026c40
+tick ReadExcl 1035707 0:30026cc0
+tick 1035977 0:30026cc0
+tick ReadExcl 1043817 0:30026b00
+tick ReadExcl 1043846 0:30026b40
+tick ReadExcl 1043870 0:30026b80
+tick 1044087 0:30026b00
+tick 1044116 0:30026b40
+tick 1044140 0:30026b80
+tick ReadExcl 1065801 0:3002e180
+tick ReadExcl 1065810 0:3002e140
+tick 1066071 0:3002e180
+tick 1066080 0:3002e140
+tick ReadExcl 1066954 0:3002e300
+tick ReadExcl 1066968 0:3002e2c0
+tick ReadExcl 1066986 0:3002e280
+tick ReadExcl 1067000 0:3002e240
+tick 1067224 0:3002e300
+tick 1067238 0:3002e2c0
+tick 1067256 0:3002e280
+tick 1067270 0:3002e240
+tick ReadExcl 1074378 0:3001b700
+tick ReadExcl 1074387 0:3001b6c0
+tick ReadExcl 1074405 0:3001b580
+tick ReadExcl 1074414 0:3001b540
+tick 1074648 0:3001b700
+tick 1074657 0:3001b6c0
+tick 1074675 0:3001b580
+tick 1074684 0:3001b540
+tick ReadExcl 1074958 0:3001b440
+tick ReadExcl 1075015 0:3001b480
+tick 1075228 0:3001b440
+tick 1075285 0:3001b480
+tick ReadExcl 1076259 0:3001b4c0
+tick 1076529 0:3001b4c0
+tick ReadExcl 1077917 0:3001b500
+tick 1078187 0:3001b500
+tick ReadExcl 1079800 0:3001b740
+tick ReadExcl 1079892 0:3001b780
+tick 1080070 0:3001b740
+tick ReadExcl 1080119 0:3001b7c0
+tick 1080162 0:3001b780
+tick ReadExcl 1080211 0:3001b800
+tick 1080389 0:3001b7c0
+tick ReadExcl 1080438 0:3001b840
+tick 1080481 0:3001b800
+tick 1080708 0:3001b840
+tick ReadExcl 1084982 0:20122b00
+tick 1085252 0:20122b00
+tick ReadExcl 1085283 0:20095f00
+tick 1085553 0:20095f00
+tick ReadExcl 1085618 0:20095f40
+tick 1085888 0:20095f40
+tick ReadExcl 1091188 0:200238c0
+tick 1091458 0:200238c0
+tick ReadExcl 1117141 0:30026d80
+tick ReadExcl 1117232 0:30026dc0
+tick 1117411 0:30026d80
+tick 1117502 0:30026dc0
+tick ReadExcl 1141158 0:3002e380
+tick ReadExcl 1141162 0:3002e340
+tick 1141428 0:3002e380
+tick 1141432 0:3002e340
+tick ReadExcl 1142339 0:3002e600
+tick ReadExcl 1142346 0:3002e5c0
+tick ReadExcl 1142364 0:3002e500
+tick ReadExcl 1142373 0:3002e4c0
+tick ReadExcl 1142391 0:3002e480
+tick ReadExcl 1142400 0:3002e440
+tick 1142609 0:3002e600
+tick 1142616 0:3002e5c0
+tick 1142634 0:3002e500
+tick 1142643 0:3002e4c0
+tick 1142661 0:3002e480
+tick 1142670 0:3002e440
+tick ReadExcl 1158727 0:20095f80
+tick ReadExcl 1158750 0:20095440
+tick 1158997 0:20095f80
+tick 1159020 0:20095440
+tick ReadExcl 1159077 0:20033480
+tick ReadExcl 1159079 0:20095480
+tick 1159347 0:20033480
+tick 1159447 0:20095480
+tick ReadExcl 1159512 0:200954c0
+tick ReadExcl 1159652 0:20023140
+tick 1159782 0:200954c0
+tick 1159922 0:20023140
+tick ReadExcl 1165250 0:1ffefb40
+tick 1165520 0:1ffefb40
+tick ReadExcl 1167049 0:20023180
+tick 1167319 0:20023180
+tick ReadExcl 1169599 0:3000f880
+tick 1169869 0:3000f880
+tick ReadExcl 1181478 0:200231c0
+tick 1181748 0:200231c0
+tick ReadExcl 1183821 0:3001c580
+tick 1184091 0:3001c580
+tick ReadExcl 1199766 0:30026e00
+tick 1200036 0:30026e00
+tick ReadExcl 1221544 0:3002e580
+tick ReadExcl 1221555 0:3002e540
+tick 1221814 0:3002e580
+tick 1221825 0:3002e540
+tick ReadExcl 1222706 0:3002e700
+tick ReadExcl 1222720 0:3002e6c0
+tick ReadExcl 1222743 0:3002e680
+tick ReadExcl 1222757 0:3002e640
+tick 1222976 0:3002e700
+tick 1222990 0:3002e6c0
+tick 1223013 0:3002e680
+tick 1223027 0:3002e640
+tick ReadExcl 1236764 0:20095500
+tick ReadExcl 1236823 0:2008db80
+tick ReadExcl 1236929 0:fffffffffff9dfc0
+tick 1237034 0:20095500
+tick 1237093 0:2008db80
+tick ReadExcl 1237158 0:2008dbc0
+tick 1237199 0:fffffffffff9dfc0
+tick 1237428 0:2008dbc0
+tick ReadExcl 1241619 0:2001eac0
+tick 1241889 0:2001eac0
+tick ReadExcl 1249591 0:2001eb00
+tick 1249861 0:2001eb00
+tick ReadExcl 1252032 0:3001d200
+tick 1252302 0:3001d200
+tick ReadExcl 1252347 0:3001d240
+tick 1252617 0:3001d240
+tick ReadExcl 1252668 0:3001d400
+tick 1252938 0:3001d400
+tick ReadExcl 1252983 0:3001d440
+tick 1253253 0:3001d440
+tick ReadExcl 1253304 0:3001d600
+tick 1253574 0:3001d600
+tick ReadExcl 1253619 0:3001d5c0
+tick 1253889 0:3001d5c0
+tick ReadExcl 1253940 0:3001d800
+tick 1254210 0:3001d800
+tick ReadExcl 1254330 0:3001d580
+tick 1254600 0:3001d580
+tick ReadExcl 1267756 0:30026fc0
+tick ReadExcl 1267765 0:30026f80
+tick 1268026 0:30026fc0
+tick 1268035 0:30026f80
+tick ReadExcl 1268256 0:30026ec0
+tick ReadExcl 1268347 0:30026f00
+tick 1268526 0:30026ec0
+tick 1268617 0:30026f00
+tick ReadExcl 1292407 0:3002e780
+tick ReadExcl 1292409 0:3002e740
+tick 1292677 0:3002e780
+tick 1292679 0:3002e740
+tick ReadExcl 1293627 0:3002ec00
+tick ReadExcl 1293629 0:3002ebc0
+tick ReadExcl 1293652 0:3002ea00
+tick ReadExcl 1293661 0:3002e9c0
+tick ReadExcl 1293679 0:3002e900
+tick ReadExcl 1293693 0:3002e8c0
+tick 1293897 0:3002ec00
+tick 1293899 0:3002ebc0
+tick 1293922 0:3002ea00
+tick 1293931 0:3002e9c0
+tick 1293949 0:3002e900
+tick ReadExcl 1293950 0:3002e880
+tick ReadExcl 1293959 0:3002e840
+tick 1293963 0:3002e8c0
+tick 1294220 0:3002e880
+tick 1294229 0:3002e840
+tick ReadExcl 1305964 0:3001b880
+tick 1306234 0:3001b880
+tick ReadExcl 1307172 0:3001b8c0
+tick 1307442 0:3001b8c0
+tick ReadExcl 1311412 0:30013500
+tick ReadExcl 1311513 0:2008dc00
+tick 1311682 0:30013500
+tick 1311783 0:2008dc00
+tick ReadExcl 1311848 0:2008dc40
+tick 1312118 0:2008dc40
+tick ReadExcl 1314607 0:2001eb40
+tick 1314877 0:2001eb40
+tick ReadExcl 1326021 0:2001eb80
+tick 1326291 0:2001eb80
+tick ReadExcl 1344456 0:30026f40
+tick 1344726 0:30026f40
+tick ReadExcl 1366580 0:3002e980
+tick ReadExcl 1366589 0:3002e940
+tick 1366850 0:3002e980
+tick 1366859 0:3002e940
+tick ReadExcl 1367753 0:3002eb00
+tick ReadExcl 1367767 0:3002eac0
+tick ReadExcl 1367785 0:3002ea80
+tick ReadExcl 1367799 0:3002ea40
+tick 1368023 0:3002eb00
+tick 1368037 0:3002eac0
+tick 1368055 0:3002ea80
+tick 1368069 0:3002ea40
+tick ReadExcl 1371269 0:3001b380
+tick 1371539 0:3001b380
+tick ReadExcl 1384809 0:2008dc80
+tick 1385079 0:2008dc80
+tick ReadExcl 1390473 0:2001ebc0
+tick 1390743 0:2001ebc0
+tick ReadExcl 1441250 0:3002eb80
+tick ReadExcl 1441259 0:3002eb40
+tick 1441520 0:3002eb80
+tick 1441529 0:3002eb40
+tick ReadExcl 1442451 0:3002ee00
+tick ReadExcl 1442465 0:3002edc0
+tick ReadExcl 1442483 0:3002ed00
+tick ReadExcl 1442492 0:3002ecc0
+tick ReadExcl 1442510 0:3002ec80
+tick ReadExcl 1442519 0:3002ec40
+tick 1442721 0:3002ee00
+tick 1442735 0:3002edc0
+tick 1442753 0:3002ed00
+tick 1442762 0:3002ecc0
+tick 1442780 0:3002ec80
+tick 1442789 0:3002ec40
+tick ReadExcl 1458919 0:30013540
+tick ReadExcl 1459020 0:2008dcc0
+tick 1459189 0:30013540
+tick 1459290 0:2008dcc0
+tick ReadExcl 1465298 0:2001ec00
+tick 1465568 0:2001ec00
+tick ReadExcl 1516999 0:3002ed80
+tick ReadExcl 1517008 0:3002ed40
+tick 1517269 0:3002ed80
+tick 1517278 0:3002ed40
+tick ReadExcl 1518176 0:3002ef00
+tick ReadExcl 1518190 0:3002eec0
+tick ReadExcl 1518208 0:3002ee80
+tick ReadExcl 1518222 0:3002ee40
+tick 1518446 0:3002ef00
+tick 1518460 0:3002eec0
+tick 1518478 0:3002ee80
+tick 1518492 0:3002ee40
+tick ReadExcl 1534669 0:2008dd00
+tick 1534939 0:2008dd00
+tick ReadExcl 1535004 0:2008dd40
+tick 1535274 0:2008dd40
+tick ReadExcl 1540173 0:2001ec40
+tick 1540443 0:2001ec40
+tick ReadExcl 1549311 0:2001ec80
+tick 1549581 0:2001ec80
+tick ReadExcl 1565739 0:30027000
+tick ReadExcl 1565830 0:30027040
+tick 1566009 0:30027000
+tick 1566100 0:30027040
+tick ReadExcl 1590415 0:3002ef80
+tick ReadExcl 1590424 0:3002ef40
+tick 1590685 0:3002ef80
+tick 1590694 0:3002ef40
+tick ReadExcl 1607750 0:2008dd80
+tick 1608020 0:2008dd80
+tick ReadExcl 1608085 0:2008ddc0
+tick 1608355 0:2008ddc0
+tick ReadExcl 1623248 0:2001ecc0
+tick 1623518 0:2001ecc0
+tick ReadExcl 1641843 0:30027080
+tick 1642113 0:30027080
+tick ReadExcl 1663512 0:3002f800
+tick ReadExcl 1663523 0:3002f7c0
+tick ReadExcl 1663558 0:3002f400
+tick ReadExcl 1663567 0:3002f3c0
+tick ReadExcl 1663590 0:3002f200
+tick ReadExcl 1663599 0:3002f1c0
+tick 1663782 0:3002f800
+tick 1663793 0:3002f7c0
+tick ReadExcl 1663835 0:3002f100
+tick ReadExcl 1663844 0:3002f0c0
+tick 1663860 0:3002f200
+tick 1663869 0:3002f1c0
+tick 1663882 0:3002f400
+tick 1663893 0:3002f3c0
+tick 1663914 0:1ffef400
+tick ReadExcl 1663935 0:3002f080
+tick ReadExcl 1663944 0:3002f040
+tick 1664105 0:3002f100
+tick 1664114 0:3002f0c0
+tick 1664205 0:3002f080
+tick 1664214 0:3002f040
+tick ReadExcl 1665087 0:3002f180
+tick ReadExcl 1665096 0:3002f140
+tick 1665357 0:3002f180
+tick 1665366 0:3002f140
+tick ReadExcl 1682233 0:2008de00
+tick 1682503 0:2008de00
+tick ReadExcl 1688198 0:2001ed00
+tick 1688468 0:2001ed00
+tick ReadExcl 1739361 0:3002f300
+tick ReadExcl 1739375 0:3002f2c0
+tick ReadExcl 1739393 0:3002f280
+tick ReadExcl 1739407 0:3002f240
+tick 1739631 0:3002f300
+tick 1739645 0:3002f2c0
+tick 1739663 0:3002f280
+tick 1739677 0:3002f240
+tick ReadExcl 1740531 0:3002f380
+tick ReadExcl 1740540 0:3002f340
+tick 1740801 0:3002f380
+tick 1740810 0:3002f340
+tick ReadExcl 1747784 0:3001b5c0
+tick ReadExcl 1747841 0:3001b600
+tick 1748054 0:3001b5c0
+tick 1748111 0:3001b600
+tick ReadExcl 1749056 0:3001b640
+tick 1749326 0:3001b640
+tick ReadExcl 1749803 0:3001b680
+tick 1750073 0:3001b680
+tick ReadExcl 1758196 0:2008de40
+tick 1758466 0:2008de40
+tick ReadExcl 1764610 0:2001ed40
+tick 1764880 0:2001ed40
+tick ReadExcl 1792597 0:30027380
+tick ReadExcl 1792599 0:30027340
+tick ReadExcl 1792629 0:30027240
+tick ReadExcl 1792640 0:30027200
+tick 1792867 0:30027380
+tick 1792869 0:30027340
+tick 1792899 0:30027240
+tick 1792910 0:30027200
+tick ReadExcl 1793177 0:30027140
+tick ReadExcl 1793268 0:30027180
+tick 1793447 0:30027140
+tick 1793538 0:30027180
+tick ReadExcl 1817268 0:3002f600
+tick ReadExcl 1817282 0:3002f5c0
+tick ReadExcl 1817312 0:3002f500
+tick ReadExcl 1817321 0:3002f4c0
+tick ReadExcl 1817339 0:3002f480
+tick ReadExcl 1817348 0:3002f440
+tick 1817538 0:3002f600
+tick 1817552 0:3002f5c0
+tick 1817582 0:3002f500
+tick 1817591 0:3002f4c0
+tick 1817609 0:3002f480
+tick 1817618 0:3002f440
+tick 1817650 0:1ffef440
+tick ReadExcl 1818477 0:3002f580
+tick ReadExcl 1818486 0:3002f540
+tick 1818747 0:3002f580
+tick 1818756 0:3002f540
+tick ReadExcl 1821303 0:1ffef440
+tick 1821335 0:3000f440
+tick ReadExcl 1835412 0:2008de80
+tick 1835682 0:2008de80
+tick ReadExcl 1835747 0:2008dec0
+tick 1836017 0:2008dec0
+tick ReadExcl 1836714 0:3000f440
+tick 1836758 0:3002f440
+tick ReadExcl 1842911 0:2001ed80
+tick 1843181 0:2001ed80
+tick ReadExcl 1854059 0:1ffef400
+tick ReadExcl 1858207 0:2008df00
+tick 1858477 0:2008df00
+tick ReadExcl 1865626 0:3002f440
+tick ReadExcl 1868484 0:3000f440
+tick 1868516 0:1ffef440
+tick ReadExcl 1877173 0:1ffef440
+tick 1877205 0:3002f440
+tick ReadExcl 1881800 0:2008df40
+tick 1882070 0:2008df40
+tick ReadExcl 1886875 0:2001edc0
+tick 1887145 0:2001edc0
+tick ReadExcl 1890612 0:3002f700
+tick ReadExcl 1890626 0:3002f6c0
+tick ReadExcl 1890649 0:3002f680
+tick ReadExcl 1890663 0:3002f640
+tick 1890882 0:3002f700
+tick 1890896 0:3002f6c0
+tick 1890919 0:3002f680
+tick 1890928 0:1ffef6c0
+tick 1890933 0:3002f640
+tick 1893579 0:1ffef6c0
+tick ReadExcl 1895548 0:1ffef6c0
+tick ReadExcl 1898939 0:3000f6c0
+tick 1898971 0:3002f6c0
+tick ReadExcl 1899289 0:3002f6c0
+tick 1900851 0:1ffef6c0
+tick ReadExcl 1901032 0:1ffef6c0
+tick ReadExcl 1904766 0:3000f6c0
+tick 1904798 0:3002f6c0
+tick ReadExcl 1904833 0:3002f6c0
+tick 1904865 0:1ffef6c0
+tick ReadExcl 1906252 0:1ffef6c0
+tick ReadExcl 1906453 0:fffffffffff97d80
+tick 1906723 0:fffffffffff97d80
+tick ReadExcl 1907636 0:2008df80
+tick 1907906 0:2008df80
+tick ReadExcl 1913049 0:2001ee00
+tick 1913319 0:2001ee00
+tick ReadExcl 1915176 0:3000f6c0
+tick ReadExcl 1915406 0:3002f780
+tick ReadExcl 1915413 0:3002f740
+tick 1915676 0:3002f780
+tick 1915683 0:3002f740
+tick 1919913 0:1ffef6c0
+tick ReadExcl 1921783 0:1ffef6c0
+tick ReadExcl 1925699 0:3000f6c0
+tick 1927560 0:1ffef6c0
+tick ReadExcl 1927741 0:1ffef6c0
+tick 1927773 0:3002f6c0
+tick ReadExcl 1931391 0:3002f6c0
+tick ReadExcl 1931935 0:1ffef180
+tick ReadExcl 1931953 0:3000f6c0
+tick 1931985 0:1ffef6c0
+tick 1932205 0:1ffef180
+tick 1932237 0:3002f180
+tick ReadExcl 1932408 0:3002fc00
+tick ReadExcl 1932410 0:3002fbc0
+tick ReadExcl 1932433 0:3002fa00
+tick ReadExcl 1932447 0:3002f9c0
+tick ReadExcl 1932465 0:3002f900
+tick ReadExcl 1932479 0:3002f8c0
+tick 1932678 0:3002fc00
+tick 1932680 0:3002fbc0
+tick 1932703 0:3002fa00
+tick 1932717 0:3002f9c0
+tick ReadExcl 1932731 0:3002f880
+tick 1932735 0:3002f900
+tick ReadExcl 1932740 0:3002f840
+tick 1932749 0:3002f8c0
+tick 1933001 0:3002f880
+tick 1933010 0:3002f840
+tick 1933033 0:3000f880
+tick 1933043 0:3000f840
+tick ReadExcl 1934463 0:1ffef6c0
+tick ReadExcl 1935822 0:2008dfc0
+tick 1936092 0:2008dfc0
+tick 1936124 0:3002dfc0
+tick ReadExcl 1936626 0:2001ee40
+tick 1936896 0:2001ee40
+tick 1937352 0:3002f6c0
+tick ReadExcl 1943002 0:3002f980
+tick ReadExcl 1943011 0:3002f940
+tick 1943272 0:3002f980
+tick 1943281 0:3002f940
+tick ReadExcl 1946368 0:3002fb00
+tick ReadExcl 1946382 0:3002fac0
+tick ReadExcl 1946400 0:3002fa80
+tick ReadExcl 1946414 0:3002fa40
+tick 1946638 0:3002fb00
+tick 1946652 0:3002fac0
+tick 1946670 0:3002fa80
+tick 1946684 0:3002fa40
+tick ReadExcl 1947950 0:3000f400
+tick 1947982 0:3002f400
+tick ReadExcl 1962909 0:30027280
+tick ReadExcl 1963000 0:300272c0
+tick 1963179 0:30027280
+tick 1963270 0:300272c0
+tick ReadExcl 1965352 0:300271c0
+tick 1965622 0:300271c0
+tick ReadExcl 1987247 0:3002fb80
+tick ReadExcl 1987256 0:3002fb40
+tick 1987517 0:3002fb80
+tick 1987526 0:3002fb40
+tick ReadExcl 1988453 0:3002fe00
+tick ReadExcl 1988467 0:3002fdc0
+tick ReadExcl 1988485 0:3002fd00
+tick ReadExcl 1988494 0:3002fcc0
+tick ReadExcl 1988512 0:3002fc80
+tick ReadExcl 1988521 0:3002fc40
+tick 1988723 0:3002fe00
+tick 1988737 0:3002fdc0
+tick 1988755 0:3002fd00
+tick 1988764 0:3002fcc0
+tick 1988782 0:3002fc80
+tick 1988791 0:3002fc40
+tick ReadExcl 2005425 0:300135c0
+tick ReadExcl 2005511 0:2008e000
+tick 2005695 0:300135c0
+tick 2005781 0:2008e000
+tick 2005813 0:3002e000
+tick ReadExcl 2005846 0:2008e040
+tick 2006116 0:2008e040
+tick ReadExcl 2009512 0:2001ee80
+tick 2009782 0:2001ee80
+tick ReadExcl 2018848 0:2008e080
+tick 2019118 0:2008e080
+tick ReadExcl 2021870 0:3002f180
+tick 2021902 0:1ffef180
+tick ReadExcl 2023972 0:2001eec0
+tick 2024242 0:2001eec0
+tick ReadExcl 2033568 0:3002fd80
+tick ReadExcl 2033575 0:3002fd40
+tick 2033838 0:3002fd80
+tick 2033845 0:3002fd40
+tick ReadExcl 2034054 0:2001ef00
+tick 2034324 0:2001ef00
+tick ReadExcl 2041292 0:2008e0c0
+tick 2041562 0:2008e0c0
+tick ReadExcl 2041627 0:2008e100
+tick 2041897 0:2008e100
+tick ReadExcl 2041962 0:2008e140
+tick 2042232 0:2008e140
+tick ReadExcl 2045684 0:3002ff00
+tick ReadExcl 2045691 0:3002fec0
+tick ReadExcl 2045721 0:3002fe80
+tick ReadExcl 2045730 0:3002fe40
+tick 2045954 0:3002ff00
+tick 2045961 0:3002fec0
+tick 2045991 0:3002fe80
+tick 2046000 0:3002fe40
+tick ReadExcl 2047296 0:2001ef40
+tick 2047566 0:2001ef40
+tick ReadExcl 2055653 0:3002ff80
+tick ReadExcl 2055655 0:3002ff40
+tick 2055923 0:3002ff80
+tick 2055925 0:3002ff40
+tick ReadExcl 2057655 0:3002ffc0
+tick 2057925 0:3002ffc0
+tick ReadExcl 2058118 0:2001ef80
+tick 2058388 0:2001ef80
+tick ReadExcl 2060556 0:3000f680
+tick 2060588 0:3002f680
+tick ReadExcl 2060942 0:3001a740
+tick ReadExcl 2060950 0:3001a700
+tick 2061212 0:3001a740
+tick ReadExcl 2061214 0:30030000
+tick 2061220 0:3001a700
+tick 2061484 0:30030000
+tick ReadExcl 2061734 0:30031000
+tick ReadExcl 2061745 0:30030fc0
+tick ReadExcl 2061775 0:30030800
+tick ReadExcl 2061789 0:300307c0
+tick ReadExcl 2061807 0:30030400
+tick ReadExcl 2061816 0:300303c0
+tick 2062004 0:30031000
+tick 2062015 0:30030fc0
+tick ReadExcl 2062057 0:30030200
+tick ReadExcl 2062066 0:300301c0
+tick 2062104 0:30030800
+tick 2062115 0:300307c0
+tick ReadExcl 2062157 0:30030100
+tick ReadExcl 2062166 0:300300c0
+tick 2062204 0:30030400
+tick 2062215 0:300303c0
+tick ReadExcl 2062257 0:30030080
+tick ReadExcl 2062266 0:30030040
+tick 2062327 0:30030200
+tick 2062336 0:300301c0
+tick 2062427 0:30030100
+tick 2062436 0:300300c0
+tick 2062527 0:30030080
+tick 2062536 0:30030040
+tick ReadExcl 2062970 0:2001efc0
+tick ReadExcl 2063018 0:2001f000
+tick 2063240 0:2001efc0
+tick 2063288 0:2001f000
+tick ReadExcl 2065406 0:2001f040
+tick 2065676 0:2001f040
+tick ReadExcl 2072906 0:2008e180
+tick 2073176 0:2008e180
+tick ReadExcl 2076885 0:30030180
+tick ReadExcl 2076887 0:30030140
+tick 2077155 0:30030180
+tick 2077157 0:30030140
+tick ReadExcl 2086491 0:30030300
+tick ReadExcl 2086493 0:300302c0
+tick ReadExcl 2086511 0:30030280
+tick ReadExcl 2086520 0:30030240
+tick 2086761 0:30030300
+tick 2086763 0:300302c0
+tick 2086781 0:30030280
+tick 2086790 0:30030240
+tick ReadExcl 2089017 0:2001f080
+tick 2089287 0:2001f080
+tick ReadExcl 2089550 0:30030380
+tick ReadExcl 2089559 0:30030340
+tick 2089820 0:30030380
+tick 2089829 0:30030340
+tick ReadExcl 2093229 0:300274c0
+tick ReadExcl 2093238 0:30027480
+tick 2093499 0:300274c0
+tick 2093508 0:30027480
+tick ReadExcl 2095641 0:20050fc0
+tick ReadExcl 2100349 0:30027300
+tick 2100619 0:30027300
+tick ReadExcl 2108430 0:300273c0
+tick ReadExcl 2108459 0:30027400
+tick ReadExcl 2108483 0:30027440
+tick 2108700 0:300273c0
+tick 2108729 0:30027400
+tick 2108753 0:30027440
+tick ReadExcl 2130615 0:30030600
+tick ReadExcl 2130622 0:300305c0
+tick ReadExcl 2130640 0:30030500
+tick ReadExcl 2130649 0:300304c0
+tick ReadExcl 2130667 0:30030480
+tick ReadExcl 2130676 0:30030440
+tick 2130885 0:30030600
+tick 2130892 0:300305c0
+tick 2130910 0:30030500
+tick 2130919 0:300304c0
+tick 2130937 0:30030480
+tick 2130946 0:30030440
+tick ReadExcl 2131810 0:30030580
+tick ReadExcl 2131819 0:30030540
+tick 2132080 0:30030580
+tick 2132089 0:30030540
+tick ReadExcl 2148508 0:20030fc0
+tick 2148540 0:30030fc0
+tick ReadExcl 2149144 0:2008e1c0
+tick 2149414 0:2008e1c0
+tick ReadExcl 2149479 0:2008e200
+tick 2149749 0:2008e200
+tick ReadExcl 2182535 0:30027500
+tick ReadExcl 2182626 0:30027540
+tick 2182805 0:30027500
+tick 2182896 0:30027540
+tick ReadExcl 2207009 0:30030700
+tick ReadExcl 2207023 0:300306c0
+tick ReadExcl 2207041 0:30030680
+tick ReadExcl 2207055 0:30030640
+tick 2207279 0:30030700
+tick 2207293 0:300306c0
+tick 2207311 0:30030680
+tick 2207325 0:30030640
+tick ReadExcl 2208190 0:30030780
+tick ReadExcl 2208199 0:30030740
+tick 2208460 0:30030780
+tick 2208469 0:30030740
+tick ReadExcl 2217661 0:3001bd00
+tick ReadExcl 2217670 0:3001bcc0
+tick 2217931 0:3001bd00
+tick 2217940 0:3001bcc0
+tick ReadExcl 2218198 0:3001ba40
+tick ReadExcl 2218290 0:3001ba80
+tick 2218468 0:3001ba40
+tick ReadExcl 2218517 0:3001bac0
+tick 2218560 0:3001ba80
+tick ReadExcl 2218609 0:3001bb00
+tick 2218787 0:3001bac0
+tick ReadExcl 2218836 0:3001bb40
+tick 2218879 0:3001bb00
+tick 2219106 0:3001bb40
+tick ReadExcl 2220999 0:3001bb80
+tick 2221269 0:3001bb80
+tick ReadExcl 2222213 0:3001bbc0
+tick 2222483 0:3001bbc0
+tick ReadExcl 2226623 0:2008e240
+tick 2226893 0:2008e240
+tick ReadExcl 2262861 0:30027580
+tick 2263131 0:30027580
+tick ReadExcl 2285372 0:30030c00
+tick ReadExcl 2285374 0:30030bc0
+tick ReadExcl 2285397 0:30030a00
+tick ReadExcl 2285411 0:300309c0
+tick ReadExcl 2285429 0:30030900
+tick ReadExcl 2285443 0:300308c0
+tick 2285642 0:30030c00
+tick 2285644 0:30030bc0
+tick 2285667 0:30030a00
+tick 2285681 0:300309c0
+tick ReadExcl 2285695 0:30030880
+tick 2285699 0:30030900
+tick ReadExcl 2285704 0:30030840
+tick 2285713 0:300308c0
+tick 2285965 0:30030880
+tick 2285974 0:30030840
+tick ReadExcl 2303247 0:2008e280
+tick 2303517 0:2008e280
+tick ReadExcl 2303582 0:2008e2c0
+tick 2303852 0:2008e2c0
+tick ReadExcl 2307243 0:2001f0c0
+tick 2307513 0:2001f0c0
+***** exiting (allinstructions) *****
+Contexts: 1  Fetch Width: 2
+No of useful instructions fetched: 1000005 (21.59% proc util.)
+No of total instructions fetched:  1069598 (23.09% proc util.)
+ includes 4387 misfetch (0.4%), 65206 (6.1%) wrong-path fetches
+ and 0 non-WP flushed for failed lock and other (0.0%)
+No of useful instructions issued/executed: 1000065 (21.59% proc util.)
+No of total instructions issued/executed:  1029974 (22.24% proc util.)
+ includes 29909 wrong-path (2.9%) insts and 0 flushed (0.0%)
+    fp 25, 0.00%
+    synch 0, 0.00%
+    integer 664682, 64.53%
+    load/store 365267, 35.46%
+No of cycles taken: 2315805
+Parallelism [ 0.432,] = 0.432
+Core 0 scheduling stats
+  Avg pre-sched occupancy of IQ: 1.09 (3.40%), FQ: 0.00 (0.00%)
+  Rename IQ full cyc: 217 (0.01%), FQ: 0 (0.00%)
+  Avg occupancy of I regs: 4.24 (13.26%), FP regs: 0.00 (0.01%)
+  Rename I regs full cyc: 38747 (1.67%), FP regs: 0 (0.00%)
+  Avg occupancy of LSQ: 2.59 (8.10%)
+  Rename LSQ full cyc: 1080 (0.05%)
+  Avg occupancy of alus IALUS: 0.29 (14.35%), FPALUS: 0.00 (0.00%), LDST: 0.16 (7.89%)
+  Issue conflicts, I unit: 14886 (0.01), FP: 0 (0.00), LDST: 274 (0.00)
+  Issue conflicts, D-MSHR: 0 (0.00), mb: 0 (0.00), wmb: 0 (0.00), mem: 0 (0.00)
+  Total conflicts (non-issued, ready insts): 14886 (0.01)
+  Total conflict cyc buckets: 13884 405 33 1 0 0 0 0 0 0 0 0 0 0 0 0
+Context 0 scheduling stats
+  Avg occupancy of ROB: 6.23 (12.97%)
+  Fetch I-MSHR full: 0 (0.00%)
+  Rename ROB full cyc: 49760 (2.15%), fetch alist full cyc: 0 (0.00%)
+Commits: [ 1000000 ] = 1000000
+Syscalls: [ 0 ] = 0
+In-flight: [ 5 ] = 5
+App statistics
+  ID_order: [ 0 ]
+  insts: [ 2019558 ]
+  commits: [ 1000000 ]
+  discards: [ 19553 ]
+  syscalls: [ 13 ]
+  total_cyc: [ 2315805 ]
+  sched_cyc: [ 2315764 ]
+  sched_count: [ 1 ]
+  commits/schedcyc: [ 0.432 ]
+  commits/totalcyc: [ 0.432 ]
+  icache_miss_pct: [ 3.33 ]
+  dcache_accesses: [ 355220 ]
+  dcache_non-merged_miss_pct: [ 4.58 ]
+  l2cache_accesses: [ 34414 ]
+  l2cache_non-merged_miss_pct: [ 4.05 ]
+  l3cache_accesses: [ 1436 ]
+  l3cache_non-merged_miss_pct: [ 97.77 ]
+  mem_accesses: [ 1407 ]
+  itlb_miss_pct: [ 0.00 ]
+  dtlb_miss_pct: [ 0.16 ]
+  bpred_miss_pct: [ 10.76 ]
+  retpred_miss_pct: [ 12.22 ]
+  avg_mem_delay_cyc: [ 4.9 ]
+  instq_conf_cyc/schedcyc_pct: [ 0.01 ]
+  long_mem_detected: [ 1261 ]
+  long_mem_flushed: [ 0 ]
+Cache Statistics
+Core 0:
+  Reads: 860047   Writes: 114069
+  Hit times (excluding exec) from: L1=2, L2=14, L3=43, M=313
+  Ideal est. transfer bandwidth (bytes/cyc * banks * ports):
+          part    access     wb-to      fill
+           L1I        16        na       256
+           L1D        32        na       256
+            L2       256       256       256
+           Bus         8        na        32
+            L3        64        64        64
+           Mem     10.24     10.24        na
+  ICACHE: size: 4 KB assoc: 16
+  ICACHE: hits: 598284 misses: 20612  Hit Ratio: 96.67%
+  ICACHE: coher misses: 0 invalidates: 0
+          wbfull_confs: 0
+  DCACHE: size: 4 KB assoc: 16
+  DCACHE: hits: 338958 misses: 16262 writebacks: 5646  Hit Ratio: 95.42%
+  DCACHE: coher misses: 0 upgrade misses: 0
+          coher writebacks: 0 invalidates: 0
+          wbfull_confs: 0 coher_busy: 0 
+  SCACHE: size: 256 KB assoc: 2
+  SCACHE: hits: 35340 misses: 1534 writebacks: 23  Hit Ratio: 95.84%
+  SCACHE: coher misses: 0 upgrade misses: 0 
+          coher writebacks: 0 invalidates: 0
+          wbfull_confs: 0 coher_busy: 0
+  Stalls for L2 MSHR conflicts: 0
+  ITLB: size: 48, misses 27, miss rate 0.00
+  DTLB: size: 128, misses 31, miss rate 0.01
+  icache bank util. 0.076 0.070 0.064 0.066 0.049 0.069 0.075 0.083 
+  dcache bank util. 0.037 0.026 0.039 0.038 0.048 0.054 0.049 0.039 
+  L2 bank util. 0.005 0.004 0.005 0.005 0.006 0.004 0.005 0.004 
+Stall for miss queue full 0 cycles (0.00%)
+3CACHE: size: 8192 KB assoc: 8
+3CACHE: hits: 35 misses: 1499  writebacks: 0  Hit Ratio: 2.28%
+3CACHE: wbfull_confs: 0
+avg mem delay 4.914
+Unified bus: 3107 xfers, 0 syncs, 2311125 idle_cyc, 0 sync_cyc, 0.002 util
+L3 util. = 0.001
+MemUnit stats: 1499 reads, 0 writes
+MemUnit bank util: 0.004 0.004 0.004 0.004 0.004 0.004 0.004 0.004 0.004 0.004 0.004 0.004 0.004 0.004 0.004 0.004
+Core 0:
+  branch prediction, hits = 115450, misses = 13925, hit rate = 89.24%
+  jump prediction, hits = 134199, misses = 12403, hit rate = 91.54%
+  return_stack prediction, hits = 11474, misses = 1598, hit rate = 87.78%
+Commit group stats:
+  started 0, inflight 0, squashed 0, aborted 0, committed 0 (-nan% of started, -nan% of not-squashed)
+  blocked cyc/mean: [ 0/-nan ]
+GlobalAppMgr stats:
+  App state/cycle breakdown:
+    "cyc","ctx_run","ctx_stalled","ready","swapping","waiting"
+    "A0",2063268,252497,0,40,0
+  App occupancy cycles on cores:
+    "cyc","C0"
+    "A0",2315805
+  App swap-ins on cores:
+    "events","C0"
+    "A0",1
+  Core "scheduled - stalled" TLP cycles:
+    "cyc",0,1
+    "C0",252497,2063308
+  Core scheduled TLP cycles:
+    "cyc",0,1
+    "C0",0,2315805
+  App same-core fraction: [ -nan ]
+  App mean swapped-in cyc: [ 2315805 ]
+  App scheduled IPC: [ 0.432 ]
+  App L1D blocks on cores:
+    "blocks","C0"
+    "A0",64
+  App L2 blocks on cores:
+    "blocks","C0"
+    "A0",1468
+  App L3 blocks: [ 1499 ]
+  App activate/deactivate timing stats:
+    A0
+      deact_halt: - (n=0)
+      deact_swapout: - (n=0)
+      deact_sum: - (n=0)
+      activ_fetch: 40/40/40 (n=1,sd=0)
+      activ_commit: 40/40/40 (n=1,sd=0)
+      migrate_fetch: - (n=0)
+      migrate_commit: - (n=0)
+GlobalAdaptMgr Stats:
+  last_occupancy_per_ctx
+    ROB   4 
+    IQ    1 
+    FQ    0 
+    IREG  4 
+    FREG  0 
+    LSQ   2 
+  max_occupancy_per_ctx
+    ROB   48 
+    IQ    32 
+    FQ    3 
+    IREG  32 
+    FREG  18 
+    LSQ   32 
+  resource_size_per_ctx
+    ROB   36 
+    IQ    24 
+    FQ    24 
+    IREG  24 
+    FREG  24 
+    LSQ   24 
+total IPC 1000005/2315805 = 0.432
+
+--Sim'd 2.316e+06 cyc, 1.000e+06 insts in 1.734/0.03000/1.787(98.71%) sec
+--Sim rate: 1.336e+06 cyc/s, 5.767e+05 inst/s
+--Total run time: 1.781/0.03100/1.913(94.72%) sec

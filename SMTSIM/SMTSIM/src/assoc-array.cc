@@ -1,0 +1,1107 @@
+/*
+ * N-way-associative array object with goofy non-opaque keys
+ *
+ * Jeff Brown
+ * $Id: assoc-array.cc,v 1.28.6.10.2.1.2.3.6.1 2009/12/25 06:31:47 jbrown Exp $
+ */
+
+const char RCSid_1034960153[] =
+"$Id: assoc-array.cc,v 1.28.6.10.2.1.2.3.6.1 2009/12/25 06:31:47 jbrown Exp $";
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#include <algorithm>
+#include <limits>
+#include <map>
+#include <string>
+#include <vector>
+
+#include "sim-assert.h"
+#include "hash-map.h"
+#include "sys-types.h"
+#include "assoc-array.h"
+#include "utils.h"
+#include "utils-cc.h"
+#include "sim-cfg.h"
+#include "prng.h"
+
+using std::string;
+using std::map;
+using std::vector;
+
+
+// For arrays with associativity < this threshold, we just do a linear search
+// of ways looking for matches.  For those with associativity >= this
+// threshold, we use some more expensive indexing techniques instead of
+// the linear search.
+#define HIGHLY_ASSOCIATIVE_LOOKUP_THRESHOLD     8
+#define HIGHLY_ASSOCIATIVE_REPLACE_THRESHOLD    32
+
+// If this is true, we'll use the almost-standard "hash_map" container for
+// performing key->way mapping in highly associative arrays; otherwise, we
+// use STL "map"s.
+#define USE_HASHMAP_NOT_MAP             (1 && HAVE_HASHMAP)
+
+
+namespace {
+
+typedef enum {
+    AARP_LRU,
+    AARP_LRU_TexasBIP,
+    AARP_LRU_TexasDIPSD,
+    AARP_last
+} AAReplacePolicy;
+
+static const char *AARP_names[] = {
+    "LRU",
+    "LRU_TexasBIP",
+    "LRU_TexasDIPSD",
+    NULL
+};
+
+struct ArrayKeyLess {
+    bool operator()(const AssocArrayKey& k1, const AssocArrayKey& k2) const {
+        return (k1.lookup < k2.lookup) || 
+            ((k1.lookup == k2.lookup) && (k1.match < k2.match));
+    }
+};
+
+struct ArrayKeyEqual {
+    bool operator()(const AssocArrayKey& k1, const AssocArrayKey& k2) const {
+        return (k1.lookup == k2.lookup) && (k1.match == k2.match);
+    }
+};
+
+struct ArrayKeyHash {
+    size_t operator()(const AssocArrayKey& k) const {
+        size_t result;
+        StlHashU64 hasher;
+        result = hasher(k.lookup ^ k.match);
+        return result;
+    }
+};
+
+
+typedef int way_t;
+
+
+#if USE_HASHMAP_NOT_MAP
+    typedef hash_map<AssocArrayKey, way_t, ArrayKeyHash,
+                     ArrayKeyEqual> EntryWayMap;
+#else
+    typedef map<AssocArrayKey, way_t, ArrayKeyLess> EntryWayMap;
+#endif
+
+
+
+//
+// Array lookup manager: this is an abstract class that takes care of
+// searching an array line for a given key.
+//
+// Basic operations:
+//  lookup() -- determine which way a given key is stored at, if any
+//  replace() -- overwrite the given way with a new key
+//
+
+class ArrayLookupMgr {
+protected:
+    struct ArrayEntry {
+        AssocArrayKey key;
+        bool valid;
+    };
+
+    long n_lines;
+    int assoc;
+    ArrayEntry *all_entries;
+
+    void base_reset() {
+        for (long i = 0; i < (n_lines * assoc); i++)
+            all_entries[i].valid = false;
+    }
+
+public:
+    ArrayLookupMgr(long num_lines, int associativity) 
+        : n_lines(num_lines), assoc(associativity), all_entries(0) { 
+        all_entries = new ArrayEntry[n_lines * assoc];
+    }
+
+    virtual ~ArrayLookupMgr() {
+        if (all_entries)
+            delete[] all_entries;       
+    }
+
+    bool read_key(long line, int way, AssocArrayKey *key_ret) const {
+        const ArrayEntry& ent = all_entries[line * assoc + way];
+        if (ent.valid && key_ret)
+            *key_ret = ent.key;
+        return ent.valid;
+    }
+
+    virtual void reset() = 0;
+
+    // Returns way number, or -1 if not found */
+    virtual int lookup(long line, const AssocArrayKey& key) const = 0;
+
+    virtual void replace(long line, int way, const AssocArrayKey& key) = 0;
+
+    virtual void inval(long line, int way) = 0;
+};
+
+
+//
+// Linear-scan lookup: this is very simple, it just searches all ways
+// of a line for a match.
+//
+// lookup() cost is O(assoc), replace() cost is O(1).
+//
+
+class ALM_LinearScan : public ArrayLookupMgr {
+
+public:
+    ALM_LinearScan(long num_lines, int associativity) 
+        : ArrayLookupMgr(num_lines, associativity) { }
+
+    void reset() { 
+        base_reset();
+    }
+
+    int lookup(long line, const AssocArrayKey& key) const {
+        int found = -1;
+        const ArrayEntry *ent = all_entries + line * assoc;
+        for (int way = 0; way < assoc; way++, ent++) {
+            if (ent->valid && 
+                (ent->key.lookup == key.lookup) &&
+                (ent->key.match == key.match)) {
+                found = way;
+                break;
+            }
+        }
+        return found;
+    }
+
+    void replace(long line, int way, const AssocArrayKey& key) {
+        ArrayEntry& ent = all_entries[line * assoc + way];
+        ent.key = key;
+        ent.valid = true;
+    }
+
+    void inval(long line, int way) {
+        ArrayEntry& ent = all_entries[line * assoc + way];
+        ent.valid = false;
+    }
+};
+
+
+//
+// Associative lookup with per-line maps: this maintains, for each line, amap
+// from key values to way numbers on that line.  
+//
+// lookup() and replace() costs are that of the underlying map implementation
+// on "assoc" elements; O(lg assoc) for balanced trees, ~O(1) for hashes.
+//
+
+class ALM_PerLineMap : public ArrayLookupMgr {
+    EntryWayMap *way_lookups;           // [n_lines]
+
+public:
+    ALM_PerLineMap(long num_lines, int associativity) 
+        : ArrayLookupMgr(num_lines, associativity), way_lookups(0)
+    {
+        way_lookups = new EntryWayMap[n_lines];
+    }
+
+    virtual ~ALM_PerLineMap() {
+        if (way_lookups)
+            delete[] way_lookups;       
+    }
+
+    void reset() {
+        for (long i = 0; i < n_lines; i++)
+            way_lookups[i].clear();
+        base_reset();
+    }
+
+    int lookup(long line, const AssocArrayKey& key) const {
+        int found = -1;
+        EntryWayMap::const_iterator found_ent = way_lookups[line].find(key);
+        if (found_ent != way_lookups[line].end())
+            found = found_ent->second;
+        return found;
+    }
+
+    void replace(long line, int way, const AssocArrayKey& key) {
+        ArrayEntry& ent = all_entries[line * assoc + way];
+        if (ent.valid)
+            way_lookups[line].erase(ent.key);
+        way_lookups[line][key] = static_cast<way_t>(way);
+        ent.key = key;
+        ent.valid = true;
+    }
+
+    void inval(long line, int way) {
+        ArrayEntry& ent = all_entries[line * assoc + way];
+        if (ent.valid) {
+            way_lookups[line].erase(ent.key);
+            ent.valid = false;
+        }
+    }
+};
+
+
+//
+// Associative lookup with a single array: this maintains a single mapping
+// from key values to way numbers for all keys in the array.
+//
+// lookup() and replace() costs are that of the underlying map implementation
+// on "n_lines * assoc" elements; O(lg(n_lines * assoc)) for balanced
+// trees, ~O(1) for hashes.
+//
+
+class ALM_ArrayWideMap : public ArrayLookupMgr {
+    EntryWayMap way_lookup;
+
+public:
+    ALM_ArrayWideMap(long num_lines, int associativity) 
+        : ArrayLookupMgr(num_lines, associativity)
+    {
+    }
+
+    virtual ~ALM_ArrayWideMap() {
+    }
+
+    void reset() {
+        way_lookup.clear();
+        base_reset();
+    }
+
+    int lookup(long line, const AssocArrayKey& key) const {
+        int found = -1;
+        EntryWayMap::const_iterator found_ent = way_lookup.find(key);
+        if (found_ent != way_lookup.end())
+            found = found_ent->second;
+        return found;
+    }
+
+    void replace(long line, int way, const AssocArrayKey& key) {
+        ArrayEntry& ent = all_entries[line * assoc + way];
+        if (ent.valid)
+            way_lookup.erase(ent.key);
+        way_lookup[key] = static_cast<way_t>(way);
+        ent.key = key;
+        ent.valid = true;
+    }
+
+    void inval(long line, int way) {
+        ArrayEntry& ent = all_entries[line * assoc + way];
+        if (ent.valid) {
+            way_lookup.erase(ent.key);
+            ent.valid = false;
+        }
+    }
+};
+
+
+
+//
+// Array replacement manager: this is an abstract class that takes care of
+// selecting victims for replacement.  These managers handle both the
+// replacement policy, and actual replacement mechanism.
+//
+// Basic operations:
+//  touch() -- record a use of the given entry
+//  replaced() -- record replacement of the given entry
+//  evict_select() -- select an entry for eviction
+//
+
+class ArrayReplacementMgr {
+protected:
+    long n_lines;
+    int assoc;
+
+public:
+    ArrayReplacementMgr(long num_lines, int associativity)
+        : n_lines(num_lines), assoc(associativity) { }
+    ArrayReplacementMgr(const ArrayReplacementMgr& copy) 
+        : n_lines(copy.n_lines), assoc(copy.assoc) { }
+    virtual ~ArrayReplacementMgr() { }
+
+    virtual void reset() = 0;
+
+    virtual void touch(long line, int way) = 0;
+    virtual void replaced(long line, int way) {
+        touch(line, way);       // Default policy: just touch it
+    }
+
+    // Returns way number
+    virtual int evict_select(long line) const = 0;
+
+    virtual void inval(long line, int way) = 0;
+};
+
+
+// Array replacement "adapter": layer some additional policy on top of an 
+// underlying replacement manager.  (This is probably less efficient than
+// just inheriting from the underlying manager, due to the additional
+// virtual function call, though it is also more general.)  Think of it as
+// composition/inheritance-at-runtime.
+//
+// WARNING SLASH NOTE: this replacement manager "owns" the underlying object
+// being adapted; when destructed, it will destroy the underlying object.
+
+class ARM_Adapter : public ArrayReplacementMgr {
+protected:
+    const scoped_ptr<ArrayReplacementMgr> underlying;
+public:
+    ARM_Adapter(ArrayReplacementMgr *underlying_)
+        : ArrayReplacementMgr(*underlying_),    // copy base-class parameters
+          underlying(underlying_) { }
+    virtual ~ARM_Adapter() {
+        // scoped_ptr will delete "underlying"
+    }
+    const ArrayReplacementMgr *parent() const { return underlying.get(); }
+    ArrayReplacementMgr *parent() { return underlying.get(); }
+
+    // Redirect all method calls to the underlying object.  It'd be nice
+    // if there was an automatic way to do this.
+    virtual void reset()
+    { underlying->reset(); }
+    virtual void touch(long line, int way) 
+    { underlying->touch(line, way); }
+    virtual void replaced(long line, int way)
+    { underlying->replaced(line, way); }
+    virtual int evict_select(long line) const
+    { return underlying->evict_select(line); }
+    virtual void inval(long line, int way)
+    { underlying->inval(line, way); }
+};
+
+
+//
+// LRU replacement with an array-wide transaction clock: this maintains a
+// single array-wide transaction clock, and tags each way with values from
+// that clock.  LRU selection is done with a linear scan looking for the
+// minimum clock value.  Clock overflows are NOT handled, so the underlying
+// clock type should be wide enough that they don't occur.
+//
+// touch() cost is O(1), evict_select() cost is O(assoc).
+//
+
+class ARM_LRU_ArrayWideClock : public ArrayReplacementMgr {
+    typedef i64 trans_clock;
+
+    trans_clock array_clock;
+    trans_clock *ent_clocks;            // [n_lines][assoc]
+
+public:
+    ARM_LRU_ArrayWideClock(long num_lines, int associativity)
+        : ArrayReplacementMgr(num_lines, associativity), ent_clocks(0) { 
+        ent_clocks = new trans_clock[n_lines * assoc];
+    }
+
+    virtual ~ARM_LRU_ArrayWideClock() {
+        if (ent_clocks)
+            delete[] ent_clocks;
+    }
+
+    void reset() {
+        array_clock = 0;
+        for (long i = 0; i < (n_lines * assoc); i++)
+            ent_clocks[i] = -1;
+    }
+
+    void touch(long line, int way) {
+        ent_clocks[line * assoc + way] = array_clock;
+        array_clock++;
+        sim_assert(array_clock > 0);    // Overflow
+    }
+
+    int evict_select(long line) const
+    {
+        trans_clock *way_clocks = ent_clocks + line * assoc;
+        int lru_way = 0;
+        trans_clock lru_time = way_clocks[0];
+        for (int way = 1; way < assoc; way++) {
+            if (way_clocks[way] < lru_time) {
+                /* Note: time is -1 for invalid blocks, so they "win" LRU */
+                lru_way = way;
+                lru_time = way_clocks[way];
+            }
+        }
+
+        return lru_way;
+    }
+
+    void inval(long line, int way) {
+        ent_clocks[line * assoc + way] = -1;
+    }
+};
+
+
+//
+// LRU replacement with distinct per-line transaction clocks: this maintains,
+// for each line, a counter for transactions on that line, and tags each way
+// with values from the counter.  LRU selection is done with a linear scan
+// looking for the minimum clock value.  Clock overflows are handled,
+// allowing for smaller data types to be used.
+//
+// touch() cost is O(1), except for the (hopefully very rare) incidence of a
+// clock overflow, which incurs an O(assoc lg assoc) penalty.  evict_select()
+// cost is O(assoc).
+//
+
+class ARM_LRU_PerLineClock : public ArrayReplacementMgr {
+protected:
+    typedef int line_trans_clock;
+
+    // For each line, this has the line clock followed by [assoc] timestamps
+    line_trans_clock *all_clocks;               // [n_lines][1 + assoc]
+
+private:
+    struct TimeWay {
+        line_trans_clock time;
+        int way;
+        TimeWay(line_trans_clock t, int w) : time(t), way(w) { }
+        bool operator < (const TimeWay& t2) const { return time < t2.time; }
+    };
+
+    long overflow_fix_count;
+
+    void lineclock_overflow_fix(line_trans_clock *line_clocks);
+
+public:
+    ARM_LRU_PerLineClock(long num_lines, int associativity);
+
+    virtual ~ARM_LRU_PerLineClock() {
+        if (all_clocks)
+            delete[] all_clocks;
+    }
+
+    void reset() {
+        for (long line = 0; line < n_lines; line++) {
+            line_trans_clock *line_clocks = all_clocks + line * (1 + assoc);
+            line_clocks[0] = 0;
+            for (int way = 0; way < assoc; way++) {
+                line_clocks[way + 1] = -1;
+            }
+        }
+    }
+
+    void touch(long line, int way) {
+        line_trans_clock *line_clocks = all_clocks + line * (1 + assoc);
+        line_clocks[way + 1] = line_clocks[0];
+        line_clocks[0]++;
+        if (SP_F(line_clocks[0] <= 0))
+            lineclock_overflow_fix(line_clocks);
+    }
+
+    int evict_select(long line) const
+    {
+        line_trans_clock *way_clocks = all_clocks + line * (1 + assoc) + 1;
+        int lru_way = 0;
+        line_trans_clock lru_time = way_clocks[0];
+        for (int way = 1; way < assoc; way++) {
+            if (way_clocks[way] < lru_time) {
+                /* Note: time is -1 for invalid blocks, so they "win" LRU */
+                lru_way = way;
+                lru_time = way_clocks[way];
+            }
+        }
+
+        return lru_way;
+    }
+
+    void inval(long line, int way) {
+        line_trans_clock *way_clocks = all_clocks + line * (1 + assoc) + 1;
+        way_clocks[way] = -1;
+    }
+};
+
+
+ARM_LRU_PerLineClock::ARM_LRU_PerLineClock(long num_lines, int associativity)
+    : ArrayReplacementMgr(num_lines, associativity), all_clocks(0),
+      overflow_fix_count(0) 
+{
+    const char *fname = "ARM_LRU_PerLineClock::ARM_LRU_PerLineClock";
+
+    if (assoc > std::numeric_limits<line_trans_clock>::max()) {
+        fprintf(stderr, "%s (%s:%i): associativity (%i) is larger than what "
+                "a line_trans_clock (size: %i bytes) can hold\n",
+                fname, __FILE__, __LINE__, assoc, 
+                static_cast<int>(sizeof(line_trans_clock)));
+        exit(1);
+    }
+
+    all_clocks = new line_trans_clock[n_lines * (1 + assoc)];
+}
+
+
+void 
+ARM_LRU_PerLineClock::lineclock_overflow_fix(line_trans_clock *line_clocks)
+{
+    /*
+     * It's possible for a line's transaction clock to overflow and wrap to
+     * negative values.  However, since the clock is not externally visible,
+     * we can handle such overflows by re-writing the clock value for every
+     * way to have a value from 0,1,...,assoc-1 so that the ordering between
+     * them is maintained.  Since we check the trans clock after each
+     * increment, we're guaranteed to catch it as soon as it overflows, so
+     * all of the clock values that make it into the entries will be positive
+     * except for invalid ones.  Afterwords, we reset the line trans clock to
+     * "assoc", so that future operations will be correctly ordered with
+     * respect to the past.
+     *  
+     * Note that for this to work, the associativity must be less than the max
+     * value of a line_trans_clock.  Also, this isn't necessarily fast, so you
+     * don't want to do it very often.
+     */
+
+    overflow_fix_count++;
+
+    int used = 0;
+    vector<TimeWay>times;
+    times.reserve(assoc);
+
+    for (int i = 0; i < assoc; i++) {
+        line_trans_clock time = line_clocks[i + 1];
+        if (time >= 0) {
+            times.push_back(TimeWay(time, i));
+            used++;
+        }
+    }
+
+    std::sort(times.begin(), times.end());
+
+    for (int i = 0; i < used; i++)
+        line_clocks[times[i].way + 1] = i;
+
+    line_clocks[0] = assoc;
+}
+
+
+//
+// LRU replacement with per-line ordering lists: this maintains, for each
+// line, a doubly-linked list (through way numbers) of the ways, in order from
+// MRU to LRU.  LRU selection is done by just picking the tail of a list.
+//
+// touch() cost is O(1), though the constant cost is likely higher than that
+// of the clock-based LRU schemes.  evict_select() cost is O(1).
+//
+
+class ARM_LRU_PerLineList : public ArrayReplacementMgr {
+    typedef way_t way_idx_t;
+
+    struct WayOrder {
+        way_idx_t prev;         // "tail", at header
+        way_idx_t next;         // "head", at header
+    };
+
+    WayOrder *line_order;       // [n_lines][assoc + 1]
+                                // 2nd dim is: header, way0, way1...
+
+    // Flag: on move-to-front/rear, always perform the re-linking operation
+    // without first checking if the target element is already in place.
+    static const bool always_write = false;
+
+public:
+    ARM_LRU_PerLineList(long num_lines, int associativity)
+        : ArrayReplacementMgr(num_lines, associativity), line_order(0) { 
+        line_order = new WayOrder[n_lines * (assoc + 1)];
+    }
+
+    virtual ~ARM_LRU_PerLineList() {
+        if (line_order)
+            delete[] line_order;
+    }
+
+    void reset() {
+        for (long line = 0; line < n_lines; line++) {
+            WayOrder *way_order = line_order + line * (assoc + 1);
+            for (int way = 0; way <= assoc; way++) {
+                way_order[way].prev = (way > 0) ? (way - 1) : assoc;
+                way_order[way].next = (way < assoc) ? (way + 1) : 0;
+            }
+        }
+    }
+
+    void touch(long line, int way) {
+        WayOrder *way_order = line_order + line * (assoc + 1);
+        const int way_idx = way + 1;    // index in way_order[] of this way
+        int old_prev = way_order[way_idx].prev;
+        // Move to front (prev == 0), if not there already
+        if (always_write || (old_prev != 0)) {
+            // Unlink from current position
+            int old_next = way_order[way_idx].next;
+            way_order[old_next].prev = old_prev;
+            way_order[old_prev].next = old_next;
+            // Link in at front
+            int old_front = way_order[0].next;
+            way_order[way_idx].prev = 0;
+            way_order[way_idx].next = old_front;
+            way_order[old_front].prev = way_idx;
+            way_order[0].next = way_idx;
+        }
+    }
+
+    int evict_select(long line) const
+    {
+        const WayOrder& header = line_order[line * (assoc + 1)];
+        int lru_way = header.prev - 1;
+        return lru_way;
+    }
+
+    void inval(long line, int way) {
+        WayOrder *way_order = line_order + line * (assoc + 1);
+        const int way_idx = way + 1;    // index in way_order[] of this way
+        int old_next = way_order[way_idx].next;
+        // Move to rear (next == 0), if not there already
+        if (always_write || (old_next != 0)) {
+            // Unlink from current position
+            int old_prev = way_order[way_idx].prev;
+            way_order[old_prev].next = old_next;
+            way_order[old_next].prev = old_prev;
+            // Link in at rear
+            int old_rear = way_order[0].prev;
+            way_order[way_idx].next = 0;
+            way_order[way_idx].prev = old_rear;
+            way_order[old_rear].next = way_idx;
+            way_order[0].prev = way_idx;
+        }
+    }
+};
+
+
+// "LRU Insertion Policy", from Qureshi et al, ISCA '07
+//
+// Insert new blocks at least-recently used position, and leave it as LRU.
+class ARM_TexasLIP : public ARM_Adapter {
+public:
+    ARM_TexasLIP(ArrayReplacementMgr *underlying_lru)
+        : ARM_Adapter(underlying_lru) { }
+    void replaced(long line, int way) {
+        // Override: no touch operation
+    }
+};
+
+
+// "Bimodal Insertion Policy", from Qureshi et al, ISCA '07
+//
+// Insert most new blocks at least-recently used position, except 
+// sometimes (probabilistically) promote them to MRU, as with traditional
+// LRU management.
+class ARM_TexasBIP : public ARM_Adapter {
+    double promote_prob;   // 0.0 for never (LIP), 1.0 for always (LRU)
+    PRNGState prng;
+public:
+    ARM_TexasBIP(ArrayReplacementMgr *underlying_lru, double promote_prob_)
+        : ARM_Adapter(underlying_lru), promote_prob(promote_prob_) {
+        sim_assert((promote_prob >= 0.0) && (promote_prob <= 1.0));
+        prng_reset(&prng, 1182974424L);         // Constant seed
+    }
+    void replaced(long line, int way) {
+        double rand_0_1 = prng_next_double(&prng);      // in [0,1)
+        if (promote_prob > rand_0_1)
+            ARM_Adapter::replaced(line, way);
+    }
+};
+
+
+// "Dynamic Insertion Policy, Set Dueling", from Qureshi et al, ISCA '07
+//
+// Choose dynamically between the underlying LRU and TexasBIP.
+// (Note: double the number of lines specificed by 2^dedicated_each_lg are
+//  reserved for sampling, as one line is reserved for _each_ policy)
+class ARM_TexasDIPSD : public ARM_Adapter {
+    double promote_prob;
+    int psel_counter_bits;
+    int constituency_bits, offset_bits;
+
+    PRNGState prng;
+    long classify_mask;         // mask to extract PSEL bits for comparison
+    unsigned psel_counter, psel_counter_limit;
+
+    enum LineType { Line_LRU, Line_BIP, Line_Follower };
+    LineType classify_line(long line_num) const {
+        // "complement-select" policy: 
+        // "constituency" is top lg2(dedicated_lines) bits of line number,
+        // "offset" is remaining bits.  If constituency == offset, use LRU;
+        // if constituency == ~offset, use BIP; otherwise, use follower.
+        // However, the comparison must be done only against the width
+        // of the offset bits (particularly after the complement);
+        // we have classify_mask set up for that.
+        long constituency = line_num >> offset_bits;
+        long offset = line_num;         // Don't bother with redundant masking
+        LineType result;
+        if (((constituency - offset) & classify_mask) == 0) {
+            result = Line_LRU;
+        } else if (((constituency - ~offset) & classify_mask) == 0) {
+            result = Line_BIP;
+        } else {
+            result = Line_Follower;
+        }
+        return result;
+    }
+    
+public:
+    ARM_TexasDIPSD(ArrayReplacementMgr *underlying_lru,
+                   double promote_prob_, int dedicated_each_lg,
+                   int psel_counter_bits_);
+    void replaced(long line, int way) {
+        LineType line_type = classify_line(line);
+        if (false && (line_type != Line_Follower))
+            printf("TexasDIPSD: psel %u (%s, %s)\n", psel_counter,
+                   (psel_counter >= (psel_counter_limit / 2)) ? "BIP" : "LRU",
+                   (line_type == Line_LRU) ? "+" : "-");
+        switch (line_type) {
+        case Line_LRU:          // Miss in dedicated LRU set: increment psel
+            if (psel_counter < (psel_counter_limit - 1))
+                psel_counter++;         // More LRU misses: prefer BIP
+            break;
+        case Line_BIP:          // Miss in dedicated BIP set: decrement psel
+            if (psel_counter > 0)
+                psel_counter--;         // More BIP misses: prefer LRU
+            break;
+        case Line_Follower:     // Choose LRU vs. BIP based on counter
+            line_type = (psel_counter >= (psel_counter_limit / 2)) ?
+                Line_BIP : Line_LRU;
+            break;
+        }
+        if ((line_type == Line_LRU) ||
+            (promote_prob > prng_next_double(&prng))) {
+            ARM_Adapter::replaced(line, way);
+        }
+    }
+};
+
+
+ARM_TexasDIPSD::ARM_TexasDIPSD(ArrayReplacementMgr *underlying_lru,
+                               double promote_prob_, int dedicated_each_lg,
+                               int psel_counter_bits_)
+    : ARM_Adapter(underlying_lru), promote_prob(promote_prob_),
+      psel_counter_bits(psel_counter_bits_) 
+{
+    sim_assert((promote_prob >= 0.0) && (promote_prob <= 1.0));
+    prng_reset(&prng, 1182974424L);             // Constant seed
+
+    int n_lines_lg = log2_exact(n_lines);
+    sim_assert(n_lines_lg >= 0);
+    if ((dedicated_each_lg < 0) ||
+        (dedicated_each_lg >= n_lines_lg)) {    
+        fprintf(stderr, "(%s:%i): dedicated_each_lg value (%d) out of "
+                "range for a cache with 2^%d lines\n", __FILE__, __LINE__,
+                dedicated_each_lg, n_lines_lg);
+        exit(1);
+    }
+    constituency_bits = dedicated_each_lg;
+    offset_bits = n_lines_lg - constituency_bits;
+    sim_assert(constituency_bits > 0);
+    sim_assert(offset_bits > 0);
+    classify_mask = 1;
+    classify_mask = (classify_mask << offset_bits) - 1;
+
+    if (psel_counter_bits < 1) {
+        fprintf(stderr, "(%s:%i): psel_counter_bits value (%d) too "
+                "small\n", __FILE__, __LINE__, psel_counter_bits);
+        exit(1);
+    }
+    psel_counter_limit = 1 << psel_counter_bits;
+    psel_counter = psel_counter_limit / 2;
+
+    printf("Experimental ARM_TexasDIPSD in use; promote_prob %.6f, "
+           "dedicated_each_lg %d, psel_counter_bits %d; "
+           "n_lines_lg %d constituency_bits %d offset_bits %d\n",
+           promote_prob, dedicated_each_lg, psel_counter_bits,
+           n_lines_lg, constituency_bits, offset_bits);
+}
+
+
+
+} // Anonymous namespace close
+
+
+// This is a struct instead of a class, to ease calling from C
+struct AssocArray {
+protected:
+    long n_lines;
+    int assoc;
+    AAReplacePolicy replace_policy;
+    string cfg_base;            // Either empty, or has a trailing slash
+
+    int n_lines_lg;
+    long total_entries;
+
+    ArrayLookupMgr *lookup_mgr;
+    ArrayReplacementMgr *replace_mgr;
+
+    inline bool lineway_invar(long line_num, int way_num) const {
+        return ((line_num >= 0) && (line_num < n_lines)) &&
+            ((way_num >= 0) && (way_num < assoc));
+    }
+
+    inline long select_line(const AssocArrayKey& key) const {
+        return static_cast<long>(key.lookup & (n_lines - 1));
+    }
+
+private:
+    // Disallow copy or assignment
+    AssocArray(const AssocArray& src);
+    AssocArray& operator = (const AssocArray &src);
+
+public:
+    AssocArray(long n_lines_, int assoc_, AAReplacePolicy replace_policy_,
+               const string& cfg_base_);
+    ~AssocArray();
+    void reset();
+
+    inline int lookup(const AssocArrayKey& key, long *line_num_ret, 
+                      int *way_num_ret) {
+        long line_num = select_line(key);
+        int found_way = lookup_mgr->lookup(line_num, key);
+        if (found_way >= 0) {
+            replace_mgr->touch(line_num, found_way);
+            *line_num_ret = line_num;
+            *way_num_ret = found_way;
+        }
+        return (found_way >= 0);
+    }
+
+    inline bool probe(const AssocArrayKey& key, long *line_num_ret, 
+                      int *way_num_ret) const {
+        long line_num = select_line(key);
+        int found_way = lookup_mgr->lookup(line_num, key);
+        if (found_way >= 0) {
+            *line_num_ret = line_num;
+            *way_num_ret = found_way;
+        }
+        return (found_way >= 0);
+    }
+
+    inline bool replace(const AssocArrayKey& key, long *line_num_ret, 
+                        int *way_num_ret, AssocArrayKey *old_key_ret) {
+        long line_num = select_line(key);
+        sim_assert(lookup_mgr->lookup(line_num, key) == -1);
+        int way_num = replace_mgr->evict_select(line_num);
+        sim_assert(lineway_invar(line_num, way_num));
+        bool old_key_valid = lookup_mgr->read_key(line_num, way_num, 
+                                                  old_key_ret);
+        lookup_mgr->replace(line_num, way_num, key);
+        replace_mgr->replaced(line_num, way_num);
+        *line_num_ret = line_num;
+        *way_num_ret = way_num;
+        return old_key_valid;
+    }
+
+    inline void invalidate(long line_num, int way_num) {
+        sim_assert(lineway_invar(line_num, way_num));
+        lookup_mgr->inval(line_num, way_num);
+        replace_mgr->inval(line_num, way_num);
+    }
+
+    inline void touch(long line_num, int way_num) {
+        sim_assert(lineway_invar(line_num, way_num));
+        replace_mgr->touch(line_num, way_num);
+    }
+
+    inline bool readkey(long line_num, int way_num, AssocArrayKey *key_ret)
+        const {
+        sim_assert(lineway_invar(line_num, way_num));
+        return lookup_mgr->read_key(line_num, way_num, key_ret);
+    }
+};
+
+
+AssocArray::AssocArray(long n_lines_, int assoc_,
+                       AAReplacePolicy replace_policy_,
+                       const string& cfg_base_)
+    : n_lines(n_lines_), assoc(assoc_), replace_policy(replace_policy_),
+      cfg_base(cfg_base_),
+      lookup_mgr(0), replace_mgr(0)
+{
+    const char *fname = "AssocArray::AssocArray";
+
+    sim_assert(n_lines > 0);
+    sim_assert(assoc > 0);
+
+    if (!cfg_base.empty())
+        cfg_base += "/";               
+
+    n_lines_lg = log2_exact(n_lines);
+    if (n_lines_lg < 0) {
+        fprintf(stderr, "%s (%s:%i): n_lines (%li) not a power of 2\n",
+                fname, __FILE__, __LINE__, n_lines);
+        exit(1);
+    }
+
+    total_entries = n_lines * assoc;
+
+    if (assoc < HIGHLY_ASSOCIATIVE_LOOKUP_THRESHOLD) {
+        lookup_mgr = new ALM_LinearScan(n_lines, assoc);
+    } else {
+        // Using a per-line map keeps the size of each map down at the cost of
+        // more per-map overhead
+        //lookup_mgr = new ALM_PerLineMap(n_lines, assoc);
+        lookup_mgr = new ALM_ArrayWideMap(n_lines, assoc);
+    }
+
+    switch (replace_policy) {
+    case AARP_LRU:
+        if (assoc < HIGHLY_ASSOCIATIVE_REPLACE_THRESHOLD) {
+            replace_mgr = new ARM_LRU_PerLineClock(n_lines, assoc);
+            //replace_mgr = new ARM_LRU_PerLineList(n_lines, assoc);
+        } else {
+            //replace_mgr = new ARM_LRU_PerLineClock(n_lines, assoc);
+            replace_mgr = new ARM_LRU_PerLineList(n_lines, assoc);
+        }
+        break;
+    case AARP_LRU_TexasBIP: {
+        string base(cfg_base + "TexasBIP/");
+        double promote_prob =
+            simcfg_get_double((base + "promote_prob").c_str());
+        replace_mgr = new ARM_LRU_PerLineClock(n_lines, assoc);
+        replace_mgr = new ARM_TexasBIP(replace_mgr, promote_prob);
+        break;
+    }
+    case AARP_LRU_TexasDIPSD: {
+        string base(cfg_base + "TexasDIPSD/");
+        double promote_prob =
+            simcfg_get_double((base + "promote_prob").c_str());
+        int dedicated_each_lg =
+            simcfg_get_int((base + "dedicated_each_lg").c_str());
+        int counter_bits =
+            simcfg_get_int((base + "counter_bits").c_str());
+
+        replace_mgr = new ARM_LRU_PerLineClock(n_lines, assoc);
+        //int dedicated_each_lg = n_lines_lg - (5 + 1); // 1/32nd of lines
+        //int dedicated_each_lg = 5;            // fixed 2^5*2 lines
+        //int counter_bits = 14 - (n_lines_lg - dedicated_each_lg - 1);
+        replace_mgr = new ARM_TexasDIPSD(replace_mgr, promote_prob,
+                                         dedicated_each_lg, counter_bits);
+        break;
+    }
+    case AARP_last:
+        break;
+    }
+
+    if (replace_mgr == 0) {
+        fprintf(stderr, "%s (%s:%i): invalid replacement policy #%i\n",
+                fname, __FILE__, __LINE__, replace_policy);
+        sim_abort();
+    }
+
+    // We initialize the AssocArray members with the reset() method instead of
+    // in the constructor or in the lookup/replacement constructors.  By
+    // making construction include a reset, we ensure that future resets will
+    // leave us with the same initial state.
+
+    this->reset();
+}
+
+
+AssocArray::~AssocArray()
+{
+    if (lookup_mgr)
+        delete lookup_mgr;
+    if (replace_mgr)
+        delete replace_mgr;
+}
+
+
+void
+AssocArray::reset()
+{
+    lookup_mgr->reset();
+    replace_mgr->reset();
+}
+
+
+AssocArray *
+aarray_create(long n_lines, int assoc, const char *replace_policy_name)
+{
+    // The constructor call interface is a little goofy with the replacement
+    // policy being seperate, but at least the goofiness isn't exposed to
+    // outsiders.
+    int replace_policy = enum_lookup(AARP_names, replace_policy_name);
+    if (replace_policy < 0) {
+        exit_printf("replacement policy name \"%s\" not recognized\n",
+                    replace_policy_name);
+    }
+    return new AssocArray(n_lines, assoc, 
+                          static_cast<AAReplacePolicy>(replace_policy),
+                          string());
+}
+
+
+AssocArray *aarray_create_simcfg(long n_lines, int assoc,
+                                 const char *config_path)
+{
+    sim_assert(config_path != NULL);
+    string path(config_path);
+    int replace_policy =
+        simcfg_get_enum(AARP_names, (path + "/" + "replace_policy").c_str());
+    return new AssocArray(n_lines, assoc,
+                          static_cast<AAReplacePolicy>(replace_policy),
+                          path);
+}
+
+
+void 
+aarray_destroy(AssocArray *array)
+{
+    if (array) {
+        delete array;
+    }
+}
+
+
+void 
+aarray_reset(AssocArray *array)
+{
+    array->reset();
+}
+
+
+int 
+aarray_lookup(AssocArray *array, const AssocArrayKey *key,
+              long *line_num_ret, int *way_num_ret)
+{
+    return array->lookup(*key, line_num_ret, way_num_ret);
+}
+
+
+int 
+aarray_probe(const AssocArray *array, const AssocArrayKey *key,
+             long *line_num_ret, int *way_num_ret)
+{
+    return array->probe(*key, line_num_ret, way_num_ret);
+}
+
+
+int
+aarray_replace(AssocArray *array, const AssocArrayKey *key, 
+               long *line_num_ret, int *way_num_ret,
+               AssocArrayKey *old_key_ret)
+{
+    return array->replace(*key, line_num_ret, way_num_ret, old_key_ret);
+}
+
+
+void 
+aarray_invalidate(AssocArray *array, long line_num, int way_num)
+{
+    array->invalidate(line_num, way_num);
+}
+
+
+void 
+aarray_touch(AssocArray *array, long line_num, int way_num)
+{
+    array->touch(line_num, way_num);
+}
+
+
+int
+aarray_readkey(const AssocArray *array, long line_num, int way_num,
+               AssocArrayKey *key_ret)
+{
+    return array->readkey(line_num, way_num, key_ret);
+}

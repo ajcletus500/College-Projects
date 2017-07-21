@@ -1,0 +1,181 @@
+# -*- Makefile -*-   <-- hint to emacs
+# GNU Makefile
+# $Id: makefile.common,v 1.37.6.21.2.4.2.21.4.1 2009/12/25 06:31:49 jbrown Exp $
+
+##
+## Setup compilation flags
+##
+
+# Basic warning flags: for use with crufty old code
+C_BASIC_WARN_FLAGS = -Wimplicit -Wstrict-prototypes -Wmissing-prototypes
+CXX_BASIC_WARN_FLAGS = -Wimplicit
+
+# More advanced warnings for newer code
+C_STRICT_WARN_FLAGS = -Wall -pedantic -Wpointer-arith \
+	-Wstrict-prototypes -Wmissing-prototypes -Wwrite-strings \
+	-Wcast-qual -Wshadow -Wno-long-long
+CXX_STRICT_WARN_FLAGS = -Wall -pedantic -Wpointer-arith \
+	-Wwrite-strings -Wcast-qual -Wshadow -Wno-long-long
+
+AR ?= ar
+RANLIB ?= ranlib
+
+# gcc-3.x
+CXX_VERSION_FLAG ?=
+# gcc-4.3.2
+# CXX_VERSION_FLAG ?= -std=c++0x
+DEPEND_CC ?= $(CC) -MM -DMAKE_DEPEND -std=gnu99
+DEPEND_CXX ?= $(CXX) -MM -DMAKE_DEPEND $(CXX_VERSION_FLAG)
+
+OPT ?= y
+DEBUG ?= y
+
+ifdef DEBUG
+  BUILD_FLAGS += $(DEBUG_FLAGS) -DDEBUG
+endif
+ifdef OPT
+  ifdef DEBUG
+    BUILD_FLAGS += $(DEBUG_OPT_FLAGS)
+  else
+    # Explicit NDEBUG is to disable assertion checking; we'll also switch off
+    # some unused-variable/etc. warnings here, since we assign several
+    # variables just for assertion checks, and we're happy enough with the
+    # compiler silently optimizing them away.
+    BUILD_FLAGS += $(OPT_FLAGS) -DNDEBUG
+    EXTRA_COMMON_FLAGS += -Wno-unused
+  endif
+endif
+
+# Note: valgrind is unhappy with static linking
+ifdef STATIC_LINK
+  LINK_PRE_FLAGS += -static
+endif
+
+ifdef EXTRA_INCLUDE_DIRS
+  BUILD_FLAGS += $(foreach dir,$(EXTRA_INCLUDE_DIRS),-I$(dir))
+endif
+
+ifdef EXTRA_LIB_DIRS
+  dir_single = -Wl,-rpath -Wl,$(dir)
+  LINK_POST_FLAGS += $(foreach dir,$(EXTRA_LIB_DIRS),$(dir_single) -L$(dir))
+endif
+
+CFLAGS += $(BUILD_FLAGS) $(C_STRICT_WARN_FLAGS) -std=gnu99 \
+	$(EXTRA_COMMON_FLAGS) $(EXTRA_CFLAGS)
+CXXFLAGS += $(BUILD_FLAGS) $(CXX_STRICT_WARN_FLAGS) -Drestrict=__restrict__ \
+	$(CXX_VERSION_FLAG) $(EXTRA_COMMON_FLAGS) $(EXTRA_CXXFLAGS)
+
+
+##
+## Setup module lists, etc.
+##
+
+SIM_TARG = smtsim
+
+# *_BASE: source files, rooted in "src" directory.  These can contain "/"
+# to refer to source files in subdirectories.
+SIM_C_SRCS_BASE = btb-array.c cache.c commit.c core-resources.c decode.c \
+	emulate.c execute.c fetch.c main.c pht-predict.c predict.c print.c \
+	queue.c regread.c regrename.c regwrite.c run.c sim-params.c \
+	tlb-array.c
+SIM_CXX_SRCS_BASE = app-mgr.cc app-state.cc app-stats-log.cc arg-file.cc \
+	assoc-array.cc branch-bias-table.cc cache-array.cc cache-queue.cc \
+	coherence-mgr.cc context.cc deadblock-pred.cc debug-coverage.cc \
+	inject-inst.cc loader-aout.cc loader-elf.cc loader.cc mem-unit.cc \
+	mshr.cc multi-bpredict.cc prefetch-streambuf.cc prog-mem.cc \
+	sim-cfg.cc stash.cc syscalls.cc syscalls-sim-fd.cc trace-cache.cc \
+	trace-fill-unit.cc work-queue.cc bbtracker.cc adapt-mgr.cc
+
+SIM_OBJS = $(SIM_CXX_SRCS_BASE:.cc=.o) $(SIM_C_SRCS_BASE:.c=.o) static-config.o
+SIM_OBJS += $(SIM_EXTRA_OBJS)
+# *_REL: sources, each with (relative) path to source dir prefixed
+SIM_C_SRCS_REL = $(addprefix $(SRC_DIR)/,$(SIM_C_SRCS_BASE))
+SIM_CXX_SRCS_REL = $(addprefix $(SRC_DIR)/,$(SIM_CXX_SRCS_BASE))
+
+# Standalone type-system code (e.g. 64-bit types, hashing, etc.).
+# We build this as a library and then test that it can be linked into a
+# binary without bringing the rest of the simulator along.
+TYPESYS_LIB = smtsim-typesys.a
+TYPESYS_LINKTEST = linktest-typesys
+TYPESYS_C_SRCS_BASE = fp-ctl.c sim-assert.c stack-trace.c long-addr-c.c
+TYPESYS_CXX_SRCS_BASE = sys-types.cc
+TYPESYS_OBJS = $(TYPESYS_CXX_SRCS_BASE:.cc=.o) $(TYPESYS_C_SRCS_BASE:.c=.o)
+TYPESYS_C_SRCS_REL = $(addprefix $(SRC_DIR)/,$(TYPESYS_C_SRCS_BASE))
+TYPESYS_CXX_SRCS_REL = $(addprefix $(SRC_DIR)/,$(TYPESYS_CXX_SRCS_BASE)) \
+	$(addprefix $(SRC_DIR)/,linktest-typesys.cc)
+
+# Standalone utility code, which has nothing to do with simulation, but which
+# can depend on TYPESYS_LIB.  We build this as a library and then test that it
+# can be linked into a binary without bringing the rest of the simulator
+# along, in part to ensure that we don't accidentally let simulation details
+# creep into what would otherwise be standalone code.
+UTILS_LIB = smtsim-utils.a
+UTILS_LINKTEST = linktest-utils
+UTILS_C_SRCS_BASE = utils.c jtimer.c prng.c simple-pre.c
+UTILS_CXX_SRCS_BASE = utils-cc.cc gzstream.cc online-stats.cc region-alloc.cc \
+	callback-queue.cc
+UTILS_OBJS = $(UTILS_CXX_SRCS_BASE:.cc=.o) $(UTILS_C_SRCS_BASE:.c=.o)
+UTILS_C_SRCS_REL = $(addprefix $(SRC_DIR)/,$(UTILS_C_SRCS_BASE))
+UTILS_CXX_SRCS_REL = $(addprefix $(SRC_DIR)/,$(UTILS_CXX_SRCS_BASE)) \
+	$(addprefix $(SRC_DIR)/,linktest-utils.cc)
+
+KVTREE_LIB = libkv-tree.a
+KVTREE_CXX_SRCS_BASE = kv-tree.cc kv-tree-basic.cc kv-tree-path.cc \
+	kv-tree-pparse.cc kv-tree-val.cc
+KVTREE_OBJS = $(KVTREE_CXX_SRCS_BASE:.cc=.o)
+KVTREE_CXX_SRCS_REL = $(addprefix $(SRC_DIR)/,$(KVTREE_CXX_SRCS_BASE))
+
+ALL_TARGS = $(TYPESYS_LINKTEST) $(UTILS_LINKTEST) $(SIM_TARG) static-config.c
+ALL_LIBS = $(KVTREE_LIB) $(TYPESYS_LIB) $(UTILS_LIB)
+
+ALL_C_SRCS_REL = $(TYPESYS_C_SRCS_REL) $(UTILS_C_SRCS_REL) $(SIM_C_SRCS_REL)
+ALL_CXX_SRCS_REL = $(TYPESYS_CXX_SRCS_REL) $(UTILS_CXX_SRCS_REL) \
+	$(SIM_CXX_SRCS_REL) $(KVTREE_CXX_SRCS_REL)
+
+VPATH=.:$(SRC_DIR)
+
+
+##
+## The actual rules for compilation, cleaning, depend, etc.
+##
+
+all: $(ALL_TARGS) 
+
+$(SIM_TARG): $(SIM_OBJS) $(UTILS_LIB) $(TYPESYS_LIB) $(KVTREE_LIB)
+	$(CXX) $(LINK_PRE_FLAGS) -o $@ $^ $(LINK_POST_FLAGS)
+
+prelink: $(TYPESYS_LIB) $(UTILS_LIB) $(SIM_OBJS) $(KVTREE_LIB)
+
+$(TYPESYS_LINKTEST): linktest-typesys.o $(TYPESYS_LIB)
+	$(CXX) $(LINK_PRE_FLAGS) -o $@ $^ $(LINK_POST_FLAGS)
+
+$(TYPESYS_LIB): $(TYPESYS_OBJS)
+	$(AR) rc $@ $^
+	$(RANLIB) $@
+
+$(UTILS_LINKTEST): linktest-utils.o $(UTILS_LIB) $(TYPESYS_LIB)
+	$(CXX) $(LINK_PRE_FLAGS) -o $@ $^ $(LINK_POST_FLAGS)
+
+$(UTILS_LIB): $(UTILS_OBJS)
+	$(AR) rc $@ $^
+	$(RANLIB) $@
+
+$(KVTREE_LIB): $(KVTREE_OBJS)
+	$(AR) rc $@ $^
+	$(RANLIB) $@
+
+static-config.c: $(SRC_DIR)/smtsim.conf
+	$(SRC_DIR)/gen-string-const -a StaticConfig < $^ > $(@)-tmp
+	mv -f $(@)-tmp $@
+
+clean:
+	rm -f $(ALL_TARGS) $(ALL_LIBS) *.o *.u *~ core *.core
+
+.depend depend:
+	$(DEPEND_CC) $(ALL_C_SRCS_REL) > .depend-tmp
+	$(DEPEND_CXX) $(ALL_CXX_SRCS_REL) >> .depend-tmp
+	mv -f .depend-tmp .depend
+
+.PHONY: all clean depend prelink
+
+include .depend

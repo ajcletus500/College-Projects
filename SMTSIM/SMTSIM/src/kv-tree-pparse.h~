@@ -1,0 +1,132 @@
+// -*- C++ -*-
+//
+// Key-value tree, path parsing and recursive operations on parsed paths
+//
+// Jeff Brown
+// $JAB-Id: kv-tree-pparse.h,v 1.4 2003/02/07 20:38:23 jabrown Exp $
+//
+
+#ifndef KV_TREE_PPARSE_H
+#define KV_TREE_PPARSE_H
+
+#include <assert.h>
+#include <string>
+#include <vector>
+
+#include "kv-tree.h"
+
+
+// Path component: transparent class which represents one component of a path,
+// which may be a string or a token analagous to ".." or "."
+class KVPathComp {
+public:
+    typedef std::string string;
+    enum comp_type { Name, DirUp, DirCurr };
+private:
+    comp_type type;
+    string name;
+public:
+    KVPathComp(bool is_curr_not_up) { 
+        type = (is_curr_not_up) ? DirCurr : DirUp;
+    }
+    KVPathComp(const string& c_name) : type(Name), name(c_name) { }
+
+    comp_type get_type() const { return type; }
+    const string& get_name() const { assert(type == Name); return name; }
+};
+
+
+// Path: a sequence of path components which the tree code operates on.
+// This insulates the tree code from the details of path parsing, path
+// seperators, etc.  Paths may be relative or absolute.
+class KVPath {
+    typedef std::string string;
+    typedef std::vector<KVPathComp> comp_seq;
+    comp_seq comps;
+    bool fully_qual;
+
+public:
+    KVPath() : fully_qual(false) { }
+    
+    int size() const { return comps.size(); }
+    bool empty() const { return comps.empty(); }
+    bool is_fully_qual() const { return fully_qual; }
+    string debug_str() const;
+
+    void clear() { fully_qual = false; comps.clear(); }
+    void set_fully_qual() { assert(comps.empty()); fully_qual = true; }
+    void up() {  if (!comps.empty()) comps.pop_back(); }
+    void down(const KVPathComp& next_comp) { comps.push_back(next_comp); }
+
+    void prepend(const KVPath& p2);
+    void append(const KVPath& p2);
+
+    typedef comp_seq::const_iterator const_iterator;
+    const_iterator begin() const { return comps.begin(); }
+    const_iterator end() const { return comps.end(); }
+    typedef comp_seq::const_reverse_iterator const_reverse_iterator;
+    const_reverse_iterator rbegin() const { return comps.rbegin(); }
+    const_reverse_iterator rend() const { return comps.rend(); }
+};
+
+
+// A simple parser for paths: given the strings to use for seperators etc,
+// this converts between strings and KVPaths.
+class KVPathParser {
+    typedef std::string string;
+    string path_sep;            // Analog of "/"
+    string path_up;             // Analog of ".."
+    string path_curr;           // Analog of "."
+
+public:
+    KVPathParser(const string& sep, const string& up,
+                 const string& curr)
+        : path_sep(sep), path_up(up), path_curr(curr) { }
+
+    void parse(KVPath& dest, const string& src) const;
+    string to_str(const KVPath& src) const;
+    // Get rid of "up" and "curr" in a path (some may remain if not F-Q)
+    KVPath resolve(const KVPath& src, const KVPath *opt_parent) const;
+};
+
+
+// Functions for recursive operations on parsed paths.
+namespace KVParsedPath {
+    using std::string;
+
+    // Exceptions
+    struct BadPath {
+        KVPath path;
+        string reason;
+        BadPath(const KVPath& path_, const string& reason_) 
+            : path(path_), reason(reason_) { }
+        string to_str(const KVPathParser& pparser) const;
+    };
+
+    // Analagous to "cd /"
+    KVTree *walk_root(const KVTree *t);
+
+    // Analagous to "cd X"
+    KVTree *walk_const(const KVTree *t, const KVPath& path);
+
+    // Analagous to "mkdir -p X && cd X"
+    KVTree *walk_create(KVTree *t, const KVPath& path);
+
+    // Analagous to "realpath"
+    KVPath full_path(const KVTree *t);
+
+    const KVTreeVal *get(const KVTree *t, const KVPath& path);
+    const KVTreeVal *get_ifexist(const KVTree *t, const KVPath& path);
+
+    // (Creates any intermediate tree nodes needed)
+    void set(KVTree *t, const KVPath& path, KVTreeVal *new_val, bool weakly);
+
+    // Analagous to "rm -rf X"
+    void del(KVTree *t, const KVPath& path);
+
+    // (Creates any tree nodes needed in tree_path)
+    void overlay(KVTree *t, const KVPath& tree_path, KVTree *src, bool weakly);
+}
+
+
+#endif  /* KV_TREE_PPARSE_H */
